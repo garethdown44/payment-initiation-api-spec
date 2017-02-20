@@ -19,6 +19,8 @@
     },
     "Currency": {
 
+      "default": "GBP",
+      "$ref": "http://localhost:8000/schemas/v0/common/active_or_historic_currency_code.json"
     }
   },
   "required": [
