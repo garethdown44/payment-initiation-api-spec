@@ -27,7 +27,7 @@
     "Amount",
     "BeneficiaryDetails",
     "EndToEndTransactionID",
-    "ATMAtBranch"
+    "PaymentDescription"
   ],
   "additionalProperties": false
 }
