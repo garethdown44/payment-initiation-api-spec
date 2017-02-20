@@ -25,10 +25,6 @@
     "Amount",
     "BeneficiaryDetails",
     "EndToEndTransactionID",
-    "PaymentDescription",
-    "TelephoneNumber",
-    "GeographicLocation",
-    "OpeningTimes",
     "ATMAtBranch"
   ],
   "additionalProperties": false
