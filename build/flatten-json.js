@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 const refParser = require('json-schema-ref-parser');
 const fs = require('fs');
