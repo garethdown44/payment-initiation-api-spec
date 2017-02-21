@@ -1,0 +1,8 @@
+swagger: '2.0'
+info:
+   $ref: ./info/index.yaml
+# host: api.openbanking.xyz
+# basePath: /open-banking.xyz
+# schemes: https
+paths:
+  $ref: ./paths/index.yaml

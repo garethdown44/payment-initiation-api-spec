@@ -7,6 +7,8 @@ const schemasRootPath = process.argv[4];
 const beautify = require('js-beautify').js_beautify;
 const mkdirp = require('mkdirp');
 const glob = require('glob');
+const YAML = require('json2yaml')
+
 
 
 //Example usage:
@@ -79,8 +81,13 @@ function processFile(filename) {
             .dereference(jsonPath + '/' + filename)
             .then((flattenedSchema) => {
                 const beautifiedSchema = beautifySchema(flattenedSchema);
+                const yamlSchema = YAML.stringify(flattenedSchema);
                 const destination = distPath + '/' + filename;
-                return writeToFile(beautifiedSchema, destination);
+                const destinationYaml = distPath + '/' + filename.replace('.json','.yaml');
+                return Promise.all([
+                  writeToFile(beautifiedSchema, destination),
+                  writeToFile(yamlSchema, destinationYaml)
+                ]);
             })
             .then(() => {
                 console.log('Correctly flattened ', filename);

@@ -1,0 +1,6 @@
+post:
+  parameters:
+    $ref: http://localhost:8000/schemas/v0/payments/payment_initiation_post.yaml
+  responses:
+    200:
+      description: 200 Response
