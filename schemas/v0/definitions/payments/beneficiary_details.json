@@ -1,6 +1,6 @@
 {
   "description": "Payment Initiation Beneficiary Details",
-  "id": "http://localhost:8000/schemas/v0/payments/beneficiary_details.json#",
+  "id": "http://localhost:8000/schemas/v0/definitions/payments/beneficiary_details.json#",
   "type": "object",
   "properties": {
    "sortCode": {
