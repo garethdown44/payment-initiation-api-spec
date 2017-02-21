@@ -9,27 +9,27 @@
     },
     "Address": {
       "description": "Account holder address",
-      "$ref": "http://localhost:8000/schemas/v0/common/postal_address.json#"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/postal_address.json#"
     },
     "Account": {
       "description": "Account",
-      "$ref": "http://localhost:8000/schemas/v0/common/account.json#"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/account.json#"
     },
     "Customers": {
       "description": "Account owners",
       "type": "array",
       "items": {
         "description": "Customer",
-        "$ref": "http://localhost:8000/schemas/v0/common/customer.json#"
+        "$ref": "http://localhost:8000/schemas/v0/definitions/common/customer.json#"
       }
     },
     "Balance": {
       "description": "Balance",
-      "$ref": "http://localhost:8000/schemas/v0/common/amount.json#"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/amount.json#"
     },
     "AvailableBalance": {
       "description": "Available balance",
-      "$ref": "http://localhost:8000/schemas/v0/common/amount.json#"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/amount.json#"
     }
   },
   "required": [

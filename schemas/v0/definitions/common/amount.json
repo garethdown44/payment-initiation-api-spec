@@ -1,5 +1,5 @@
 {
-  "id": "http://localhost:8000/schemas/v1.2/definitions/common/amount.json",
+  "id": "http://localhost:8000/schemas/v0/definitions/common/amount.json",
   "description": "Monetary amount without currency",
   "type": "string",
   "pattern": "^-?\\d{1,10}\\.\\d{1,2}$"

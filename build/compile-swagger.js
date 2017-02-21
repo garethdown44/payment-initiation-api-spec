@@ -23,5 +23,5 @@ var options = {
 resolve(root, options).then(function (results) {
   //TODO write to file.....refactor utils.
   console.log(JSON.stringify(results.resolved, null, 2));
-  process.exit(1);
+  process.exit(0);
 });

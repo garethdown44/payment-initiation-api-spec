@@ -21,7 +21,7 @@ if (schemasRootPath) {
  //needed before we can publish them publicly
  const express = require('express');
  const server = express();
- server.use('/', express.static(path.resolve(schemasRootPath)));
+ server.use('/', express.static(schemasRootPath));
  server.listen(8000);
 }
 

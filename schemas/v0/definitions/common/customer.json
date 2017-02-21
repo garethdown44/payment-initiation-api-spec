@@ -9,11 +9,11 @@
     },
     "Address": {
       "description": "Address",
-      "$ref": "http://localhost:8000/schemas/v0/common/postal_address.json#"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/postal_address.json#"
     },
     "DateOfBirth": {
       "description": "Date of birth",
-      "$ref": "http://localhost:8000/schemas/v0/common/date.json#"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/date.json#"
     }
   }
 }

@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "flatten-schemas": "cd build && ./flatten-schemas.sh v0",
+    "compile-swagger": "cd build && node compile-swagger.js",
     "test": "mocha test"
   },
   "repository": {

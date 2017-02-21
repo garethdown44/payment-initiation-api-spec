@@ -2,5 +2,5 @@
   "id": "http://localhost:8000/schemas/v0/definitions/common/active_or_historic_currency_code.json#",
   "description": "Active or Historic Currency Code",
   "type": "string",
-  "pattern": "[A-Z]{3}"
+  "pattern": "^[A-Z]{3}$"
 }
