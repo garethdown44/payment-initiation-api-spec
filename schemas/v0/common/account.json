@@ -1,0 +1,26 @@
+{
+  "id": "http://localhost:8000/schemas/v0/common/account.json#",
+  "description": "Postal Address",
+  "type": "object",
+  "properties": {
+    "Currency": {
+        "description": "Account currency",
+        "default": "GBP",
+        "$ref": "http://localhost:8000/schemas/v0/definitions/common/active_or_historic_currency_code.json#"
+    },
+    "IBAN": {
+        "description": "IBAN",
+        "type": "string"
+    },
+    "OtherID": {
+        "description": "Other ID",
+        "type": "string"
+    }
+
+  },
+  "required": [
+    "Currency",
+    "IBAN"
+  ],
+  "additionalProperties": false
+}

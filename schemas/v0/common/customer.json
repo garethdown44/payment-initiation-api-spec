@@ -1,0 +1,19 @@
+{
+  "id": "http://localhost:8000/schemas/v0/common/account_holder.json#",
+  "description": "Customer",
+  "type": "object",
+  "properties": {
+    "Name": {
+      "description": "Customer name",
+      "type": "string"
+    },
+    "Address": {
+      "description": "Address",
+      "$ref": "http://localhost:8000/schemas/v0/common/postal_address.json#"
+    },
+    "DateOfBirth": {
+      "description": "Date of birth",
+      "$ref": "http://localhost:8000/schemas/v0/common/date.json#"
+    }
+  }
+}

@@ -1,0 +1,44 @@
+{
+  "id": "account_details.json#",
+  "title": "Account Details Request",
+  "type": "object",
+  "properties": {
+    "AccountName": {
+      "description": "Account Name",
+      "type": "string"
+    },
+    "Address": {
+      "description": "Account holder address",
+      "$ref": "http://localhost:8000/schemas/v0/common/postal_address.json#"
+    },
+    "Account": {
+      "description": "Account",
+      "$ref": "http://localhost:8000/schemas/v0/common/account.json#"
+    },
+    "Customers": {
+      "description": "Account owners",
+      "type": "array",
+      "items": {
+        "description": "Customer",
+        "$ref": "http://localhost:8000/schemas/v0/common/customer.json#"
+      }
+    },
+    "Balance": {
+      "description": "Balance",
+      "$ref": "http://localhost:8000/schemas/v0/common/amount.json#"
+    },
+    "AvailableBalance": {
+      "description": "Available balance",
+      "$ref": "http://localhost:8000/schemas/v0/common/amount.json#"
+    }
+  },
+  "required": [
+    "Customers",
+    "AccountName",
+    "PostalAddress",
+    "Account",
+    "Balance",
+    "AvailableBalance"
+  ],
+  "additionalProperties": false
+}
