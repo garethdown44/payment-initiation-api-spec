@@ -1,0 +1,6 @@
+{
+  "id": "http://localhost:8000/schemas/v1.2/definitions/common/country_code.json#",
+  "description": "CountryCode",
+  "type": "string",
+  "pattern": "[A-Z]{2}"
+}
