@@ -1,6 +1,11 @@
 post:
   parameters:
-    $ref: http://localhost:8000/schemas/v0/payments/payment_initiation_post.yaml
+   - in: body
+     name: body
+     description: Payment Object that needs to be put in the post request
+     required: true
+     schema:
+       $ref: http://localhost:8000/schemas/v0/payments/payment_initiation_post.yaml
   responses:
     200:
       description: 200 Response

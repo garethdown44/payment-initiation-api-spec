@@ -4,9 +4,10 @@ var path = require('path');
 var fs = require('fs');
 const express = require('express');
 const server = express();
-server.use('/', express.static(path.resolve('../compiled')));
+const utils = require('./utils');
+const compiled = path.resolve('../compiled');
+server.use('/', express.static(compiled));
 server.listen(8000);
-
 
 var swaggerFilePath = path.resolve('../apis/v0/swagger/index.yaml');
 process.chdir(path.dirname(swaggerFilePath));
@@ -20,8 +21,14 @@ var options = {
     }
   }
 };
-resolve(root, options).then(function (results) {
-  //TODO write to file.....refactor utils.
-  console.log(JSON.stringify(results.resolved, null, 2));
+
+resolve(root, options)
+.then(function (results) {
+  return Promise.all([
+    utils.writeToFile(YAML.safeDump(results.resolved), compiled + '/swagger/rw-swagger.yaml'),
+    utils.writeToFile(JSON.stringify(results.resolved, null, 2), compiled + '/swagger/rw-swagger.json')
+  ])
+})
+.then(function(res) {
   process.exit(0);
 });

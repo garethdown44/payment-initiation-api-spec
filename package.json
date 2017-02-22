@@ -6,6 +6,7 @@
   "scripts": {
     "flatten-schemas": "cd build && ./flatten-schemas.sh v0",
     "compile-swagger": "cd build && node compile-swagger.js",
+    "build": "npm run flatten-schemas && npm run compile-swagger",
     "test": "mocha test"
   },
   "repository": {

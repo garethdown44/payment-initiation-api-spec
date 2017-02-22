@@ -1,14 +1,10 @@
 const refParser = require('json-schema-ref-parser');
-const fs = require('fs');
-const path = require('path');
 const jsonPath = process.argv[2] || './schemas/v0';
 const distPath = process.argv[3] || './dist';
 const schemasRootPath = process.argv[4];
-const beautify = require('js-beautify').js_beautify;
-const mkdirp = require('mkdirp');
 const glob = require('glob');
 const YAML = require('json2yaml')
-
+const utils = require('./utils');
 
 
 //Example usage:
@@ -45,31 +41,7 @@ glob('*/*.json', {
       });
   });
 
-function beautifySchema(schema) {
-    const beautifiedSchema = beautify(JSON.stringify(schema), {
-        indent_size: 2
-    });
-    return beautifiedSchema;
-}
 
-function createMissingDirs(dir) {
-  mkdirp.sync(dir, function(err) {
-    if (err) console.error(err)
-  })
-}
-
-function writeToFile(string, filePath) {
-    return new Promise((resolve, reject) => {
-        var destDir = path.dirname(filePath);
-        createMissingDirs(destDir)
-        fs.writeFile(filePath, string, (err) => {
-            if (err) {
-                reject(err);
-            }
-            resolve();
-        });
-    });
-}
 
 function processFile(filename) {
     return new Promise((resolve, reject) => {
@@ -80,13 +52,13 @@ function processFile(filename) {
         refParser
             .dereference(jsonPath + '/' + filename)
             .then((flattenedSchema) => {
-                const beautifiedSchema = beautifySchema(flattenedSchema);
+                const beautifiedSchema = utils.beautifySchema(flattenedSchema);
                 const yamlSchema = YAML.stringify(flattenedSchema);
                 const destination = distPath + '/' + filename;
                 const destinationYaml = distPath + '/' + filename.replace('.json','.yaml');
                 return Promise.all([
-                  writeToFile(beautifiedSchema, destination),
-                  writeToFile(yamlSchema, destinationYaml)
+                  utils.writeToFile(beautifiedSchema, destination),
+                  utils.writeToFile(yamlSchema, destinationYaml)
                 ]);
             })
             .then(() => {
