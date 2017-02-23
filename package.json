@@ -33,6 +33,7 @@
     "mocha-junit-reporter": "^1.12.1",
     "supertest": "^2.0.1",
     "glob": "^7.1.1",
-    "json2yaml": "*"
+    "json2yaml": "*",
+    "child-process-promise": "*"
   }
 }

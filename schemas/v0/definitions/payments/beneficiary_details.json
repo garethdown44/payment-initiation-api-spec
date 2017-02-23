@@ -14,5 +14,5 @@
     "sortCode",
     "accountNumber"
   ],
-  "additionalProperties": "false"
+  "additionalProperties": false
 }
