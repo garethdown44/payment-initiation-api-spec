@@ -9,8 +9,7 @@
         "$ref": "http://localhost:8000/schemas/v0/definitions/common/active_or_historic_currency_code.json#"
     },
     "IBAN": {
-        "description": "IBAN",
-        "type": "string"
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/iban_identifier.json#"
     },
     "OtherID": {
         "description": "Other ID",

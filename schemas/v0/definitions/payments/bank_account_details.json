@@ -1,0 +1,24 @@
+{
+  "description": "Payment Initiation Beneficiary Details",
+  "id": "http://localhost:8000/schemas/v0/definitions/payments/bank_account_details.json#",
+  "type": "object",
+  "properties": {
+    "DomesticUKBankAccount": {
+      "type": "object",
+      "properties": {
+        "SortCode": {
+          "$ref": "http://localhost:8000/schemas/v0/definitions/common/uk_domestic_sort_code_identifier.json"
+        },
+        "AccountNumber": {
+          "$ref": "http://localhost:8000/schemas/v0/definitions/common/uk_domestic_bank_account_number.json"
+        }
+      }
+    },
+    "IBAN": {
+      "$ref": "http://localhost:8000/schemas/v0/definitions/common/iban_identifier.json"
+    }
+  },
+  "minProperties": 1,
+  "maxProperties": 1,
+  "additionalProperties": false
+}

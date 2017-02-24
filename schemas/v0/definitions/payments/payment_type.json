@@ -1,0 +1,10 @@
+{
+  "id": "http://localhost:8000/schemas/v0/definitions/payments/payment_type.json#",
+  "description": "Payment Type",
+  "type": "string",
+  "enum": [
+    "BACS",
+    "FP",
+    "etc"
+ ]
+}
