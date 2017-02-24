@@ -34,6 +34,7 @@
     "supertest": "^2.0.1",
     "glob": "^7.1.1",
     "json2yaml": "*",
-    "child-process-promise": "*"
+    "child-process-promise": "*",
+    "swagger-parser": "*"
   }
 }
