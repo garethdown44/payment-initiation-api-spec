@@ -16,13 +16,18 @@ end note
 
 ASPSP Token End-point -> PISP: Access Token
 
+note over PISP, ASPSP Resource Server
+    PISP is reponsible for generating their own unique end to end ID
+    which will eventually be passed downstream to the 
+    beneficary/originating banks
+end note
 PISP -> ASPSP Resource Server: Initiate Payment (payee account details, amount, EndtoEndId ...)
-ASPSP Resource Server -> PISP: Payment Reference blob
+ASPSP Resource Server -> PISP: Payment Reference ID/blob
 note right of ASPSP Resource Server
     The payment reference is opaque to everyone other than the ASPSP.
     Format is not standardised and ASPSPs are free to embed additional data in it.
-    ASPSPs must have a way of uniquely identifying the blob.
-    Message is mac-ed using the same cert
+    Must be unique and could potentially be part of a JWT token
+    Message is signed using the same cert
 end note
 
 end par
