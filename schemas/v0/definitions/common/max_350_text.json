@@ -1,5 +1,5 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/common/max_140_text.json#",
+  "id": "http://localhost:8000/schemas/v0/definitions/common/max_350_text.json#",
   "description": "maxLength 350 text",
   "type": "string",
   "minLength": 1,

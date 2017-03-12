@@ -1,0 +1,19 @@
+{
+  "id": "http://localhost:8000/schemas/v0/common/active_or_historic_currency_code_and_amount.json#",
+  "description": "Customer",
+  "type": "object",
+  "properties": {
+    "Amount": {
+      "type": "string",
+      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+    },
+    "Currency":{
+      "$ref": "active_or_historic_currency_code.json"
+    }
+  },
+  "required": [
+    "Amount",
+    "Currency"
+  ],
+  "additionalProperties": false
+}
