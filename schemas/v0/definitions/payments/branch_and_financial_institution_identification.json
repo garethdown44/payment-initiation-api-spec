@@ -1,0 +1,17 @@
+{
+  "description": "Branch And Financial Institution Identification ",
+  "id": "http://localhost:8000/schemas/v0/definitions/payments/branch_and_financial_institution_identification.json#",
+  "type": "object",
+  "properties": {
+    "SchemeName": {
+       "$ref": "external_financial_institution_identification_code.json"
+     },
+     "Identification": {
+       "$ref": "uk_domestic_sort_code_identifier.json"
+      }
+    },
+  "required": [
+    "SchemeName",
+    "Identification"
+  ]
+}

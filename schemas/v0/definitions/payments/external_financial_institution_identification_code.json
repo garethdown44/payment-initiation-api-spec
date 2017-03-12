@@ -1,0 +1,8 @@
+{
+  "id": "http://localhost:8000/schemas/v0/definitions/payments/external_financial_institution_identification_code.json#",
+  "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+  "type": "string",
+  "enum": [
+    "UKSortCode"
+ ]
+}

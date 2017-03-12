@@ -1,0 +1,8 @@
+{
+  "id": "http://localhost:8000/schemas/v0/definitions/payments/external_account_identification_code.json#",
+  "description": "Name of the identification scheme, in a coded form as published in an external list.",
+  "type": "string",
+  "enum": [
+    "BBAN"
+  ]
+}
