@@ -1,5 +1,4 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/payments/cash_account.json#",
   "type": "object",
   "properties": {
     "SchemeName": {
@@ -9,7 +8,7 @@
        "$ref": "bban_identifier.json"
      },
      "Name": {
-       "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_70_text.json"
+       "$ref": "../common/max_70_text.json"
      }
     },
   "required": [

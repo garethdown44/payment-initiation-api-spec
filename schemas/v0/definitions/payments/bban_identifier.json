@@ -1,5 +1,4 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/payments/bban_identifier.json#",
   "description": "Identification assigned by an institution.",
   "type": "string",
   "pattern": "^[0-9]{8,8}$"

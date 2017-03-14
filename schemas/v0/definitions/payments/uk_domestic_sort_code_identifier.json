@@ -1,5 +1,4 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/payments/uk_domestic_sort_code_identifier.json#",
   "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
   "type": "string",
   "pattern": "^SC[0-9]{6,6}$"

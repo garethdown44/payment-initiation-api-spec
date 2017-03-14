@@ -1,5 +1,4 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/common/uk_domestic_bank_account_number.json#",
   "description": "UK Bank Account Number",
   "type": "string",
   "pattern": "^[0-9]{8,8}$"

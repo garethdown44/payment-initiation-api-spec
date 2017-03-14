@@ -1,0 +1,13 @@
+post:
+  parameters:
+   - in: body
+     name: body
+     description: Payment Object that needs to be put in the post request to setup a simple immediate domestic payment
+     required: true
+     schema:
+       $ref: http://localhost:8000/schemas/v0/payments/complex_payment.post.request.schema.yaml
+  responses:
+    200:
+      description: 200 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/complex_payment.post.response.schema.yaml

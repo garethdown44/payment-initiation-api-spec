@@ -1,8 +1,7 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/payments/payment_type_code.json#",
   "description": "Specifies the Open Banking payment type requested",
   "type": "string",
   "enum": [
-    "Immediate"
+    "IMMEDIATE"
  ]
 }

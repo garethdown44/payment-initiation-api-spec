@@ -1,6 +1,5 @@
 {
-  "id": "http://localhost:8000/schemas/v0/common/active_or_historic_currency_code_and_amount.json#",
-  "description": "Customer",
+  "description": "Active Or Historic Currency Code and Amount",
   "type": "object",
   "properties": {
     "Amount": {

@@ -1,0 +1,30 @@
+post:
+  parameters:
+   - in: body
+     name: body
+     description: Set-up a simple immediate domestic payment
+     required: true
+     schema:
+       $ref: http://localhost:8000/schemas/v0/payments/single_immediate_domestic_payment.post.request.schema.yaml
+  responses:
+    200:
+      description: 200 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/single_immediate_domestic_payment.post.response.schema.yaml
+put:
+  parameters:
+    - in: body
+      name: body
+      description: Submit a simple immediate domestic payment
+      required: true
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/single_immediate_domestic_payment.put.request.schema.yaml
+  responses:
+    200:
+      description: 200 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/single_immediate_domestic_payment.put.response.schema.yaml
+    202:
+      description: 202 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/single_immediate_domestic_payment.put.response.schema.yaml

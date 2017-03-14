@@ -12,16 +12,8 @@ const utils = require('./utils');
 // jsonPath: ../opendata-api-spec/schemas/v0/  location where all jsonSchemas are, which require flattening
 // distPath: location/path to write the flattened schemas to
 // schemasRootPath: root path where all schemas are present
-if (schemasRootPath) {
- //runs a temporary local server in order to deference schemasRootPath
- //needed before we can publish them publicly
- const express = require('express');
- const server = express();
- server.use('/', express.static(schemasRootPath));
- server.listen(8000);
-}
 
-glob('*/*.json', {
+glob('*/*.schema.json', {
   cwd: jsonPath
 }, (err, filenames ) => {
   if (err) {

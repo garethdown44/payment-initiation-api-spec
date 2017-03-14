@@ -1,6 +1,5 @@
 {
   "description": "Branch And Financial Institution Identification ",
-  "id": "http://localhost:8000/schemas/v0/definitions/payments/branch_and_financial_institution_identification.json#",
   "type": "object",
   "properties": {
     "SchemeName": {

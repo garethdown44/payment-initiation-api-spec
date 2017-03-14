@@ -1,2 +1,6 @@
-/payments:
-  $ref: ./payments.yaml
+/payments/single-immediate:
+  $ref: ./single_immediate_domestic_payment.yaml
+# /payments/single-future-dated:
+#   $ref: ./single_future_dated_domestic_payment.yaml
+# /payments/complex:
+#   $ref: ./complex_payment.yaml

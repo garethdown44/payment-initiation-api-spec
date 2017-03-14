@@ -1,35 +1,34 @@
 {
-  "id": "http://localhost:8000/schemas/v0/definitions/common/postal_address_branch.json#",
   "description": "Postal Address",
   "type": "object",
   "properties": {
     "StreetName": {
       "description": "Name of a street or thoroughfare",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_70_text.json"
+      "$ref": "max_70_text.json"
     },
     "BuildingNumberOrName": {
       "description": "Number or Name that identifies the position of a building on a street",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_350_text.json"
+      "$ref": "max_350_text.json"
     },
     "PostCode": {
       "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_16_text.json"
+      "$ref": "max_16_text.json"
     },
     "OptionalAddressField": {
       "description": "Directions for customers",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_350_text.json"
+      "$ref": "max_350_text.json"
     },
     "TownName": {
       "description": "Name of a built-up area, with defined boundaries, and a local government",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_35_text.json"
+      "$ref": "max_35_text.json"
     },
     "CountrySubDivision": {
       "description": "Identifies a subdivision of a country such as state, region, county",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/max_35_text.json"
+      "$ref": "max_35_text.json"
     },
     "Country": {
       "description": "Nation with its own government",
-      "$ref": "http://localhost:8000/schemas/v0/definitions/common/country_code.json"
+      "$ref": "country_code.json"
     }
   },
   "required": [
