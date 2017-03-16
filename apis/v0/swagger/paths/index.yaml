@@ -7,20 +7,3 @@
 
 #payments complex
 # $ref:
-
-
-#todo
-# add folder for payments account_info transactions
-# add operationId
-# add externalDocs link (confluence or wikipages? or.....developer portal?)
-# add summary
-# add 'produces json' or openbanking vnd?
-# add security scheme and scopes (does it fit?) type: oauth2
-##### authorizationUrl: http://swagger.io/api/oauth/dialog
-#### flow: implicit
-##### scopes:
-####  #make:payment: makes payments
-# add status codes / error codes schemas and responses / descirptions (minimum common denominator)
-# add common error schemas for each allowed http response.
-# update documentation for flows and link wsd to swagger api endpoints
-# agree NFRs and FRs and document those...
