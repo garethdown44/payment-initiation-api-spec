@@ -1,0 +1,10 @@
+delete:
+  parameters:
+    - name: IntendID
+      in: path
+      description: ID of the previously set up Intent
+      required: true
+      type: string
+  responses:
+    200:
+      description: 200 SUCCESS

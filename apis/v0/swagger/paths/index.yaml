@@ -1,6 +1,26 @@
-/payments/single-immediate:
-  $ref: ./single_immediate_domestic_payment.yaml
-# /payments/single-future-dated:
-#   $ref: ./single_future_dated_domestic_payment.yaml
-# /payments/complex:
-#   $ref: ./complex_payment.yaml
+/payments/simple:
+  $ref: ./simple_setup.yaml
+/payments/simple/{IntendID}/execute:
+  $ref: ./simple_submit.yaml
+/payments/simple/{IntendID}/cancel:
+  $ref: ./simple_cancel.yaml
+
+#payments complex
+# $ref:
+
+
+#todo
+# add folder for payments account_info transactions
+# add operationId
+# add externalDocs link (confluence or wikipages? or.....developer portal?)
+# add summary
+# add 'produces json' or openbanking vnd?
+# add security scheme and scopes (does it fit?) type: oauth2
+##### authorizationUrl: http://swagger.io/api/oauth/dialog
+#### flow: implicit
+##### scopes:
+####  #make:payment: makes payments
+# add status codes / error codes schemas and responses / descirptions (minimum common denominator)
+# add common error schemas for each allowed http response.
+# update documentation for flows and link wsd to swagger api endpoints
+# agree NFRs and FRs and document those...

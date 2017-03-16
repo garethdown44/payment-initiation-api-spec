@@ -1,9 +1,9 @@
 {
-  "title": "Single Immediate Domestic Payment Submit Put Request",
+  "title": "Simple Payment Setup Post Response",
   "type": "object",
   "properties": {
-    "ASPSPReferenceId": {
-      "description": "ASPSP Reference ID",
+    "IntentID": {
+      "description": "Intent ID is the ASPSP identifier for the payment setup intent",
       "$ref": "../definitions/common/max_35_text.json"
     },
     "EndToEndIdentificationID": {
@@ -12,7 +12,7 @@
     }
   },
   "required": [
-    "ASPSPReferenceId",
+    "IntentID",
     "EndToEndIdentificationID"
   ],
   "additionalProperties": false

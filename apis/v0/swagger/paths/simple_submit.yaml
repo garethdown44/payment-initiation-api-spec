@@ -1,0 +1,22 @@
+put:
+  parameters:
+    - name: IntendID
+      in: path
+      description: ID of the previously set up Intent
+      required: true
+      type: string
+    - name: body
+      in: body
+      description: Body parameters needed to submit a simple payment
+      required: true
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/simple.put.request.schema.yaml
+  responses:
+    200:
+      description: 200 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/simple.put.200.response.schema.yaml
+    202:
+      description: 202 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/simple.put.202.response.schema.yaml

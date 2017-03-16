@@ -1,0 +1,17 @@
+post:
+  parameters:
+   - name: body
+     in: body
+     description: Set-up a simple payment
+     required: true
+     schema:
+       $ref: http://localhost:8000/schemas/v0/payments/simple.post.request.schema.yaml
+  responses:
+    200:
+      description: 200 Response
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/simple.post.response.schema.yaml
+    404:
+      description: 404 Unauthorized
+      schema:
+        $ref: http://localhost:8000/schemas/v0/payments/simple.post.response.schema.yaml

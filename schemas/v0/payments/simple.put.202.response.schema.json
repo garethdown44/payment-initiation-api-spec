@@ -1,0 +1,19 @@
+{
+  "title": "Simple Payment Submit Put 202 Response",
+  "type": "object",
+  "properties": {
+     "status": {
+       "type": "string",
+       "enum": [
+         "IN_PROCESSING"
+        ]
+     },
+     "title": {
+
+     },
+     "description": {
+       
+     }
+  },
+  "additionalProperties": false
+}
