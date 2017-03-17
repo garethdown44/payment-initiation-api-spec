@@ -1,0 +1,24 @@
+{
+  "title": "Simple Payment Submit Put 409 Response",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "409" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "SendingInstitutionReject" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The sending institution has rejected payment for an unspecified reason." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

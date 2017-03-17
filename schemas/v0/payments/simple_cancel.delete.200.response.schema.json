@@ -1,0 +1,22 @@
+{
+  "title": "Simple Payment Cancel Delete 200 Response",
+  "type": "object",
+  "properties": {
+     "PaymentStatus": {
+       "type": "string",
+       "enum": [
+         "Cancelled"
+        ]
+     },
+     "PaymentStatusDescription": {
+       "type": "string",
+       "enum": [
+         "Payment instruction cancelled."
+        ]
+     }
+  },
+  "required": [
+    "PaymentStatus"
+  ],
+  "additionalProperties": false
+}

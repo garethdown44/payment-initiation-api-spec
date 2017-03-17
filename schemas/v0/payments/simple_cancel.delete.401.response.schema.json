@@ -1,0 +1,24 @@
+{
+  "title": "Simple Payment Cancel Delete 401 Response",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "401" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [ "UnauthorisedRequest" ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [ "The request is unauthorised. Do not resubmit the request." ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

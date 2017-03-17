@@ -1,0 +1,30 @@
+{
+  "title": "Simple Payment Cancel Delete 503 Response",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string",
+      "enum": [ "503" ]
+    },
+    "title": {
+      "type": "string",
+      "enum": [
+        "InfrastructureBusy",
+        "InfrastructureUnavailable"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "enum": [
+        "The payment infrastructure is busy - either the sending institution or the scheme.",
+        "The payment infrastructure is unavailable - either the sending institution or the scheme."
+      ]
+    }
+  },
+  "required": [
+    "status",
+    "title",
+    "description"
+  ],
+  "additionalProperties": false
+}

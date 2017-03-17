@@ -2,6 +2,11 @@
   "description": "Specifies the Open Banking payment type requested",
   "type": "string",
   "enum": [
-    "IMMEDIATE"
+    "FutureDated",
+    "Immediate",
+    "RecurringAnnually",
+    "RecurringMonthly",
+    "RecurringQuarterly",
+    "RecurringWeekly"
  ]
 }
