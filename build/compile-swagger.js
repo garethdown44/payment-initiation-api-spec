@@ -1,37 +1,25 @@
-var resolve = require('json-refs').resolveRefs;
-var YAML = require('js-yaml');
-var path = require('path');
-var fs = require('fs');
-const express = require('express');
-const server = express();
+const YAML = require('js-yaml');
+const SwaggerParser = require('swagger-parser');
 const utils = require('./utils');
+const path = require('path');
+const swaggerDir = './compiled/swagger';
 const compiled = path.resolve('../compiled');
 
-server.use('/', express.static(compiled));
-server.listen(8000);
+var swaggerIndex = path.resolve('../apis/v0/swagger/index.yaml');
 
-var swaggerFilePath = path.resolve('../apis/v0/swagger/index.yaml');
-process.chdir(path.dirname(swaggerFilePath));
-
-var root = YAML.load(fs.readFileSync(swaggerFilePath).toString());
-var options = {
-  //I had to put remote because this relative loader doesnt go 'up' --> ../../
-  //quick and dirty before we have a better solution
-  filter        : ['relative' , 'remote'],
-  loaderOptions : {
-    processContent : function (res, callback) {
-      callback(null, YAML.load(res.text));
-    }
+//https://github.com/BigstickCarpet/swagger-parser/blob/releases/4.0.0/docs/options.md
+const SwaggerParserOptions = {
+  validate: {
+    spec: true,
+    schema: true
   }
 };
-
-resolve(root, options)
-.then(function (results) {
-    return Promise.all([
-    utils.writeToFile(YAML.safeDump(results.resolved, { lineWidth: 200 }), compiled + '/swagger/rw-swagger.yaml'),
-    utils.writeToFile(JSON.stringify(results.resolved, null, 2), compiled + '/swagger/rw-swagger.json')
-  ])
-})
-.then(function(res) {
-  process.exit(0);
+SwaggerParser.bundle(swaggerIndex, SwaggerParserOptions,
+  (err, api, metadata) => {
+    if (err) {
+      console.error(err);
+      throw err
+    }
+    utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), compiled + '/swagger/rw-swagger.yaml')
+    utils.writeToFile(JSON.stringify(api, null, 2), compiled + '/swagger/rw-swagger.json')
 });

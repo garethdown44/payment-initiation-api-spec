@@ -9,20 +9,20 @@ delete:
     200:
       description: 200 Response
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_cancel.delete.200.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_cancel.delete.200.response.schema.yaml
     400:
       description: 400 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_cancel.delete.400.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_cancel.delete.400.response.schema.yaml
     401:
       description: 401 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_cancel.delete.401.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_cancel.delete.401.response.schema.yaml
     503:
       description: 503 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_cancel.delete.503.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_cancel.delete.503.response.schema.yaml
     504:
       description: 504 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_cancel.delete.504.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_cancel.delete.504.response.schema.yaml

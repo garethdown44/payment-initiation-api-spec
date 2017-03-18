@@ -10,37 +10,37 @@ put:
       description: Body parameters needed to submit a simple payment
       required: true
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.request.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.request.schema.yaml
   responses:
     200:
       description: 200 Response
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.200.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.200.response.schema.yaml
     202:
       description: 202 Response
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.202.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.202.response.schema.yaml
     400:
       description: 400 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.400.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.400.response.schema.yaml
     401:
       description: 401 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.401.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.401.response.schema.yaml
     403:
       description: 403 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.403.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.403.response.schema.yaml
     409:
       description: 409 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.409.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.409.response.schema.yaml
     503:
       description: 503 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.503.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.503.response.schema.yaml
     504:
       description: 504 Unauthorized
       schema:
-        $ref: http://localhost:8000/schemas/v0/payments/simple_submit.put.504.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.504.response.schema.yaml
