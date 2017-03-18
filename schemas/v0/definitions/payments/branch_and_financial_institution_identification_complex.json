@@ -1,12 +1,12 @@
 {
-  "description": "Branch And Financial Institution Identification ",
+  "description": "Branch And Financial Institution Identification Complex",
   "type": "object",
   "properties": {
     "SchemeName": {
-       "$ref": "external_financial_institution_identification_code.json"
+       "$ref": "external_financial_institution_identification_code_complex.json"
      },
      "Identification": {
-       "$ref": "uk_domestic_sort_code_identifier.json"
+       "$ref": "../common/max_35_text.json"
       }
     },
   "required": [

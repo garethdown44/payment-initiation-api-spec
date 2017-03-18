@@ -1,6 +1,6 @@
 delete:
   parameters:
-    - name: IntendID
+    - name: IntentID
       in: path
       description: ID of the previously set up Intent
       required: true

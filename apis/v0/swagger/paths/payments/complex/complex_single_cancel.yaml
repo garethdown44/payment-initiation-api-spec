@@ -1,0 +1,28 @@
+delete:
+  parameters:
+    - name: IntentID
+      in: path
+      description:  Intent ID of one of the previously set up complex payments
+      required: true
+      type: string
+  responses:
+    200:
+      description: 200 Response
+      schema:
+        $ref: ../../../../../../compiled/schemas/v0/payments/complex_cancel.delete.200.response.schema.yaml
+    # 400:
+    #   description: 400 Unauthorized
+    #   schema:
+    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_cancel.delete.400.response.schema.yaml
+    # 401:
+    #   description: 401 Unauthorized
+    #   schema:
+    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_cancel.delete.401.response.schema.yaml
+    # 503:
+    #   description: 503 Unauthorized
+    #   schema:
+    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_cancel.delete.503.response.schema.yaml
+    # 504:
+    #   description: 504 Unauthorized
+    #   schema:
+    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_cancel.delete.504.response.schema.yaml

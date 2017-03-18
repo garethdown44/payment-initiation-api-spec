@@ -2,7 +2,7 @@ post:
   parameters:
    - name: body
      in: body
-     description: Set-up a simple payment
+     description: Setup a simple payment
      required: true
      schema:
        $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.request.schema.yaml

@@ -1,0 +1,8 @@
+{
+  "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+  "type": "string",
+  "enum": [
+    "BICFI",
+    "UKSortCode"
+ ]
+}

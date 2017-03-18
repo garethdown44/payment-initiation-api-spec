@@ -5,8 +5,8 @@ const schemasRootPath = process.argv[4];
 const glob = require('glob');
 const YAML = require('json2yaml')
 const utils = require('./utils');
-
-
+const Ajv = require('ajv');
+var ajv = new Ajv();
 //Example usage:
 // node flatten-json.js ../opendata-api-spec/schemas/v0/ ./dist ../opendata-api-spec/
 // jsonPath: ../opendata-api-spec/schemas/v0/  location where all jsonSchemas are, which require flattening
@@ -44,6 +44,11 @@ function processFile(filename) {
         refParser
             .dereference(jsonPath + '/' + filename)
             .then((flattenedSchema) => {
+                const valid = ajv.validateSchema(flattenedSchema);
+                if (!valid) {
+                  console.log(ajv.errors);
+                  throw ajv.errors;
+                }
                 const beautifiedSchema = utils.beautifySchema(flattenedSchema);
                 const yamlSchema = YAML.stringify(flattenedSchema);
                 const destination = distPath + '/' + filename;

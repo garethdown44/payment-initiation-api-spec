@@ -1,0 +1,22 @@
+{
+  "title": "Complex Payment Submit Put 200 Response",
+  "type": "object",
+  "properties": {
+     "PaymentStatus": {
+       "type": "string",
+       "enum": [
+         "ReadyforExecution"
+        ]
+     },
+     "PaymentStatusDescription": {
+       "type": "string",
+       "enum": [
+         "Payment execution instruction accepted."
+        ]
+     }
+  },
+  "required": [
+    "PaymentStatus"
+  ],
+  "additionalProperties": false
+}

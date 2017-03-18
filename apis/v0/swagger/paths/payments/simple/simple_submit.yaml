@@ -1,6 +1,6 @@
 put:
   parameters:
-    - name: IntendID
+    - name: IntentID
       in: path
       description: ID of the previously set up Payment Intent
       required: true

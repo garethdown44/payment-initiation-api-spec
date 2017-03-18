@@ -1,5 +1,5 @@
 #HOW TO use definitions:
-#Declare year using standard syntax e.g.
+#Declare here using standard syntax e.g.
 
 # CommonSchema:
 #  $ref: ../../../../compiled/schemas/v0/payments/simple_cancel.delete.200.response.schema.yaml

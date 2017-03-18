@@ -1,5 +1,5 @@
 {
-  "title": "Single Immediate Domestic Payment Submit Put Request",
+  "title": "Single Payment Submit Put Request",
   "type": "object",
   "properties": {
     "IntentID": {
@@ -10,7 +10,7 @@
       "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
       "$ref": "../definitions/common/max_35_text.json"
     },
-    "EndToEndIdentificationID": {
+    "EndToEndIdentification": {
       "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
       "$ref": "../definitions/common/max_35_text.json"
     },
@@ -53,7 +53,7 @@
   "required": [
     "IntentID",
     "InstructionIdentification",
-    "EndToEndIdentificationID",
+    "EndToEndIdentification",
     "InstructedAmount",
     "CreditorAgent",
     "CreditorAccount"

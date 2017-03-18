@@ -1,0 +1,16 @@
+{
+  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party.",
+  "type": "object",
+  "properties": {
+    "InstructedAmount": {
+      "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+      "$ref": "../common/active_or_historic_currency_code_and_amount.json"
+    },
+    "EquivalentAmount": {
+      "$ref": "equivalent_amount.json"
+    }
+  },
+  "minProperties": 1,
+  "maxProperties": 1,
+  "additionalProperties": false
+}
