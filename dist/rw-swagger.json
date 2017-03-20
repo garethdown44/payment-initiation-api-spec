@@ -325,7 +325,15 @@
               "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:setup",
+              "payments:recurring_setup"
+            ]
+          }
+        ]
       }
     },
     "/payments/simple/{IntentID}/execute": {
@@ -712,7 +720,15 @@
               "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:submit",
+              "payments:recurring_submit"
+            ]
+          }
+        ]
       }
     },
     "/payments/simple/{IntentID}/cancel": {
@@ -766,7 +782,15 @@
               "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:cancel",
+              "payments:recurring_cancel"
+            ]
+          }
+        ]
       }
     },
     "/payments/complex": {
@@ -1106,7 +1130,15 @@
               "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:recurring_setup",
+              "payments:complex_setup"
+            ]
+          }
+        ]
       }
     },
     "/payments/complex/{GlobalIntentID}/execute": {
@@ -1451,7 +1483,15 @@
               "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:complex_submit",
+              "payments:recurring_submit"
+            ]
+          }
+        ]
       }
     },
     "/payments/complex/{GlobalIntentID}/cancel-all": {
@@ -1532,7 +1572,15 @@
               "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema"
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:complex_cancel",
+              "payments:recurring_cancel"
+            ]
+          }
+        ]
       }
     },
     "/payments/complex/{IntentID}/cancel": {
@@ -1594,7 +1642,15 @@
               "additionalProperties": false
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:complex_cancel",
+              "payments:recurring_cancel"
+            ]
+          }
+        ]
       }
     },
     "/payments/status/{IntentID}": {
@@ -1647,7 +1703,14 @@
               "additionalProperties": false
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:status"
+            ]
+          }
+        ]
       }
     },
     "/payments/status/{GlobalIntentID}/all": {
@@ -1715,7 +1778,38 @@
               "minItems": 1
             }
           }
-        }
+        },
+        "security": [
+          {
+            "OAuth2Security": [
+              "payments:complex_status"
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "OAuth2Security": {
+      "type": "oauth2",
+      "flow": "password",
+      "tokenUrl": "/token",
+      "scopes": {
+        "payments:manage": "top level generic scope to setup, submit, cancel and get status of a  payment",
+        "payments:setup": "ability to create/setup a payment, not to be confused with submit",
+        "payments:submit": "submit a payment",
+        "payments:cancel": "cancel a future dated/recurring payment",
+        "payments:status": "allows to retrieve status of a payment",
+        "payments:recurring_manage": "top level generic scope to setup, submit and cancel a payment",
+        "payments:recurring_setup": "ability to create/setup a payment, not to be confused with submit",
+        "payments:recurring_submit": "submit a payment",
+        "payments:recurring_cancel": "cancel a future dated/recurring payment",
+        "payments:recurring_status": "allows to retrieve status of a future dated/recurring payment",
+        "payments:complex_manage": "top level generic scope to setup, submit and cancel a payment",
+        "payments:complex_setup": "ability to create/setup a payment, not to be confused with submit",
+        "payments:complex_submit": "submit a payment",
+        "payments:complex_cancel": "cancel a future dated/recurring payment",
+        "payments:complex_status": "allows to retrieve status of a complex payment"
       }
     }
   }

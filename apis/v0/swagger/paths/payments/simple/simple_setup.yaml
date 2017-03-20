@@ -31,3 +31,7 @@ post:
       description: Internal Server Error
       schema:
         $ref: ../../../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml
+  security:
+    - OAuth2Security:
+      - payments:setup
+      - payments:recurring_setup

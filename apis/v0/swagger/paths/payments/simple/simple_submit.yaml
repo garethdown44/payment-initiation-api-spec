@@ -36,3 +36,7 @@ put:
       description: Internal Server Error
       schema:
         $ref: ../../../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml
+  security:
+    - OAuth2Security:
+      - payments:submit
+      - payments:recurring_submit
