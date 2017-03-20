@@ -1,5 +1,5 @@
 {
-  "title": "Simple Payment Cancel Delete 401 Response",
+  "title": "HTTP 401 Error",
   "type": "object",
   "properties": {
     "status": {
@@ -8,7 +8,7 @@
     },
     "title": {
       "type": "string",
-      "enum": [ "UnauthorisedRequest" ]
+      "enum": [ "Unauthorised" ]
     },
     "description": {
       "type": "string",

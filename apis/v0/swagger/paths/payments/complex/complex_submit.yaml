@@ -1,6 +1,6 @@
 put:
   parameters:
-    - $ref: ../parameters.yaml#/GlobalIntentID
+    - $ref: "../parameters.yaml#/GlobalIntentID"
     - name: body
       in: body
       description: Body parameters needed to submit a complex payment
@@ -9,34 +9,18 @@ put:
         $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.request.schema.yaml
   responses:
     200:
-      description: 200 Response
+      description: Payment Submitted successfully
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.200.response.schema.yaml
-    # 202:
-    #   description: 202 Response
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.202.response.schema.yaml
-    # 400:
-    #   description: 400 Unauthorized
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.400.response.schema.yaml
-    # 401:
-    #   description: 401 Unauthorized
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.401.response.schema.yaml
-    # 403:
-    #   description: 403 Unauthorized
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.403.response.schema.yaml
-    # 409:
-    #   description: 409 Unauthorized
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.409.response.schema.yaml
-    # 503:
-    #   description: 503 Unauthorized
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.503.response.schema.yaml
-    # 504:
-    #   description: 504 Unauthorized
-    #   schema:
-    #     $ref: ../../../../../../compiled/schemas/v0/payments/complex_submit.put.504.response.schema.yaml
+    400:
+      description: Bad Request
+      schema:
+        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-400.schema.yaml
+    401:
+      description: Unauthorized
+      schema:
+        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-401.schema.yaml
+    500:
+      description: Internal Server Error
+      schema:
+        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml

@@ -9,3 +9,5 @@ info:
 #  $ref: ./definitions/index.yaml
 paths:
   $ref: ./paths/index.yaml
+# parameters:
+#   $ref: ./parameters/index.yaml

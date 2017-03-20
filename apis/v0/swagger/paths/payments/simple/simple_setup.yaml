@@ -8,30 +8,26 @@ post:
        $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.request.schema.yaml
   responses:
     200:
-      description: 200 Response
+      description: Payment setup successfully
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.200.response.schema.yaml
     400:
-      description: 400 Unauthorized
+      description: Bad Request
       schema:
-        $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.400.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-400.schema.yaml
     401:
-      description: 401 Unauthorized
+      description: Unauthorized
       schema:
-        $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.401.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-401.schema.yaml
     403:
-      description: 403 Unauthorized
+      description: 403 Forbidden
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.403.response.schema.yaml
     409:
       description: 409 Unauthorized
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.409.response.schema.yaml
-    503:
-      description: 503 Unauthorized
+    500:
+      description: Internal Server Error
       schema:
-        $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.503.response.schema.yaml
-    504:
-      description: 504 Unauthorized
-      schema:
-        $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.504.response.schema.yaml
+        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml

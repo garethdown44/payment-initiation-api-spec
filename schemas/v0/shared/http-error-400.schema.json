@@ -1,22 +1,18 @@
 {
-  "title": "Simple Payment Submit Put 504 Response",
+  "title": "HTTP 500 Error",
   "type": "object",
   "properties": {
     "status": {
       "type": "string",
-      "enum": [ "504" ]
+      "enum": [ "500" ]
     },
     "title": {
       "type": "string",
-      "enum": [
-        "Timeout"
-      ]
+      "enum": [ "InternalServerError" ]
     },
     "description": {
       "type": "string",
-      "enum": [
-        "Payment request timed out."
-      ]
+      "enum": [ "The payment infrastructure is busy or unavailable." ]
     }
   },
   "required": [

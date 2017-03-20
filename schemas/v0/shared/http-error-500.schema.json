@@ -1,18 +1,18 @@
 {
-  "title": "Simple Payment Setup Post 400 Response",
+  "title": "HTTP 500 Error",
   "type": "object",
   "properties": {
     "status": {
       "type": "string",
-      "enum": [ "400" ]
+      "enum": [ "500" ]
     },
     "title": {
       "type": "string",
-      "enum": [ "MalformedRequest" ]
+      "enum": [ "InternalServerError" ]
     },
     "description": {
       "type": "string",
-      "enum": [ "The request has failed business or structural validation. Do not resubmit the request." ]
+      "enum": [ "The payment infrastructure is busy or unavailable." ]
     }
   },
   "required": [

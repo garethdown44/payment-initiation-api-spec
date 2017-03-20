@@ -1,12 +1,12 @@
 GlobalIntentID:
-  - name: GlobalIntentID
-    in: path
-    description: Global Intent ID of the previously set up complex payment
-    required: true
-    type: string
+  name: GlobalIntentID
+  in: path
+  description: Global Intent ID of the previously set up complex payment
+  required: true
+  type: string
 IntentID:
-  - name: IntentID
-    in: path
-    description: Intent ID of the previously set up simple payment
-    required: true
-    type: string
+  name: IntentID
+  in: path
+  description: Intent ID of the previously set up simple payment
+  required: true
+  type: string
