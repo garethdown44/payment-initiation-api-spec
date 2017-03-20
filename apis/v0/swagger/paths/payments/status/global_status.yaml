@@ -9,3 +9,4 @@ get:
   security:
     - OAuth2Security:
       - payments:complex_status
+      - payments:recurring_status
