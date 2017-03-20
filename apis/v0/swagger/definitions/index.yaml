@@ -7,3 +7,10 @@
 # relative path to index.yaml where the definitions file gets loaded
 # $ref: '../../../index.yaml#/definitions/SimpleCancelDelete200ResponseSchema'
 # this works only in swagger-parser@beta (v4.0.0) version which uses latest json-schema-ref-parser 3.5.2
+
+400ErrorResponse:
+  $ref: ../../../../compiled/schemas/v0/shared/http-error-400.schema.yaml
+401ErrorResponse:
+  $ref: ../../../../compiled/schemas/v0/shared/http-error-401.schema.yaml
+500ErrorResponse:
+  $ref: ../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml

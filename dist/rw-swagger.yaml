@@ -3,6 +3,70 @@ info:
   version: v0
   title: Read Write APIs
   description: Draft Swagger specification for Read Write
+definitions:
+  400ErrorResponse:
+    title: HTTP 500 Error
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '500'
+      title:
+        type: string
+        enum:
+          - InternalServerError
+      description:
+        type: string
+        enum:
+          - The payment infrastructure is busy or unavailable.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
+  401ErrorResponse:
+    title: HTTP 401 Error
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '401'
+      title:
+        type: string
+        enum:
+          - Unauthorised
+      description:
+        type: string
+        enum:
+          - The request is unauthorised. Do not resubmit the request.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
+  500ErrorResponse:
+    title: HTTP 500 Error
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '500'
+      title:
+        type: string
+        enum:
+          - InternalServerError
+      description:
+        type: string
+        enum:
+          - The payment infrastructure is busy or unavailable.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
 paths:
   /payments/simple:
     post:
@@ -195,13 +259,13 @@ paths:
         '400':
           description: Bad Request
           schema:
-            $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/responses/400/schema'
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/responses/401/schema'
+            $ref: '#/definitions/401ErrorResponse'
         '403':
-          description: 403 Forbidden
+          description: Forbidden
           schema:
             title: Simple Payment Setup Post 403 Response
             type: object
@@ -240,7 +304,7 @@ paths:
               - description
             additionalProperties: false
         '409':
-          description: 409 Unauthorized
+          description: Conflict
           schema:
             title: Simple Payment Setup Post 409 Response
             type: object
@@ -265,19 +329,15 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema'
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:setup'
             - 'payments:recurring_setup'
-  '/payments/simple/{IntentID}/execute':
+  '/payments/simple/{IntentID}/submit':
     put:
       parameters:
-        - name: IntentID
-          in: path
-          description: Intent ID of the previously set up simple payment
-          required: true
-          type: string
+        - $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/parameters/0'
         - name: body
           in: body
           description: Body parameters needed to submit a simple payment
@@ -484,32 +544,13 @@ paths:
         '400':
           description: Bad Request
           schema:
-            title: HTTP 500 Error
-            type: object
-            properties:
-              status:
-                type: string
-                enum:
-                  - '500'
-              title:
-                type: string
-                enum:
-                  - InternalServerError
-              description:
-                type: string
-                enum:
-                  - The payment infrastructure is busy or unavailable.
-            required:
-              - status
-              - title
-              - description
-            additionalProperties: false
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/responses/401/schema'
+            $ref: '#/definitions/401ErrorResponse'
         '403':
-          description: 403 Unauthorized
+          description: Forbidden
           schema:
             title: Simple Payment Submit Put 403 Response
             type: object
@@ -548,7 +589,7 @@ paths:
               - description
             additionalProperties: false
         '409':
-          description: 409 Unauthorized
+          description: Conflict
           schema:
             title: Simple Payment Submit Put 409 Response
             type: object
@@ -573,7 +614,7 @@ paths:
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema'
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:submit'
@@ -581,7 +622,7 @@ paths:
   '/payments/simple/{IntentID}/cancel':
     delete:
       parameters:
-        - $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/parameters/0'
+        - $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/parameters/0'
       responses:
         '200':
           description: Payment successfully deleted
@@ -603,15 +644,15 @@ paths:
         '400':
           description: Bad Request
           schema:
-            $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/responses/400/schema'
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/responses/401/schema'
+            $ref: '#/definitions/401ErrorResponse'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema'
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:cancel'
@@ -889,23 +930,23 @@ paths:
         '400':
           description: Bad Request
           schema:
-            $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/responses/400/schema'
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/responses/401/schema'
+            $ref: '#/definitions/401ErrorResponse'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema'
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:recurring_setup'
             - 'payments:complex_setup'
-  '/payments/complex/{GlobalIntentID}/execute':
+  '/payments/complex/{GlobalIntentID}/submit':
     put:
       parameters:
-        - $ref: '#/paths/~1payments~1status~1%7BGlobalIntentID%7D~1all/get/parameters/0'
+        - $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/parameters/0'
         - name: body
           in: body
           description: Body parameters needed to submit a complex payment
@@ -1173,15 +1214,15 @@ paths:
         '400':
           description: Bad Request
           schema:
-            $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/responses/400/schema'
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/responses/401/schema'
+            $ref: '#/definitions/401ErrorResponse'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema'
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:complex_submit'
@@ -1189,7 +1230,11 @@ paths:
   '/payments/complex/{GlobalIntentID}/cancel-all':
     delete:
       parameters:
-        - $ref: '#/paths/~1payments~1status~1%7BGlobalIntentID%7D~1all/get/parameters/0'
+        - name: GlobalIntentID
+          in: path
+          description: Global Intent ID of the previously set up complex payment
+          required: true
+          type: string
       responses:
         '200':
           description: Payments instruction cancelled
@@ -1211,34 +1256,15 @@ paths:
         '400':
           description: Bad Request
           schema:
-            $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/responses/400/schema'
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            title: HTTP 401 Error
-            type: object
-            properties:
-              status:
-                type: string
-                enum:
-                  - '401'
-              title:
-                type: string
-                enum:
-                  - Unauthorised
-              description:
-                type: string
-                enum:
-                  - The request is unauthorised. Do not resubmit the request.
-            required:
-              - status
-              - title
-              - description
-            additionalProperties: false
+            $ref: '#/definitions/401ErrorResponse'
         '500':
           description: Internal Server Error
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/500/schema'
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:complex_cancel'
@@ -1246,7 +1272,11 @@ paths:
   '/payments/complex/{IntentID}/cancel':
     delete:
       parameters:
-        - $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/parameters/0'
+        - name: IntentID
+          in: path
+          description: Intent ID of the previously set up simple payment
+          required: true
+          type: string
       responses:
         '200':
           description: Payment instruction cancelled.
@@ -1255,34 +1285,15 @@ paths:
         '400':
           description: Bad Request
           schema:
-            $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/responses/400/schema'
+            $ref: '#/definitions/400ErrorResponse'
         '401':
           description: Unauthorized
           schema:
-            $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/responses/401/schema'
+            $ref: '#/definitions/401ErrorResponse'
         '500':
           description: Internal Server Error
           schema:
-            title: HTTP 500 Error
-            type: object
-            properties:
-              status:
-                type: string
-                enum:
-                  - '500'
-              title:
-                type: string
-                enum:
-                  - InternalServerError
-              description:
-                type: string
-                enum:
-                  - The payment infrastructure is busy or unavailable.
-            required:
-              - status
-              - title
-              - description
-            additionalProperties: false
+            $ref: '#/definitions/500ErrorResponse'
       security:
         - OAuth2Security:
             - 'payments:complex_cancel'
@@ -1290,7 +1301,7 @@ paths:
   '/payments/status/{IntentID}':
     get:
       parameters:
-        - $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1execute/put/parameters/0'
+        - $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/parameters/0'
       responses:
         '200':
           description: Simple Payment Status
@@ -1333,11 +1344,7 @@ paths:
   '/payments/status/{GlobalIntentID}/all':
     get:
       parameters:
-        - name: GlobalIntentID
-          in: path
-          description: Global Intent ID of the previously set up complex payment
-          required: true
-          type: string
+        - $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1cancel-all/delete/parameters/0'
       responses:
         '200':
           description: Global Payments Status
@@ -1397,10 +1404,10 @@ securityDefinitions:
       'payments:cancel': cancel a future dated/recurring payment
       'payments:status': allows to retrieve status of a payment
       'payments:recurring_setup': 'ability to create/setup a payment, not to be confused with submit'
-      'payments:recurring_submit': submit a payment
+      'payments:recurring_submit': submit a future dated/recurring payment
       'payments:recurring_cancel': cancel a future dated/recurring payment
       'payments:recurring_status': allows to retrieve status of a future dated/recurring payment
-      'payments:complex_setup': 'ability to create/setup a payment, not to be confused with submit'
-      'payments:complex_submit': submit a payment
-      'payments:complex_cancel': cancel a future dated/recurring payment
+      'payments:complex_setup': 'ability to create/setup a complex payment, not to be confused with submit'
+      'payments:complex_submit': submit a complex payment
+      'payments:complex_cancel': cancel a future dated/recurring complex payment
       'payments:complex_status': allows to retrieve status of a complex payment

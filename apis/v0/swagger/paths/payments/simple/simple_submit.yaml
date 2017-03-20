@@ -19,23 +19,23 @@ put:
     400:
       description: Bad Request
       schema:
-        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-400.schema.yaml
+        $ref: ../../../index.yaml#/definitions/400ErrorResponse
     401:
       description: Unauthorized
       schema:
-        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-401.schema.yaml
+        $ref: ../../../index.yaml#/definitions/401ErrorResponse
     403:
-      description: 403 Unauthorized
+      description: Forbidden
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.403.response.schema.yaml
     409:
-      description: 409 Unauthorized
+      description: Conflict
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.409.response.schema.yaml
     500:
       description: Internal Server Error
       schema:
-        $ref: ../../../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml
+        $ref: ../../../index.yaml#/definitions/500ErrorResponse
   security:
     - OAuth2Security:
       - payments:submit

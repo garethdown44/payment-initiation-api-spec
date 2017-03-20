@@ -4,9 +4,8 @@ info:
 # host: api.openbanking.xyz
 # basePath: /open-banking.xyz
 # schemes: https
-#definitions:
-# let's DRY everything in definitions
-#  $ref: ./definitions/index.yaml
+definitions:
+ $ref: ./definitions/index.yaml
 paths:
   $ref: ./paths/index.yaml
 securityDefinitions:

@@ -1,13 +1,13 @@
 #no recursive paths in openapi yet :( https://github.com/OAI/OpenAPI-Specification/issues/647
 /payments/simple:
   $ref: ./payments/simple/simple_setup.yaml
-/payments/simple/{IntentID}/execute:
+/payments/simple/{IntentID}/submit:
   $ref: ./payments/simple/simple_submit.yaml
 /payments/simple/{IntentID}/cancel:
   $ref: ./payments/simple/simple_cancel.yaml
 /payments/complex:
   $ref: ./payments/complex/complex_setup.yaml
-/payments/complex/{GlobalIntentID}/execute:
+/payments/complex/{GlobalIntentID}/submit:
   $ref: ./payments/complex/complex_submit.yaml
 /payments/complex/{GlobalIntentID}/cancel-all:
   $ref: ./payments/complex/complex_global_cancel.yaml
