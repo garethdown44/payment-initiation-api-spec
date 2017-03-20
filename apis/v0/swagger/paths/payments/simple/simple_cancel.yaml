@@ -1,10 +1,6 @@
 delete:
   parameters:
-    - name: IntentID
-      in: path
-      description: ID of the previously set up Intent
-      required: true
-      type: string
+    $ref: ../parameters.yaml#/IntentID
   responses:
     200:
       description: 200 Response

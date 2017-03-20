@@ -4,6 +4,7 @@ const utils = require('./utils');
 const path = require('path');
 const swaggerDir = './compiled/swagger';
 const compiled = path.resolve('../compiled');
+const dist = path.resolve('../dist');
 
 var swaggerIndex = path.resolve('../apis/v0/swagger/index.yaml');
 
@@ -22,4 +23,7 @@ SwaggerParser.bundle(swaggerIndex, SwaggerParserOptions,
     }
     utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), compiled + '/swagger/rw-swagger.yaml')
     utils.writeToFile(JSON.stringify(api, null, 2), compiled + '/swagger/rw-swagger.json')
+    // temporary....
+    utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), dist + '/rw-swagger.yaml')
+    utils.writeToFile(JSON.stringify(api, null, 2), dist + '/rw-swagger.json')
 });

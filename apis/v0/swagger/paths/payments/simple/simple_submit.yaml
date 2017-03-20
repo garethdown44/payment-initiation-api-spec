@@ -1,10 +1,6 @@
 put:
   parameters:
-    - name: IntentID
-      in: path
-      description: ID of the previously set up Payment Intent
-      required: true
-      type: string
+    - $ref: ../parameters.yaml#/IntentID
     - name: body
       in: body
       description: Body parameters needed to submit a simple payment

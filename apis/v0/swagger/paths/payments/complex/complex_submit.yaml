@@ -1,10 +1,6 @@
 put:
   parameters:
-    - name: GlobalIntentID
-      in: path
-      description: Global Intent ID of the previously set up complex Payment
-      required: true
-      type: string
+    - $ref: ../parameters.yaml#/GlobalIntentID
     - name: body
       in: body
       description: Body parameters needed to submit a complex payment
