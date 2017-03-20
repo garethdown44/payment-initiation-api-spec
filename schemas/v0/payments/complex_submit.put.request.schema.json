@@ -4,7 +4,7 @@
   "type": "object",
   "properties": {
     "GlobalIntentID": {
-      "description": "Intent ID is the ASPSP identifier for the payment setup intent",
+      "description": "Global Intent ID is the ASPSP identifier for the payment setup intent",
       "$ref": "../definitions/common/max_35_text.json"
     },
     "PaymentInformationIdentification": {

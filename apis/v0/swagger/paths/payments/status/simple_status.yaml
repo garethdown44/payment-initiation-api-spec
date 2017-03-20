@@ -1,0 +1,8 @@
+get:
+  parameters:
+    - $ref: "../parameters.yaml#/IntentID"
+  responses:
+    200:
+      description: Simple Payment Status
+      schema:
+        $ref: ../../../../../../compiled/schemas/v0/payments/simple_status.get.200.response.schema.yaml

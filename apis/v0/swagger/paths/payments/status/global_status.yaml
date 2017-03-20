@@ -1,0 +1,8 @@
+get:
+  parameters:
+    - $ref: "../parameters.yaml#/GlobalIntentID"
+  responses:
+    200:
+      description: Global Payments Status
+      schema:
+        $ref: ../../../../../../compiled/schemas/v0/payments/global_status.get.200.response.schema.yaml

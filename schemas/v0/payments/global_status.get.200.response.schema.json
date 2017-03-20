@@ -1,0 +1,48 @@
+{
+  "title": "Complex Payment Global Status GET 200 Response",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "IntentID": {
+        "description": "Intent ID is the ASPSP identifier for the payment setup intent",
+        "$ref": "../definitions/common/max_35_text.json"
+      },
+      "PaymentStatus": {
+        "type": "string",
+        "enum": [
+          "AwaitingAuthorisation",
+          "ReadyforSubmission",
+          "ReadyforExecution",
+          "SendingInstitutionExecution",
+          "SchemeExecution",
+          "ReceivingInstitutionExecution",
+          "ExecutionComplete",
+          "ExecutionFailure",
+          "Cancelled"
+        ]
+      },
+      "PaymentStatusDescription": {
+        "type": "string",
+        "enum": [
+          "Payment request requires further authorisation to progress.",
+          "Payment request is authorised and ready for submission.",
+          "Payment executed or ready for scheme to execute.",
+          "Payment is being executed by the sending institution.",
+          "Payment has been passed from sending institution to scheme for processing.",
+          "Payment has passed from scheme to receiving institution for processing.",
+          "Payment has been applied to receiving account and is complete.",
+          "Payment to receving account has failed.",
+          "Payment instruction cancelled."
+        ]
+      }
+    },
+    "required": [
+      "PaymentStatus",
+      "PaymentStatusDescription",
+      "IntentID"
+    ],
+    "additionalProperties": false
+  },
+  "minItems": 1
+}
