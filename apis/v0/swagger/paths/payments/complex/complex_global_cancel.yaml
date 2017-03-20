@@ -3,7 +3,7 @@ delete:
     - $ref: "../parameters.yaml#/GlobalIntentID"
   responses:
     200:
-      description: Payments cancelled successfully
+      description: Payments instruction cancelled
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/complex_cancel.delete.200.response.schema.yaml
     400:

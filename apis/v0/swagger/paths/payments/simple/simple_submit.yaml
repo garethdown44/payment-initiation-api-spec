@@ -9,11 +9,11 @@ put:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.request.schema.yaml
   responses:
     200:
-      description: Payment submitted successfully
+      description: Payment executed or ready for scheme to execute.
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.200.response.schema.yaml
     202:
-      description: 202 Response
+      description: Payment execution instruction accepted.
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.202.response.schema.yaml
     400:

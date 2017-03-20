@@ -439,7 +439,7 @@ paths:
             additionalProperties: false
       responses:
         '200':
-          description: Payment submitted successfully
+          description: Payment executed or ready for scheme to execute.
           schema:
             title: Simple Payment Submit Put 200 Response
             type: object
@@ -456,7 +456,7 @@ paths:
               - PaymentStatus
             additionalProperties: false
         '202':
-          description: 202 Response
+          description: Payment execution instruction accepted.
           schema:
             title: Simple Payment Submit Put 202 Response
             type: object
@@ -1142,7 +1142,7 @@ paths:
             additionalProperties: false
       responses:
         '200':
-          description: Payment Submitted successfully
+          description: Payment executed or ready for scheme to execute.
           schema:
             title: Complex Payment Submit Put 200 Response
             type: object
@@ -1195,7 +1195,7 @@ paths:
         - $ref: '#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1execute/put/parameters/0'
       responses:
         '200':
-          description: Payments cancelled successfully
+          description: Payments instruction cancelled
           schema:
             $ref: '#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/200/schema'
         '400':
@@ -1235,7 +1235,7 @@ paths:
         - $ref: '#/paths/~1payments~1simple~1%7BIntentID%7D~1cancel/delete/parameters/0'
       responses:
         '200':
-          description: Payment cancelled successfully
+          description: Payment instruction cancelled.
           schema:
             title: Simple Payment Cancel Delete 200 Response
             type: object

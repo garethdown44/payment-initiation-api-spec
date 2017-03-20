@@ -7,6 +7,9 @@ post:
      schema:
        $ref: ../../../../../../compiled/schemas/v0/payments/complex_setup.post.request.schema.yaml
   responses:
+    #review setup, partial success
+    #review error codes, partial errors
+    #review response for partial success cases
     200:
       description: Payment setup successfully
       schema:
