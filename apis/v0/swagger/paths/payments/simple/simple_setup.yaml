@@ -1,4 +1,13 @@
 post:
+  tags:
+   - Simple Payment
+  summary: Setup a simple payment
+  description: Setup a simple payment (e.g. single immediate domestic payments, single future dated payment , single e-commerce payment or simple recurring payment)
+  operationId: SetupSimplePayment
+  consumes:
+    - $ref: ../../../definitions/mime_type.yaml
+  produces:
+    - $ref: ../../../definitions/mime_type.yaml
   parameters:
    - name: body
      in: body
@@ -12,13 +21,9 @@ post:
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.200.response.schema.yaml
     400:
-      description: Bad Request
-      schema:
-        $ref: ../../../index.yaml#/definitions/400ErrorResponse
+      $ref: ../../../index.yaml#/responses/400ErrorResponse
     401:
-      description: Unauthorized
-      schema:
-        $ref: ../../../index.yaml#/definitions/401ErrorResponse
+      $ref: ../../../index.yaml#/responses/401ErrorResponse
     403:
       description: Forbidden
       schema:
@@ -28,9 +33,7 @@ post:
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_setup.post.409.response.schema.yaml
     500:
-      description: Internal Server Error
-      schema:
-        $ref: ../../../index.yaml#/definitions/500ErrorResponse
+     $ref: ../../../index.yaml#/responses/500ErrorResponse
   security:
     - OAuth2Security:
       - payments:setup

@@ -1,4 +1,13 @@
 put:
+  tags:
+   - Simple Payment
+  summary: Submit a simple payment
+  description: Submit a previously setup simple payment (e.g. single immediate domestic payments, single future dated payment , single e-commerce payment or simple recurring payment)
+  operationId: SubmitSimplePayment
+  consumes:
+    - $ref: ../../../definitions/mime_type.yaml
+  produces:
+    - $ref: ../../../definitions/mime_type.yaml
   parameters:
     - $ref: "../parameters.yaml#/IntentID"
     - name: body
@@ -17,13 +26,9 @@ put:
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.202.response.schema.yaml
     400:
-      description: Bad Request
-      schema:
-        $ref: ../../../index.yaml#/definitions/400ErrorResponse
+      $ref: ../../../index.yaml#/responses/400ErrorResponse
     401:
-      description: Unauthorized
-      schema:
-        $ref: ../../../index.yaml#/definitions/401ErrorResponse
+      $ref: ../../../index.yaml#/responses/401ErrorResponse
     403:
       description: Forbidden
       schema:
@@ -33,9 +38,7 @@ put:
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_submit.put.409.response.schema.yaml
     500:
-      description: Internal Server Error
-      schema:
-        $ref: ../../../index.yaml#/definitions/500ErrorResponse
+      $ref: ../../../index.yaml#/responses/500ErrorResponse
   security:
     - OAuth2Security:
       - payments:submit

@@ -1,0 +1,2 @@
+OAuth2Security:
+  $ref: ./oauth2security.yaml

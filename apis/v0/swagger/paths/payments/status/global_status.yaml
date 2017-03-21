@@ -1,4 +1,11 @@
 get:
+  tags:
+   - Complex Payment
+  summary: Gets status for a complex payment
+  description: Gets status for a previously submitted complex payment, all payments (if many) instructions status will be returned
+  operationId: GetComplexPaymentStatus
+  produces:
+    - $ref: ../../../definitions/mime_type.yaml
   parameters:
     - $ref: "../parameters.yaml#/GlobalIntentID"
   responses:

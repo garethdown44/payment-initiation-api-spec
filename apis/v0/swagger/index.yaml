@@ -2,30 +2,24 @@ swagger: '2.0'
 info:
    $ref: ./info/index.yaml
 # host: api.openbanking.xyz
-# basePath: /open-banking.xyz
-# schemes: https
-definitions:
- $ref: ./definitions/index.yaml
+basePath: /open-banking
+schemes:
+  - https
+produces:
+  - $ref: ./definitions/mime_type.yaml
+# definitions:
+#  $ref: ./definitions/index.yaml
 paths:
-  $ref: ./paths/index.yaml
+ $ref: ./paths/index.yaml
 securityDefinitions:
-  OAuth2Security:
-    type: oauth2
-    flow: password
-    tokenUrl: '/token'
-    scopes:
-      # payments:manage: top level generic scope to setup, submit, cancel and get status of a  payment
-      payments:setup: ability to create/setup a payment, not to be confused with submit
-      payments:submit: submit a payment
-      payments:cancel: cancel a future dated/recurring payment
-      payments:status: allows to retrieve status of a payment
-      # payments:recurring_manage: top level generic scope to setup, submit and cancel a payment
-      payments:recurring_setup: ability to create/setup a payment, not to be confused with submit
-      payments:recurring_submit: submit a future dated/recurring payment
-      payments:recurring_cancel: cancel a future dated/recurring payment
-      payments:recurring_status: allows to retrieve status of a future dated/recurring payment
-      # payments:complex_manage: top level generic scope to setup, submit and cancel a payment
-      payments:complex_setup: ability to create/setup a complex payment, not to be confused with submit
-      payments:complex_submit: submit a complex payment
-      payments:complex_cancel: cancel a future dated/recurring complex payment
-      payments:complex_status: allows to retrieve status of a complex payment
+  $ref: ./security/index.yaml
+#tags section, to organise endpoints
+tags:
+ - name: Simple Payment
+   description: Simple Payments endpoints
+ - name: Complex Payment
+   description: Complex Payments endpoints
+#common responses (errors)
+
+responses:
+  $ref: ./responses/index.yaml

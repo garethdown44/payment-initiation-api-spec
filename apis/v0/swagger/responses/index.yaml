@@ -1,0 +1,12 @@
+400ErrorResponse:
+  description: Bad Request
+  schema:
+    $ref: ../../../../compiled/schemas/v0/shared/http-error-400.schema.yaml
+401ErrorResponse:
+  description: Unauthorized
+  schema:
+    $ref: ../../../../compiled/schemas/v0/shared/http-error-401.schema.yaml
+500ErrorResponse:
+  description: Internal Server Error
+  schema:
+    $ref: ../../../../compiled/schemas/v0/shared/http-error-500.schema.yaml

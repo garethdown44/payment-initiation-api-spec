@@ -1,4 +1,11 @@
 delete:
+  tags:
+   - Simple Payment
+  summary: Cancel a simple payment
+  description: Cancel a simple payment (e.g. single immediate domestic payments, single future dated payment , single e-commerce payment or simple recurring payment)
+  operationId: CancelSimplePayment
+  produces:
+    - $ref: ../../../definitions/mime_type.yaml
   parameters:
     - $ref: "../parameters.yaml#/IntentID"
   responses:
@@ -7,17 +14,11 @@ delete:
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_cancel.delete.200.response.schema.yaml
     400:
-      description: Bad Request
-      schema:
-        $ref: ../../../index.yaml#/definitions/400ErrorResponse
+      $ref: ../../../index.yaml#/responses/400ErrorResponse
     401:
-      description: Unauthorized
-      schema:
-        $ref: ../../../index.yaml#/definitions/401ErrorResponse
+      $ref: ../../../index.yaml#/responses/401ErrorResponse
     500:
-      description: Internal Server Error
-      schema:
-        $ref: ../../../index.yaml#/definitions/500ErrorResponse
+      $ref: ../../../index.yaml#/responses/500ErrorResponse
   security:
     - OAuth2Security:
       - payments:cancel
