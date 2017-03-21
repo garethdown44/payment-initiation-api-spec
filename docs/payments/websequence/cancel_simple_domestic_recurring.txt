@@ -1,0 +1,33 @@
+title Cancelling Recurring Simple Domestic
+
+participant PSU
+participant TPP
+participant ASPSP Resource Server
+participant ASPSP Authentication Server
+
+
+opt Setup Recurring Payment Intent
+    PSU -> TPP: Setup Intent
+    note over PSU, ASPSP Resource Server: OAuth Scope payments:recurring_cancelled must be requested at the time of initial setup
+    TPP -> ASPSP Resource Server: /payments/simple
+    ASPSP Resource Server --> TPP: IntentID, EndToEndIdentification (200,4xx, 5xx)
+    TPP --> PSU: Redirect PSU to ASPSP for Auth
+end
+
+opt Authorise Recurring Payment
+ note over PSU, ASPSP Authentication Server: include OAuth 2.0 params (scope etc) and IntentID
+ PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
+ ASPSP Authentication Server --> PSU: View intent details
+ PSU -> ASPSP Authentication Server: Authorise consent for recurring payment
+ ASPSP Authentication Server --> PSU: Redirect plus auth code
+end
+
+opt Recurring Cancellation Step
+    PSU -> TPP: Redirect auth code
+    TPP -> ASPSP Resource Server: /token
+    ASPSP Resource Server --> TPP: access token & refresh token
+    TPP -> ASPSP Resource Server: /payments/${IntentID}/cancel
+    ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
+    TPP -> ASPSP Resource Server: /payments${IntentID}/status
+    ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
+end

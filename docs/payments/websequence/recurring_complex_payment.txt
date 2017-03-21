@@ -1,0 +1,34 @@
+title Recurring Complex Payment
+
+participant PSU
+participant TPP
+participant ASPSP Resource Server
+participant ASPSP Authentication Server
+
+
+opt Setup Recurring Payment
+    PSU -> TPP: Setup instruction
+    note over TPP, ASPSP Resource Server: Payload should include the relevant recurring PaymentType plus execute start date
+    TPP -> ASPSP Resource Server: /payments/complex
+    ASPSP Resource Server --> TPP: GoblalIntentID, EndToEndIdentification (200,4xx, 5xx)
+    TPP -> PSU: Redirect PSU to ASPSP for Auth
+end
+
+opt Authorise Payment
+ note over PSU, ASPSP Authentication Server: include OAuth 2.0 params (scope etc) and IntentID
+ PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
+ ASPSP Authentication Server --> PSU: View payment details
+ PSU -> ASPSP Authentication Server: Authorise consent for single payment
+ ASPSP Authentication Server --> PSU: Redirect plus auth code
+end
+
+opt Execute Recurring Complex Payment set
+    PSU -> TPP: Redirect auth code
+    loop Executed more than once depending on frequency of payment
+        TPP -> ASPSP Resource Server: /token
+        ASPSP Resource Server --> TPP: access token
+        TPP -> ASPSP Resource Server: /payments/complex${IntentID}/execute
+        ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
+        ASPSP Resource Server --> TPP: Async status webhook (optional)
+    end
+end

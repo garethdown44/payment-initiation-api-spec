@@ -1,0 +1,33 @@
+title Cancel Single Future Dated Bulk
+
+participant PSU
+participant TPP
+participant ASPSP Resource Server
+participant ASPSP Authentication Server
+
+
+opt Setup Single Payment
+    PSU -> TPP: Initiate Future Dated Bulk Payment
+    TPP -> ASPSP Resource Server: /payments/complex
+    note over TPP, ASPSP Resource Server: Must request payments:complex_cancel OAuth Scope
+    note over TPP, ASPSP Resource Server: It should be noted that we now have a GlobalIntentID that represents all of the bulk payments
+    ASPSP Resource Server --> TPP: GlobalIntentID, EndToEndIdentification (200,4xx, 5xx)
+    TPP -> PSU: Redirect PSU to ASPSP for Auth
+end
+
+opt Authorise Payment/Scopes
+ note over PSU, ASPSP Authentication Server: include OAuth 2.0 params (scope etc) and IntentID
+ PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
+ ASPSP Authentication Server --> PSU: View list of payment details
+ PSU -> ASPSP Authentication Server: Authorise consent for bulk payment
+ ASPSP Authentication Server --> PSU: Redirect plus auth code
+end
+
+opt Cancel Single Future Dated Bulk Payment
+    PSU -> TPP: Redirect auth code
+    TPP -> ASPSP Resource Server: /token
+    ASPSP Resource Server --> TPP: access token
+    TPP -> ASPSP Resource Server: /payments/${GlobalIntentID}/cancel-all
+    ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
+    ASPSP Resource Server --> TPP: Async status webhook (optional)
+end
