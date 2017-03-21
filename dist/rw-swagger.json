@@ -1628,7 +1628,7 @@
           "Complex Payment"
         ],
         "summary": "Gets status for a payment",
-        "description": "Gets status for a previously submitted  payment (single instruction within a complex or simple complex payment)",
+        "description": "Gets status for a previously submitted  payment (single instruction within a complex or simple  payment)",
         "operationId": "GetSimplePaymentStatus",
         "produces": [
           {
@@ -1642,7 +1642,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Simple Payment Status",
+            "description": "Payment Status",
             "schema": {
               "title": "Simple Payment Status GET 200 Response",
               "type": "object",
@@ -1699,8 +1699,8 @@
         "tags": [
           "Complex Payment"
         ],
-        "summary": "Gets status for a complex Payment,",
-        "description": "Gets status for a previously submitted complex payment, all instructions status will be returned",
+        "summary": "Gets status for a complex payment",
+        "description": "Gets status for a previously submitted complex payment, all payments (if many) instructions status will be returned",
         "operationId": "GetComplexPaymentStatus",
         "produces": [
           {
