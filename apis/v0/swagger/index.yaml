@@ -17,8 +17,8 @@ securityDefinitions:
 tags:
  - name: Simple Payment
    description: Simple Payments endpoints
- - name: Complex Payment
-   description: Complex Payments endpoints
+ # - name: Complex Payment
+ #   description: Complex Payments endpoints
 #common responses (errors)
 
 responses:

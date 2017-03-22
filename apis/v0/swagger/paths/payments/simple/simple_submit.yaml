@@ -41,5 +41,4 @@ put:
       $ref: ../../../index.yaml#/responses/500ErrorResponse
   security:
     - OAuth2Security:
-      - payments:submit
-      - payments:recurring_submit
+      - payment

@@ -5,15 +5,15 @@
   $ref: ./payments/simple/simple_submit.yaml
 /payments/simple/{IntentID}/cancel:
   $ref: ./payments/simple/simple_cancel.yaml
-/payments/complex:
-  $ref: ./payments/complex/complex_setup.yaml
-/payments/complex/{GlobalIntentID}/submit:
-  $ref: ./payments/complex/complex_submit.yaml
-/payments/complex/{GlobalIntentID}/cancel-all:
-  $ref: ./payments/complex/complex_global_cancel.yaml
-/payments/complex/{IntentID}/cancel:
-  $ref: ./payments/complex/complex_single_cancel.yaml
+# /payments/complex:
+#   $ref: ./payments/complex/complex_setup.yaml
+# /payments/complex/{GlobalIntentID}/submit:
+#   $ref: ./payments/complex/complex_submit.yaml
+# /payments/complex/{GlobalIntentID}/cancel-all:
+#   $ref: ./payments/complex/complex_global_cancel.yaml
+# /payments/complex/{IntentID}/cancel:
+#   $ref: ./payments/complex/complex_single_cancel.yaml
 /payments/status/{IntentID}:
   $ref: ./payments/status/simple_status.yaml
-/payments/status/{GlobalIntentID}/all:
-  $ref: ./payments/status/global_status.yaml
+# /payments/status/{GlobalIntentID}/all:
+#   $ref: ./payments/status/global_status.yaml

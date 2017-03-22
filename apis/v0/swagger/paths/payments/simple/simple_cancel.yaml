@@ -21,5 +21,4 @@ delete:
       $ref: ../../../index.yaml#/responses/500ErrorResponse
   security:
     - OAuth2Security:
-      - payments:cancel
-      - payments:recurring_cancel
+      - payment

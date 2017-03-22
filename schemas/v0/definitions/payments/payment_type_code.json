@@ -3,10 +3,6 @@
   "type": "string",
   "enum": [
     "FutureDated",
-    "Immediate",
-    "RecurringAnnually",
-    "RecurringMonthly",
-    "RecurringQuarterly",
-    "RecurringWeekly"
+    "Immediate"
  ]
 }

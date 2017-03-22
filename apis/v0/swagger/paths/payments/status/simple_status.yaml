@@ -1,7 +1,7 @@
 get:
   tags:
    - Simple Payment
-   - Complex Payment
+  #  - Complex Payment
   summary: Gets status for a payment
   description: Gets status for a previously submitted  payment (single instruction within a complex or simple  payment)
   operationId: GetSimplePaymentStatus
@@ -11,10 +11,9 @@ get:
     - $ref: "../parameters.yaml#/IntentID"
   responses:
     200:
-      description: Payment Status 
+      description: Payment Status
       schema:
         $ref: ../../../../../../compiled/schemas/v0/payments/simple_status.get.200.response.schema.yaml
   security:
     - OAuth2Security:
-      - payments:status
-      - payments:recurring_status
+      - payment

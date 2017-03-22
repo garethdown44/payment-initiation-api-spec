@@ -35,6 +35,5 @@ post:
     500:
      $ref: ../../../index.yaml#/responses/500ErrorResponse
   security:
-    - OAuth2Security:
-      - payments:setup
-      - payments:recurring_setup
+    - TPPOAuth2Security:
+      - tpp_client_credential
