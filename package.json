@@ -6,8 +6,13 @@
   "scripts": {
     "flatten-schemas": "cd build && ./flatten-schemas.sh v0",
     "compile-swagger": "cd build && node compile-swagger.js",
-    "build": "npm run flatten-schemas && npm run compile-swagger",
-    "test": "mocha test"
+    "build:swagger": "npm run flatten-schemas && npm run compile-swagger",
+    "build": "npm run build:swagger && npm run build:spectacle",
+    "build:spectacle": "spectacle ./dist/rw-swagger.json -t ./dist/public",
+    "watch:swagger": "spectacle -d ./dist/rw-swagger.json -t ./dist/public",
+    "serve": "spectacle -s ./dist/rw-swagger.json -t ./dist/public -p 8080",
+    "test": "mocha test",
+    "start": "npm run build && npm run serve"
   },
   "repository": {
     "type": "git",
@@ -35,6 +40,8 @@
     "glob": "^7.1.1",
     "json2yaml": "*",
     "child-process-promise": "*",
-    "swagger-parser": "beta"
+    "swagger-parser": "beta",
+    "spectacle-docs": "*",
+    "opn-cli": "*"
   }
 }

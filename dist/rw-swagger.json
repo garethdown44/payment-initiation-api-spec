@@ -26,14 +26,10 @@
         "description": "Setup a simple payment (e.g. single immediate domestic payments, single future dated payment , single e-commerce payment or simple recurring payment)",
         "operationId": "SetupSimplePayment",
         "consumes": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
@@ -253,10 +249,70 @@
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "403": {
             "description": "Forbidden",
@@ -341,7 +397,37 @@
             }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -363,18 +449,18 @@
         "description": "Submit a previously setup simple payment (e.g. single immediate domestic payments, single future dated payment , single e-commerce payment or simple recurring payment)",
         "operationId": "SubmitSimplePayment",
         "consumes": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
-            "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/parameters/0"
+            "name": "IntentID",
+            "in": "path",
+            "description": "Intent ID of the previously set up simple payment",
+            "required": true,
+            "type": "string"
           },
           {
             "name": "body",
@@ -624,10 +710,70 @@
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "403": {
             "description": "Forbidden",
@@ -712,7 +858,37 @@
             }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -734,13 +910,15 @@
         "description": "Cancel a simple payment (e.g. single immediate domestic payments, single future dated payment , single e-commerce payment or simple recurring payment)",
         "operationId": "CancelSimplePayment",
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
-            "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/parameters/0"
+            "name": "IntentID",
+            "in": "path",
+            "description": "Intent ID of the previously set up simple payment",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -770,13 +948,103 @@
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -798,14 +1066,10 @@
         "description": "Setup a complex payment (e.g. International other currency, bulk payment, recurring bulk payment)",
         "operationId": "SetupComplexPayment",
         "consumes": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
@@ -1125,13 +1389,103 @@
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -1153,14 +1507,10 @@
         "description": "Submit a previously setup complex payment (e.g. International other currency, bulk payment, recurring bulk payment)",
         "operationId": "SubmitComplexPayment",
         "consumes": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
@@ -1489,13 +1839,103 @@
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -1517,30 +1957,141 @@
         "description": "Cancels all bulk payment instructions, Only future dated / recurring complex payment can be cancelled",
         "operationId": "CancelGlobalComplexPayment",
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
-            "$ref": "#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1submit/put/parameters/0"
+            "name": "GlobalIntentID",
+            "in": "path",
+            "description": "Global Intent ID of the previously set up complex payment",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
           "200": {
             "description": "Payments instruction cancelled",
             "schema": {
-              "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/responses/200/schema"
+              "title": "Simple Payment Cancel Delete 200 Response",
+              "type": "object",
+              "properties": {
+                "PaymentStatus": {
+                  "type": "string",
+                  "enum": [
+                    "Cancelled"
+                  ]
+                },
+                "PaymentStatusDescription": {
+                  "type": "string",
+                  "enum": [
+                    "Payment instruction cancelled."
+                  ]
+                }
+              },
+              "required": [
+                "PaymentStatus"
+              ],
+              "additionalProperties": false
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -1562,9 +2113,7 @@
         "description": "Cancel a single complex payment instruction (e.g. International other currency, bulk payment, recurring bulk payment)",
         "operationId": "CancelSingleComplexPayment",
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
@@ -1602,13 +2151,103 @@
             }
           },
           "400": {
-            "$ref": "#/responses/400ErrorResponse"
+            "description": "Bad Request",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "401": {
-            "$ref": "#/responses/401ErrorResponse"
+            "description": "Unauthorized",
+            "schema": {
+              "title": "HTTP 401 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "401"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "Unauthorised"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The request is unauthorised. Do not resubmit the request."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           },
           "500": {
-            "$ref": "#/responses/500ErrorResponse"
+            "description": "Internal Server Error",
+            "schema": {
+              "title": "HTTP 500 Error",
+              "type": "object",
+              "properties": {
+                "status": {
+                  "type": "string",
+                  "enum": [
+                    "500"
+                  ]
+                },
+                "title": {
+                  "type": "string",
+                  "enum": [
+                    "InternalServerError"
+                  ]
+                },
+                "description": {
+                  "type": "string",
+                  "enum": [
+                    "The payment infrastructure is busy or unavailable."
+                  ]
+                }
+              },
+              "required": [
+                "status",
+                "title",
+                "description"
+              ],
+              "additionalProperties": false
+            }
           }
         },
         "security": [
@@ -1631,13 +2270,15 @@
         "description": "Gets status for a previously submitted  payment (single instruction within a complex or simple  payment)",
         "operationId": "GetSimplePaymentStatus",
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
-            "$ref": "#/paths/~1payments~1complex~1%7BIntentID%7D~1cancel/delete/parameters/0"
+            "name": "IntentID",
+            "in": "path",
+            "description": "Intent ID of the previously set up simple payment",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {
@@ -1703,13 +2344,15 @@
         "description": "Gets status for a previously submitted complex payment, all payments (if many) instructions status will be returned",
         "operationId": "GetComplexPaymentStatus",
         "produces": [
-          {
-            "$ref": "#/produces/0"
-          }
+          "application/prs.openbanking.rwdata.v0.1+json"
         ],
         "parameters": [
           {
-            "$ref": "#/paths/~1payments~1complex~1%7BGlobalIntentID%7D~1submit/put/parameters/0"
+            "name": "GlobalIntentID",
+            "in": "path",
+            "description": "Global Intent ID of the previously set up complex payment",
+            "required": true,
+            "type": "string"
           }
         ],
         "responses": {

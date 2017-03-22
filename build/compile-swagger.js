@@ -15,7 +15,7 @@ const SwaggerParserOptions = {
     schema: true
   }
 };
-SwaggerParser.bundle(swaggerIndex, SwaggerParserOptions,
+SwaggerParser.dereference(swaggerIndex, SwaggerParserOptions,
   (err, api, metadata) => {
     if (err) {
       console.error(err);
