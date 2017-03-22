@@ -36,6 +36,8 @@ Draft Swagger specification for Read Write
 <a name="paths"></a>
 ## Paths
 
+***
+
 <a name="setupcomplexpayment"></a>
 ### Setup a complex payment
 ```
@@ -222,6 +224,8 @@ Setup a complex payment (e.g. International other currency, bulk payment, recurr
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:recurring_setup,payments:complex_setup|
 
 
+***
+
 <a name="cancelglobalcomplexpayment"></a>
 ### Cancel an already setup complex payment in bulk
 ```
@@ -301,6 +305,8 @@ Cancels all bulk payment instructions, Only future dated / recurring complex pay
 |---|---|---|
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:complex_cancel,payments:recurring_cancel|
 
+
+***
 
 <a name="submitcomplexpayment"></a>
 ### Submit a complex payment
@@ -490,6 +496,8 @@ Submit a previously setup complex payment (e.g. International other currency, bu
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:complex_submit,payments:recurring_submit|
 
 
+***
+
 <a name="cancelsinglecomplexpayment"></a>
 ### Cancel a single complex payment instruction
 ```
@@ -569,6 +577,8 @@ Cancel a single complex payment instruction (e.g. International other currency, 
 |---|---|---|
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:complex_cancel,payments:recurring_cancel|
 
+
+***
 
 <a name="setupsimplepayment"></a>
 ### Setup a simple payment
@@ -734,6 +744,8 @@ Setup a simple payment (e.g. single immediate domestic payments, single future d
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:setup,payments:recurring_setup|
 
 
+***
+
 <a name="cancelsimplepayment"></a>
 ### Cancel a simple payment
 ```
@@ -813,6 +825,8 @@ Cancel a simple payment (e.g. single immediate domestic payments, single future 
 |---|---|---|
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:cancel,payments:recurring_cancel|
 
+
+***
 
 <a name="submitsimplepayment"></a>
 ### Submit a simple payment
@@ -989,6 +1003,8 @@ Submit a previously setup simple payment (e.g. single immediate domestic payment
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:submit,payments:recurring_submit|
 
 
+***
+
 <a name="getcomplexpaymentstatus"></a>
 ### Gets status for a complex payment
 ```
@@ -1039,6 +1055,8 @@ Gets status for a previously submitted complex payment, all payments (if many) i
 |---|---|---|
 |**oauth2**|**[OAuth2Security](#oauth2security)**|payments:complex_status,payments:recurring_status|
 
+
+***
 
 <a name="getsimplepaymentstatus"></a>
 ### Gets status for a payment
