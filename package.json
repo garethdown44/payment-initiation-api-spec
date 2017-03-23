@@ -9,6 +9,7 @@
     "build:swagger": "npm run flatten-schemas && npm run compile-swagger",
     "build": "npm run build:swagger && npm run build:spectacle",
     "build:spectacle": "spectacle ./dist/rw-swagger.json -t ./dist/public",
+    "build:wsd": "node build/generate-wsd.js",
     "swagger2markdown": "java -jar swagger2markup-cli-1.3.1.jar convert -i dist/rw-swagger.yaml -f dist/rw-swagger -c build/swagger2markup/config.properties",
     "watch:swagger": "spectacle -d ./dist/rw-swagger.json -t ./dist/public",
     "serve": "spectacle -s ./dist/rw-swagger.json -t ./dist/public -p 8080",
@@ -26,12 +27,10 @@
   "homepage": "https://github.com/OpenBankingUK/rw-api-spec-build#readme",
   "dependencies": {},
   "devDependencies": {
-    "json-refs": "*",
     "mkdirp": "*",
     "ajv": "^4.10.0",
     "ajv-cli": "1.1.1",
     "chai": "^3.5.0",
-    "express": "4.14.0",
     "js-beautify": "*",
     "js-yaml": "3.7.0",
     "json-schema-ref-parser": "3.1.2",
@@ -40,9 +39,8 @@
     "supertest": "^2.0.1",
     "glob": "^7.1.1",
     "json2yaml": "*",
-    "child-process-promise": "*",
     "swagger-parser": "beta",
     "spectacle-docs": "*",
-    "opn-cli": "*"
+    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams"
   }
 }
