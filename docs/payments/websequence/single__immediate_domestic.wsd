@@ -8,8 +8,8 @@ participant ASPSP Authentication Server
 
 opt Setup Single Payment
     PSU -> TPP: Checkout
-    TPP -> ASPSP Resource Server: /payments/simple
-    ASPSP Resource Server --> TPP: IntentID, EndToEndIdentification (200,4xx, 5xx)
+    TPP -> ASPSP Resource Server: /payments
+    ASPSP Resource Server --> TPP: PaymentAuthorisationID, EndToEndIdentification (200,4xx, 5xx)
     TPP -> PSU: Redirect PSU to ASPSP for Auth
 end
 
