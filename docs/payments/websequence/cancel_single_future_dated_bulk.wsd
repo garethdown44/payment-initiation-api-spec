@@ -9,7 +9,7 @@ participant ASPSP Authentication Server
 opt Setup Single Payment
     PSU -> TPP: Initiate Future Dated Bulk Payment
     TPP -> ASPSP Resource Server: /payments/complex
-    note over TPP, ASPSP Resource Server: Must request payments:complex_cancel OAuth Scope
+    note over TPP, ASPSP Resource Server: Must request payments OAuth Scope
     note over TPP, ASPSP Resource Server: It should be noted that we now have a GlobalIntentID that represents all of the bulk payments
     ASPSP Resource Server --> TPP: GlobalIntentID, EndToEndIdentification (200,4xx, 5xx)
     TPP -> PSU: Redirect PSU to ASPSP for Auth
