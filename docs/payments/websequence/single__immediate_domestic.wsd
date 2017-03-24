@@ -23,7 +23,13 @@ TPP -> ASPSP Resource Server: /token
 ASPSP Resource Server --> TPP: access token
 
 
-note over PSU, ASPSP Authentication Server: Execute Single Payment
-TPP -> ASPSP Resource Server: PUT /payments/${PaymentAuthorisationID}/submit
+note over PSU, ASPSP Authentication Server: Submit Single Payment
+TPP -> ASPSP Resource Server: PATCH /payments/${PaymentAuthorisationID}
 ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
-ASPSP Resource Server --> TPP: Async status webhook (optional)
+note over PSU, ASPSP Authentication Server: Get Payment Status
+TPP --> ASPSP Resource Server: GET /payments/${PaymentAuthorisationID}/status
+ASPSP Resource Server --> TPP: HTTP 200
+
+opt
+ASPSP Resource Server --> TPP: Async status webhook
+end
