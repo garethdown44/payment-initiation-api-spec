@@ -1,5 +1,0 @@
-type: oauth2
-flow: accessCode
-tokenUrl: '/token'
-scopes:
-  make_payment: Generic payment scope

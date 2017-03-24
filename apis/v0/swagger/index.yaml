@@ -15,11 +15,7 @@ securityDefinitions:
   $ref: ./security/index.yaml
 #tags section, to organise endpoints
 tags:
- - name: Simple Payment
-   description: Simple Payments endpoints
- # - name: Complex Payment
- #   description: Complex Payments endpoints
-#common responses (errors)
-
+ - name: Payments
+   description: Payments endpoints
 responses:
   $ref: ./responses/index.yaml

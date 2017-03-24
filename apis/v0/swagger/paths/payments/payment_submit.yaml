@@ -1,0 +1,38 @@
+patch:
+  tags:
+   - Payments
+  summary: Submit a single immediate payment
+  description: Submit a previously setup single immediate payment
+  operationId: SubmitSingleImmediatePayment
+  consumes:
+    - $ref: ../../definitions/mime_type.yaml
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+    - $ref: "./parameters.yaml#/PaymentAuthorisationID"
+  responses:
+    200:
+      description: Payment executed or ready for scheme to execute.
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.200.response.schema.yaml
+    202:
+      description: Payment execution instruction accepted.
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.202.response.schema.yaml
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      description: Forbidden
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.403.response.schema.yaml
+    409:
+      description: Conflict
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.409.response.schema.yaml
+    500:
+      $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - PSUOAuth2Security:
+      - payment

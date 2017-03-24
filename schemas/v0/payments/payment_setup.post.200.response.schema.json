@@ -1,9 +1,9 @@
 {
-  "title": "Simple Payment Setup Post Response",
+  "title": "Payment setup POST 200 Response",
   "type": "object",
   "properties": {
-    "IntentID": {
-      "description": "Intent ID is the ASPSP identifier for the payment setup intent",
+    "PaymentAuthorisationID": {
+      "description": "ASPSP authorisation identifier for the payment",
       "$ref": "../definitions/common/max_35_text.json"
     },
     "EndToEndIdentification": {
@@ -12,7 +12,7 @@
     }
   },
   "required": [
-    "IntentID",
+    "PaymentAuthorisationID",
     "EndToEndIdentification"
   ],
   "additionalProperties": false

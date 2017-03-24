@@ -1,0 +1,43 @@
+post:
+  tags:
+   - Payments
+  summary: Setup a single immediate payment
+  description: Setup a single immediate payment
+  operationId: SetupSingleImmediatePayment
+  consumes:
+    - $ref: ../../definitions/mime_type.yaml
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+   - name: body
+     in: body
+     description: Setup a single immediate payment
+     required: true
+     schema:
+       $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.request.schema.yaml
+    #  example:
+    #    $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.request.example.json
+  responses:
+    200:
+      description: Payment setup successfully
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.200.response.schema.yaml
+        # application/prs.openbanking.rwdata.v0.1+json:
+
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      description: Forbidden
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.403.response.schema.yaml
+    409:
+      description: Conflict
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.409.response.schema.yaml
+    500:
+     $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - TPPOAuth2Security:
+      - tpp_client_credential

@@ -1,11 +1,11 @@
 {
-  "title": "Simple Payment Submit Put 200 Response",
+  "title": "Payment submit PATCH 202 response",
   "type": "object",
   "properties": {
      "PaymentStatus": {
        "type": "string",
        "enum": [
-         "ReadyforExecution"
+         "InstructionReceived"
         ]
      },
      "PaymentStatusDescription": {
@@ -13,10 +13,14 @@
        "enum": [
          "Payment execution instruction accepted."
         ]
+     },
+     "PaymentReferenceID": {
+       "$ref": "../definitions/payments/payment_reference_id.json"
      }
   },
   "required": [
-    "PaymentStatus"
+    "PaymentStatus",
+    "PaymentStatusDescription"
   ],
   "additionalProperties": false
 }

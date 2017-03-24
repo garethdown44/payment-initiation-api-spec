@@ -1,4 +1,4 @@
-ConsumerOAuth2Security:
-  $ref: ./ConsumerOAuth2Security.yaml
+PSUOAuth2Security:
+  $ref: ./PSU_OAuth2Security.yaml
 TPPOAuth2Security:
-  $ref: ./TPPOAuth2Security.yaml
+  $ref: ./TPP_OAuth2Security.yaml

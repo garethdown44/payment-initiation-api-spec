@@ -1,12 +1,6 @@
-GlobalIntentID:
-  name: GlobalIntentID
+PaymentAuthorisationID:
+  name: PaymentAuthorisationID
   in: path
-  description: Global Intent ID of the previously set up complex payment
-  required: true
-  type: string
-IntentID:
-  name: IntentID
-  in: path
-  description: Intent ID of the previously set up simple payment
+  description: ASPSP authorisation identifier for the payment
   required: true
   type: string

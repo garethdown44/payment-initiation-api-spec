@@ -1,0 +1,18 @@
+get:
+  tags:
+   - Payments
+  summary: Get the status of a payment
+  description: Get status of a previously submitted  payment
+  operationId: GetPaymentStatus
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+    - $ref: "./parameters.yaml#/PaymentAuthorisationID"
+  responses:
+    200:
+      description: Payment Status Response
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_status.get.200.response.schema.yaml
+  security:
+    - PSUOAuth2Security:
+      - payment

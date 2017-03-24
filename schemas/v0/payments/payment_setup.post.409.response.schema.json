@@ -1,5 +1,5 @@
 {
-  "title": "Simple Payment Setup Post 409 Response",
+  "title": "Payment setup POST 409 Response",
   "type": "object",
   "properties": {
     "status": {

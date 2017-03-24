@@ -1,0 +1,27 @@
+{
+    "InstructionIdentification": "ACME412",
+    "EndToEndIdentification": "FRESCO.21302.GFX.20",
+    "RemittanceInformation" : "ACME412 Invoice 20",
+    "InstructedAmount": {
+        "Amount": "20.38",
+        "Currency": "GBP"
+    },
+    "DebtorAgent": {
+        "SchemeName": "UKSortCode",
+        "Identification": "SC112800"
+    },
+    "DebtorAccount": {
+        "SchemeName": "BBAN",
+        "Identification": "01234567",
+        "Name": "Andrea Smith"
+    },
+    "CreditorAgent": {
+        "SchemeName": "UKSortCode",
+        "Identification": "SC080800"
+    },
+    "CreditorAccount": {
+        "SchemeName": "BBAN",
+        "Identification": "21325698",
+        "Name": "Bob Clements"
+    }
+}

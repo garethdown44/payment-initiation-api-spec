@@ -11,8 +11,12 @@
     "build:spectacle": "spectacle ./dist/rw-swagger.json -t ./dist/public",
     "build:wsd": "node build/generate-wsd.js",
     "swagger2markdown": "java -jar swagger2markup-cli-1.3.1.jar convert -i dist/rw-swagger.yaml -f dist/rw-swagger -c build/swagger2markup/config.properties",
+    "swagger2html": "npm run swagger2asciidoc && npm run asciidoc2html",
+    "swagger2asciidoc": "java -jar swagger2markup-cli-1.3.1.jar convert -i dist/rw-swagger.yaml -d ./asciidoc -c build/swagger2markup/config.properties",
+    "asciidoc2html": "asciidoctor asciidoc/index.adoc -a toc=left -a toclevels=4 -a numbered='' -o dist/rw-swagger.html",
     "watch:swagger": "spectacle -d ./dist/rw-swagger.json -t ./dist/public",
-    "serve": "spectacle -s ./dist/rw-swagger.json -t ./dist/public -p 8080",
+    "open-localhost": "node -e 'require(\"open\")(\"http://localhost:8080\")'",
+    "serve": "npm run open-localhost && spectacle -s ./dist/rw-swagger.json -t ./dist/public -p 8080 ",
     "test": "mocha test",
     "start": "npm run build && npm run serve"
   },
@@ -41,6 +45,7 @@
     "json2yaml": "*",
     "swagger-parser": "beta",
     "spectacle-docs": "*",
-    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams"
+    "websequencediagrams": "git://github.com/Onegini/node-websequencediagrams",
+    "open": "*"
   }
 }

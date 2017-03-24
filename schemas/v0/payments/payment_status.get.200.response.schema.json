@@ -1,5 +1,5 @@
 {
-  "title": "Simple Payment Status GET 200 Response",
+  "title": "Payment status GET 200 response",
   "type": "object",
   "properties": {
      "PaymentStatus": {
@@ -29,6 +29,9 @@
          "Payment to receving account has failed.",
          "Payment instruction cancelled."
         ]
+     },
+     "PaymentReferenceID": {
+       "$ref": "../definitions/payments/payment_reference_id.json"
      }
   },
   "required": [
