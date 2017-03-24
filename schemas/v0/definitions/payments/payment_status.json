@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+     "PaymentStatus": {
+       "type": "string",
+       "enum": [
+         "AwaitingExecution",
+         "InProgress",
+         "Debited",
+         "AwaitingFurtherAuthorisation",
+         "CreditSent",
+         "CreditDelivered",
+         "CreditApplied",
+         "CreditRejected"
+        ]
+     },
+     "PaymentStatusDescription": {
+       "type": "string",
+       "enum": [
+         "Queued for processing by debtor bank – outcome unknown",
+         "Payment being processed by debtor bank – outcome unknown",
+         "Debit applied to debtor account, awaiting send to scheme",
+         "The payment failed, credit will never be applied at the beneficiary",
+         "Multi-party authorisation is required for the payment",
+         "Payment sent to scheme",
+         "Payment arrived at beneficiary bank",
+         "The credit has been applied at the beneficiary bank",
+         "The credit was rejected at the beneficiary bank"
+        ]
+     },
+     "PaymentReferenceID": {
+       "$ref": "payment_reference_id.json"
+     }
+  },
+  "required": [
+    "PaymentStatus",
+    "PaymentStatusDescription"
+  ],
+  "additionalProperties": false
+}

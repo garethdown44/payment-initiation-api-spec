@@ -125,10 +125,10 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 |===
 |HTTP Code|Description|Schema
 |**200**|Payment setup successfully|<<_payment_setup_post_200_response,Payment setup POST 200 Response>>
-|**400**|Bad Request|<<_http_500_error,HTTP 500 Error>>
+|**400**|Bad Request|<<_http_400_error,HTTP 400 Error>>
 |**401**|Unauthorized|<<_http_401_error,HTTP 401 Error>>
-|**403**|Forbidden|<<_payment_setup_post_403_response,Payment setup POST 403 response>>
-|**409**|Conflict|<<_payment_setup_post_409_response,Payment setup POST 409 Response>>
+|**403**|Forbidden|<<_http_403_error,HTTP 403 Error>>
+|**409**|Conflict|<<_http_409_error,HTTP 409 Error>>
 |**500**|Internal Server Error|<<_http_500_error,HTTP 500 Error>>
 |===
 
@@ -138,26 +138,23 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**EndToEndIdentification** +
-__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. +
-**Length** : `1 - 35`|string
 |**PaymentAuthorisationID** +
 __required__|ASPSP authorisation identifier for the payment +
 **Length** : `1 - 35`|string
 |===
 
-[[_http_500_error]]
-**HTTP 500 Error**
+[[_http_400_error]]
+**HTTP 400 Error**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The payment infrastructure is busy or unavailable.)
+__required__|enum (The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.)
 |**status** +
-__required__|enum (500)
+__required__|enum (400)
 |**title** +
-__required__|enum (InternalServerError)
+__required__|enum (BadRequest)
 |===
 
 [[_http_401_error]]
@@ -167,39 +164,39 @@ __required__|enum (InternalServerError)
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The request is unauthorised. Do not resubmit the request.)
+__required__|enum (The request requires user authentication.)
 |**status** +
 __required__|enum (401)
 |**title** +
 __required__|enum (Unauthorised)
 |===
 
-[[_payment_setup_post_403_response]]
-**Payment setup POST 403 response**
+[[_http_403_error]]
+**HTTP 403 Error**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The payer sort code is not valid - is closed, does not exist, or is not valid for the scheme., The payer account is not valid - is closed, does not exist, or is not valid for the scheme., The payee sort code is not valid - is closed, does not exist, or is not valid for the scheme., The payee account is not valid - is closed, does not exist, or is not valid for the scheme., The amount is not valid - exceeds scheme limit., The date is too far in the future., The scheme has rejected payment for an unspecified reason., The sending institution has rejected payment for an unspecified reason., The receiving institution has rejected payment for an unspecified reason.)
+__required__|enum (The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated.)
 |**status** +
 __required__|enum (403)
 |**title** +
-__required__|enum (InvalidPayerSortCode, InvalidPayerAccount, InvalidPayeeSortCode, InvalidPayeeAccount, InvalidAmount, InvalidExecutionDate, SchemeReject, SendingInstitutionReject, ReceivingInstitutionReject)
+__required__|enum (Forbidden)
 |===
 
-[[_payment_setup_post_409_response]]
-**Payment setup POST 409 Response**
+[[_http_409_error]]
+**HTTP 409 Error**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The sending institution has rejected payment for an unspecified reason.)
+__required__|enum (The request could not be completed due to a conflict with the current state of the resource.)
 |**status** +
 __required__|enum (409)
 |**title** +
-__required__|enum (SendingInstitutionReject)
+__required__|enum (Conflict)
 |===
 
 [[_http_500_error]]
@@ -209,7 +206,7 @@ __required__|enum (SendingInstitutionReject)
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The payment infrastructure is busy or unavailable.)
+__required__|enum (The server encountered an unexpected condition which prevented it from fulfilling the request.)
 |**status** +
 __required__|enum (500)
 |**title** +
@@ -271,7 +268,7 @@ __required__|ASPSP authorisation identifier for the payment|string
 |HTTP Code|Description|Schema
 |**200**|Payment executed or ready for scheme to execute.|<<_payment_submit_patch_200_response,Payment submit PATCH 200 response>>
 |**202**|Payment execution instruction accepted.|<<_payment_submit_patch_202_response,Payment submit PATCH 202 response>>
-|**400**|Bad Request|<<_http_500_error,HTTP 500 Error>>
+|**400**|Bad Request|<<_http_400_error,HTTP 400 Error>>
 |**401**|Unauthorized|<<_http_401_error,HTTP 401 Error>>
 |**403**|Forbidden|<<_payment_submit_patch_403_response,Payment submit PATCH 403 response>>
 |**409**|Conflict|<<_payment_submit_patch_409_response,Payment submit PATCH 409 response>>
@@ -288,9 +285,9 @@ __required__|ASPSP authorisation identifier for the payment|string
 __optional__|Payment Reference ID +
 **Length** : `1 - 35`|string
 |**PaymentStatus** +
-__required__||enum (ReadyforExecution)
+__required__||enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)
 |**PaymentStatusDescription** +
-__required__||enum (Payment execution instruction accepted.)
+__required__||enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)
 |===
 
 [[_payment_submit_patch_202_response]]
@@ -308,18 +305,18 @@ __required__||enum (InstructionReceived)
 __required__||enum (Payment execution instruction accepted.)
 |===
 
-[[_http_500_error]]
-**HTTP 500 Error**
+[[_http_400_error]]
+**HTTP 400 Error**
 
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The payment infrastructure is busy or unavailable.)
+__required__|enum (The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.)
 |**status** +
-__required__|enum (500)
+__required__|enum (400)
 |**title** +
-__required__|enum (InternalServerError)
+__required__|enum (BadRequest)
 |===
 
 [[_http_401_error]]
@@ -329,7 +326,7 @@ __required__|enum (InternalServerError)
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The request is unauthorised. Do not resubmit the request.)
+__required__|enum (The request requires user authentication.)
 |**status** +
 __required__|enum (401)
 |**title** +
@@ -371,7 +368,7 @@ __required__|enum (SendingInstitutionReject)
 |===
 |Name|Schema
 |**description** +
-__required__|enum (The payment infrastructure is busy or unavailable.)
+__required__|enum (The server encountered an unexpected condition which prevented it from fulfilling the request.)
 |**status** +
 __required__|enum (500)
 |**title** +
@@ -444,9 +441,9 @@ __required__|ASPSP authorisation identifier for the payment|string
 __optional__|Payment Reference ID +
 **Length** : `1 - 35`|string
 |**PaymentStatus** +
-__required__||enum (AwaitingAuthorisation, ReadyforSubmission, ReadyforExecution, SendingInstitutionExecution, SchemeExecution, ReceivingInstitutionExecution, ExecutionComplete, ExecutionFailure, Cancelled)
+__required__||enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)
 |**PaymentStatusDescription** +
-__required__||enum (Payment request requires further authorisation to progress., Payment request is authorised and ready for submission., Payment executed or ready for scheme to execute., Payment is being executed by the sending institution., Payment has been passed from sending institution to scheme for processing., Payment has passed from scheme to receiving institution for processing., Payment has been applied to receiving account and is complete., Payment to receving account has failed., Payment instruction cancelled.)
+__required__||enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)
 |===
 
 

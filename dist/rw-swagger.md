@@ -233,8 +233,8 @@ Submit a previously setup single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**PaymentReferenceID**  <br>*optional*|Payment Reference ID  <br>**Length** : `1 - 35`|string|
-|**PaymentStatus**  <br>*required*||enum (ReadyforExecution)|
-|**PaymentStatusDescription**  <br>*required*||enum (Payment execution instruction accepted.)|
+|**PaymentStatus**  <br>*required*||enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)|
+|**PaymentStatusDescription**  <br>*required*||enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)|
 
 <a name="payment-submit-patch-202-response"></a>
 **Payment submit PATCH 202 response**
@@ -345,8 +345,8 @@ Get status of a previously submitted  payment
 |Name|Description|Schema|
 |---|---|---|
 |**PaymentReferenceID**  <br>*optional*|Payment Reference ID  <br>**Length** : `1 - 35`|string|
-|**PaymentStatus**  <br>*required*||enum (AwaitingAuthorisation, ReadyforSubmission, ReadyforExecution, SendingInstitutionExecution, SchemeExecution, ReceivingInstitutionExecution, ExecutionComplete, ExecutionFailure, Cancelled)|
-|**PaymentStatusDescription**  <br>*required*||enum (Payment request requires further authorisation to progress., Payment request is authorised and ready for submission., Payment executed or ready for scheme to execute., Payment is being executed by the sending institution., Payment has been passed from sending institution to scheme for processing., Payment has passed from scheme to receiving institution for processing., Payment has been applied to receiving account and is complete., Payment to receving account has failed., Payment instruction cancelled.)|
+|**PaymentStatus**  <br>*required*||enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)|
+|**PaymentStatusDescription**  <br>*required*||enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)|
 
 
 #### Produces

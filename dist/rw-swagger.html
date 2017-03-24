@@ -819,7 +819,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Bad Request</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_http_500_error">HTTP 500 Error</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_http_400_error">HTTP 400 Error</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -829,12 +829,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_post_403_response">Payment setup POST 403 response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_http_403_error">HTTP 403 Error</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>409</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Conflict</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_post_409_response">Payment setup POST 409 Response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_http_409_error">HTTP 409 Error</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
@@ -861,13 +861,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>EndToEndIdentification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentAuthorisationID</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">ASPSP authorisation identifier for the payment<br>
@@ -876,8 +869,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_http_500_error" class="paragraph">
-<p><strong>HTTP 500 Error</strong></p>
+<div id="_http_400_error" class="paragraph">
+<p><strong>HTTP 400 Error</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -894,17 +887,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The payment infrastructure is busy or unavailable.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (500)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (400)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>title</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (InternalServerError)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BadRequest)</p></td>
 </tr>
 </tbody>
 </table>
@@ -926,7 +919,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request is unauthorised. Do not resubmit the request.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request requires user authentication.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
@@ -940,8 +933,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_post_403_response" class="paragraph">
-<p><strong>Payment setup POST 403 response</strong></p>
+<div id="_http_403_error" class="paragraph">
+<p><strong>HTTP 403 Error</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -958,7 +951,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The payer sort code is not valid - is closed, does not exist, or is not valid for the scheme., The payer account is not valid - is closed, does not exist, or is not valid for the scheme., The payee sort code is not valid - is closed, does not exist, or is not valid for the scheme., The payee account is not valid - is closed, does not exist, or is not valid for the scheme., The amount is not valid - exceeds scheme limit., The date is too far in the future., The scheme has rejected payment for an unspecified reason., The sending institution has rejected payment for an unspecified reason., The receiving institution has rejected payment for an unspecified reason.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
@@ -968,12 +961,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>title</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (InvalidPayerSortCode, InvalidPayerAccount, InvalidPayeeSortCode, InvalidPayeeAccount, InvalidAmount, InvalidExecutionDate, SchemeReject, SendingInstitutionReject, ReceivingInstitutionReject)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Forbidden)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_post_409_response" class="paragraph">
-<p><strong>Payment setup POST 409 Response</strong></p>
+<div id="_http_409_error" class="paragraph">
+<p><strong>HTTP 409 Error</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -990,7 +983,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The sending institution has rejected payment for an unspecified reason.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request could not be completed due to a conflict with the current state of the resource.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
@@ -1000,7 +993,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>title</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (SendingInstitutionReject)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Conflict)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1022,7 +1015,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The payment infrastructure is busy or unavailable.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The server encountered an unexpected condition which prevented it from fulfilling the request.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
@@ -1163,7 +1156,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Bad Request</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_http_500_error">HTTP 500 Error</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_http_400_error">HTTP 400 Error</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
@@ -1215,13 +1208,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentStatus</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (ReadyforExecution)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentStatusDescription</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Payment execution instruction accepted.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1263,8 +1256,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_http_500_error" class="paragraph">
-<p><strong>HTTP 500 Error</strong></p>
+<div id="_http_400_error" class="paragraph">
+<p><strong>HTTP 400 Error</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1281,17 +1274,17 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The payment infrastructure is busy or unavailable.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (500)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (400)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>title</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (InternalServerError)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BadRequest)</p></td>
 </tr>
 </tbody>
 </table>
@@ -1313,7 +1306,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request is unauthorised. Do not resubmit the request.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The request requires user authentication.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
@@ -1409,7 +1402,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>description</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The payment infrastructure is busy or unavailable.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (The server encountered an unexpected condition which prevented it from fulfilling the request.)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>status</strong><br>
@@ -1572,13 +1565,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentStatus</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AwaitingAuthorisation, ReadyforSubmission, ReadyforExecution, SendingInstitutionExecution, SchemeExecution, ReceivingInstitutionExecution, ExecutionComplete, ExecutionFailure, Cancelled)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentStatusDescription</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Payment request requires further authorisation to progress., Payment request is authorised and ready for submission., Payment executed or ready for scheme to execute., Payment is being executed by the sending institution., Payment has been passed from sending institution to scheme for processing., Payment has passed from scheme to receiving institution for processing., Payment has been applied to receiving account and is complete., Payment to receving account has failed., Payment instruction cancelled.)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)</p></td>
 </tr>
 </tbody>
 </table>

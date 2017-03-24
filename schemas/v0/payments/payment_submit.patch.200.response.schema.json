@@ -1,26 +1,4 @@
 {
   "title": "Payment submit PATCH 200 response",
-  "type": "object",
-  "properties": {
-     "PaymentStatus": {
-       "type": "string",
-       "enum": [
-         "ReadyforExecution"
-        ]
-     },
-     "PaymentStatusDescription": {
-       "type": "string",
-       "enum": [
-         "Payment execution instruction accepted."
-        ]
-     },
-     "PaymentReferenceID": {
-       "$ref": "../definitions/payments/payment_reference_id.json"
-     }
-  },
-  "required": [
-    "PaymentStatus",
-    "PaymentStatusDescription"
-  ],
-  "additionalProperties": false
+  "$ref": "../definitions/payments/payment_status.json"
 }
