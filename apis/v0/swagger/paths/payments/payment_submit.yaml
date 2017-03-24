@@ -12,11 +12,11 @@ patch:
     - $ref: "./parameters.yaml#/PaymentAuthorisationID"
   responses:
     200:
-      description: Payment executed or ready for scheme to execute.
+      description: OK
       schema:
         $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.200.response.schema.yaml
     202:
-      description: Payment execution instruction accepted.
+      description: Accepted
       schema:
         $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.202.response.schema.yaml
     400:

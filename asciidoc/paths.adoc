@@ -266,8 +266,8 @@ __required__|ASPSP authorisation identifier for the payment|string
 [options="header", cols=".^2,.^14,.^4"]
 |===
 |HTTP Code|Description|Schema
-|**200**|Payment executed or ready for scheme to execute.|<<_payment_submit_patch_200_response,Payment submit PATCH 200 response>>
-|**202**|Payment execution instruction accepted.|<<_payment_submit_patch_202_response,Payment submit PATCH 202 response>>
+|**200**|OK|<<_payment_submit_patch_200_response,Payment submit PATCH 200 response>>
+|**202**|Accepted|<<_payment_submit_patch_202_response,Payment submit PATCH 202 response>>
 |**400**|Bad Request|<<_http_400_error,HTTP 400 Error>>
 |**401**|Unauthorized|<<_http_401_error,HTTP 401 Error>>
 |**403**|Forbidden|<<_payment_submit_patch_403_response,Payment submit PATCH 403 response>>

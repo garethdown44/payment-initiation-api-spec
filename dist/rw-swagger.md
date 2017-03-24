@@ -219,8 +219,8 @@ Submit a previously setup single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment executed or ready for scheme to execute.|[Payment submit PATCH 200 response](#payment-submit-patch-200-response)|
-|**202**|Payment execution instruction accepted.|[Payment submit PATCH 202 response](#payment-submit-patch-202-response)|
+|**200**|OK|[Payment submit PATCH 200 response](#payment-submit-patch-200-response)|
+|**202**|Accepted|[Payment submit PATCH 202 response](#payment-submit-patch-202-response)|
 |**400**|Bad Request|[HTTP 400 Error](#http-400-error)|
 |**401**|Unauthorized|[HTTP 401 Error](#http-401-error)|
 |**403**|Forbidden|[Payment submit PATCH 403 response](#payment-submit-patch-403-response)|

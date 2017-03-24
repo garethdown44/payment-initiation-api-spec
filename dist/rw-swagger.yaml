@@ -318,7 +318,7 @@ paths:
           type: string
       responses:
         '200':
-          description: Payment executed or ready for scheme to execute.
+          description: OK
           schema:
             title: Payment submit PATCH 200 response
             type: object
@@ -356,7 +356,7 @@ paths:
               - PaymentStatusDescription
             additionalProperties: false
         '202':
-          description: Payment execution instruction accepted.
+          description: Accepted
           schema:
             title: Payment submit PATCH 202 response
             type: object
