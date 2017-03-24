@@ -177,16 +177,8 @@ paths:
                 type: string
                 minLength: 1
                 maxLength: 35
-              EndToEndIdentification:
-                description: >-
-                  Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain.
-                  Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.
-                type: string
-                minLength: 1
-                maxLength: 35
             required:
               - PaymentAuthorisationID
-              - EndToEndIdentification
             additionalProperties: false
         '400': &ref_0
           description: Bad Request
