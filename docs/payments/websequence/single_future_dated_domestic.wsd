@@ -26,7 +26,7 @@ opt Execute Single Payment
     PSU -> TPP: Redirect auth code
     TPP -> ASPSP Resource Server: /token
     ASPSP Resource Server --> TPP: access token
-    TPP -> ASPSP Resource Server: /payments/${IntentID}/execute
+    TPP -> ASPSP Resource Server: /payments/${IntentID}/submit
     ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
     ASPSP Resource Server --> TPP: Async status webhook (optional)
 end

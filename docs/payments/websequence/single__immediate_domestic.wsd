@@ -13,7 +13,7 @@ ASPSP Resource Server --> TPP: PaymentAuthorisationID (200,4xx, 5xx)
 TPP -> PSU: Redirect PSU to ASPSP for Auth
 
 
-note over PSU, ASPSP Authentication Server: Authorise Payment
+note over PSU, ASPSP Authentication Server: Authorise Payment - OAuth 2.0 Flow
 PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
 ASPSP Authentication Server --> PSU: View payment details
 PSU -> ASPSP Authentication Server: Authorise consent for single payment
