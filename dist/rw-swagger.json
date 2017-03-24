@@ -221,25 +221,25 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "title": "HTTP 500 Error",
+              "title": "HTTP 400 Error",
               "type": "object",
               "properties": {
                 "status": {
                   "type": "string",
                   "enum": [
-                    "500"
+                    "400"
                   ]
                 },
                 "title": {
                   "type": "string",
                   "enum": [
-                    "InternalServerError"
+                    "BadRequest"
                   ]
                 },
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The payment infrastructure is busy or unavailable."
+                    "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
                   ]
                 }
               },
@@ -272,7 +272,7 @@
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The request is unauthorised. Do not resubmit the request."
+                    "The request requires user authentication."
                   ]
                 }
               },
@@ -287,7 +287,7 @@
           "403": {
             "description": "Forbidden",
             "schema": {
-              "title": "Payment setup POST 403 response",
+              "title": "HTTP 403 Error",
               "type": "object",
               "properties": {
                 "status": {
@@ -299,29 +299,13 @@
                 "title": {
                   "type": "string",
                   "enum": [
-                    "InvalidPayerSortCode",
-                    "InvalidPayerAccount",
-                    "InvalidPayeeSortCode",
-                    "InvalidPayeeAccount",
-                    "InvalidAmount",
-                    "InvalidExecutionDate",
-                    "SchemeReject",
-                    "SendingInstitutionReject",
-                    "ReceivingInstitutionReject"
+                    "Forbidden"
                   ]
                 },
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The payer sort code is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The payer account is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The payee sort code is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The payee account is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The amount is not valid - exceeds scheme limit.",
-                    "The date is too far in the future.",
-                    "The scheme has rejected payment for an unspecified reason.",
-                    "The sending institution has rejected payment for an unspecified reason.",
-                    "The receiving institution has rejected payment for an unspecified reason."
+                    "The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
                   ]
                 }
               },
@@ -336,7 +320,7 @@
           "409": {
             "description": "Conflict",
             "schema": {
-              "title": "Payment setup POST 409 Response",
+              "title": "HTTP 409 Error",
               "type": "object",
               "properties": {
                 "status": {
@@ -348,13 +332,13 @@
                 "title": {
                   "type": "string",
                   "enum": [
-                    "SendingInstitutionReject"
+                    "Conflict"
                   ]
                 },
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The sending institution has rejected payment for an unspecified reason."
+                    "The request could not be completed due to a conflict with the current state of the resource."
                   ]
                 }
               },
@@ -387,7 +371,7 @@
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The payment infrastructure is busy or unavailable."
+                    "The server encountered an unexpected condition which prevented it from fulfilling the request."
                   ]
                 }
               },
@@ -500,25 +484,25 @@
           "400": {
             "description": "Bad Request",
             "schema": {
-              "title": "HTTP 500 Error",
+              "title": "HTTP 400 Error",
               "type": "object",
               "properties": {
                 "status": {
                   "type": "string",
                   "enum": [
-                    "500"
+                    "400"
                   ]
                 },
                 "title": {
                   "type": "string",
                   "enum": [
-                    "InternalServerError"
+                    "BadRequest"
                   ]
                 },
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The payment infrastructure is busy or unavailable."
+                    "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
                   ]
                 }
               },
@@ -551,7 +535,7 @@
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The request is unauthorised. Do not resubmit the request."
+                    "The request requires user authentication."
                   ]
                 }
               },
@@ -666,7 +650,7 @@
                 "description": {
                   "type": "string",
                   "enum": [
-                    "The payment infrastructure is busy or unavailable."
+                    "The server encountered an unexpected condition which prevented it from fulfilling the request."
                   ]
                 }
               },
@@ -799,25 +783,25 @@
     "400ErrorResponse": {
       "description": "Bad Request",
       "schema": {
-        "title": "HTTP 500 Error",
+        "title": "HTTP 400 Error",
         "type": "object",
         "properties": {
           "status": {
             "type": "string",
             "enum": [
-              "500"
+              "400"
             ]
           },
           "title": {
             "type": "string",
             "enum": [
-              "InternalServerError"
+              "BadRequest"
             ]
           },
           "description": {
             "type": "string",
             "enum": [
-              "The payment infrastructure is busy or unavailable."
+              "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
             ]
           }
         },
@@ -850,7 +834,73 @@
           "description": {
             "type": "string",
             "enum": [
-              "The request is unauthorised. Do not resubmit the request."
+              "The request requires user authentication."
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "title",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "403ErrorResponse": {
+      "description": "Forbidden",
+      "schema": {
+        "title": "HTTP 403 Error",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "403"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "enum": [
+              "Forbidden"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "enum": [
+              "The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
+            ]
+          }
+        },
+        "required": [
+          "status",
+          "title",
+          "description"
+        ],
+        "additionalProperties": false
+      }
+    },
+    "409ErrorResponse": {
+      "description": "Conflict",
+      "schema": {
+        "title": "HTTP 409 Error",
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string",
+            "enum": [
+              "409"
+            ]
+          },
+          "title": {
+            "type": "string",
+            "enum": [
+              "Conflict"
+            ]
+          },
+          "description": {
+            "type": "string",
+            "enum": [
+              "The request could not be completed due to a conflict with the current state of the resource."
             ]
           }
         },
@@ -883,7 +933,7 @@
           "description": {
             "type": "string",
             "enum": [
-              "The payment infrastructure is busy or unavailable."
+              "The server encountered an unexpected condition which prevented it from fulfilling the request."
             ]
           }
         },

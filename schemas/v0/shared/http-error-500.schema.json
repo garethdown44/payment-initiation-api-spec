@@ -12,7 +12,7 @@
     },
     "description": {
       "type": "string",
-      "enum": [ "The payment infrastructure is busy or unavailable." ]
+      "enum": [ "The server encountered an unexpected condition which prevented it from fulfilling the request." ]
     }
   },
   "required": [

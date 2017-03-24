@@ -1,18 +1,18 @@
 {
-  "title": "HTTP 400 Error",
+  "title": "HTTP 409 Error",
   "type": "object",
   "properties": {
     "status": {
       "type": "string",
-      "enum": [ "400" ]
+      "enum": [ "409" ]
     },
     "title": {
       "type": "string",
-      "enum": [ "BadRequest" ]
+      "enum": [ "Conflict" ]
     },
     "description": {
       "type": "string",
-      "enum": [ "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications." ]
+      "enum": [ "The request could not be completed due to a conflict with the current state of the resource." ]
     }
   },
   "required": [

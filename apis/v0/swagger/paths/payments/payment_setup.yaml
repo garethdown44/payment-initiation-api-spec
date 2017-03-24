@@ -23,21 +23,16 @@ post:
       schema:
         $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.200.response.schema.yaml
         # application/prs.openbanking.rwdata.v0.1+json:
-
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
-      description: Forbidden
-      schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.403.response.schema.yaml
+      $ref: ../../index.yaml#/responses/403ErrorResponse
     409:
-      description: Conflict
-      schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.409.response.schema.yaml
+      $ref: ../../index.yaml#/responses/409ErrorResponse
     500:
-     $ref: ../../index.yaml#/responses/500ErrorResponse
+      $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - TPPOAuth2Security:
       - tpp_client_credential

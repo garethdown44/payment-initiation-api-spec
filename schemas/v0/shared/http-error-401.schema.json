@@ -12,7 +12,7 @@
     },
     "description": {
       "type": "string",
-      "enum": [ "The request is unauthorised. Do not resubmit the request." ]
+      "enum": [ "The request requires user authentication." ]
     }
   },
   "required": [
