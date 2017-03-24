@@ -6,26 +6,24 @@ participant ASPSP Resource Server
 participant ASPSP Authentication Server
 
 
-opt Setup Single Payment
-    PSU -> TPP: Checkout
-    TPP -> ASPSP Resource Server: POST /payments
-    ASPSP Resource Server --> TPP: PaymentAuthorisationID (200,4xx, 5xx)
-    TPP -> PSU: Redirect PSU to ASPSP for Auth
-end
+note over PSU, ASPSP Authentication Server: Setup Single Payment
+PSU -> TPP: Checkout
+TPP -> ASPSP Resource Server: POST /payments
+ASPSP Resource Server --> TPP: PaymentAuthorisationID (200,4xx, 5xx)
+TPP -> PSU: Redirect PSU to ASPSP for Auth
 
-opt Authorise Payment
- note over PSU, ASPSP Authentication Server: include OAuth 2.0 params (scope etc) and PaymentAuthorisationID
- PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
- ASPSP Authentication Server --> PSU: View payment details
- PSU -> ASPSP Authentication Server: Authorise consent for single payment
- ASPSP Authentication Server --> PSU: Redirect plus auth code
- PSU -> TPP: Redirect auth code
- TPP -> ASPSP Resource Server: /token
- ASPSP Resource Server --> TPP: access token
-end
 
-opt Execute Single Payment
-    TPP -> ASPSP Resource Server: PUT /payments/${PaymentAuthorisationID}/execute
-    ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
-    ASPSP Resource Server --> TPP: Async status webhook (optional)
-end
+note over PSU, ASPSP Authentication Server: Authorise Payment
+PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
+ASPSP Authentication Server --> PSU: View payment details
+PSU -> ASPSP Authentication Server: Authorise consent for single payment
+ASPSP Authentication Server --> PSU: Redirect plus auth code
+PSU -> TPP: Redirect auth code
+TPP -> ASPSP Resource Server: /token
+ASPSP Resource Server --> TPP: access token
+
+
+note over PSU, ASPSP Authentication Server: Execute Single Payment
+TPP -> ASPSP Resource Server: PUT /payments/${PaymentAuthorisationID}/submit
+ASPSP Resource Server --> TPP: HTTP 200, 202, 4xx, 5xx
+ASPSP Resource Server --> TPP: Async status webhook (optional)
