@@ -2,7 +2,7 @@
   "type": "object",
   "properties": {
     "SchemeName": {
-       "$ref": "external_account_identification_code_complex.json"
+       "$ref": "external_account_identification_code.json"
      },
      "Identification": {
        "$ref": "../common/max_34_text.json"

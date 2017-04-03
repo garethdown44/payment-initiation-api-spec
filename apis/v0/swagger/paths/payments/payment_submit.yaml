@@ -1,36 +1,34 @@
-patch:
+post:
   tags:
    - Payments
-  summary: Submit a single immediate payment
-  description: Submit a previously setup single immediate payment
-  operationId: SubmitSingleImmediatePayment
+  summary: Create a payment submission
+  description: Submit a previously setup payment
+  operationId: CreatePaymentSubmission
   consumes:
     - $ref: ../../definitions/mime_type.yaml
   produces:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
-    - $ref: "./parameters.yaml#/PaymentAuthorisationID"
+    - $ref: "./parameters.yaml#/PaymentId"
+    - name: body
+      in: body
+      description: Setup a single immediate payment
+      required: true
+      schema:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.post.request.schema.yaml
   responses:
-    200:
-      description: OK
+    201:
+      description: Payment submit resource successfully created
       schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.200.response.schema.yaml
-    202:
-      description: Accepted
-      schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.202.response.schema.yaml
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.post.201.response.schema.yaml
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
-      description: Forbidden
-      schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.403.response.schema.yaml
+      $ref: ../../index.yaml#/responses/403ErrorResponse
     409:
-      description: Conflict
-      schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_submit.patch.409.response.schema.yaml
+      $ref: ../../index.yaml#/responses/409ErrorResponse
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:

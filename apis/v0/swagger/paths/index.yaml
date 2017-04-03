@@ -1,19 +1,9 @@
 #no recursive paths in openapi yet :( https://github.com/OAI/OpenAPI-Specification/issues/647
 /payments:
   $ref: ./payments/payment_setup.yaml
-/payments/{PaymentAuthorisationID}:
-  $ref: ./payments/payment_submit.yaml
-/payments/{PaymentAuthorisationID}/status:
-  $ref: ./payments/payment_status.yaml
-# /payments/complex:
-#   $ref: ./payments/complex/complex_setup.yaml
-# /payments/complex/{GlobalIntentID}/submit:
-#   $ref: ./payments/complex/complex_submit.yaml
-# /payments/complex/{GlobalIntentID}/cancel-all:
-#   $ref: ./payments/complex/complex_global_cancel.yaml
-# /payments/complex/{IntentID}/cancel:
-#   $ref: ./payments/complex/complex_single_cancel.yaml
-# /payments/status/{IntentID}:
-#   $ref: ./payments/status/simple_status.yaml
-# /payments/status/{GlobalIntentID}/all:
-#   $ref: ./payments/status/global_status.yaml
+/payments/{PaymentId}:
+  $ref: ./payments/payment_setup_get.yaml
+/payment-submissions:
+   $ref: ./payments/payment_submit.yaml
+/payment-submissions/{PaymentSubmissionId}:
+   $ref: ./payments/payment_submit_get.yaml

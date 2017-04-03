@@ -1,6 +1,12 @@
-PaymentAuthorisationID:
-  name: PaymentAuthorisationID
+PaymentId:
+  name: PaymentId
   in: path
-  description: ASPSP authorisation identifier for the payment
+  description: ASPSP identifier for the payment setup resource
+  required: true
+  type: string
+PaymentSubmissionId:
+  name: PaymentSubmissionId
+  in: path
+  description: ASPSP identifier for the payment submission resource
   required: true
   type: string

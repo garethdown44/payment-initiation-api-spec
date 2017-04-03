@@ -1,0 +1,10 @@
+{
+  "description": "Payment Submission Status",
+  "type": "string",
+  "enum": [
+    "AcceptedSettlementInProcess",
+    "AcceptedSettlementCompleted",
+    "Received",
+    "Failed"
+  ]
+}

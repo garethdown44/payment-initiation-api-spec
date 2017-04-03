@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "properties": {
+    "PaymentId": {
+      "description": "ASPSP identifier for the payment setup resource",
+      "$ref": "../definitions/common/max_35_text.json"
+    },
+    "PaymentSubmissionId": {
+      "description": "ASPSP identifier for the payment submission resource",
+      "$ref": "../definitions/common/max_35_text.json"
+    },
+    "Status": {
+      "description": "Status of the payment setup resource",
+      "$ref": "../definitions/payments/payment_submission_status.json"
+    },
+    "CreatedAt": {
+      "description": "UTC time when the resource was created",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "PaymentId",
+    "PaymentSubmissionId",
+    "Status",
+    "CreatedAt"
+  ],
+  "additionalProperties": false
+}

@@ -1,28 +1,26 @@
 post:
   tags:
    - Payments
-  summary: Setup a single immediate payment
-  description: Setup a single immediate payment
-  operationId: SetupSingleImmediatePayment
+  summary: Create a single immediate payment
+  description: Create a single immediate payment
+  operationId: CreateSingleImmediatePayment
   consumes:
     - $ref: ../../definitions/mime_type.yaml
   produces:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
+   - $ref: "../../parameters/index.yaml#/Idempotency-Key"
    - name: body
      in: body
      description: Setup a single immediate payment
      required: true
      schema:
-       $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.request.schema.yaml
-    #  example:
-    #    $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.request.example.json
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.request.schema.yaml
   responses:
-    200:
-      description: Payment setup successfully
+    201:
+      description: Payment setup resource successfully created
       schema:
-        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.200.response.schema.yaml
-        # application/prs.openbanking.rwdata.v0.1+json:
+        $ref: ../../../../../compiled/schemas/v0/payments/payment_setup.post.201.response.schema.yaml
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:

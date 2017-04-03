@@ -1,14 +1,11 @@
 title: Read Write APIs
 description: Draft Swagger specification for Read Write
-#TODO replace with new terms
-# termsOfService: https://www.openbanking.org.uk/terms
-#TODO replace with open banking maintaner team DL
+termsOfService: https://www.openbanking.org.uk/terms
 contact:
   #we need team email
   name: Claudio Viola
   email: claudio.viola@openbanking.org.uk
-#TODO replace with open banking "closed data" license
-# license:
-#   name: open-licence
-#   url: https://www.openbanking.org.uk/open-licence
+license:
+  name: open-licence
+  url: https://www.openbanking.org.uk/open-licence
 version: v0.1

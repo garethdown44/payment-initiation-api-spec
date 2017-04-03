@@ -15,6 +15,12 @@ Draft Swagger specification for Read Write
 *Contact Email* : claudio.viola@openbanking.org.uk
 
 
+### License information
+*License* : open-licence  
+*License URL* : https://www.openbanking.org.uk/open-licence  
+*Terms of service* : https://www.openbanking.org.uk/terms
+
+
 ### URI scheme
 *BasePath* : /open-banking  
 *Schemes* : HTTPS
@@ -27,7 +33,7 @@ Draft Swagger specification for Read Write
 
 ### Produces
 
-* `application/prs.openbanking.rwdata.v0.1+json`
+* `application/json`
 
 
 
@@ -37,15 +43,22 @@ Draft Swagger specification for Read Write
 
 ***
 
-<a name="setupsingleimmediatepayment"></a>
-### Setup a single immediate payment
+<a name="createpaymentsubmission"></a>
+### Create a payment submission
 ```
-POST /payments
+POST /payment-submissions
 ```
 
 
 #### Description
-Setup a single immediate payment
+Submit a previously setup payment
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|
+|---|---|---|---|
+|**Path**|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource|string|
 
 
 #### Body parameter
@@ -57,25 +70,27 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#setupsingleimmediatepayment-creditoraccount)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#setupsingleimmediatepayment-creditoragent)|
-|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#setupsingleimmediatepayment-debtoraccount)|
-|**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#setupsingleimmediatepayment-debtoragent)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#createpaymentsubmission-creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#createpaymentsubmission-creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#createpaymentsubmission-debtoraccount)|
+|**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#createpaymentsubmission-debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.  <br>**Length** : `1 - 35`|string|
-|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#setupsingleimmediatepayment-instructedamount)|
+|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#createpaymentsubmission-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
-|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
+|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.|[RemittanceInformation](#createpaymentsubmission-remittanceinformation)|
 
-<a name="setupsingleimmediatepayment-creditoraccount"></a>
+<a name="createpaymentsubmission-creditoraccount"></a>
 **CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
-|**Name**  <br>*optional*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**Name**  <br>*required*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
 
-<a name="setupsingleimmediatepayment-creditoragent"></a>
+<a name="createpaymentsubmission-creditoragent"></a>
 **CreditorAgent**
 
 |Name|Description|Schema|
@@ -83,7 +98,7 @@ Setup a single immediate payment
 |**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
 |**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
 
-<a name="setupsingleimmediatepayment-debtoraccount"></a>
+<a name="createpaymentsubmission-debtoraccount"></a>
 **DebtorAccount**
 
 |Name|Description|Schema|
@@ -92,7 +107,7 @@ Setup a single immediate payment
 |**Name**  <br>*optional*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
 
-<a name="setupsingleimmediatepayment-debtoragent"></a>
+<a name="createpaymentsubmission-debtoragent"></a>
 **DebtorAgent**
 
 |Name|Description|Schema|
@@ -100,7 +115,7 @@ Setup a single immediate payment
 |**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
 |**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
 
-<a name="setupsingleimmediatepayment-instructedamount"></a>
+<a name="createpaymentsubmission-instructedamount"></a>
 **InstructedAmount**
 
 |Name|Description|Schema|
@@ -108,79 +123,114 @@ Setup a single immediate payment
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
+<a name="createpaymentsubmission-remittanceinformation"></a>
+**RemittanceInformation**
+
+|Name|Description|Schema|
+|---|---|---|
+|**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**Unstructured**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
+
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment setup successfully|[Payment setup POST 200 Response](#payment-setup-post-200-response)|
-|**400**|Bad Request|[HTTP 400 Error](#http-400-error)|
-|**401**|Unauthorized|[HTTP 401 Error](#http-401-error)|
-|**403**|Forbidden|[HTTP 403 Error](#http-403-error)|
-|**409**|Conflict|[HTTP 409 Error](#http-409-error)|
-|**500**|Internal Server Error|[HTTP 500 Error](#http-500-error)|
+|**201**|Payment submit resource successfully created|[Response 201](#createpaymentsubmission-response-201)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**409**|Conflict|No Content|
+|**500**|Internal Server Error|No Content|
 
-<a name="payment-setup-post-200-response"></a>
-**Payment setup POST 200 Response**
+<a name="createpaymentsubmission-response-201"></a>
+**Response 201**
 
 |Name|Description|Schema|
 |---|---|---|
-|**PaymentAuthorisationID**  <br>*required*|ASPSP authorisation identifier for the payment  <br>**Length** : `1 - 35`|string|
+|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**Links**  <br>*required*||< [Links](#payment-submissions-post-links) > array|
+|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**PaymentSubmissionId**  <br>*required*|ASPSP identifier for the payment submission resource  <br>**Length** : `1 - 35`|string|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Failed)|
 
-<a name="http-400-error"></a>
-**HTTP 400 Error**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.)|
-|**status**  <br>*required*|enum (400)|
-|**title**  <br>*required*|enum (BadRequest)|
-
-<a name="http-401-error"></a>
-**HTTP 401 Error**
+<a name="payment-submissions-post-links"></a>
+**Links**
 
 |Name|Schema|
 |---|---|
-|**description**  <br>*required*|enum (The request requires user authentication.)|
-|**status**  <br>*required*|enum (401)|
-|**title**  <br>*required*|enum (Unauthorised)|
-
-<a name="http-403-error"></a>
-**HTTP 403 Error**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated.)|
-|**status**  <br>*required*|enum (403)|
-|**title**  <br>*required*|enum (Forbidden)|
-
-<a name="http-409-error"></a>
-**HTTP 409 Error**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The request could not be completed due to a conflict with the current state of the resource.)|
-|**status**  <br>*required*|enum (409)|
-|**title**  <br>*required*|enum (Conflict)|
-
-<a name="http-500-error"></a>
-**HTTP 500 Error**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The server encountered an unexpected condition which prevented it from fulfilling the request.)|
-|**status**  <br>*required*|enum (500)|
-|**title**  <br>*required*|enum (InternalServerError)|
+|**href**  <br>*optional*|string (uri)|
+|**method**  <br>*optional*|enum (GET)|
+|**rel**  <br>*optional*|enum (self)|
 
 
 #### Consumes
 
-* `application/prs.openbanking.rwdata.v0.1+json`
+* `application/json`
 
 
 #### Produces
 
-* `application/prs.openbanking.rwdata.v0.1+json`
+* `application/json`
+
+
+#### Tags
+
+* Payments
+
+
+#### Security
+
+|Type|Name|Scopes|
+|---|---|---|
+|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payment|
+
+
+***
+
+<a name="getpaymentsubmission"></a>
+### Get a payment submission
+```
+GET /payment-submissions/{PaymentSubmissionId}
+```
+
+
+#### Description
+Get payment submission
+
+
+#### Parameters
+
+|Type|Name|Description|Schema|
+|---|---|---|---|
+|**Path**|**PaymentSubmissionId**  <br>*required*|ASPSP identifier for the payment submission resource|string|
+
+
+#### Responses
+
+|HTTP Code|Description|Schema|
+|---|---|---|
+|**200**|Payment resource successfully retrieved|[Response 200](#getpaymentsubmission-response-200)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**404**|Not Found|No Content|
+|**500**|Internal Server Error|No Content|
+
+<a name="getpaymentsubmission-response-200"></a>
+**Response 200**
+
+|Name|Description|Schema|
+|---|---|---|
+|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**PaymentSubmissionId**  <br>*required*|ASPSP identifier for the payment submission resource  <br>**Length** : `1 - 35`|string|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Failed)|
+
+
+#### Produces
+
+* `application/json`
 
 
 #### Tags
@@ -197,108 +247,184 @@ Setup a single immediate payment
 
 ***
 
-<a name="submitsingleimmediatepayment"></a>
-### Submit a single immediate payment
+<a name="createsingleimmediatepayment"></a>
+### Create a single immediate payment
 ```
-PATCH /payments/{PaymentAuthorisationID}
+POST /payments
 ```
 
 
 #### Description
-Submit a previously setup single immediate payment
+Create a single immediate payment
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**PaymentAuthorisationID**  <br>*required*|ASPSP authorisation identifier for the payment|string|
+|**Header**|**Idempotency-Key**  <br>*required*|Every request will be processed only once per idempotency-key|string|
+
+
+#### Body parameter
+Setup a single immediate payment
+
+*Name* : body  
+*Flags* : required
+
+
+|Name|Description|Schema|
+|---|---|---|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#createsingleimmediatepayment-creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#createsingleimmediatepayment-creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#createsingleimmediatepayment-debtoraccount)|
+|**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#createsingleimmediatepayment-debtoragent)|
+|**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.  <br>**Length** : `1 - 35`|string|
+|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#createsingleimmediatepayment-instructedamount)|
+|**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.|[RemittanceInformation](#createsingleimmediatepayment-remittanceinformation)|
+
+<a name="createsingleimmediatepayment-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+
+<a name="createsingleimmediatepayment-creditoragent"></a>
+**CreditorAgent**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
+
+<a name="createsingleimmediatepayment-debtoraccount"></a>
+**DebtorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*optional*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+
+<a name="createsingleimmediatepayment-debtoragent"></a>
+**DebtorAgent**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
+
+<a name="createsingleimmediatepayment-instructedamount"></a>
+**InstructedAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="createsingleimmediatepayment-remittanceinformation"></a>
+**RemittanceInformation**
+
+|Name|Description|Schema|
+|---|---|---|
+|**CreditorReferenceInformation**  <br>*optional*|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification.  <br>**Length** : `1 - 35`|string|
+|**Unstructured**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|OK|[Payment submit PATCH 200 response](#payment-submit-patch-200-response)|
-|**202**|Accepted|[Payment submit PATCH 202 response](#payment-submit-patch-202-response)|
-|**400**|Bad Request|[HTTP 400 Error](#http-400-error)|
-|**401**|Unauthorized|[HTTP 401 Error](#http-401-error)|
-|**403**|Forbidden|[Payment submit PATCH 403 response](#payment-submit-patch-403-response)|
-|**409**|Conflict|[Payment submit PATCH 409 response](#payment-submit-patch-409-response)|
-|**500**|Internal Server Error|[HTTP 500 Error](#http-500-error)|
+|**201**|Payment setup resource successfully created|[Payment setup POST response](#payment-setup-post-response)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**409**|Conflict|No Content|
+|**500**|Internal Server Error|No Content|
 
-<a name="payment-submit-patch-200-response"></a>
-**Payment submit PATCH 200 response**
-
-|Name|Description|Schema|
-|---|---|---|
-|**PaymentReferenceID**  <br>*optional*|Payment Reference ID  <br>**Length** : `1 - 35`|string|
-|**PaymentStatus**  <br>*required*||enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)|
-|**PaymentStatusDescription**  <br>*required*||enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)|
-
-<a name="payment-submit-patch-202-response"></a>
-**Payment submit PATCH 202 response**
+<a name="payment-setup-post-response"></a>
+**Payment setup POST response**
 
 |Name|Description|Schema|
 |---|---|---|
-|**PaymentReferenceID**  <br>*optional*|Payment Reference ID  <br>**Length** : `1 - 35`|string|
-|**PaymentStatus**  <br>*required*||enum (InstructionReceived)|
-|**PaymentStatusDescription**  <br>*required*||enum (Payment execution instruction accepted.)|
+|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#payments-post-creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#payments-post-creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#payments-post-debtoraccount)|
+|**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#payments-post-debtoragent)|
+|**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.  <br>**Length** : `1 - 35`|string|
+|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payments-post-instructedamount)|
+|**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
+|**Links**  <br>*required*||< [Links](#payments-post-links) > array|
+|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
+|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile)|
 
-<a name="http-400-error"></a>
-**HTTP 400 Error**
+<a name="payments-post-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+
+<a name="payments-post-creditoragent"></a>
+**CreditorAgent**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
+
+<a name="payments-post-debtoraccount"></a>
+**DebtorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*optional*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+
+<a name="payments-post-debtoragent"></a>
+**DebtorAgent**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
+
+<a name="payments-post-instructedamount"></a>
+**InstructedAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="payments-post-links"></a>
+**Links**
 
 |Name|Schema|
 |---|---|
-|**description**  <br>*required*|enum (The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications.)|
-|**status**  <br>*required*|enum (400)|
-|**title**  <br>*required*|enum (BadRequest)|
-
-<a name="http-401-error"></a>
-**HTTP 401 Error**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The request requires user authentication.)|
-|**status**  <br>*required*|enum (401)|
-|**title**  <br>*required*|enum (Unauthorised)|
-
-<a name="payment-submit-patch-403-response"></a>
-**Payment submit PATCH 403 response**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The payer sort code is not valid - is closed, does not exist, or is not valid for the scheme., The payer account is not valid - is closed, does not exist, or is not valid for the scheme., The payee sort code is not valid - is closed, does not exist, or is not valid for the scheme., The payee account is not valid - is closed, does not exist, or is not valid for the scheme., The amount is not valid - exceeds scheme limit., The date is too far in the future., The scheme has rejected payment for an unspecified reason., The sending institution has rejected payment for an unspecified reason., The receiving institution has rejected payment for an unspecified reason.)|
-|**status**  <br>*required*|enum (403)|
-|**title**  <br>*required*|enum (InvalidPayerSortCode, InvalidPayerAccount, InvalidPayeeSortCode, InvalidPayeeAccount, InvalidAmount, InvalidExecutionDate, SchemeReject, SendingInstitutionReject, ReceivingInstitutionReject)|
-
-<a name="payment-submit-patch-409-response"></a>
-**Payment submit PATCH 409 response**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The sending institution has rejected payment for an unspecified reason.)|
-|**status**  <br>*required*|enum (409)|
-|**title**  <br>*required*|enum (SendingInstitutionReject)|
-
-<a name="http-500-error"></a>
-**HTTP 500 Error**
-
-|Name|Schema|
-|---|---|
-|**description**  <br>*required*|enum (The server encountered an unexpected condition which prevented it from fulfilling the request.)|
-|**status**  <br>*required*|enum (500)|
-|**title**  <br>*required*|enum (InternalServerError)|
+|**href**  <br>*optional*|string (uri)|
+|**method**  <br>*optional*|enum (GET)|
+|**rel**  <br>*optional*|enum (self)|
 
 
 #### Consumes
 
-* `application/prs.openbanking.rwdata.v0.1+json`
+* `application/json`
 
 
 #### Produces
 
-* `application/prs.openbanking.rwdata.v0.1+json`
+* `application/json`
 
 
 #### Tags
@@ -310,48 +436,104 @@ Submit a previously setup single immediate payment
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payment|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
 
 
 ***
 
-<a name="getpaymentstatus"></a>
-### Get the status of a payment
+<a name="getsingleimmediatepayment"></a>
+### Get a single immediate payment
 ```
-GET /payments/{PaymentAuthorisationID}/status
+GET /payments/{PaymentId}
 ```
 
 
 #### Description
-Get status of a previously submitted  payment
+Get a single immediate payment
 
 
 #### Parameters
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**PaymentAuthorisationID**  <br>*required*|ASPSP authorisation identifier for the payment|string|
+|**Path**|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource|string|
 
 
 #### Responses
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment Status Response|[Payment status GET 200 response](#payment-status-get-200-response)|
+|**200**|Payment resource successfully retrieved|[Payment setup GET response](#payment-setup-get-response)|
+|**400**|Bad Request|No Content|
+|**401**|Unauthorized|No Content|
+|**403**|Forbidden|No Content|
+|**404**|Not Found|No Content|
+|**500**|Internal Server Error|No Content|
 
-<a name="payment-status-get-200-response"></a>
-**Payment status GET 200 response**
+<a name="payment-setup-get-response"></a>
+**Payment setup GET response**
 
 |Name|Description|Schema|
 |---|---|---|
-|**PaymentReferenceID**  <br>*optional*|Payment Reference ID  <br>**Length** : `1 - 35`|string|
-|**PaymentStatus**  <br>*required*||enum (AwaitingExecution, InProgress, Debited, AwaitingFurtherAuthorisation, CreditSent, CreditDelivered, CreditApplied, CreditRejected)|
-|**PaymentStatusDescription**  <br>*required*||enum (Queued for processing by debtor bank – outcome unknown, Payment being processed by debtor bank – outcome unknown, Debit applied to debtor account, awaiting send to scheme, The payment failed, credit will never be applied at the beneficiary, Multi-party authorisation is required for the payment, Payment sent to scheme, Payment arrived at beneficiary bank, The credit has been applied at the beneficiary bank, The credit was rejected at the beneficiary bank)|
+|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#payments-paymentid-get-creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#payments-paymentid-get-creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#payments-paymentid-get-debtoraccount)|
+|**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#payments-paymentid-get-debtoragent)|
+|**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.  <br>**Length** : `1 - 35`|string|
+|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payments-paymentid-get-instructedamount)|
+|**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
+|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile)|
+
+<a name="payments-paymentid-get-creditoraccount"></a>
+**CreditorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*required*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+
+<a name="payments-paymentid-get-creditoragent"></a>
+**CreditorAgent**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
+
+<a name="payments-paymentid-get-debtoraccount"></a>
+**DebtorAccount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|maxLength 34 text  <br>**Length** : `1 - 34`|string|
+|**Name**  <br>*optional*|maxLength 70 text  <br>**Length** : `1 - 70`|string|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)|
+
+<a name="payments-paymentid-get-debtoragent"></a>
+**DebtorAgent**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Identification**  <br>*required*|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).  <br>**Pattern** : `"^SC[0-9]{6,6}$"`|string|
+|**SchemeName**  <br>*required*|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)|
+
+<a name="payments-paymentid-get-instructedamount"></a>
+**InstructedAmount**
+
+|Name|Description|Schema|
+|---|---|---|
+|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 
 #### Produces
 
-* `application/prs.openbanking.rwdata.v0.1+json`
+* `application/json`
 
 
 #### Tags
@@ -363,7 +545,7 @@ Get status of a previously submitted  payment
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payment|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
 
 
 

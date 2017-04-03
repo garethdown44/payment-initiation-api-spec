@@ -1,0 +1,9 @@
+{
+  "description": "Payment Setup Status",
+  "type": "string",
+  "enum": [
+    "Pending",
+    "AcceptedTechnicalValidation",
+    "AcceptedCustomerProfile"
+  ]
+}

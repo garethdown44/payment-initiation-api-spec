@@ -1,4 +1,0 @@
-{
-  "title": "Payment status GET 200 response",
-  "$ref": "../definitions/payments/payment_status.json"
-}

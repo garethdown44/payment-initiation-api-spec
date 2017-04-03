@@ -3,9 +3,14 @@
   "info": {
     "title": "Read Write APIs",
     "description": "Draft Swagger specification for Read Write",
+    "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
       "name": "Claudio Viola",
       "email": "claudio.viola@openbanking.org.uk"
+    },
+    "license": {
+      "name": "open-licence",
+      "url": "https://www.openbanking.org.uk/open-licence"
     },
     "version": "v0.1"
   },
@@ -14,7 +19,7 @@
     "https"
   ],
   "produces": [
-    "application/prs.openbanking.rwdata.v0.1+json"
+    "application/json"
   ],
   "paths": {
     "/payments": {
@@ -22,16 +27,23 @@
         "tags": [
           "Payments"
         ],
-        "summary": "Setup a single immediate payment",
-        "description": "Setup a single immediate payment",
-        "operationId": "SetupSingleImmediatePayment",
+        "summary": "Create a single immediate payment",
+        "description": "Create a single immediate payment",
+        "operationId": "CreateSingleImmediatePayment",
         "consumes": [
-          "application/prs.openbanking.rwdata.v0.1+json"
+          "application/json"
         ],
         "produces": [
-          "application/prs.openbanking.rwdata.v0.1+json"
+          "application/json"
         ],
         "parameters": [
+          {
+            "name": "Idempotency-Key",
+            "in": "header",
+            "description": "Every request will be processed only once per idempotency-key",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",
@@ -42,6 +54,204 @@
               "description": "Allows setup of a payment",
               "type": "object",
               "properties": {
+                "InstructionIdentification": {
+                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "EndToEndIdentification": {
+                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "RemittanceInformation": {
+                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                  "type": "object",
+                  "properties": {
+                    "Unstructured": {
+                      "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 140
+                    },
+                    "CreditorReferenceInformation": {
+                      "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. ",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 35
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "InstructedAmount": {
+                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                  "type": "object",
+                  "properties": {
+                    "Amount": {
+                      "type": "string",
+                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                    },
+                    "Currency": {
+                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                      "type": "string",
+                      "pattern": "^[A-Z]{3}$"
+                    }
+                  },
+                  "required": [
+                    "Amount",
+                    "Currency"
+                  ],
+                  "additionalProperties": false
+                },
+                "DebtorAgent": {
+                  "description": "Financial institution servicing an account for the debtor.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                      "type": "string",
+                      "enum": [
+                        "UKSortCode"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                      "type": "string",
+                      "pattern": "^SC[0-9]{6,6}$"
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "DebtorAccount": {
+                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                      "type": "string",
+                      "enum": [
+                        "BBAN"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "maxLength 34 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 34
+                    },
+                    "Name": {
+                      "description": "maxLength 70 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 70
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "CreditorAgent": {
+                  "description": "Financial institution servicing an account for the creditor.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                      "type": "string",
+                      "enum": [
+                        "UKSortCode"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                      "type": "string",
+                      "pattern": "^SC[0-9]{6,6}$"
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "CreditorAccount": {
+                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                      "type": "string",
+                      "enum": [
+                        "BBAN"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "maxLength 34 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 34
+                    },
+                    "Name": {
+                      "description": "maxLength 70 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 70
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification",
+                    "Name"
+                  ],
+                  "additionalProperties": false
+                },
+                "MerchantCategoryCode": {
+                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 4
+                }
+              },
+              "required": [
+                "InstructionIdentification",
+                "EndToEndIdentification",
+                "InstructedAmount",
+                "CreditorAgent",
+                "CreditorAccount"
+              ],
+              "additionalProperties": false
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Payment setup resource successfully created",
+            "schema": {
+              "title": "Payment setup POST response",
+              "type": "object",
+              "properties": {
+                "PaymentId": {
+                  "description": "ASPSP identifier for the payment setup resource",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "Status": {
+                  "description": "Status of the payment setup resource",
+                  "type": "string",
+                  "enum": [
+                    "Pending",
+                    "AcceptedTechnicalValidation",
+                    "AcceptedCustomerProfile"
+                  ]
+                },
                 "InstructionIdentification": {
                   "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
                   "type": "string",
@@ -182,206 +392,78 @@
                   },
                   "required": [
                     "SchemeName",
-                    "Identification"
+                    "Identification",
+                    "Name"
                   ],
+                  "additionalProperties": false
+                },
+                "MerchantCategoryCode": {
+                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 4
+                },
+                "CreatedAt": {
+                  "description": "UTC time when the resource was created",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "Links": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rel": {
+                        "type": "string",
+                        "enum": [
+                          "self"
+                        ]
+                      },
+                      "href": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "method": {
+                        "type": "string",
+                        "enum": [
+                          "GET"
+                        ]
+                      }
+                    }
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true,
                   "additionalProperties": false
                 }
               },
               "required": [
+                "PaymentId",
+                "Status",
+                "CreatedAt",
                 "InstructionIdentification",
                 "EndToEndIdentification",
                 "InstructedAmount",
                 "CreditorAgent",
-                "CreditorAccount"
-              ],
-              "additionalProperties": false
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Payment setup successfully",
-            "schema": {
-              "title": "Payment setup POST 200 Response",
-              "type": "object",
-              "properties": {
-                "PaymentAuthorisationID": {
-                  "description": "ASPSP authorisation identifier for the payment",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                }
-              },
-              "required": [
-                "PaymentAuthorisationID"
+                "CreditorAccount",
+                "Links"
               ],
               "additionalProperties": false
             }
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "title": "HTTP 400 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "400"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "BadRequest"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "title": "HTTP 401 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "401"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "Unauthorised"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The request requires user authentication."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "title": "HTTP 403 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "403"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "Forbidden"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Forbidden"
           },
           "409": {
-            "description": "Conflict",
-            "schema": {
-              "title": "HTTP 409 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "409"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "Conflict"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The request could not be completed due to a conflict with the current state of the resource."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Conflict"
           },
           "500": {
-            "description": "Internal Server Error",
-            "schema": {
-              "title": "HTTP 500 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "500"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "InternalServerError"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The server encountered an unexpected condition which prevented it from fulfilling the request."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -393,289 +475,543 @@
         ]
       }
     },
-    "/payments/{PaymentAuthorisationID}": {
-      "patch": {
+    "/payments/{PaymentId}": {
+      "get": {
         "tags": [
           "Payments"
         ],
-        "summary": "Submit a single immediate payment",
-        "description": "Submit a previously setup single immediate payment",
-        "operationId": "SubmitSingleImmediatePayment",
-        "consumes": [
-          "application/prs.openbanking.rwdata.v0.1+json"
-        ],
+        "summary": "Get a single immediate payment",
+        "description": "Get a single immediate payment",
+        "operationId": "GetSingleImmediatePayment",
         "produces": [
-          "application/prs.openbanking.rwdata.v0.1+json"
+          "application/json"
         ],
         "parameters": [
           {
-            "name": "PaymentAuthorisationID",
+            "name": "PaymentId",
             "in": "path",
-            "description": "ASPSP authorisation identifier for the payment",
+            "description": "ASPSP identifier for the payment setup resource",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "OK",
+            "description": "Payment resource successfully retrieved",
             "schema": {
-              "title": "Payment submit PATCH 200 response",
+              "title": "Payment setup GET response",
               "type": "object",
               "properties": {
-                "PaymentStatus": {
-                  "type": "string",
-                  "enum": [
-                    "AwaitingExecution",
-                    "InProgress",
-                    "Debited",
-                    "AwaitingFurtherAuthorisation",
-                    "CreditSent",
-                    "CreditDelivered",
-                    "CreditApplied",
-                    "CreditRejected"
-                  ]
-                },
-                "PaymentStatusDescription": {
-                  "type": "string",
-                  "enum": [
-                    "Queued for processing by debtor bank – outcome unknown",
-                    "Payment being processed by debtor bank – outcome unknown",
-                    "Debit applied to debtor account, awaiting send to scheme",
-                    "The payment failed, credit will never be applied at the beneficiary",
-                    "Multi-party authorisation is required for the payment",
-                    "Payment sent to scheme",
-                    "Payment arrived at beneficiary bank",
-                    "The credit has been applied at the beneficiary bank",
-                    "The credit was rejected at the beneficiary bank"
-                  ]
-                },
-                "PaymentReferenceID": {
-                  "description": "Payment Reference ID",
+                "PaymentId": {
+                  "description": "ASPSP identifier for the payment setup resource",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
-                }
-              },
-              "required": [
-                "PaymentStatus",
-                "PaymentStatusDescription"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "202": {
-            "description": "Accepted",
-            "schema": {
-              "title": "Payment submit PATCH 202 response",
-              "type": "object",
-              "properties": {
-                "PaymentStatus": {
+                },
+                "Status": {
+                  "description": "Status of the payment setup resource",
                   "type": "string",
                   "enum": [
-                    "InstructionReceived"
+                    "Pending",
+                    "AcceptedTechnicalValidation",
+                    "AcceptedCustomerProfile"
                   ]
                 },
-                "PaymentStatusDescription": {
-                  "type": "string",
-                  "enum": [
-                    "Payment execution instruction accepted."
-                  ]
-                },
-                "PaymentReferenceID": {
-                  "description": "Payment Reference ID",
+                "InstructionIdentification": {
+                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
+                },
+                "EndToEndIdentification": {
+                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "RemittanceInformation": {
+                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 140
+                },
+                "InstructedAmount": {
+                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                  "type": "object",
+                  "properties": {
+                    "Amount": {
+                      "type": "string",
+                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                    },
+                    "Currency": {
+                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                      "type": "string",
+                      "pattern": "^[A-Z]{3}$"
+                    }
+                  },
+                  "required": [
+                    "Amount",
+                    "Currency"
+                  ],
+                  "additionalProperties": false
+                },
+                "DebtorAgent": {
+                  "description": "Financial institution servicing an account for the debtor.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                      "type": "string",
+                      "enum": [
+                        "UKSortCode"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                      "type": "string",
+                      "pattern": "^SC[0-9]{6,6}$"
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "DebtorAccount": {
+                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                      "type": "string",
+                      "enum": [
+                        "BBAN"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "maxLength 34 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 34
+                    },
+                    "Name": {
+                      "description": "maxLength 70 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 70
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "CreditorAgent": {
+                  "description": "Financial institution servicing an account for the creditor.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                      "type": "string",
+                      "enum": [
+                        "UKSortCode"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                      "type": "string",
+                      "pattern": "^SC[0-9]{6,6}$"
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "CreditorAccount": {
+                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                      "type": "string",
+                      "enum": [
+                        "BBAN"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "maxLength 34 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 34
+                    },
+                    "Name": {
+                      "description": "maxLength 70 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 70
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification",
+                    "Name"
+                  ],
+                  "additionalProperties": false
+                },
+                "MerchantCategoryCode": {
+                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 4
+                },
+                "CreatedAt": {
+                  "description": "UTC time when the resource was created",
+                  "type": "string",
+                  "format": "date-time"
                 }
               },
               "required": [
-                "PaymentStatus",
-                "PaymentStatusDescription"
+                "PaymentId",
+                "Status",
+                "CreatedAt",
+                "InstructionIdentification",
+                "EndToEndIdentification",
+                "InstructedAmount",
+                "CreditorAgent",
+                "CreditorAccount"
               ],
               "additionalProperties": false
             }
           },
           "400": {
-            "description": "Bad Request",
-            "schema": {
-              "title": "HTTP 400 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "400"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "BadRequest"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Bad Request"
           },
           "401": {
-            "description": "Unauthorized",
-            "schema": {
-              "title": "HTTP 401 Error",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "401"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "Unauthorised"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The request requires user authentication."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Unauthorized"
           },
           "403": {
-            "description": "Forbidden",
-            "schema": {
-              "title": "Payment submit PATCH 403 response",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "403"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "InvalidPayerSortCode",
-                    "InvalidPayerAccount",
-                    "InvalidPayeeSortCode",
-                    "InvalidPayeeAccount",
-                    "InvalidAmount",
-                    "InvalidExecutionDate",
-                    "SchemeReject",
-                    "SendingInstitutionReject",
-                    "ReceivingInstitutionReject"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The payer sort code is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The payer account is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The payee sort code is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The payee account is not valid - is closed, does not exist, or is not valid for the scheme.",
-                    "The amount is not valid - exceeds scheme limit.",
-                    "The date is too far in the future.",
-                    "The scheme has rejected payment for an unspecified reason.",
-                    "The sending institution has rejected payment for an unspecified reason.",
-                    "The receiving institution has rejected payment for an unspecified reason."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+            "description": "Forbidden"
           },
-          "409": {
-            "description": "Conflict",
-            "schema": {
-              "title": "Payment submit PATCH 409 response",
-              "type": "object",
-              "properties": {
-                "status": {
-                  "type": "string",
-                  "enum": [
-                    "409"
-                  ]
-                },
-                "title": {
-                  "type": "string",
-                  "enum": [
-                    "SendingInstitutionReject"
-                  ]
-                },
-                "description": {
-                  "type": "string",
-                  "enum": [
-                    "The sending institution has rejected payment for an unspecified reason."
-                  ]
-                }
-              },
-              "required": [
-                "status",
-                "title",
-                "description"
-              ],
-              "additionalProperties": false
-            }
+          "404": {
+            "description": "Not Found"
           },
           "500": {
-            "description": "Internal Server Error",
+            "description": "Internal Server Error"
+          }
+        },
+        "security": [
+          {
+            "TPPOAuth2Security": [
+              "tpp_client_credential"
+            ]
+          }
+        ]
+      }
+    },
+    "/payment-submissions": {
+      "post": {
+        "tags": [
+          "Payments"
+        ],
+        "summary": "Create a payment submission",
+        "description": "Submit a previously setup payment",
+        "operationId": "CreatePaymentSubmission",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "PaymentId",
+            "in": "path",
+            "description": "ASPSP identifier for the payment setup resource",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Setup a single immediate payment",
+            "required": true,
             "schema": {
-              "title": "HTTP 500 Error",
+              "title": "Payment submit POST request",
+              "description": "Allows submit of a previously setup payment resource",
               "type": "object",
               "properties": {
-                "status": {
+                "PaymentId": {
+                  "description": "ASPSP identifier for the payment setup resource",
                   "type": "string",
-                  "enum": [
-                    "500"
-                  ]
+                  "minLength": 1,
+                  "maxLength": 35
                 },
-                "title": {
+                "InstructionIdentification": {
+                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
                   "type": "string",
-                  "enum": [
-                    "InternalServerError"
-                  ]
+                  "minLength": 1,
+                  "maxLength": 35
                 },
-                "description": {
+                "EndToEndIdentification": {
+                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
                   "type": "string",
-                  "enum": [
-                    "The server encountered an unexpected condition which prevented it from fulfilling the request."
-                  ]
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "RemittanceInformation": {
+                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                  "type": "object",
+                  "properties": {
+                    "Unstructured": {
+                      "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 140
+                    },
+                    "CreditorReferenceInformation": {
+                      "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. ",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 35
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "InstructedAmount": {
+                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                  "type": "object",
+                  "properties": {
+                    "Amount": {
+                      "type": "string",
+                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                    },
+                    "Currency": {
+                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
+                      "type": "string",
+                      "pattern": "^[A-Z]{3}$"
+                    }
+                  },
+                  "required": [
+                    "Amount",
+                    "Currency"
+                  ],
+                  "additionalProperties": false
+                },
+                "DebtorAgent": {
+                  "description": "Financial institution servicing an account for the debtor.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                      "type": "string",
+                      "enum": [
+                        "UKSortCode"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                      "type": "string",
+                      "pattern": "^SC[0-9]{6,6}$"
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "DebtorAccount": {
+                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                      "type": "string",
+                      "enum": [
+                        "BBAN"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "maxLength 34 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 34
+                    },
+                    "Name": {
+                      "description": "maxLength 70 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 70
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "CreditorAgent": {
+                  "description": "Financial institution servicing an account for the creditor.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                      "type": "string",
+                      "enum": [
+                        "UKSortCode"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                      "type": "string",
+                      "pattern": "^SC[0-9]{6,6}$"
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification"
+                  ],
+                  "additionalProperties": false
+                },
+                "CreditorAccount": {
+                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+                  "type": "object",
+                  "properties": {
+                    "SchemeName": {
+                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                      "type": "string",
+                      "enum": [
+                        "BBAN"
+                      ]
+                    },
+                    "Identification": {
+                      "description": "maxLength 34 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 34
+                    },
+                    "Name": {
+                      "description": "maxLength 70 text",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 70
+                    }
+                  },
+                  "required": [
+                    "SchemeName",
+                    "Identification",
+                    "Name"
+                  ],
+                  "additionalProperties": false
+                },
+                "MerchantCategoryCode": {
+                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
+                  "type": "string",
+                  "minLength": 3,
+                  "maxLength": 4
                 }
               },
               "required": [
-                "status",
-                "title",
-                "description"
+                "PaymentId",
+                "InstructionIdentification",
+                "EndToEndIdentification",
+                "InstructedAmount",
+                "CreditorAgent",
+                "CreditorAccount"
               ],
               "additionalProperties": false
             }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Payment submit resource successfully created",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "PaymentSubmissionId": {
+                  "description": "ASPSP identifier for the payment submission resource",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "PaymentId": {
+                  "description": "ASPSP identifier for the payment setup resource",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "Status": {
+                  "description": "Status of the payment setup resource",
+                  "type": "string",
+                  "enum": [
+                    "AcceptedSettlementInProcess",
+                    "AcceptedSettlementCompleted",
+                    "Received",
+                    "Failed"
+                  ]
+                },
+                "CreatedAt": {
+                  "description": "UTC time when the resource was created",
+                  "type": "string",
+                  "format": "date-time"
+                },
+                "Links": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rel": {
+                        "type": "string",
+                        "enum": [
+                          "self"
+                        ]
+                      },
+                      "href": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "method": {
+                        "type": "string",
+                        "enum": [
+                          "GET"
+                        ]
+                      }
+                    }
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "additionalProperties": false
+                }
+              },
+              "required": [
+                "PaymentSubmissionId",
+                "PaymentId",
+                "Status",
+                "CreatedAt",
+                "Links"
+              ],
+              "additionalProperties": false
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "409": {
+            "description": "Conflict"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
@@ -687,79 +1023,89 @@
         ]
       }
     },
-    "/payments/{PaymentAuthorisationID}/status": {
+    "/payment-submissions/{PaymentSubmissionId}": {
       "get": {
         "tags": [
           "Payments"
         ],
-        "summary": "Get the status of a payment",
-        "description": "Get status of a previously submitted  payment",
-        "operationId": "GetPaymentStatus",
+        "summary": "Get a payment submission",
+        "description": "Get payment submission",
+        "operationId": "GetPaymentSubmission",
         "produces": [
-          "application/prs.openbanking.rwdata.v0.1+json"
+          "application/json"
         ],
         "parameters": [
           {
-            "name": "PaymentAuthorisationID",
+            "name": "PaymentSubmissionId",
             "in": "path",
-            "description": "ASPSP authorisation identifier for the payment",
+            "description": "ASPSP identifier for the payment submission resource",
             "required": true,
             "type": "string"
           }
         ],
         "responses": {
           "200": {
-            "description": "Payment Status Response",
+            "description": "Payment resource successfully retrieved",
             "schema": {
-              "title": "Payment status GET 200 response",
               "type": "object",
               "properties": {
-                "PaymentStatus": {
-                  "type": "string",
-                  "enum": [
-                    "AwaitingExecution",
-                    "InProgress",
-                    "Debited",
-                    "AwaitingFurtherAuthorisation",
-                    "CreditSent",
-                    "CreditDelivered",
-                    "CreditApplied",
-                    "CreditRejected"
-                  ]
-                },
-                "PaymentStatusDescription": {
-                  "type": "string",
-                  "enum": [
-                    "Queued for processing by debtor bank – outcome unknown",
-                    "Payment being processed by debtor bank – outcome unknown",
-                    "Debit applied to debtor account, awaiting send to scheme",
-                    "The payment failed, credit will never be applied at the beneficiary",
-                    "Multi-party authorisation is required for the payment",
-                    "Payment sent to scheme",
-                    "Payment arrived at beneficiary bank",
-                    "The credit has been applied at the beneficiary bank",
-                    "The credit was rejected at the beneficiary bank"
-                  ]
-                },
-                "PaymentReferenceID": {
-                  "description": "Payment Reference ID",
+                "PaymentId": {
+                  "description": "ASPSP identifier for the payment setup resource",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
+                },
+                "PaymentSubmissionId": {
+                  "description": "ASPSP identifier for the payment submission resource",
+                  "type": "string",
+                  "minLength": 1,
+                  "maxLength": 35
+                },
+                "Status": {
+                  "description": "Status of the payment setup resource",
+                  "type": "string",
+                  "enum": [
+                    "AcceptedSettlementInProcess",
+                    "AcceptedSettlementCompleted",
+                    "Received",
+                    "Failed"
+                  ]
+                },
+                "CreatedAt": {
+                  "description": "UTC time when the resource was created",
+                  "type": "string",
+                  "format": "date-time"
                 }
               },
               "required": [
-                "PaymentStatus",
-                "PaymentStatusDescription"
+                "PaymentId",
+                "PaymentSubmissionId",
+                "Status",
+                "CreatedAt"
               ],
               "additionalProperties": false
             }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "security": [
           {
-            "PSUOAuth2Security": [
-              "payment"
+            "TPPOAuth2Security": [
+              "tpp_client_credential"
             ]
           }
         ]
@@ -795,169 +1141,22 @@
   ],
   "responses": {
     "400ErrorResponse": {
-      "description": "Bad Request",
-      "schema": {
-        "title": "HTTP 400 Error",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "400"
-            ]
-          },
-          "title": {
-            "type": "string",
-            "enum": [
-              "BadRequest"
-            ]
-          },
-          "description": {
-            "type": "string",
-            "enum": [
-              "The request could not be understood by the server due to malformed syntax. The client SHOULD NOT repeat the request without modifications."
-            ]
-          }
-        },
-        "required": [
-          "status",
-          "title",
-          "description"
-        ],
-        "additionalProperties": false
-      }
+      "description": "Bad Request"
     },
     "401ErrorResponse": {
-      "description": "Unauthorized",
-      "schema": {
-        "title": "HTTP 401 Error",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "401"
-            ]
-          },
-          "title": {
-            "type": "string",
-            "enum": [
-              "Unauthorised"
-            ]
-          },
-          "description": {
-            "type": "string",
-            "enum": [
-              "The request requires user authentication."
-            ]
-          }
-        },
-        "required": [
-          "status",
-          "title",
-          "description"
-        ],
-        "additionalProperties": false
-      }
+      "description": "Unauthorized"
     },
     "403ErrorResponse": {
-      "description": "Forbidden",
-      "schema": {
-        "title": "HTTP 403 Error",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "403"
-            ]
-          },
-          "title": {
-            "type": "string",
-            "enum": [
-              "Forbidden"
-            ]
-          },
-          "description": {
-            "type": "string",
-            "enum": [
-              "The server understood the request, but is refusing to fulfill it. Authorization will not help and the request SHOULD NOT be repeated."
-            ]
-          }
-        },
-        "required": [
-          "status",
-          "title",
-          "description"
-        ],
-        "additionalProperties": false
-      }
+      "description": "Forbidden"
+    },
+    "404NotFound": {
+      "description": "Not Found"
     },
     "409ErrorResponse": {
-      "description": "Conflict",
-      "schema": {
-        "title": "HTTP 409 Error",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "409"
-            ]
-          },
-          "title": {
-            "type": "string",
-            "enum": [
-              "Conflict"
-            ]
-          },
-          "description": {
-            "type": "string",
-            "enum": [
-              "The request could not be completed due to a conflict with the current state of the resource."
-            ]
-          }
-        },
-        "required": [
-          "status",
-          "title",
-          "description"
-        ],
-        "additionalProperties": false
-      }
+      "description": "Conflict"
     },
     "500ErrorResponse": {
-      "description": "Internal Server Error",
-      "schema": {
-        "title": "HTTP 500 Error",
-        "type": "object",
-        "properties": {
-          "status": {
-            "type": "string",
-            "enum": [
-              "500"
-            ]
-          },
-          "title": {
-            "type": "string",
-            "enum": [
-              "InternalServerError"
-            ]
-          },
-          "description": {
-            "type": "string",
-            "enum": [
-              "The server encountered an unexpected condition which prevented it from fulfilling the request."
-            ]
-          }
-        },
-        "required": [
-          "status",
-          "title",
-          "description"
-        ],
-        "additionalProperties": false
-      }
+      "description": "Internal Server Error"
     }
   }
 }

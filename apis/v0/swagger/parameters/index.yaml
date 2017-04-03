@@ -1,0 +1,6 @@
+Idempotency-Key:
+  name: Idempotency-Key
+  in: header
+  description: Every request will be processed only once per idempotency-key
+  required: true
+  type: string
