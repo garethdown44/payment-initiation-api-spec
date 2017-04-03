@@ -15,16 +15,6 @@ POST /payment-submissions
 Submit a previously setup payment
 
 
-==== Parameters
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|Type|Name|Description|Schema
-|**Path**|**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource|string
-|===
-
-
 ==== Body parameter
 Setup a single immediate payment
 
@@ -56,7 +46,7 @@ __required__|Unique identification as assigned by an instructing party for an in
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
 **Length** : `3 - 4`|string
 |**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
 __optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.|<<_createpaymentsubmission_remittanceinformation,RemittanceInformation>>
@@ -168,17 +158,17 @@ __optional__|Information supplied to enable the matching/reconciliation of an en
 |===
 |Name|Description|Schema
 |**CreatedAt** +
-__required__|UTC time when the resource was created|string (date-time)
+__required__|Date and time at which the resource was created.|string (date-time)
 |**Links** +
 __required__||< <<_payment-submissions_post_links,Links>> > array
 |**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 35`|string
 |**PaymentSubmissionId** +
-__required__|ASPSP identifier for the payment submission resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
 **Length** : `1 - 35`|string
 |**Status** +
-__required__|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Failed)
+__required__|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)
 |===
 
 [[_payment-submissions_post_links]]
@@ -239,7 +229,7 @@ Get payment submission
 |===
 |Type|Name|Description|Schema
 |**Path**|**PaymentSubmissionId** +
-__required__|ASPSP identifier for the payment submission resource|string
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.|string
 |===
 
 
@@ -263,15 +253,31 @@ __required__|ASPSP identifier for the payment submission resource|string
 |===
 |Name|Description|Schema
 |**CreatedAt** +
-__required__|UTC time when the resource was created|string (date-time)
+__required__|Date and time at which the resource was created.|string (date-time)
+|**Links** +
+__required__||< <<_payment-submissions_paymentsubmissionid_get_links,Links>> > array
 |**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 35`|string
 |**PaymentSubmissionId** +
-__required__|ASPSP identifier for the payment submission resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
 **Length** : `1 - 35`|string
 |**Status** +
-__required__|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Failed)
+__required__|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)
+|===
+
+[[_payment-submissions_paymentsubmissionid_get_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**href** +
+__optional__|string (uri)
+|**method** +
+__optional__|enum (GET)
+|**rel** +
+__optional__|enum (self)
 |===
 
 
@@ -457,7 +463,7 @@ __optional__|Information supplied to enable the matching/reconciliation of an en
 |===
 |Name|Description|Schema
 |**CreatedAt** +
-__required__|UTC time when the resource was created|string (date-time)
+__required__|Date and time at which the resource was created.|string (date-time)
 |**CreditorAccount** +
 __required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_payments_post_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
@@ -480,13 +486,13 @@ __required__||< <<_payments_post_links,Links>> > array
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
 **Length** : `3 - 4`|string
 |**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
 __optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. +
 **Length** : `1 - 140`|string
 |**Status** +
-__required__|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile)
+__required__|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)
 |===
 
 [[_payments_post_creditoraccount]]
@@ -618,7 +624,7 @@ Get a single immediate payment
 |===
 |Type|Name|Description|Schema
 |**Path**|**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource|string
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.|string
 |===
 
 
@@ -642,7 +648,7 @@ __required__|ASPSP identifier for the payment setup resource|string
 |===
 |Name|Description|Schema
 |**CreatedAt** +
-__required__|UTC time when the resource was created|string (date-time)
+__required__|Date and time at which the resource was created.|string (date-time)
 |**CreditorAccount** +
 __required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_payments_paymentid_get_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
@@ -659,17 +665,19 @@ __required__|Amount of money to be moved between the debtor and creditor, before
 |**InstructionIdentification** +
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
+|**Links** +
+__required__||< <<_payments_paymentid_get_links,Links>> > array
 |**MerchantCategoryCode** +
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
 **Length** : `3 - 4`|string
 |**PaymentId** +
-__required__|ASPSP identifier for the payment setup resource +
+__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
 __optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. +
 **Length** : `1 - 140`|string
 |**Status** +
-__required__|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile)
+__required__|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)
 |===
 
 [[_payments_paymentid_get_creditoraccount]]
@@ -741,6 +749,20 @@ __required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
 **Pattern** : `"^[A-Z]{3}$"`|string
+|===
+
+[[_payments_paymentid_get_links]]
+**Links**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**href** +
+__optional__|string (uri)
+|**method** +
+__optional__|enum (GET)
+|**rel** +
+__optional__|enum (self)
 |===
 
 

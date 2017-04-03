@@ -5,6 +5,6 @@
     "AcceptedSettlementInProcess",
     "AcceptedSettlementCompleted",
     "Received",
-    "Failed"
+    "Rejected"
   ]
 }

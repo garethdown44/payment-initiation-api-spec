@@ -204,7 +204,7 @@ paths:
             type: object
             properties:
               PaymentId:
-                description: ASPSP identifier for the payment setup resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
                 type: string
                 minLength: 1
                 maxLength: 35
@@ -215,6 +215,7 @@ paths:
                   - Pending
                   - AcceptedTechnicalValidation
                   - AcceptedCustomerProfile
+                  - Rejected
               InstructionIdentification:
                 description: >-
                   Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to
@@ -347,7 +348,7 @@ paths:
                 minLength: 3
                 maxLength: 4
               CreatedAt:
-                description: UTC time when the resource was created
+                description: Date and time at which the resource was created.
                 type: string
                 format: date-time
               Links:
@@ -386,7 +387,7 @@ paths:
           description: Unauthorized
         '403': &ref_2
           description: Forbidden
-        '409': &ref_5
+        '409': &ref_4
           description: Conflict
         '500': &ref_3
           description: Internal Server Error
@@ -403,10 +404,9 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_4
-          name: PaymentId
+        - name: PaymentId
           in: path
-          description: ASPSP identifier for the payment setup resource
+          description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
           required: true
           type: string
       responses:
@@ -417,7 +417,7 @@ paths:
             type: object
             properties:
               PaymentId:
-                description: ASPSP identifier for the payment setup resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
                 type: string
                 minLength: 1
                 maxLength: 35
@@ -428,6 +428,7 @@ paths:
                   - Pending
                   - AcceptedTechnicalValidation
                   - AcceptedCustomerProfile
+                  - Rejected
               InstructionIdentification:
                 description: >-
                   Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to
@@ -560,11 +561,31 @@ paths:
                 minLength: 3
                 maxLength: 4
               CreatedAt:
-                description: UTC time when the resource was created
+                description: Date and time at which the resource was created.
                 type: string
                 format: date-time
+              Links:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rel:
+                      type: string
+                      enum:
+                        - self
+                    href:
+                      type: string
+                      format: uri
+                    method:
+                      type: string
+                      enum:
+                        - GET
+                minItems: 1
+                uniqueItems: true
+                additionalProperties: false
             required:
               - PaymentId
+              - Links
               - Status
               - CreatedAt
               - InstructionIdentification
@@ -576,7 +597,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': &ref_6
+        '404': &ref_5
           description: Not Found
         '500': *ref_3
       security:
@@ -594,7 +615,6 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_4
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -605,7 +625,7 @@ paths:
             type: object
             properties:
               PaymentId:
-                description: ASPSP identifier for the payment setup resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
                 type: string
                 minLength: 1
                 maxLength: 35
@@ -771,12 +791,12 @@ paths:
             type: object
             properties:
               PaymentSubmissionId:
-                description: ASPSP identifier for the payment submission resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.
                 type: string
                 minLength: 1
                 maxLength: 35
               PaymentId:
-                description: ASPSP identifier for the payment setup resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
                 type: string
                 minLength: 1
                 maxLength: 35
@@ -787,9 +807,9 @@ paths:
                   - AcceptedSettlementInProcess
                   - AcceptedSettlementCompleted
                   - Received
-                  - Failed
+                  - Rejected
               CreatedAt:
-                description: UTC time when the resource was created
+                description: Date and time at which the resource was created.
                 type: string
                 format: date-time
               Links:
@@ -821,7 +841,7 @@ paths:
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '409': *ref_5
+        '409': *ref_4
         '500': *ref_3
       security:
         - PSUOAuth2Security:
@@ -838,7 +858,7 @@ paths:
       parameters:
         - name: PaymentSubmissionId
           in: path
-          description: ASPSP identifier for the payment submission resource
+          description: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.
           required: true
           type: string
       responses:
@@ -848,12 +868,12 @@ paths:
             type: object
             properties:
               PaymentId:
-                description: ASPSP identifier for the payment setup resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
                 type: string
                 minLength: 1
                 maxLength: 35
               PaymentSubmissionId:
-                description: ASPSP identifier for the payment submission resource
+                description: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.
                 type: string
                 minLength: 1
                 maxLength: 35
@@ -864,21 +884,41 @@ paths:
                   - AcceptedSettlementInProcess
                   - AcceptedSettlementCompleted
                   - Received
-                  - Failed
+                  - Rejected
               CreatedAt:
-                description: UTC time when the resource was created
+                description: Date and time at which the resource was created.
                 type: string
                 format: date-time
+              Links:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    rel:
+                      type: string
+                      enum:
+                        - self
+                    href:
+                      type: string
+                      format: uri
+                    method:
+                      type: string
+                      enum:
+                        - GET
+                minItems: 1
+                uniqueItems: true
+                additionalProperties: false
             required:
               - PaymentId
               - PaymentSubmissionId
               - Status
               - CreatedAt
+              - Links
             additionalProperties: false
         '400': *ref_0
         '401': *ref_1
         '403': *ref_2
-        '404': *ref_6
+        '404': *ref_5
         '500': *ref_3
       security:
         - TPPOAuth2Security:
@@ -906,6 +946,6 @@ responses:
   400ErrorResponse: *ref_0
   401ErrorResponse: *ref_1
   403ErrorResponse: *ref_2
-  404NotFound: *ref_6
-  409ErrorResponse: *ref_5
+  404NotFound: *ref_5
+  409ErrorResponse: *ref_4
   500ErrorResponse: *ref_3

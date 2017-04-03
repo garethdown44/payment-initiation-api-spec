@@ -1,0 +1,34 @@
+title Single Immediate Domestic, Happy Path
+
+participant PSU
+participant PISP
+participant ASPSP Resource Server
+participant ASPSP Authentication Server
+
+
+note over PSU, ASPSP Authentication Server: Setup Single Immediate Payment
+PSU -> PISP: Checkout
+note over PISP, ASPSP Resource Server: Idempotency-Key: PISP-guid-1
+PISP -> ASPSP Resource Server: POST /payments
+note right of ASPSP Resource Server: validates and stores payment setup payload
+ASPSP Resource Server --> PISP: HTTP 201 Created { PaymentId }
+
+
+
+PISP -> PSU: Redirect PSU to ASPSP for Auth
+
+note over PSU, ASPSP Authentication Server: Authorise Payment - OAuth 2.0 Flow
+PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
+ASPSP Authentication Server --> PSU: View payment details
+PSU -> ASPSP Authentication Server: Authorise consent for single payment
+ASPSP Authentication Server --> PSU: Redirect plus auth code
+PSU -> PISP: Redirect auth code
+PISP -> ASPSP Resource Server: /token
+ASPSP Resource Server --> PISP: access token
+
+
+note over PSU, ASPSP Authentication Server: Submit Single Payment
+PISP -> ASPSP Resource Server: POST /payment-submissions   { PaymentId, .. }
+note right of ASPSP Resource Server: Invalid payment submission against payment setup payload
+
+ASPSP Resource Server --> PISP: HTTP 403 Forbidden

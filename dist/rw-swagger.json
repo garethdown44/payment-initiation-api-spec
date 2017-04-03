@@ -238,7 +238,7 @@
               "type": "object",
               "properties": {
                 "PaymentId": {
-                  "description": "ASPSP identifier for the payment setup resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
@@ -249,7 +249,8 @@
                   "enum": [
                     "Pending",
                     "AcceptedTechnicalValidation",
-                    "AcceptedCustomerProfile"
+                    "AcceptedCustomerProfile",
+                    "Rejected"
                   ]
                 },
                 "InstructionIdentification": {
@@ -404,7 +405,7 @@
                   "maxLength": 4
                 },
                 "CreatedAt": {
-                  "description": "UTC time when the resource was created",
+                  "description": "Date and time at which the resource was created.",
                   "type": "string",
                   "format": "date-time"
                 },
@@ -490,7 +491,7 @@
           {
             "name": "PaymentId",
             "in": "path",
-            "description": "ASPSP identifier for the payment setup resource",
+            "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
             "required": true,
             "type": "string"
           }
@@ -503,7 +504,7 @@
               "type": "object",
               "properties": {
                 "PaymentId": {
-                  "description": "ASPSP identifier for the payment setup resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
@@ -514,7 +515,8 @@
                   "enum": [
                     "Pending",
                     "AcceptedTechnicalValidation",
-                    "AcceptedCustomerProfile"
+                    "AcceptedCustomerProfile",
+                    "Rejected"
                   ]
                 },
                 "InstructionIdentification": {
@@ -669,13 +671,41 @@
                   "maxLength": 4
                 },
                 "CreatedAt": {
-                  "description": "UTC time when the resource was created",
+                  "description": "Date and time at which the resource was created.",
                   "type": "string",
                   "format": "date-time"
+                },
+                "Links": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rel": {
+                        "type": "string",
+                        "enum": [
+                          "self"
+                        ]
+                      },
+                      "href": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "method": {
+                        "type": "string",
+                        "enum": [
+                          "GET"
+                        ]
+                      }
+                    }
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "additionalProperties": false
                 }
               },
               "required": [
                 "PaymentId",
+                "Links",
                 "Status",
                 "CreatedAt",
                 "InstructionIdentification",
@@ -728,13 +758,6 @@
         ],
         "parameters": [
           {
-            "name": "PaymentId",
-            "in": "path",
-            "description": "ASPSP identifier for the payment setup resource",
-            "required": true,
-            "type": "string"
-          },
-          {
             "name": "body",
             "in": "body",
             "description": "Setup a single immediate payment",
@@ -745,7 +768,7 @@
               "type": "object",
               "properties": {
                 "PaymentId": {
-                  "description": "ASPSP identifier for the payment setup resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
@@ -934,13 +957,13 @@
               "type": "object",
               "properties": {
                 "PaymentSubmissionId": {
-                  "description": "ASPSP identifier for the payment submission resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
                 },
                 "PaymentId": {
-                  "description": "ASPSP identifier for the payment setup resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
@@ -952,11 +975,11 @@
                     "AcceptedSettlementInProcess",
                     "AcceptedSettlementCompleted",
                     "Received",
-                    "Failed"
+                    "Rejected"
                   ]
                 },
                 "CreatedAt": {
-                  "description": "UTC time when the resource was created",
+                  "description": "Date and time at which the resource was created.",
                   "type": "string",
                   "format": "date-time"
                 },
@@ -1038,7 +1061,7 @@
           {
             "name": "PaymentSubmissionId",
             "in": "path",
-            "description": "ASPSP identifier for the payment submission resource",
+            "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
             "required": true,
             "type": "string"
           }
@@ -1050,13 +1073,13 @@
               "type": "object",
               "properties": {
                 "PaymentId": {
-                  "description": "ASPSP identifier for the payment setup resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
                 },
                 "PaymentSubmissionId": {
-                  "description": "ASPSP identifier for the payment submission resource",
+                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
                   "type": "string",
                   "minLength": 1,
                   "maxLength": 35
@@ -1068,20 +1091,48 @@
                     "AcceptedSettlementInProcess",
                     "AcceptedSettlementCompleted",
                     "Received",
-                    "Failed"
+                    "Rejected"
                   ]
                 },
                 "CreatedAt": {
-                  "description": "UTC time when the resource was created",
+                  "description": "Date and time at which the resource was created.",
                   "type": "string",
                   "format": "date-time"
+                },
+                "Links": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "rel": {
+                        "type": "string",
+                        "enum": [
+                          "self"
+                        ]
+                      },
+                      "href": {
+                        "type": "string",
+                        "format": "uri"
+                      },
+                      "method": {
+                        "type": "string",
+                        "enum": [
+                          "GET"
+                        ]
+                      }
+                    }
+                  },
+                  "minItems": 1,
+                  "uniqueItems": true,
+                  "additionalProperties": false
                 }
               },
               "required": [
                 "PaymentId",
                 "PaymentSubmissionId",
                 "Status",
-                "CreatedAt"
+                "CreatedAt",
+                "Links"
               ],
               "additionalProperties": false
             }

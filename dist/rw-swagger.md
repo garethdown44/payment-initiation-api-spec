@@ -54,13 +54,6 @@ POST /payment-submissions
 Submit a previously setup payment
 
 
-#### Parameters
-
-|Type|Name|Description|Schema|
-|---|---|---|---|
-|**Path**|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource|string|
-
-
 #### Body parameter
 Setup a single immediate payment
 
@@ -78,7 +71,7 @@ Setup a single immediate payment
 |**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#createpaymentsubmission-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 35`|string|
 |**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.|[RemittanceInformation](#createpaymentsubmission-remittanceinformation)|
 
 <a name="createpaymentsubmission-creditoraccount"></a>
@@ -148,11 +141,11 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**CreatedAt**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**Links**  <br>*required*||< [Links](#payment-submissions-post-links) > array|
-|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
-|**PaymentSubmissionId**  <br>*required*|ASPSP identifier for the payment submission resource  <br>**Length** : `1 - 35`|string|
-|**Status**  <br>*required*|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Failed)|
+|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 35`|string|
+|**PaymentSubmissionId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 35`|string|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)|
 
 <a name="payment-submissions-post-links"></a>
 **Links**
@@ -203,7 +196,7 @@ Get payment submission
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**PaymentSubmissionId**  <br>*required*|ASPSP identifier for the payment submission resource|string|
+|**Path**|**PaymentSubmissionId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.|string|
 
 
 #### Responses
@@ -222,10 +215,20 @@ Get payment submission
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
-|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
-|**PaymentSubmissionId**  <br>*required*|ASPSP identifier for the payment submission resource  <br>**Length** : `1 - 35`|string|
-|**Status**  <br>*required*|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Failed)|
+|**CreatedAt**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**Links**  <br>*required*||< [Links](#payment-submissions-paymentsubmissionid-get-links) > array|
+|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 35`|string|
+|**PaymentSubmissionId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 35`|string|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)|
+
+<a name="payment-submissions-paymentsubmissionid-get-links"></a>
+**Links**
+
+|Name|Schema|
+|---|---|
+|**href**  <br>*optional*|string (uri)|
+|**method**  <br>*optional*|enum (GET)|
+|**rel**  <br>*optional*|enum (self)|
 
 
 #### Produces
@@ -351,7 +354,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**CreatedAt**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#payments-post-creditoraccount)|
 |**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#payments-post-creditoragent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#payments-post-debtoraccount)|
@@ -361,9 +364,9 @@ Setup a single immediate payment
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
 |**Links**  <br>*required*||< [Links](#payments-post-links) > array|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 35`|string|
 |**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
-|**Status**  <br>*required*|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile)|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)|
 
 <a name="payments-post-creditoraccount"></a>
 **CreditorAccount**
@@ -456,7 +459,7 @@ Get a single immediate payment
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Path**|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource|string|
+|**Path**|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.|string|
 
 
 #### Responses
@@ -475,7 +478,7 @@ Get a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreatedAt**  <br>*required*|UTC time when the resource was created|string (date-time)|
+|**CreatedAt**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#payments-paymentid-get-creditoraccount)|
 |**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#payments-paymentid-get-creditoragent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#payments-paymentid-get-debtoraccount)|
@@ -483,10 +486,11 @@ Get a single immediate payment
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.  <br>**Length** : `1 - 35`|string|
 |**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payments-paymentid-get-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
+|**Links**  <br>*required*||< [Links](#payments-paymentid-get-links) > array|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.  <br>**Length** : `3 - 4`|string|
-|**PaymentId**  <br>*required*|ASPSP identifier for the payment setup resource  <br>**Length** : `1 - 35`|string|
+|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 35`|string|
 |**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.  <br>**Length** : `1 - 140`|string|
-|**Status**  <br>*required*|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile)|
+|**Status**  <br>*required*|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)|
 
 <a name="payments-paymentid-get-creditoraccount"></a>
 **CreditorAccount**
@@ -529,6 +533,15 @@ Get a single immediate payment
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+
+<a name="payments-paymentid-get-links"></a>
+**Links**
+
+|Name|Schema|
+|---|---|
+|**href**  <br>*optional*|string (uri)|
+|**method**  <br>*optional*|enum (GET)|
+|**rel**  <br>*optional*|enum (self)|
 
 
 #### Produces

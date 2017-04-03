@@ -1,0 +1,18 @@
+title Single Immediate Domestic, Idempotent Payment Setup
+
+participant PSU
+participant PISP
+participant ASPSP Resource Server
+
+
+note over PSU, ASPSP Authentication Server: Setup Single Immediate Payment
+PSU -> PISP: Checkout
+note over PISP, ASPSP Resource Server: Idempotency-Key: PISP-guid-1
+PISP -> ASPSP Resource Server: POST /payments
+ASPSP Resource Server --> ASPSP Resource Server: Payment setup resource created
+note over PISP, ASPSP Resource Server: Network error, PISP calls back again
+
+note over PISP, ASPSP Resource Server: Idempotency-Key: PISP-guid-1
+PISP -> ASPSP Resource Server: POST /payments
+note over ASPSP Resource Server: Setup Resource already created, no error
+ASPSP Resource Server --> PISP: HTTP 201 Created { PaymentId }

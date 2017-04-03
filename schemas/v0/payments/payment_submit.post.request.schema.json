@@ -4,8 +4,7 @@
   "type": "object",
   "properties": {
     "PaymentId": {
-      "description": "ASPSP identifier for the payment setup resource",
-      "$ref": "../definitions/common/max_35_text.json"
+      "$ref": "../definitions/payments/payment_id.json"
     },
     "InstructionIdentification": {
       "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",

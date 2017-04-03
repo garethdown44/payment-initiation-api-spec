@@ -3,8 +3,7 @@
   "type": "object",
   "properties": {
     "PaymentId": {
-      "description": "ASPSP identifier for the payment setup resource",
-      "$ref": "../definitions/common/max_35_text.json"
+      "$ref": "../definitions/payments/payment_id.json"
     },
     "Status": {
       "description": "Status of the payment setup resource",
@@ -47,13 +46,15 @@
       "$ref": "../definitions/common/min3_max4_text.json"
     },
     "CreatedAt": {
-      "description": "UTC time when the resource was created",
-      "type": "string",
-      "format": "date-time"
+      "$ref": "../definitions/common/created_at.json"
+    },
+    "Links": {
+      "$ref": "../definitions/common/links_self.json"
     }
   },
   "required": [
     "PaymentId",
+    "Links",
     "Status",
     "CreatedAt",
     "InstructionIdentification",

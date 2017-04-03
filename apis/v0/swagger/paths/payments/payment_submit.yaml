@@ -9,7 +9,6 @@ post:
   produces:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
-    - $ref: "./parameters.yaml#/PaymentId"
     - name: body
       in: body
       description: Setup a single immediate payment
