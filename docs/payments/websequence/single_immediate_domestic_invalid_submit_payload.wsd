@@ -1,4 +1,4 @@
-title Single Immediate Domestic, Happy Path
+title Single Immediate Domestic, Invalid Submit Payload
 
 participant PSU
 participant PISP

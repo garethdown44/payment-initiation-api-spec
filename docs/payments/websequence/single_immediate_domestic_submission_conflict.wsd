@@ -1,0 +1,11 @@
+title Single Immediate Domestic, Submission Conflict
+
+participant PISP
+participant ASPSP Resource Server
+
+note over PISP, ASPSP Resource Server: Submit Single Payment
+PISP -> ASPSP Resource Server: POST /payment-submissions   { PaymentId, .. }
+note right of ASPSP Resource Server: Payment submission resource created
+note over PISP, ASPSP Resource Server: Network error, PISP resubmits again
+PISP -> ASPSP Resource Server: POST /payment-submissions   { PaymentId, .. }
+ASPSP Resource Server --> PISP: HTTP 409 Conflict, already submitted
