@@ -1,5 +1,3 @@
-title Single Immediate Domestic, Invalid Setup Payload
-
 participant PSU
 participant PISP
 participant ASPSP Resource Server
@@ -7,7 +5,7 @@ participant ASPSP Resource Server
 note over PSU, ASPSP Resource Server: Setup Single Immediate Payment
 
 PSU -> PISP: Checkout
-note over PISP, ASPSP Resource Server: Idempotency-Key: PISP-guid-1
+note over PISP, ASPSP Resource Server: Header: x-idempotency-key: pisp-guid-1
 PISP -> ASPSP Resource Server: POST /payments
 note right of ASPSP Resource Server: invalid payload
 ASPSP Resource Server --> PISP: HTTP 400 Bad Request

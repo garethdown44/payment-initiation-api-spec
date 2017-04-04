@@ -1,42 +1,42 @@
-title Single Immediate Domestic, Happy Path
-
 participant PSU
 participant PISP
 participant ASPSP Resource Server
-participant ASPSP Authentication Server
+participant ASPSP Authorisation Server
 
-
-note over PSU, ASPSP Authentication Server: Setup Single Immediate Payment
+note over PSU, ASPSP Authorisation Server: Setup Single Immediate Payment
 PSU -> PISP: Checkout
-note over PISP, ASPSP Resource Server: Idempotency-Key: PISP-guid-1
+note over PISP, ASPSP Authorisation Server: Client credentials - OAuth 2.0 Flow
+PISP -> ASPSP Authorisation Server: /token { client_id , client_secret }
+ASPSP Authorisation Server -> PISP: access token
+note over PISP, ASPSP Resource Server: Headers: x-idempotency-Key: pisp-guid-1, Authorisation: token
 PISP -> ASPSP Resource Server: POST /payments
 note right of ASPSP Resource Server: validates and stores payment setup payload
 ASPSP Resource Server --> PISP: HTTP 201 Created { PaymentId }
 
 opt: PISP can optionally retrieve payment setup resource
-note over PSU, ASPSP Authentication Server: Get Payment Setup Resource (includes status)
+note over PSU, ASPSP Authorisation Server: Get Payment Setup Resource (includes status)
 PISP --> ASPSP Resource Server: GET /payments/${PaymentId}
 ASPSP Resource Server --> PISP: HTTP 200 OK
 end
 
 PISP -> PSU: Redirect PSU to ASPSP for Auth
 
-note over PSU, ASPSP Authentication Server: Authorise Payment - OAuth 2.0 Flow
-PSU -> ASPSP Authentication Server: Sign-in to ASPSP web/mobile app
-ASPSP Authentication Server --> PSU: View payment details
-PSU -> ASPSP Authentication Server: Authorise consent for single payment
-ASPSP Authentication Server --> PSU: Redirect plus auth code
+note over PSU, ASPSP Authorisation Server: Authorise Payment - OAuth 2.0 Flow
+PSU -> ASPSP Authorisation Server: Sign-in to ASPSP web/mobile app
+ASPSP Authorisation Server --> PSU: View payment details
+PSU -> ASPSP Authorisation Server: Authorise consent for single payment
+ASPSP Authorisation Server --> PSU: Redirect plus auth code
 PSU -> PISP: Redirect auth code
 PISP -> ASPSP Resource Server: /token
 ASPSP Resource Server --> PISP: access token
 
 
-note over PSU, ASPSP Authentication Server: Submit Single Payment
+note over PSU, ASPSP Authorisation Server: Submit Single Payment
 PISP -> ASPSP Resource Server: POST /payment-submissions   { PaymentId, .. }
 note right of ASPSP Resource Server: Validate payment submission against payment setup payload
 ASPSP Resource Server --> PISP: HTTP 201 Created { PaymentSubmissionId }
 opt PISP can optionally retrieve payment submission resource
-note over PSU, ASPSP Authentication Server: Get Payment Submission Resource (includes status)
+note over PSU, ASPSP Authorisation Server: Get Payment Submission Resource (includes status)
 PISP --> ASPSP Resource Server: GET /payment-submissions/${PaymentSubmissionId}
 ASPSP Resource Server --> PISP: HTTP 200 OK
 opt Async status webhook [TO BE DEFINED]
