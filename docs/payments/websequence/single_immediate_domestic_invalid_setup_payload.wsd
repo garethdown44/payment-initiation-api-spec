@@ -10,4 +10,4 @@ PSU -> PISP: Checkout
 note over PISP, ASPSP Resource Server: Idempotency-Key: PISP-guid-1
 PISP -> ASPSP Resource Server: POST /payments
 note right of ASPSP Resource Server: invalid payload
-ASPSP Resource Server --> PISP: HTTP 403 Forbidden Error
+ASPSP Resource Server --> PISP: HTTP 400 Bad Request
