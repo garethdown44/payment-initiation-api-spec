@@ -265,7 +265,7 @@ Create a single immediate payment
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Header**|**Idempotency-Key**  <br>*required*|Every request will be processed only once per idempotency-key|string|
+|**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key|string|
 
 
 #### Body parameter

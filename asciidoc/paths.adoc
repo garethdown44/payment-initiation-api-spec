@@ -318,8 +318,8 @@ Create a single immediate payment
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
-|**Header**|**Idempotency-Key** +
-__required__|Every request will be processed only once per idempotency-key|string
+|**Header**|**x-idempotency-key** +
+__required__|Every request will be processed only once per x-idempotency-key|string
 |===
 
 

@@ -9,7 +9,7 @@ post:
   produces:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
-   - $ref: "../../parameters/index.yaml#/Idempotency-Key"
+   - $ref: "../../parameters/index.yaml#/x-idempotency-key"
    - name: body
      in: body
      description: Setup a single immediate payment

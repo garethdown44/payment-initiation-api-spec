@@ -28,9 +28,9 @@ paths:
       produces:
         - application/json
       parameters:
-        - name: Idempotency-Key
+        - name: x-idempotency-key
           in: header
-          description: Every request will be processed only once per idempotency-key
+          description: Every request will be processed only once per x-idempotency-key
           required: true
           type: string
         - name: body
