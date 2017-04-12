@@ -1,4 +1,5 @@
 {
+  "title": "Payment Submit GET Response",
   "type": "object",
   "properties": {
     "PaymentId": {

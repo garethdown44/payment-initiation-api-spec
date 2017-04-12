@@ -1,4 +1,5 @@
 {
+  "title": "Payment Submit POST 201 Response",
   "type": "object",
   "properties": {
     "PaymentSubmissionId": {

@@ -1,5 +1,5 @@
 {
-  "title": "Payment submit POST request",
+  "title": "Payment Submit POST request",
   "description": "Allows submit of a previously setup payment resource",
   "type": "object",
   "properties": {
