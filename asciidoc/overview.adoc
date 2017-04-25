@@ -1,9 +1,9 @@
-= Read Write APIs
+= Payment Initiation APIs
 
 
 [[_overview]]
 == Overview
-Draft Swagger specification for Read Write
+Draft Swagger specification for Payment Initiation
 
 
 === Version information
@@ -32,7 +32,6 @@ __Schemes__ : HTTPS
 
 === Tags
 
-* Accounts : Account related endpoints
 * Payments : Payments endpoints
 
 

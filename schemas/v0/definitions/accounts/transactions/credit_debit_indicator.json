@@ -1,8 +1,0 @@
-{
-  "description":"Indicates whether the entry is a credit or a debit entry",
-  "type": "string",
-  "enum": [
-    "Credit",
-    "Debit"
-  ]
-}

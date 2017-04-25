@@ -17,7 +17,5 @@ securityDefinitions:
 tags:
  - name: Payments
    description: Payments endpoints
- - name: Accounts
-   description: Account related endpoints
 responses:
   $ref: ./responses/index.yaml

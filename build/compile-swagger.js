@@ -21,9 +21,9 @@ SwaggerParser.dereference(swaggerIndex, SwaggerParserOptions,
       console.error(err);
       throw err
     }
-    utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), compiled + '/swagger/rw-swagger.yaml')
-    utils.writeToFile(JSON.stringify(api, null, 2), compiled + '/swagger/rw-swagger.json')
+    utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), compiled + '/swagger/payment-initiation-swagger.yaml')
+    utils.writeToFile(JSON.stringify(api, null, 2), compiled + '/swagger/payment-initiation-swagger.json')
     // temporary....
-    utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), dist + '/rw-swagger.yaml')
-    utils.writeToFile(JSON.stringify(api, null, 2), dist + '/rw-swagger.json')
+    utils.writeToFile(YAML.safeDump(api, { lineWidth: 200 }), dist + '/payment-initiation-swagger.yaml')
+    utils.writeToFile(JSON.stringify(api, null, 2), dist + '/payment-initiation-swagger.json')
 });

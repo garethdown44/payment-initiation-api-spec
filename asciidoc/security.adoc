@@ -34,7 +34,6 @@ __Token URL__ : /token
 |===
 |Name|Description
 |payment|Generic payment scope
-|accounts|Generic Account scope
 |===
 
 

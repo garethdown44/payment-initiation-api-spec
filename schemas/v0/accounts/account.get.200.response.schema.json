@@ -1,4 +1,0 @@
-{
- "title": "Account GET response",
- "$ref": "../definitions/accounts/account.json"
-}
