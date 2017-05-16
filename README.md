@@ -1,4 +1,4 @@
-# rw-api-spec
+# payment-initiation-api-spec
 
 # Usage
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format
