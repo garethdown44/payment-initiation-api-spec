@@ -1,0 +1,37 @@
+title Payment Not Allowed for Multi Auth Account if SingleAuthorisationIndicator true
+
+participant PSU
+participant PISP
+participant ASPSP Resource Server
+participant ASPSP Authorisation Server
+
+note over PSU, ASPSP Authorisation Server: Setup Single Immediate Payment
+PSU -> PISP: Checkout
+note over PISP, ASPSP Authorisation Server: Client credentials - OAuth 2.0 Flow
+PISP -> ASPSP Authorisation Server: /token { client_id , client_secret }
+ASPSP Authorisation Server -> PISP: access token
+note over PISP, ASPSP Resource Server:
+    Headers: x-idempotency-Key: pisp-guid-1, Authorisation: token
+    payload  {SingleAuthorisationIndicator: true}
+end note
+
+PISP -> ASPSP Resource Server: POST /payments
+
+note right of ASPSP Resource Server:
+    Validates and stores payment setup payload
+end note
+
+note over PISP, ASPSP Resource Server:
+    Case: There are NO Single Auth Accounts
+    Payment automatically denied
+end note
+
+ASPSP Resource Server -> PISP: HTTP 201 Created { PaymentId }
+
+opt: PISP can optionally retrieve payment setup resource
+note over PSU, ASPSP Authorisation Server: Get Payment Setup Resource (includes status)
+PISP --> ASPSP Resource Server: GET /payments/${PaymentId}
+ASPSP Resource Server --> PISP: HTTP 200 OK { Status: Rejected }
+end
+
+PISP -> PSU: Rejected
