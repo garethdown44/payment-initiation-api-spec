@@ -1,0 +1,71 @@
+title Multi Authorisation Flow
+
+participant PSU
+participant PISP
+participant ASPSP Resource Server
+participant ASPSP Authorisation Server
+
+note over PSU, ASPSP Authorisation Server: Setup Single Immediate Payment
+PSU -> PISP: Payment Request
+
+note over PISP, ASPSP Authorisation Server: Client credentials - OAuth 2.0 Flow
+PISP -> ASPSP Authorisation Server: /token { client_id , client_secret }
+ASPSP Authorisation Server -> PISP: access token
+note over PISP, ASPSP Resource Server:
+    Headers: x-idempotency-Key: pisp-guid-1, Authorisation: token
+    payload  {SingleAuthorisationIndicator: false}
+end note
+
+note right of ASPSP Resource Server:
+    SingleAuthorisationIndicator is optional,
+    default is false
+end note
+
+PISP -> ASPSP Resource Server: POST /payments
+
+note right of ASPSP Resource Server:
+    Validates and stores payment setup payload
+end note
+
+note over PISP, ASPSP Resource Server:
+    Case: There is a Multi Auth Account
+end note
+
+ASPSP Resource Server -> PISP: HTTP 201 Created { PaymentId }
+
+opt: PISP can optionally retrieve payment setup resource
+note over PSU, ASPSP Authorisation Server: Get Payment Setup Resource (includes status)
+PISP --> ASPSP Resource Server: GET /payments/${PaymentId}
+ASPSP Resource Server --> PISP: HTTP 200 OK
+end
+
+
+note over PSU, ASPSP Authorisation Server: Authorise Payment - OAuth 2.0 Flow
+PSU -> ASPSP Authorisation Server: Sign-in to ASPSP web/mobile app
+ASPSP Authorisation Server --> PSU: View payment details
+PSU -> ASPSP Authorisation Server: Authorise consent for single payment
+ASPSP Authorisation Server --> PSU: Redirect plus auth code
+PSU -> PISP: Redirect auth code
+PISP -> ASPSP Resource Server: /token
+ASPSP Resource Server --> PISP: access token
+
+note over PSU, ASPSP Authorisation Server: Submit Single Payment
+PISP -> ASPSP Resource Server: POST /payment-submissions   { PaymentId, .. }
+note right of ASPSP Resource Server: Validate payment submission against payment setup payload
+ASPSP Resource Server --> PISP: HTTP 201 Created { PaymentSubmissionId }
+
+note over PSU, ASPSP Authorisation Server:
+    Authorisation from Other Parties is Required!
+    ASPSP notifies other authorising parties
+    requesting auth through appropriate channels
+end note
+
+opt PISP can optionally retrieve payment submission resource
+note over PSU, ASPSP Authorisation Server: Get Payment Submission Resource (includes status)
+PISP --> ASPSP Resource Server: GET /payment-submissions/${PaymentSubmissionId}
+ASPSP Resource Server --> PISP: HTTP 200 OK
+opt Async status webhook [TO BE DEFINED]
+ASPSP Resource Server --> PISP: POST /PISP_notifications_url
+PISP --> ASPSP Resource Server: 200 OK
+end
+end
