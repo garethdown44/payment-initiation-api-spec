@@ -14,6 +14,7 @@
 To convert SwaggerSpec to MARKDOWN
 You need to have
 1) swagger2markup-cli-1.3.1.jar  -> http://swagger2markup.github.io/swagger2markup/1.3.1/#_command_line_interface
+this JAR file needs to be saved in the root directory of the project for it to work 
 2) asciidoctor
    gem install asciidoctor
 3) ruby 2.2
