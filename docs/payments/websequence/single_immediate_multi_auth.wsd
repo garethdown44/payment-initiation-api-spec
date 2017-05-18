@@ -27,10 +27,6 @@ note right of ASPSP Resource Server:
     Validates and stores payment setup payload
 end note
 
-note over PISP, ASPSP Resource Server:
-    Case: There is a Multi Auth Account
-end note
-
 ASPSP Resource Server -> PISP: HTTP 201 Created { PaymentId }
 
 opt: PISP can optionally retrieve payment setup resource
@@ -39,10 +35,9 @@ PISP --> ASPSP Resource Server: GET /payments/${PaymentId}
 ASPSP Resource Server --> PISP: HTTP 200 OK
 end
 
-
 note over PSU, ASPSP Authorisation Server: Authorise Payment - OAuth 2.0 Flow
 PSU -> ASPSP Authorisation Server: Sign-in to ASPSP web/mobile app
-ASPSP Authorisation Server --> PSU: View payment details
+ASPSP Authorisation Server --> PSU: View payment details : PSU selects Multi Auth Account
 PSU -> ASPSP Authorisation Server: Authorise consent for single payment
 ASPSP Authorisation Server --> PSU: Redirect plus auth code
 PSU -> PISP: Redirect auth code
