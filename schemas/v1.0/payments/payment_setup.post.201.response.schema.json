@@ -1,0 +1,23 @@
+{
+  "title": "Payment setup POST response",
+  "type": "object",
+  "properties": {
+    "Data": {
+      "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
+      "$ref": "../definitions/data/payment_setup_response.json"
+    },
+    "Risk": {
+      "description": "Reflection of POSTed Risk profile ",
+      "$ref": "../definitions/common/risk.json"
+    },
+    "Meta": {
+    },
+    "Links": {
+    }
+  },
+  "required": [
+    "Data",
+    "Risk"
+  ],
+  "additionalProperties": false
+}

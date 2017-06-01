@@ -1,0 +1,33 @@
+{
+  "title": "Payment Submit POST 201 Response",
+  "type": "object",
+  "properties": {
+    "PaymentSubmissionId": {
+      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
+      "$ref": "../definitions/common/max_40_text.json"
+    },
+    "PaymentId": {
+      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
+      "$ref": "../definitions/common/max_40_text.json"
+    },
+    "Status": {
+      "description": "Specifies the status of the payment submission resource.",
+      "$ref": "../definitions/payments/payment_submission_status.json"
+    },
+    "CreationDateTime": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "Meta": {
+      "$ref": "../definitions/common/meta.json"
+    },
+    "Links": {
+    }
+  },
+  "required": [
+    "PaymentSubmissionId",
+    "PaymentId",
+    "CreationDateTime"
+  ],
+  "additionalProperties": false
+}

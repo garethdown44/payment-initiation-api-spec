@@ -5,21 +5,21 @@
     "description": "Draft Swagger specification for Payment Initiation",
     "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
-      "name": "Claudio Viola",
-      "email": "claudio.viola@openbanking.org.uk"
+      "name": "Craig Greenhouse",
+      "email": "craig.greenhouse@openbanking.org.uk"
     },
     "license": {
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v0.1"
+    "version": "v1.0-rc1"
   },
   "basePath": "/open-banking",
   "schemes": [
     "https"
   ],
   "produces": [
-    "application/json"
+    "application/vnd.api+json"
   ],
   "paths": {
     "/payments": {
@@ -31,10 +31,10 @@
         "description": "Create a single immediate payment",
         "operationId": "CreateSingleImmediatePayment",
         "consumes": [
-          "application/json"
+          "application/vnd.api+json"
         ],
         "produces": [
-          "application/json"
+          "application/vnd.api+json"
         ],
         "parameters": [
           {
@@ -54,177 +54,301 @@
               "description": "Allows setup of a payment",
               "type": "object",
               "properties": {
-                "InstructionIdentification": {
-                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "EndToEndIdentification": {
-                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "RemittanceInformation": {
-                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                "Data": {
+                  "description": "",
+                  "title": "Payment Setup",
                   "type": "object",
                   "properties": {
-                    "Unstructured": {
-                      "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 140
-                    },
-                    "CreditorReferenceInformation": {
-                      "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. ",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 35
-                    }
-                  },
-                  "additionalProperties": false
-                },
-                "InstructedAmount": {
-                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
-                  "type": "object",
-                  "properties": {
-                    "Amount": {
-                      "type": "string",
-                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
-                    },
-                    "Currency": {
-                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                      "type": "string",
-                      "pattern": "^[A-Z]{3}$"
+                    "Initiation": {
+                      "description": "",
+                      "type": "object",
+                      "properties": {
+                        "InstructionIdentification": {
+                          "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "EndToEndIdentification": {
+                          "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "InstructedAmount": {
+                          "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                          "type": "object",
+                          "properties": {
+                            "Amount": {
+                              "type": "string",
+                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            },
+                            "Currency": {
+                              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
+                              "type": "string",
+                              "pattern": "[A-Z]{3}"
+                            }
+                          },
+                          "required": [
+                            "Amount",
+                            "Currency"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "DebtorAgent": {
+                          "description": "Financial institution servicing an account for the debtor.",
+                          "title": "DebtorAgent",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BICFI",
+                                "UKSortCode"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "DebtorAccount": {
+                          "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+                          "title": "Debtor Account",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BBAN",
+                                "IBAN"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            },
+                            "Name": {
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 70
+                            },
+                            "SecondaryIdentification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "CreditorAgent": {
+                          "description": "Financial institution servicing an account for the creditor.",
+                          "title": "Creditor Agent",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BICFI",
+                                "UKSortCode"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "CreditorAccount": {
+                          "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+                          "title": "Debtor Account",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BBAN",
+                                "IBAN"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            },
+                            "Name": {
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 70
+                            },
+                            "SecondaryIdentification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification",
+                            "Name"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "RemittanceInformation": {
+                          "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
+                          "title": "Remittance Information",
+                          "type": "object",
+                          "properties": {
+                            "Unstructured": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 140
+                            },
+                            "Reference": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "InstructionIdentification",
+                        "EndToEndIdentification",
+                        "InstructedAmount",
+                        "CreditorAgent",
+                        "CreditorAccount"
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
-                    "Amount",
-                    "Currency"
+                    "Initiation"
                   ],
                   "additionalProperties": false
                 },
-                "DebtorAgent": {
-                  "description": "Financial institution servicing an account for the debtor.",
+                "Risk": {
+                  "description": "",
+                  "title": "Risk",
                   "type": "object",
                   "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                    "PaymentContaxtCode": {
+                      "description": "Specifies the payment context",
+                      "title": "Payment Context Code",
                       "type": "string",
                       "enum": [
-                        "UKSortCode"
+                        "BillPayment",
+                        "EcommerceGoods",
+                        "EcommerceServices",
+                        "Other",
+                        "PersonToPerson"
                       ]
                     },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                    "MerchantCategoryCode": {
+                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
+                      "minLength": 3,
+                      "maxLength": 4
+                    },
+                    "DeliveryAddress": {
+                      "description": "Information that locates and identifies a specific address, as defined by postal services or in free format text.",
+                      "type": "object",
+                      "properties": {
+                        "AddressLine": {
+                          "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                          "minItems": 0,
+                          "maxItems": 2,
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 70
+                        },
+                        "StreetName": {
+                          "description": "Name of a street or thoroughfare",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 70
+                        },
+                        "BuildingNumber": {
+                          "description": "Number that identifies the position of a building on a street.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 16
+                        },
+                        "PostCode": {
+                          "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 16
+                        },
+                        "TownName": {
+                          "description": "Name of a built-up area, with defined boundaries, and a local government.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "CountrySubDivision": {
+                          "description": "Identifies a subdivision of a country, for instance state, region, county.",
+                          "minItems": 0,
+                          "maxItems": 2,
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "Country": {
+                          "description": "Nation with its own government, occupying a particular territory.",
+                          "type": "string",
+                          "pattern": "[A-Z]{2}"
+                        }
+                      },
+                      "required": [
+                        "Country"
+                      ],
+                      "additionalProperties": false
                     }
                   },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
                   "additionalProperties": false
-                },
-                "DebtorAccount": {
-                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAgent": {
-                  "description": "Financial institution servicing an account for the creditor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
-                      "type": "string",
-                      "enum": [
-                        "UKSortCode"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
-                      "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAccount": {
-                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification",
-                    "Name"
-                  ],
-                  "additionalProperties": false
-                },
-                "MerchantCategoryCode": {
-                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-                  "type": "string",
-                  "minLength": 3,
-                  "maxLength": 4
                 }
               },
               "required": [
-                "InstructionIdentification",
-                "EndToEndIdentification",
-                "InstructedAmount",
-                "CreditorAgent",
-                "CreditorAccount"
+                "Data",
+                "Risk"
               ],
               "additionalProperties": false
             }
@@ -237,216 +361,327 @@
               "title": "Payment setup POST response",
               "type": "object",
               "properties": {
-                "PaymentId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "Status": {
-                  "description": "Status of the payment setup resource",
-                  "type": "string",
-                  "enum": [
-                    "Pending",
-                    "AcceptedTechnicalValidation",
-                    "AcceptedCustomerProfile",
-                    "Rejected"
-                  ]
-                },
-                "InstructionIdentification": {
-                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "EndToEndIdentification": {
-                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "RemittanceInformation": {
-                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 140
-                },
-                "InstructedAmount": {
-                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                "Data": {
+                  "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
+                  "title": "Payment Setup Response",
                   "type": "object",
                   "properties": {
-                    "Amount": {
-                      "type": "string",
-                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
-                    },
-                    "Currency": {
-                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                      "type": "string",
-                      "pattern": "^[A-Z]{3}$"
-                    }
-                  },
-                  "required": [
-                    "Amount",
-                    "Currency"
-                  ],
-                  "additionalProperties": false
-                },
-                "DebtorAgent": {
-                  "description": "Financial institution servicing an account for the debtor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
-                      "type": "string",
-                      "enum": [
-                        "UKSortCode"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
-                      "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "DebtorAccount": {
-                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
+                    "PaymentId": {
+                      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 34
+                      "maxLength": 40
                     },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAgent": {
-                  "description": "Financial institution servicing an account for the creditor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
+                    "Status": {
+                      "description": "Specifies the status of the payment resource.",
+                      "title": "Payment Status Code",
                       "type": "string",
                       "enum": [
-                        "UKSortCode"
+                        "AcceptedCustomerProfile",
+                        "AcceptedTechnicalValidation",
+                        "Pending",
+                        "Rejected"
                       ]
                     },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
+                    "CreationDateTime": {
+                      "description": "Date and time at which the resource was created.",
                       "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAccount": {
-                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
+                      "format": "date-time"
                     },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification",
-                    "Name"
-                  ],
-                  "additionalProperties": false
-                },
-                "MerchantCategoryCode": {
-                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-                  "type": "string",
-                  "minLength": 3,
-                  "maxLength": 4
-                },
-                "CreatedAt": {
-                  "description": "Date and time at which the resource was created.",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "Links": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "rel": {
-                        "type": "string",
-                        "enum": [
-                          "self"
-                        ]
+                    "Initiation": {
+                      "description": "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.",
+                      "type": "object",
+                      "properties": {
+                        "InstructionIdentification": {
+                          "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "EndToEndIdentification": {
+                          "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "InstructedAmount": {
+                          "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                          "type": "object",
+                          "properties": {
+                            "Amount": {
+                              "type": "string",
+                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            },
+                            "Currency": {
+                              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
+                              "type": "string",
+                              "pattern": "[A-Z]{3}"
+                            }
+                          },
+                          "required": [
+                            "Amount",
+                            "Currency"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "DebtorAgent": {
+                          "description": "Financial institution servicing an account for the debtor.",
+                          "title": "DebtorAgent",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BICFI",
+                                "UKSortCode"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "DebtorAccount": {
+                          "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+                          "title": "Debtor Account",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BBAN",
+                                "IBAN"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            },
+                            "Name": {
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 70
+                            },
+                            "SecondaryIdentification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "CreditorAgent": {
+                          "description": "Financial institution servicing an account for the creditor.",
+                          "title": "Creditor Agent",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BICFI",
+                                "UKSortCode"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "CreditorAccount": {
+                          "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+                          "title": "Debtor Account",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BBAN",
+                                "IBAN"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            },
+                            "Name": {
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 70
+                            },
+                            "SecondaryIdentification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification",
+                            "Name"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "RemittanceInformation": {
+                          "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
+                          "title": "Remittance Information",
+                          "type": "object",
+                          "properties": {
+                            "Unstructured": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 140
+                            },
+                            "Reference": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "additionalProperties": false
+                        }
                       },
-                      "href": {
-                        "type": "string",
-                        "format": "uri"
-                      },
-                      "method": {
-                        "type": "string",
-                        "enum": [
-                          "GET"
-                        ]
-                      }
+                      "required": [
+                        "InstructionIdentification",
+                        "EndToEndIdentification",
+                        "InstructedAmount",
+                        "CreditorAgent",
+                        "CreditorAccount"
+                      ],
+                      "additionalProperties": false
                     }
                   },
-                  "minItems": 1,
-                  "uniqueItems": true,
+                  "required": [
+                    "PaymentId",
+                    "CreationDateTime",
+                    "Initiation"
+                  ],
                   "additionalProperties": false
-                }
+                },
+                "Risk": {
+                  "description": "Reflection of POSTed Risk profile ",
+                  "title": "Risk",
+                  "type": "object",
+                  "properties": {
+                    "PaymentContaxtCode": {
+                      "description": "Specifies the payment context",
+                      "title": "Payment Context Code",
+                      "type": "string",
+                      "enum": [
+                        "BillPayment",
+                        "EcommerceGoods",
+                        "EcommerceServices",
+                        "Other",
+                        "PersonToPerson"
+                      ]
+                    },
+                    "MerchantCategoryCode": {
+                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "type": "string",
+                      "minLength": 3,
+                      "maxLength": 4
+                    },
+                    "DeliveryAddress": {
+                      "description": "Information that locates and identifies a specific address, as defined by postal services or in free format text.",
+                      "type": "object",
+                      "properties": {
+                        "AddressLine": {
+                          "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                          "minItems": 0,
+                          "maxItems": 2,
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 70
+                        },
+                        "StreetName": {
+                          "description": "Name of a street or thoroughfare",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 70
+                        },
+                        "BuildingNumber": {
+                          "description": "Number that identifies the position of a building on a street.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 16
+                        },
+                        "PostCode": {
+                          "description": "Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 16
+                        },
+                        "TownName": {
+                          "description": "Name of a built-up area, with defined boundaries, and a local government.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "CountrySubDivision": {
+                          "description": "Identifies a subdivision of a country, for instance state, region, county.",
+                          "minItems": 0,
+                          "maxItems": 2,
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "Country": {
+                          "description": "Nation with its own government, occupying a particular territory.",
+                          "type": "string",
+                          "pattern": "[A-Z]{2}"
+                        }
+                      },
+                      "required": [
+                        "Country"
+                      ],
+                      "additionalProperties": false
+                    }
+                  },
+                  "additionalProperties": false
+                },
+                "Meta": {},
+                "Links": {}
               },
               "required": [
-                "PaymentId",
-                "Status",
-                "CreatedAt",
-                "InstructionIdentification",
-                "EndToEndIdentification",
-                "InstructedAmount",
-                "CreditorAgent",
-                "CreditorAccount",
-                "Links"
+                "Data",
+                "Risk"
               ],
               "additionalProperties": false
             }
@@ -476,272 +711,6 @@
         ]
       }
     },
-    "/payments/{PaymentId}": {
-      "get": {
-        "tags": [
-          "Payments"
-        ],
-        "summary": "Get a single immediate payment",
-        "description": "Get a single immediate payment",
-        "operationId": "GetSingleImmediatePayment",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "PaymentId",
-            "in": "path",
-            "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Payment resource successfully retrieved",
-            "schema": {
-              "title": "Payment setup GET response",
-              "type": "object",
-              "properties": {
-                "PaymentId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "Status": {
-                  "description": "Status of the payment setup resource",
-                  "type": "string",
-                  "enum": [
-                    "Pending",
-                    "AcceptedTechnicalValidation",
-                    "AcceptedCustomerProfile",
-                    "Rejected"
-                  ]
-                },
-                "InstructionIdentification": {
-                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "EndToEndIdentification": {
-                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "RemittanceInformation": {
-                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 140
-                },
-                "InstructedAmount": {
-                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
-                  "type": "object",
-                  "properties": {
-                    "Amount": {
-                      "type": "string",
-                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
-                    },
-                    "Currency": {
-                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                      "type": "string",
-                      "pattern": "^[A-Z]{3}$"
-                    }
-                  },
-                  "required": [
-                    "Amount",
-                    "Currency"
-                  ],
-                  "additionalProperties": false
-                },
-                "DebtorAgent": {
-                  "description": "Financial institution servicing an account for the debtor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
-                      "type": "string",
-                      "enum": [
-                        "UKSortCode"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
-                      "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "DebtorAccount": {
-                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAgent": {
-                  "description": "Financial institution servicing an account for the creditor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
-                      "type": "string",
-                      "enum": [
-                        "UKSortCode"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
-                      "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAccount": {
-                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification",
-                    "Name"
-                  ],
-                  "additionalProperties": false
-                },
-                "MerchantCategoryCode": {
-                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-                  "type": "string",
-                  "minLength": 3,
-                  "maxLength": 4
-                },
-                "CreatedAt": {
-                  "description": "Date and time at which the resource was created.",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "Links": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "rel": {
-                        "type": "string",
-                        "enum": [
-                          "self"
-                        ]
-                      },
-                      "href": {
-                        "type": "string",
-                        "format": "uri"
-                      },
-                      "method": {
-                        "type": "string",
-                        "enum": [
-                          "GET"
-                        ]
-                      }
-                    }
-                  },
-                  "minItems": 1,
-                  "uniqueItems": true,
-                  "additionalProperties": false
-                }
-              },
-              "required": [
-                "PaymentId",
-                "Links",
-                "Status",
-                "CreatedAt",
-                "InstructionIdentification",
-                "EndToEndIdentification",
-                "InstructedAmount",
-                "CreditorAgent",
-                "CreditorAccount"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "TPPOAuth2Security": [
-              "tpp_client_credential"
-            ]
-          }
-        ]
-      }
-    },
     "/payment-submissions": {
       "post": {
         "tags": [
@@ -751,10 +720,10 @@
         "description": "Submit a previously setup payment",
         "operationId": "CreatePaymentSubmission",
         "consumes": [
-          "application/json"
+          "application/vnd.api+json"
         ],
         "produces": [
-          "application/json"
+          "application/vnd.api+json"
         ],
         "parameters": [
           {
@@ -763,188 +732,230 @@
             "description": "Setup a single immediate payment",
             "required": true,
             "schema": {
-              "title": "Payment Submit POST request",
-              "description": "Allows submit of a previously setup payment resource",
+              "title": "Payment Submission POST request",
+              "description": "Allows Submission of a payment",
               "type": "object",
               "properties": {
-                "PaymentId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "InstructionIdentification": {
-                  "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "EndToEndIdentification": {
-                  "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "RemittanceInformation": {
-                  "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                "Data": {
+                  "description": "",
+                  "title": "Payment Submission",
                   "type": "object",
                   "properties": {
-                    "Unstructured": {
-                      "description": "Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.",
+                    "PaymentId": {
+                      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 140
+                      "maxLength": 40
                     },
-                    "CreditorReferenceInformation": {
-                      "description": "Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. ",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 35
-                    }
-                  },
-                  "additionalProperties": false
-                },
-                "InstructedAmount": {
-                  "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
-                  "type": "object",
-                  "properties": {
-                    "Amount": {
-                      "type": "string",
-                      "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
-                    },
-                    "Currency": {
-                      "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'",
-                      "type": "string",
-                      "pattern": "^[A-Z]{3}$"
+                    "Initiation": {
+                      "description": "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.",
+                      "type": "object",
+                      "properties": {
+                        "InstructionIdentification": {
+                          "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "EndToEndIdentification": {
+                          "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.",
+                          "type": "string",
+                          "minLength": 1,
+                          "maxLength": 35
+                        },
+                        "InstructedAmount": {
+                          "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+                          "type": "object",
+                          "properties": {
+                            "Amount": {
+                              "type": "string",
+                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                            },
+                            "Currency": {
+                              "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
+                              "type": "string",
+                              "pattern": "[A-Z]{3}"
+                            }
+                          },
+                          "required": [
+                            "Amount",
+                            "Currency"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "DebtorAgent": {
+                          "description": "Financial institution servicing an account for the debtor.",
+                          "title": "DebtorAgent",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BICFI",
+                                "UKSortCode"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "DebtorAccount": {
+                          "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+                          "title": "Debtor Account",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BBAN",
+                                "IBAN"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            },
+                            "Name": {
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 70
+                            },
+                            "SecondaryIdentification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "CreditorAgent": {
+                          "description": "Financial institution servicing an account for the creditor.",
+                          "title": "Creditor Agent",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BICFI",
+                                "UKSortCode"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "CreditorAccount": {
+                          "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+                          "title": "Debtor Account",
+                          "type": "object",
+                          "properties": {
+                            "SchemeName": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "title": "SchemeName",
+                              "type": "string",
+                              "enum": [
+                                "BBAN",
+                                "IBAN"
+                              ]
+                            },
+                            "Identification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            },
+                            "Name": {
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 70
+                            },
+                            "SecondaryIdentification": {
+                              "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 34
+                            }
+                          },
+                          "required": [
+                            "SchemeName",
+                            "Identification",
+                            "Name"
+                          ],
+                          "additionalProperties": false
+                        },
+                        "RemittanceInformation": {
+                          "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
+                          "title": "Remittance Information",
+                          "type": "object",
+                          "properties": {
+                            "Unstructured": {
+                              "description": "Name of the identification scheme, in a coded form as published in an external list.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 140
+                            },
+                            "Reference": {
+                              "description": "Unique and unambiguous identification of a person.",
+                              "type": "string",
+                              "minLength": 1,
+                              "maxLength": 35
+                            }
+                          },
+                          "additionalProperties": false
+                        }
+                      },
+                      "required": [
+                        "InstructionIdentification",
+                        "EndToEndIdentification",
+                        "InstructedAmount",
+                        "CreditorAgent",
+                        "CreditorAccount"
+                      ],
+                      "additionalProperties": false
                     }
                   },
                   "required": [
-                    "Amount",
-                    "Currency"
+                    "PaymentId",
+                    "Initiation"
                   ],
                   "additionalProperties": false
-                },
-                "DebtorAgent": {
-                  "description": "Financial institution servicing an account for the debtor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
-                      "type": "string",
-                      "enum": [
-                        "UKSortCode"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
-                      "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "DebtorAccount": {
-                  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAgent": {
-                  "description": "Financial institution servicing an account for the creditor.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Specifies the external financial institution identification scheme name code in the format of character string.",
-                      "type": "string",
-                      "enum": [
-                        "UKSortCode"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).",
-                      "type": "string",
-                      "pattern": "^SC[0-9]{6,6}$"
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification"
-                  ],
-                  "additionalProperties": false
-                },
-                "CreditorAccount": {
-                  "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                  "type": "object",
-                  "properties": {
-                    "SchemeName": {
-                      "description": "Name of the identification scheme, in a coded form as published in an external list.",
-                      "type": "string",
-                      "enum": [
-                        "BBAN"
-                      ]
-                    },
-                    "Identification": {
-                      "description": "maxLength 34 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 34
-                    },
-                    "Name": {
-                      "description": "maxLength 70 text",
-                      "type": "string",
-                      "minLength": 1,
-                      "maxLength": 70
-                    }
-                  },
-                  "required": [
-                    "SchemeName",
-                    "Identification",
-                    "Name"
-                  ],
-                  "additionalProperties": false
-                },
-                "MerchantCategoryCode": {
-                  "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.",
-                  "type": "string",
-                  "minLength": 3,
-                  "maxLength": 4
                 }
               },
               "required": [
-                "PaymentId",
-                "InstructionIdentification",
-                "EndToEndIdentification",
-                "InstructedAmount",
-                "CreditorAgent",
-                "CreditorAccount"
+                "Data"
               ],
               "additionalProperties": false
             }
@@ -958,66 +969,39 @@
               "type": "object",
               "properties": {
                 "PaymentSubmissionId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
+                  "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 35
+                  "maxLength": 40
                 },
                 "PaymentId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
+                  "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                   "type": "string",
                   "minLength": 1,
-                  "maxLength": 35
+                  "maxLength": 40
                 },
                 "Status": {
-                  "description": "Status of the payment setup resource",
+                  "description": "Specifies the status of the payment submission resource.",
+                  "title": "Payment Submission Status Code",
                   "type": "string",
                   "enum": [
-                    "AcceptedSettlementInProcess",
                     "AcceptedSettlementCompleted",
-                    "Received",
+                    "AcceptedSettlementInProcess",
+                    "Pending",
                     "Rejected"
                   ]
                 },
-                "CreatedAt": {
-                  "description": "Date and time at which the resource was created.",
+                "CreationDateTime": {
                   "type": "string",
                   "format": "date-time"
                 },
-                "Links": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "rel": {
-                        "type": "string",
-                        "enum": [
-                          "self"
-                        ]
-                      },
-                      "href": {
-                        "type": "string",
-                        "format": "uri"
-                      },
-                      "method": {
-                        "type": "string",
-                        "enum": [
-                          "GET"
-                        ]
-                      }
-                    }
-                  },
-                  "minItems": 1,
-                  "uniqueItems": true,
-                  "additionalProperties": false
-                }
+                "Meta": {},
+                "Links": {}
               },
               "required": [
                 "PaymentSubmissionId",
                 "PaymentId",
-                "Status",
-                "CreatedAt",
-                "Links"
+                "CreationDateTime"
               ],
               "additionalProperties": false
             }
@@ -1042,123 +1026,6 @@
           {
             "PSUOAuth2Security": [
               "payment"
-            ]
-          }
-        ]
-      }
-    },
-    "/payment-submissions/{PaymentSubmissionId}": {
-      "get": {
-        "tags": [
-          "Payments"
-        ],
-        "summary": "Get a payment submission",
-        "description": "Get payment submission",
-        "operationId": "GetPaymentSubmission",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [
-          {
-            "name": "PaymentSubmissionId",
-            "in": "path",
-            "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Payment resource successfully retrieved",
-            "schema": {
-              "title": "Payment Submit GET Response",
-              "type": "object",
-              "properties": {
-                "PaymentId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "PaymentSubmissionId": {
-                  "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 35
-                },
-                "Status": {
-                  "description": "Status of the payment setup resource",
-                  "type": "string",
-                  "enum": [
-                    "AcceptedSettlementInProcess",
-                    "AcceptedSettlementCompleted",
-                    "Received",
-                    "Rejected"
-                  ]
-                },
-                "CreatedAt": {
-                  "description": "Date and time at which the resource was created.",
-                  "type": "string",
-                  "format": "date-time"
-                },
-                "Links": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "rel": {
-                        "type": "string",
-                        "enum": [
-                          "self"
-                        ]
-                      },
-                      "href": {
-                        "type": "string",
-                        "format": "uri"
-                      },
-                      "method": {
-                        "type": "string",
-                        "enum": [
-                          "GET"
-                        ]
-                      }
-                    }
-                  },
-                  "minItems": 1,
-                  "uniqueItems": true,
-                  "additionalProperties": false
-                }
-              },
-              "required": [
-                "PaymentId",
-                "PaymentSubmissionId",
-                "Status",
-                "CreatedAt",
-                "Links"
-              ],
-              "additionalProperties": false
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "security": [
-          {
-            "TPPOAuth2Security": [
-              "tpp_client_credential"
             ]
           }
         ]

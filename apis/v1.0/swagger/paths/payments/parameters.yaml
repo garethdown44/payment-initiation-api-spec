@@ -1,0 +1,12 @@
+PaymentId:
+  name: PaymentId
+  in: path
+  description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
+  required: true
+  type: string
+PaymentSubmissionId:
+  name: PaymentSubmissionId
+  in: path
+  description: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.
+  required: true
+  type: string

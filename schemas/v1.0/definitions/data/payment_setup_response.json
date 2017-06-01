@@ -1,0 +1,30 @@
+{
+  "title": "Payment Setup Response",
+  "description": "Payment Setup Response",
+  "type": "object",
+  "properties": {
+    "PaymentId": {
+      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
+      "$ref": "../common/max_40_text.json"
+    },
+    "Status": {
+      "description": "Specifies the status of the payment resource.",
+      "$ref": "../payments/payment_status.json"
+    },
+    "CreationDateTime": {
+      "description": "Date and time at which the resource was created.",
+      "type": "string",
+      "format": "date-time"
+    },
+    "Initiation": {
+      "description": "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.",
+      "$ref": "../payments/initiation.json"
+    }
+  },
+  "required": [
+    "PaymentId",
+    "CreationDateTime",
+    "Initiation"
+  ],
+  "additionalProperties": false
+}
