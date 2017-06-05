@@ -11,6 +11,10 @@
       "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
       "$ref": "min_3_max_4_text.json"
     },
+    "MerchantCustomerIdentification": {
+      "description": "The unique customer identifier of the PSU with the merchant.",
+      "$ref": "max_70_text.json"
+    },
     "DeliveryAddress": {
       "description": "Information that locates and identifies a specific address, as defined by postal services or in free format text.",
       "$ref": "postal_address.json"

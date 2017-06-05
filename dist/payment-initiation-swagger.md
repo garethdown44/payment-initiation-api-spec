@@ -316,6 +316,7 @@ Setup a single immediate payment
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#payments-post-deliveryaddress)|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
 |**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
 <a name="payments-post-deliveryaddress"></a>
@@ -454,6 +455,7 @@ Setup a single immediate payment
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#risk-deliveryaddress)|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
 |**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
 <a name="risk-deliveryaddress"></a>
