@@ -164,7 +164,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Debtor Account
+                        title: Creditor Account
                         type: object
                         properties:
                           SchemeName:
@@ -228,7 +228,7 @@ paths:
                 title: Risk
                 type: object
                 properties:
-                  PaymentContaxtCode:
+                  PaymentContextCode:
                     description: Specifies the payment context
                     title: Payment Context Code
                     type: string
@@ -447,7 +447,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Debtor Account
+                        title: Creditor Account
                         type: object
                         properties:
                           SchemeName:
@@ -513,7 +513,7 @@ paths:
                 title: Risk
                 type: object
                 properties:
-                  PaymentContaxtCode:
+                  PaymentContextCode:
                     description: Specifies the payment context
                     title: Payment Context Code
                     type: string
@@ -778,7 +778,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Debtor Account
+                        title: Creditor Account
                         type: object
                         properties:
                           SchemeName:

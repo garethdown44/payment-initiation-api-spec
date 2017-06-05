@@ -78,7 +78,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
 |**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
@@ -87,8 +87,8 @@ Setup a single immediate payment
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
 |**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="creditor-account"></a>
+**Creditor Account**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -248,7 +248,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
 |**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
@@ -257,8 +257,8 @@ Setup a single immediate payment
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
 |**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="creditor-account"></a>
+**Creditor Account**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -316,7 +316,7 @@ Setup a single immediate payment
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#payments-post-deliveryaddress)|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
-|**PaymentContaxtCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
+|**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
 <a name="payments-post-deliveryaddress"></a>
 **DeliveryAddress**
@@ -368,7 +368,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
 |**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
@@ -377,8 +377,8 @@ Setup a single immediate payment
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
 |**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="creditor-account"></a>
+**Creditor Account**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -454,7 +454,7 @@ Setup a single immediate payment
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#risk-deliveryaddress)|
 |**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
-|**PaymentContaxtCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
+|**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
 <a name="risk-deliveryaddress"></a>
 **DeliveryAddress**

@@ -50,7 +50,7 @@ __required__|OB: Unique identification as assigned by the ASPSP to uniquely iden
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_debtor_account,Debtor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
 |**CreditorAgent** +
 __required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
 |**DebtorAccount** +
@@ -69,8 +69,8 @@ __required__|Unique identification as assigned by an instructing party for an in
 __optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_creditor_account]]
+**Creditor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -306,7 +306,7 @@ __required__|<<_payments_post_initiation,Initiation>>
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_debtor_account,Debtor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
 |**CreditorAgent** +
 __required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
 |**DebtorAccount** +
@@ -325,8 +325,8 @@ __required__|Unique identification as assigned by an instructing party for an in
 __optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_creditor_account]]
+**Creditor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -427,7 +427,7 @@ __optional__|Information that locates and identifies a specific address, as defi
 |**MerchantCategoryCode** +
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
 **Length** : `3 - 4`|string
-|**PaymentContaxtCode** +
+|**PaymentContextCode** +
 __optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)
 |===
 
@@ -512,7 +512,7 @@ __optional__|Specifies the status of the payment resource.|enum (AcceptedCustome
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_debtor_account,Debtor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
 |**CreditorAgent** +
 __required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
 |**DebtorAccount** +
@@ -531,8 +531,8 @@ __required__|Unique identification as assigned by an instructing party for an in
 __optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_creditor_account]]
+**Creditor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -661,7 +661,7 @@ __optional__|Information that locates and identifies a specific address, as defi
 |**MerchantCategoryCode** +
 __optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
 **Length** : `3 - 4`|string
-|**PaymentContaxtCode** +
+|**PaymentContextCode** +
 __optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)
 |===
 

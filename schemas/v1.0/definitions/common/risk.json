@@ -3,7 +3,7 @@
   "description": "The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring.",
   "type": "object",
   "properties": {
-    "PaymentContaxtCode": {
+    "PaymentContextCode": {
       "description": "Specifies the payment context",
       "$ref": "../payments/payment_context_code.json"
     },
