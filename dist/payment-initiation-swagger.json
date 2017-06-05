@@ -346,6 +346,7 @@
                         }
                       },
                       "required": [
+                        "TownName",
                         "Country"
                       ],
                       "additionalProperties": false
@@ -685,6 +686,7 @@
                         }
                       },
                       "required": [
+                        "TownName",
                         "Country"
                       ],
                       "additionalProperties": false

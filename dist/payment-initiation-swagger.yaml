@@ -292,6 +292,7 @@ paths:
                         type: string
                         pattern: '[A-Z]{2}'
                     required:
+                      - TownName
                       - Country
                     additionalProperties: false
                 additionalProperties: false
@@ -576,6 +577,7 @@ paths:
                         type: string
                         pattern: '[A-Z]{2}'
                     required:
+                      - TownName
                       - Country
                     additionalProperties: false
                 additionalProperties: false

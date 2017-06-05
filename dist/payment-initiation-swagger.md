@@ -329,7 +329,7 @@ Setup a single immediate payment
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
-|**TownName**  <br>*optional*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
+|**TownName**  <br>*required*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
 
 
 #### Responses
@@ -467,7 +467,7 @@ Setup a single immediate payment
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
-|**TownName**  <br>*optional*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
+|**TownName**  <br>*required*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
 
 
 #### Consumes

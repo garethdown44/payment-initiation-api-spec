@@ -454,7 +454,7 @@ __optional__|Identifier consisting of a group of letters and/or numbers that is 
 __optional__|Name of a street or thoroughfare +
 **Length** : `1 - 70`|string
 |**TownName** +
-__optional__|Name of a built-up area, with defined boundaries, and a local government. +
+__required__|Name of a built-up area, with defined boundaries, and a local government. +
 **Length** : `1 - 35`|string
 |===
 
@@ -688,7 +688,7 @@ __optional__|Identifier consisting of a group of letters and/or numbers that is 
 __optional__|Name of a street or thoroughfare +
 **Length** : `1 - 70`|string
 |**TownName** +
-__optional__|Name of a built-up area, with defined boundaries, and a local government. +
+__required__|Name of a built-up area, with defined boundaries, and a local government. +
 **Length** : `1 - 35`|string
 |===
 

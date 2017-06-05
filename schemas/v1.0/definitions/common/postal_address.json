@@ -42,6 +42,7 @@
     }
   },
   "required": [
+    "TownName",
     "Country"
   ],
   "additionalProperties": false
