@@ -15,6 +15,7 @@
       "$ref": "../definitions/payments/payment_submission_status.json"
     },
     "CreationDateTime": {
+      "description": "Date and time at which the resource was created.",
       "type": "string",
       "format": "date-time"
     },

@@ -992,6 +992,7 @@
                   ]
                 },
                 "CreationDateTime": {
+                  "description": "Date and time at which the resource was created.",
                   "type": "string",
                   "format": "date-time"
                 },
