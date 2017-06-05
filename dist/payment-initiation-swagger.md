@@ -157,9 +157,29 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payment-submissions-post-links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payment-submissions-post-meta)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
+
+<a name="payment-submissions-post-links"></a>
+**Links**
+
+|Name|Schema|
+|---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
+|**self**  <br>*required*|string (uri)|
+
+<a name="payment-submissions-post-meta"></a>
+**Meta**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 
 #### Consumes
@@ -329,6 +349,8 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[Payment Setup Response](#payment-setup-response)|
+|**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payments-post-links)|
+|**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payments-post-meta)|
 |**Risk**  <br>*required*|Reflection of POSTed Risk profile|[Risk](#risk)|
 
 <a name="payment-setup-response"></a>
@@ -406,6 +428,24 @@ Setup a single immediate payment
 |---|---|---|
 |**Reference**  <br>*optional*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**Unstructured**  <br>*optional*|Name of the identification scheme, in a coded form as published in an external list.  <br>**Length** : `1 - 140`|string|
+
+<a name="payments-post-links"></a>
+**Links**
+
+|Name|Schema|
+|---|---|
+|**first**  <br>*optional*|string (uri)|
+|**last**  <br>*optional*|string (uri)|
+|**next**  <br>*optional*|string (uri)|
+|**prev**  <br>*optional*|string (uri)|
+|**self**  <br>*required*|string (uri)|
+
+<a name="payments-post-meta"></a>
+**Meta**
+
+|Name|Schema|
+|---|---|
+|**total-pages**  <br>*optional*|integer (int32)|
 
 <a name="risk"></a>
 **Risk**

@@ -10,14 +10,18 @@
       "description": "Reflection of POSTed Risk profile ",
       "$ref": "../definitions/common/risk.json"
     },
-    "Meta": {
-    },
     "Links": {
+      "$ref": "../definitions/common/links_self.json"
+    },
+    "Meta": {
+      "$ref": "../definitions/common/meta.json"
     }
   },
   "required": [
     "Data",
-    "Risk"
+    "Risk",
+    "Links",
+    "Meta"
   ],
   "additionalProperties": false
 }
