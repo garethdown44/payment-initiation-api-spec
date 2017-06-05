@@ -23,94 +23,117 @@ __Name__ : body
 __Flags__ : required
 
 
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**Data** +
+__required__|<<_payment_submission,Payment Submission>>
+|===
+
+[[_payment_submission]]
+**Payment Submission**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Initiation** +
+__required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_payment-submissions_post_initiation,Initiation>>
+|**PaymentId** +
+__required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
+**Length** : `1 - 40`|string
+|===
+
+[[_payment-submissions_post_initiation]]
+**Initiation**
+
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_createpaymentsubmission_creditoraccount,CreditorAccount>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_createpaymentsubmission_creditoragent,CreditorAgent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_createpaymentsubmission_debtoraccount,DebtorAccount>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
 |**DebtorAgent** +
-__optional__|Financial institution servicing an account for the debtor.|<<_createpaymentsubmission_debtoragent,DebtorAgent>>
+__optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
-__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. +
+__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field. +
 **Length** : `1 - 35`|string
 |**InstructedAmount** +
-__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_createpaymentsubmission_instructedamount,InstructedAmount>>
+__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payment-submissions_post_initiation_instructedamount,InstructedAmount>>
 |**InstructionIdentification** +
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
-|**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
-**Length** : `3 - 4`|string
-|**PaymentId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 35`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.|<<_createpaymentsubmission_remittanceinformation,RemittanceInformation>>
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
 |===
 
-[[_createpaymentsubmission_creditoraccount]]
-**CreditorAccount**
+[[_creditor_account]]
+**Creditor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|maxLength 34 text +
+__required__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
 |**Name** +
-__required__|maxLength 70 text +
+__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+|**SecondaryIdentification** +
+__optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
+**Length** : `1 - 34`|string
 |===
 
-[[_createpaymentsubmission_creditoragent]]
-**CreditorAgent**
+[[_creditor_agent]]
+**Creditor Agent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
+__required__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_createpaymentsubmission_debtoraccount]]
-**DebtorAccount**
+[[_debtor_account]]
+**Debtor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|maxLength 34 text +
+__required__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
 |**Name** +
-__optional__|maxLength 70 text +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+|**SecondaryIdentification** +
+__optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
+**Length** : `1 - 34`|string
 |===
 
-[[_createpaymentsubmission_debtoragent]]
+[[_debtoragent]]
 **DebtorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
+__required__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_createpaymentsubmission_instructedamount]]
+[[_payment-submissions_post_initiation_instructedamount]]
 **InstructedAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -119,21 +142,21 @@ __required__|Specifies the external financial institution identification scheme 
 |**Amount** +
 __required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
+**Pattern** : `"[A-Z]{3}"`|string
 |===
 
-[[_createpaymentsubmission_remittanceinformation]]
-**RemittanceInformation**
+[[_remittance_information]]
+**Remittance Information**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**CreditorReferenceInformation** +
-__optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
+|**Reference** +
+__optional__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**Unstructured** +
-__optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. +
+__optional__|Name of the identification scheme, in a coded form as published in an external list. +
 **Length** : `1 - 140`|string
 |===
 
@@ -157,18 +180,20 @@ __optional__|Information supplied to enable the matching/reconciliation of an en
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**CreatedAt** +
+|**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**Links** +
-__required__||< <<_payment-submissions_post_links,Links>> > array
+__required__|Link URIs relevant to the payload|<<_payment-submissions_post_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_payment-submissions_post_meta,Meta>>
 |**PaymentId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 35`|string
+__required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
+**Length** : `1 - 40`|string
 |**PaymentSubmissionId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
-**Length** : `1 - 35`|string
+__required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
+**Length** : `1 - 40`|string
 |**Status** +
-__required__|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)
+__optional__|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)
 |===
 
 [[_payment-submissions_post_links]]
@@ -177,23 +202,37 @@ __required__|Status of the payment setup resource|enum (AcceptedSettlementInProc
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**href** +
+|**first** +
 __optional__|string (uri)
-|**method** +
-__optional__|enum (GET)
-|**rel** +
-__optional__|enum (self)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_payment-submissions_post_meta]]
+**Meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
 |===
 
 
 ==== Consumes
 
-* `application/json`
+* `application/vnd.api+json`
 
 
 ==== Produces
 
-* `application/json`
+* `application/vnd.api+json`
 
 
 ==== Tags
@@ -207,96 +246,6 @@ __optional__|enum (self)
 |===
 |Type|Name|Scopes
 |**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|payment
-|===
-
-
-<<<
-
-[[_getpaymentsubmission]]
-=== Get a payment submission
-....
-GET /payment-submissions/{PaymentSubmissionId}
-....
-
-
-==== Description
-Get payment submission
-
-
-==== Parameters
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|Type|Name|Description|Schema
-|**Path**|**PaymentSubmissionId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.|string
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP Code|Description|Schema
-|**200**|Payment resource successfully retrieved|<<_payment_submit_get_response,Payment Submit GET Response>>
-|**400**|Bad Request|No Content
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|**500**|Internal Server Error|No Content
-|===
-
-[[_payment_submit_get_response]]
-**Payment Submit GET Response**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**CreatedAt** +
-__required__|Date and time at which the resource was created.|string (date-time)
-|**Links** +
-__required__||< <<_payment-submissions_paymentsubmissionid_get_links,Links>> > array
-|**PaymentId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 35`|string
-|**PaymentSubmissionId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
-**Length** : `1 - 35`|string
-|**Status** +
-__required__|Status of the payment setup resource|enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)
-|===
-
-[[_payment-submissions_paymentsubmissionid_get_links]]
-**Links**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**href** +
-__optional__|string (uri)
-|**method** +
-__optional__|enum (GET)
-|**rel** +
-__optional__|enum (self)
-|===
-
-
-==== Produces
-
-* `application/json`
-
-
-==== Tags
-
-* Payments
-
-
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
 |===
 
 
@@ -331,91 +280,116 @@ __Name__ : body
 __Flags__ : required
 
 
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**Data** +
+__required__|<<_payment_setup,Payment Setup>>
+|**Risk** +
+__required__|<<_risk,Risk>>
+|===
+
+[[_payment_setup]]
+**Payment Setup**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**Initiation** +
+__required__|<<_payments_post_initiation,Initiation>>
+|===
+
+[[_payments_post_initiation]]
+**Initiation**
+
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_createsingleimmediatepayment_creditoraccount,CreditorAccount>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_createsingleimmediatepayment_creditoragent,CreditorAgent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_createsingleimmediatepayment_debtoraccount,DebtorAccount>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
 |**DebtorAgent** +
-__optional__|Financial institution servicing an account for the debtor.|<<_createsingleimmediatepayment_debtoragent,DebtorAgent>>
+__optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
-__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. +
+__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field. +
 **Length** : `1 - 35`|string
 |**InstructedAmount** +
-__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_createsingleimmediatepayment_instructedamount,InstructedAmount>>
+__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payments_post_initiation_instructedamount,InstructedAmount>>
 |**InstructionIdentification** +
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
-|**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
-**Length** : `3 - 4`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.|<<_createsingleimmediatepayment_remittanceinformation,RemittanceInformation>>
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
 |===
 
-[[_createsingleimmediatepayment_creditoraccount]]
-**CreditorAccount**
+[[_creditor_account]]
+**Creditor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|maxLength 34 text +
+__required__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
 |**Name** +
-__required__|maxLength 70 text +
+__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+|**SecondaryIdentification** +
+__optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
+**Length** : `1 - 34`|string
 |===
 
-[[_createsingleimmediatepayment_creditoragent]]
-**CreditorAgent**
+[[_creditor_agent]]
+**Creditor Agent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
+__required__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_createsingleimmediatepayment_debtoraccount]]
-**DebtorAccount**
+[[_debtor_account]]
+**Debtor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|maxLength 34 text +
+__required__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
 |**Name** +
-__optional__|maxLength 70 text +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+|**SecondaryIdentification** +
+__optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
+**Length** : `1 - 34`|string
 |===
 
-[[_createsingleimmediatepayment_debtoragent]]
+[[_debtoragent]]
 **DebtorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
+__required__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_createsingleimmediatepayment_instructedamount]]
+[[_payments_post_initiation_instructedamount]]
 **InstructedAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -424,22 +398,67 @@ __required__|Specifies the external financial institution identification scheme 
 |**Amount** +
 __required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
+**Pattern** : `"[A-Z]{3}"`|string
 |===
 
-[[_createsingleimmediatepayment_remittanceinformation]]
-**RemittanceInformation**
+[[_remittance_information]]
+**Remittance Information**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**CreditorReferenceInformation** +
-__optional__|Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor's reference or payment remittance identification should be quoted in the end-to-end transaction identification. +
+|**Reference** +
+__optional__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**Unstructured** +
-__optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. +
+__optional__|Name of the identification scheme, in a coded form as published in an external list. +
 **Length** : `1 - 140`|string
+|===
+
+[[_risk]]
+**Risk**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**DeliveryAddress** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_payments_post_deliveryaddress,DeliveryAddress>>
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+**Length** : `3 - 4`|string
+|**MerchantCustomerIdentification** +
+__optional__|The unique customer identifier of the PSU with the merchant. +
+**Length** : `1 - 70`|string
+|**PaymentContextCode** +
+__optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)
+|===
+
+[[_payments_post_deliveryaddress]]
+**DeliveryAddress**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array
+|**BuildingNumber** +
+__optional__|Number that identifies the position of a building on a street. +
+**Length** : `1 - 16`|string
+|**Country** +
+__required__|Nation with its own government, occupying a particular territory. +
+**Pattern** : `"[A-Z]{2}"`|string
+|**CountrySubDivision** +
+__optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
+|**PostCode** +
+__optional__|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail +
+**Length** : `1 - 16`|string
+|**StreetName** +
+__optional__|Name of a street or thoroughfare +
+**Length** : `1 - 70`|string
+|**TownName** +
+__required__|Name of a built-up area, with defined boundaries, and a local government. +
+**Length** : `1 - 35`|string
 |===
 
 
@@ -462,98 +481,124 @@ __optional__|Information supplied to enable the matching/reconciliation of an en
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**CreatedAt** +
+|**Data** +
+__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_payment_setup_response,Payment Setup Response>>
+|**Links** +
+__required__|Link URIs relevant to the payload|<<_payments_post_links,Links>>
+|**Meta** +
+__required__|Meta Data Relevant to the payload|<<_payments_post_meta,Meta>>
+|**Risk** +
+__required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
+|===
+
+[[_payment_setup_response]]
+**Payment Setup Response**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
+|**Initiation** +
+__required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_payment_setup_response_initiation,Initiation>>
+|**PaymentId** +
+__required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
+**Length** : `1 - 40`|string
+|**Status** +
+__optional__|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)
+|===
+
+[[_payment_setup_response_initiation]]
+**Initiation**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_payments_post_creditoraccount,CreditorAccount>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_payments_post_creditoragent,CreditorAgent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_payments_post_debtoraccount,DebtorAccount>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
 |**DebtorAgent** +
-__optional__|Financial institution servicing an account for the debtor.|<<_payments_post_debtoragent,DebtorAgent>>
+__optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
-__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. +
+__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field. +
 **Length** : `1 - 35`|string
 |**InstructedAmount** +
-__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payments_post_instructedamount,InstructedAmount>>
+__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payment_setup_response_initiation_instructedamount,InstructedAmount>>
 |**InstructionIdentification** +
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
-|**Links** +
-__required__||< <<_payments_post_links,Links>> > array
-|**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
-**Length** : `3 - 4`|string
-|**PaymentId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 35`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. +
-**Length** : `1 - 140`|string
-|**Status** +
-__required__|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
 |===
 
-[[_payments_post_creditoraccount]]
-**CreditorAccount**
+[[_creditor_account]]
+**Creditor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|maxLength 34 text +
+__required__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
 |**Name** +
-__required__|maxLength 70 text +
+__required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+|**SecondaryIdentification** +
+__optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
+**Length** : `1 - 34`|string
 |===
 
-[[_payments_post_creditoragent]]
-**CreditorAgent**
+[[_creditor_agent]]
+**Creditor Agent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
+__required__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_payments_post_debtoraccount]]
-**DebtorAccount**
+[[_debtor_account]]
+**Debtor Account**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|maxLength 34 text +
+__required__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
 |**Name** +
-__optional__|maxLength 70 text +
+__optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+|**SecondaryIdentification** +
+__optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
+**Length** : `1 - 34`|string
 |===
 
-[[_payments_post_debtoragent]]
+[[_debtoragent]]
 **DebtorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
+__required__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_payments_post_instructedamount]]
+[[_payment_setup_response_initiation_instructedamount]]
 **InstructedAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -562,8 +607,22 @@ __required__|Specifies the external financial institution identification scheme 
 |**Amount** +
 __required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
+__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
+**Pattern** : `"[A-Z]{3}"`|string
+|===
+
+[[_remittance_information]]
+**Remittance Information**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**Reference** +
+__optional__|Unique and unambiguous identification of a person. +
+**Length** : `1 - 35`|string
+|**Unstructured** +
+__optional__|Name of the identification scheme, in a coded form as published in an external list. +
+**Length** : `1 - 140`|string
 |===
 
 [[_payments_post_links]]
@@ -572,203 +631,82 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**href** +
+|**first** +
 __optional__|string (uri)
-|**method** +
-__optional__|enum (GET)
-|**rel** +
-__optional__|enum (self)
+|**last** +
+__optional__|string (uri)
+|**next** +
+__optional__|string (uri)
+|**prev** +
+__optional__|string (uri)
+|**self** +
+__required__|string (uri)
+|===
+
+[[_payments_post_meta]]
+**Meta**
+
+[options="header", cols=".^3,.^4"]
+|===
+|Name|Schema
+|**total-pages** +
+__optional__|integer (int32)
+|===
+
+[[_risk]]
+**Risk**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**DeliveryAddress** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_risk_deliveryaddress,DeliveryAddress>>
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+**Length** : `3 - 4`|string
+|**MerchantCustomerIdentification** +
+__optional__|The unique customer identifier of the PSU with the merchant. +
+**Length** : `1 - 70`|string
+|**PaymentContextCode** +
+__optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)
+|===
+
+[[_risk_deliveryaddress]]
+**DeliveryAddress**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array
+|**BuildingNumber** +
+__optional__|Number that identifies the position of a building on a street. +
+**Length** : `1 - 16`|string
+|**Country** +
+__required__|Nation with its own government, occupying a particular territory. +
+**Pattern** : `"[A-Z]{2}"`|string
+|**CountrySubDivision** +
+__optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
+|**PostCode** +
+__optional__|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail +
+**Length** : `1 - 16`|string
+|**StreetName** +
+__optional__|Name of a street or thoroughfare +
+**Length** : `1 - 70`|string
+|**TownName** +
+__required__|Name of a built-up area, with defined boundaries, and a local government. +
+**Length** : `1 - 35`|string
 |===
 
 
 ==== Consumes
 
-* `application/json`
+* `application/vnd.api+json`
 
 
 ==== Produces
 
-* `application/json`
-
-
-==== Tags
-
-* Payments
-
-
-==== Security
-
-[options="header", cols=".^3,.^4,.^13"]
-|===
-|Type|Name|Scopes
-|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
-|===
-
-
-<<<
-
-[[_getsingleimmediatepayment]]
-=== Get a single immediate payment
-....
-GET /payments/{PaymentId}
-....
-
-
-==== Description
-Get a single immediate payment
-
-
-==== Parameters
-
-[options="header", cols=".^2,.^3,.^9,.^4"]
-|===
-|Type|Name|Description|Schema
-|**Path**|**PaymentId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.|string
-|===
-
-
-==== Responses
-
-[options="header", cols=".^2,.^14,.^4"]
-|===
-|HTTP Code|Description|Schema
-|**200**|Payment resource successfully retrieved|<<_payment_setup_get_response,Payment setup GET response>>
-|**400**|Bad Request|No Content
-|**401**|Unauthorized|No Content
-|**403**|Forbidden|No Content
-|**404**|Not Found|No Content
-|**500**|Internal Server Error|No Content
-|===
-
-[[_payment_setup_get_response]]
-**Payment setup GET response**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**CreatedAt** +
-__required__|Date and time at which the resource was created.|string (date-time)
-|**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_payments_paymentid_get_creditoraccount,CreditorAccount>>
-|**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_payments_paymentid_get_creditoragent,CreditorAgent>>
-|**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_payments_paymentid_get_debtoraccount,DebtorAccount>>
-|**DebtorAgent** +
-__optional__|Financial institution servicing an account for the debtor.|<<_payments_paymentid_get_debtoragent,DebtorAgent>>
-|**EndToEndIdentification** +
-__required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. +
-**Length** : `1 - 35`|string
-|**InstructedAmount** +
-__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payments_paymentid_get_instructedamount,InstructedAmount>>
-|**InstructionIdentification** +
-__required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
-**Length** : `1 - 35`|string
-|**Links** +
-__required__||< <<_payments_paymentid_get_links,Links>> > array
-|**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction. +
-**Length** : `3 - 4`|string
-|**PaymentId** +
-__required__|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 35`|string
-|**RemittanceInformation** +
-__optional__|Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form. +
-**Length** : `1 - 140`|string
-|**Status** +
-__required__|Status of the payment setup resource|enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)
-|===
-
-[[_payments_paymentid_get_creditoraccount]]
-**CreditorAccount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|maxLength 34 text +
-**Length** : `1 - 34`|string
-|**Name** +
-__required__|maxLength 70 text +
-**Length** : `1 - 70`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
-|===
-
-[[_payments_paymentid_get_creditoragent]]
-**CreditorAgent**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
-|**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
-|===
-
-[[_payments_paymentid_get_debtoraccount]]
-**DebtorAccount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|maxLength 34 text +
-**Length** : `1 - 34`|string
-|**Name** +
-__optional__|maxLength 70 text +
-**Length** : `1 - 70`|string
-|**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN)
-|===
-
-[[_payments_paymentid_get_debtoragent]]
-**DebtorAgent**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Identification** +
-__required__|United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS). +
-**Pattern** : `"^SC[0-9]{6,6}$"`|string
-|**SchemeName** +
-__required__|Specifies the external financial institution identification scheme name code in the format of character string.|enum (UKSortCode)
-|===
-
-[[_payments_paymentid_get_instructedamount]]
-**InstructedAmount**
-
-[options="header", cols=".^3,.^11,.^4"]
-|===
-|Name|Description|Schema
-|**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
-|**Currency** +
-__required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds' +
-**Pattern** : `"^[A-Z]{3}$"`|string
-|===
-
-[[_payments_paymentid_get_links]]
-**Links**
-
-[options="header", cols=".^3,.^4"]
-|===
-|Name|Schema
-|**href** +
-__optional__|string (uri)
-|**method** +
-__optional__|enum (GET)
-|**rel** +
-__optional__|enum (self)
-|===
-
-
-==== Produces
-
-* `application/json`
+* `application/vnd.api+json`
 
 
 ==== Tags

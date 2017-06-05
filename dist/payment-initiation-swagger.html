@@ -447,36 +447,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#_security">2.1.7. Security</a></li>
 </ul>
 </li>
-<li><a href="#_getpaymentsubmission">2.2. Get a payment submission</a>
+<li><a href="#_createsingleimmediatepayment">2.2. Create a single immediate payment</a>
 <ul class="sectlevel3">
 <li><a href="#_description_2">2.2.1. Description</a></li>
 <li><a href="#_parameters">2.2.2. Parameters</a></li>
-<li><a href="#_responses_2">2.2.3. Responses</a></li>
-<li><a href="#_produces_3">2.2.4. Produces</a></li>
-<li><a href="#_tags_3">2.2.5. Tags</a></li>
-<li><a href="#_security_2">2.2.6. Security</a></li>
-</ul>
-</li>
-<li><a href="#_createsingleimmediatepayment">2.3. Create a single immediate payment</a>
-<ul class="sectlevel3">
-<li><a href="#_description_3">2.3.1. Description</a></li>
-<li><a href="#_parameters_2">2.3.2. Parameters</a></li>
-<li><a href="#_body_parameter_2">2.3.3. Body parameter</a></li>
-<li><a href="#_responses_3">2.3.4. Responses</a></li>
-<li><a href="#_consumes_2">2.3.5. Consumes</a></li>
-<li><a href="#_produces_4">2.3.6. Produces</a></li>
-<li><a href="#_tags_4">2.3.7. Tags</a></li>
-<li><a href="#_security_3">2.3.8. Security</a></li>
-</ul>
-</li>
-<li><a href="#_getsingleimmediatepayment">2.4. Get a single immediate payment</a>
-<ul class="sectlevel3">
-<li><a href="#_description_4">2.4.1. Description</a></li>
-<li><a href="#_parameters_3">2.4.2. Parameters</a></li>
-<li><a href="#_responses_4">2.4.3. Responses</a></li>
-<li><a href="#_produces_5">2.4.4. Produces</a></li>
-<li><a href="#_tags_5">2.4.5. Tags</a></li>
-<li><a href="#_security_4">2.4.6. Security</a></li>
+<li><a href="#_body_parameter_2">2.2.3. Body parameter</a></li>
+<li><a href="#_responses_2">2.2.4. Responses</a></li>
+<li><a href="#_consumes_2">2.2.5. Consumes</a></li>
+<li><a href="#_produces_3">2.2.6. Produces</a></li>
+<li><a href="#_tags_3">2.2.7. Tags</a></li>
+<li><a href="#_security_2">2.2.8. Security</a></li>
 </ul>
 </li>
 </ul>
@@ -500,14 +480,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_version_information">1.1. Version information</h3>
 <div class="paragraph">
-<p><em>Version</em> : v0.1</p>
+<p><em>Version</em> : v1.0-rc1</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_contact_information">1.2. Contact information</h3>
 <div class="paragraph">
-<p><em>Contact</em> : Claudio Viola<br>
-<em>Contact Email</em> : <a href="mailto:claudio.viola@openbanking.org.uk">claudio.viola@openbanking.org.uk</a></p>
+<p><em>Contact</em> : Craig Greenhouse<br>
+<em>Contact Email</em> : <a href="mailto:craig.greenhouse@openbanking.org.uk">craig.greenhouse@openbanking.org.uk</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -540,7 +520,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -575,6 +555,60 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_submission">Payment Submission</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payment_submission" class="paragraph">
+<p><strong>Payment Submission</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Initiation</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment-submissions_post_initiation">Initiation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
+<strong>Length</strong> : <code>1 - 40</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payment-submissions_post_initiation" class="paragraph">
+<p><strong>Initiation</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
 <col style="width: 16.6666%;">
 <col style="width: 61.1111%;">
 <col style="width: 22.2223%;">
@@ -591,30 +625,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createpaymentsubmission_creditoraccount">CreditorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createpaymentsubmission_creditoragent">CreditorAgent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createpaymentsubmission_debtoraccount">DebtorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the debtor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createpaymentsubmission_debtoragent">DebtorAgent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoragent">DebtorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>EndToEndIdentification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -622,7 +656,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructedAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createpaymentsubmission_instructedamount">InstructedAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment-submissions_post_initiation_instructedamount">InstructedAmount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructionIdentification</strong><br>
@@ -632,29 +666,93 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCategoryCode</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.<br>
-<strong>Length</strong> : <code>3 - 4</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_creditor_account" class="paragraph">
+<p><strong>Creditor Account</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
+<strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
+<strong>Length</strong> : <code>1 - 70</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
+<strong>Length</strong> : <code>1 - 34</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_creditor_agent" class="paragraph">
+<p><strong>Creditor Agent</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createpaymentsubmission_remittanceinformation">RemittanceInformation</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createpaymentsubmission_creditoraccount" class="paragraph">
-<p><strong>CreditorAccount</strong></p>
+<div id="_debtor_account" class="paragraph">
+<p><strong>Debtor Account</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -673,14 +771,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
 <strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -688,82 +786,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_createpaymentsubmission_creditoragent" class="paragraph">
-<p><strong>CreditorAgent</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_createpaymentsubmission_debtoraccount" class="paragraph">
-<p><strong>DebtorAccount</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
 <strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
-</tr>
 </tbody>
 </table>
-<div id="_createpaymentsubmission_debtoragent" class="paragraph">
+<div id="_debtoragent" class="paragraph">
 <p><strong>DebtorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -783,19 +817,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createpaymentsubmission_instructedamount" class="paragraph">
+<div id="_payment-submissions_post_initiation_instructedamount" class="paragraph">
 <p><strong>InstructedAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -821,14 +855,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
+<strong>Pattern</strong> : <code>"[A-Z]{3}"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createpaymentsubmission_remittanceinformation" class="paragraph">
-<p><strong>RemittanceInformation</strong></p>
+<div id="_remittance_information" class="paragraph">
+<p><strong>Remittance Information</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -845,16 +879,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorReferenceInformation</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Unstructured</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.<br>
 <strong>Length</strong> : <code>1 - 140</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -927,7 +961,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreatedAt</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
@@ -935,28 +969,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_payment-submissions_post_links">Links</a> &gt; array</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Link URIs relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment-submissions_post_links">Links</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meta</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data Relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment-submissions_post_meta">Meta</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
+<strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentSubmissionId</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.<br>
+<strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of the payment setup resource</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)</p></td>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the payment submission resource.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)</p></td>
 </tr>
 </tbody>
 </table>
@@ -976,19 +1016,51 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>href</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>method</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (GET)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>rel</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (self)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payment-submissions_post_meta" class="paragraph">
+<p><strong>Meta</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>total-pages</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
 </tbody>
 </table>
@@ -998,7 +1070,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1008,7 +1080,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
@@ -1050,239 +1122,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect2">
-<h3 id="_getpaymentsubmission">2.2. Get a payment submission</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /payment-submissions/{PaymentSubmissionId}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_2">2.2.1. Description</h4>
-<div class="paragraph">
-<p>Get payment submission</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters">2.2.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentSubmissionId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_2">2.2.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Payment resource successfully retrieved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_submit_get_response">Payment Submit GET Response</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Bad Request</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payment_submit_get_response" class="paragraph">
-<p><strong>Payment Submit GET Response</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreatedAt</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_payment-submissions_paymentsubmissionid_get_links">Links</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentSubmissionId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of the payment setup resource</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AcceptedSettlementInProcess, AcceptedSettlementCompleted, Received, Rejected)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payment-submissions_paymentsubmissionid_get_links" class="paragraph">
-<p><strong>Links</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 42.8571%;">
-<col style="width: 57.1429%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>href</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>method</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (GET)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>rel</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (self)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_produces_3">2.2.4. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_3">2.2.5. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Payments</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_2">2.2.6. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_tppoauth2security">TPPOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">tpp_client_credential</p></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_createsingleimmediatepayment">2.3. Create a single immediate payment</h3>
+<h3 id="_createsingleimmediatepayment">2.2. Create a single immediate payment</h3>
 <div class="literalblock">
 <div class="content">
 <pre>POST /payments</pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_description_3">2.3.1. Description</h4>
+<h4 id="_description_2">2.2.1. Description</h4>
 <div class="paragraph">
 <p>Create a single immediate payment</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_parameters_2">2.3.2. Parameters</h4>
+<h4 id="_parameters">2.2.2. Parameters</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 11.1111%;">
@@ -1310,13 +1163,62 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </table>
 </div>
 <div class="sect3">
-<h4 id="_body_parameter_2">2.3.3. Body parameter</h4>
+<h4 id="_body_parameter_2">2.2.3. Body parameter</h4>
 <div class="paragraph">
 <p>Setup a single immediate payment</p>
 </div>
 <div class="paragraph">
 <p><em>Name</em> : body<br>
 <em>Flags</em> : required</p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup">Payment Setup</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_risk">Risk</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payment_setup" class="paragraph">
+<p><strong>Payment Setup</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 42.8571%;">
+<col style="width: 57.1429%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Initiation</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_initiation">Initiation</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payments_post_initiation" class="paragraph">
+<p><strong>Initiation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1336,30 +1238,30 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createsingleimmediatepayment_creditoraccount">CreditorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createsingleimmediatepayment_creditoragent">CreditorAgent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createsingleimmediatepayment_debtoraccount">DebtorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the debtor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createsingleimmediatepayment_debtoragent">DebtorAgent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoragent">DebtorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>EndToEndIdentification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -1367,7 +1269,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructedAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createsingleimmediatepayment_instructedamount">InstructedAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_initiation_instructedamount">InstructedAmount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructionIdentification</strong><br>
@@ -1377,22 +1279,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCategoryCode</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.<br>
-<strong>Length</strong> : <code>3 - 4</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_createsingleimmediatepayment_remittanceinformation">RemittanceInformation</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createsingleimmediatepayment_creditoraccount" class="paragraph">
-<p><strong>CreditorAccount</strong></p>
+<div id="_creditor_account" class="paragraph">
+<p><strong>Creditor Account</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1411,14 +1306,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
 <strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -1426,12 +1321,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
+<strong>Length</strong> : <code>1 - 34</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createsingleimmediatepayment_creditoragent" class="paragraph">
-<p><strong>CreditorAgent</strong></p>
+<div id="_creditor_agent" class="paragraph">
+<p><strong>Creditor Agent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1450,20 +1352,20 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createsingleimmediatepayment_debtoraccount" class="paragraph">
-<p><strong>DebtorAccount</strong></p>
+<div id="_debtor_account" class="paragraph">
+<p><strong>Debtor Account</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1482,14 +1384,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
 <strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -1497,11 +1399,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
+<strong>Length</strong> : <code>1 - 34</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createsingleimmediatepayment_debtoragent" class="paragraph">
+<div id="_debtoragent" class="paragraph">
 <p><strong>DebtorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1521,19 +1430,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createsingleimmediatepayment_instructedamount" class="paragraph">
+<div id="_payments_post_initiation_instructedamount" class="paragraph">
 <p><strong>InstructedAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1559,14 +1468,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
+<strong>Pattern</strong> : <code>"[A-Z]{3}"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_createsingleimmediatepayment_remittanceinformation" class="paragraph">
-<p><strong>RemittanceInformation</strong></p>
+<div id="_remittance_information" class="paragraph">
+<p><strong>Remittance Information</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1583,24 +1492,135 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorReferenceInformation</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique reference, as assigned by the creditor, to unambiguously refer to the payment transaction. Usage: If available, the initiating party should provide this reference in the structured remittance information, to enable reconciliation by the creditor upon receipt of the amount of money. If the business context requires the use of a creditor reference or a payment remit identification, and only one identifier can be passed through the end-to-end chain, the creditor&#8217;s reference or payment remittance identification should be quoted in the end-to-end transaction identification.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Unstructured</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.<br>
 <strong>Length</strong> : <code>1 - 140</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_risk" class="paragraph">
+<p><strong>Risk</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DeliveryAddress</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information that locates and identifies a specific address, as defined by postal services or in free format text.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_deliveryaddress">DeliveryAddress</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCategoryCode</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction<br>
+<strong>Length</strong> : <code>3 - 4</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCustomerIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The unique customer identifier of the PSU with the merchant.<br>
+<strong>Length</strong> : <code>1 - 70</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentContextCode</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the payment context</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payments_post_deliveryaddress" class="paragraph">
+<p><strong>DeliveryAddress</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AddressLine</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BuildingNumber</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Number that identifies the position of a building on a street.<br>
+<strong>Length</strong> : <code>1 - 16</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Country</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Nation with its own government, occupying a particular territory.<br>
+<strong>Pattern</strong> : <code>"[A-Z]{2}"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CountrySubDivision</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identifies a subdivision of a country, for instance state, region, county.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PostCode</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail<br>
+<strong>Length</strong> : <code>1 - 16</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StreetName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of a street or thoroughfare<br>
+<strong>Length</strong> : <code>1 - 70</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TownName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of a built-up area, with defined boundaries, and a local government.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_responses_3">2.3.4. Responses</h4>
+<h4 id="_responses_2">2.2.4. Responses</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 10%;">
@@ -1665,39 +1685,120 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreatedAt</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response">Payment Setup Response</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Link URIs relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_links">Links</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Meta</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data Relevant to the payload</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_meta">Meta</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Reflection of POSTed Risk profile</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_risk">Risk</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payment_setup_response" class="paragraph">
+<p><strong>Payment Setup Response</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Initiation</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response_initiation">Initiation</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
+<strong>Length</strong> : <code>1 - 40</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the payment resource.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_payment_setup_response_initiation" class="paragraph">
+<p><strong>Initiation</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_creditoraccount">CreditorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_creditoragent">CreditorAgent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_debtoraccount">DebtorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the debtor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_debtoragent">DebtorAgent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoragent">DebtorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>EndToEndIdentification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -1705,7 +1806,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructedAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_post_instructedamount">InstructedAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response_initiation_instructedamount">InstructedAmount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructionIdentification</strong><br>
@@ -1715,42 +1816,93 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_payments_post_links">Links</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCategoryCode</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.<br>
-<strong>Length</strong> : <code>3 - 4</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
+</tr>
+</tbody>
+</table>
+<div id="_creditor_account" class="paragraph">
+<p><strong>Creditor Account</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
+<strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
+<strong>Length</strong> : <code>1 - 70</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
+<strong>Length</strong> : <code>1 - 34</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_creditor_agent" class="paragraph">
+<p><strong>Creditor Agent</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
 <strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.<br>
-<strong>Length</strong> : <code>1 - 140</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of the payment setup resource</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_payments_post_creditoraccount" class="paragraph">
-<p><strong>CreditorAccount</strong></p>
+<div id="_debtor_account" class="paragraph">
+<p><strong>Debtor Account</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1769,14 +1921,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
 <strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner&#8217;s identity and the account number.<br>
 <strong>Length</strong> : <code>1 - 70</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
@@ -1784,82 +1936,18 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_post_creditoragent" class="paragraph">
-<p><strong>CreditorAgent</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_post_debtoraccount" class="paragraph">
-<p><strong>DebtorAccount</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identification assigned by an institution to identify an account. This identification is known by the account owner.<br>
 <strong>Length</strong> : <code>1 - 34</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
-</tr>
 </tbody>
 </table>
-<div id="_payments_post_debtoragent" class="paragraph">
+<div id="_debtoragent" class="paragraph">
 <p><strong>DebtorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1879,19 +1967,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_payments_post_instructedamount" class="paragraph">
+<div id="_payment_setup_response_initiation_instructedamount" class="paragraph">
 <p><strong>InstructedAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -1917,8 +2005,41 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
+<strong>Pattern</strong> : <code>"[A-Z]{3}"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_remittance_information" class="paragraph">
+<p><strong>Remittance Information</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Reference</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique and unambiguous identification of a person.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Unstructured</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.<br>
+<strong>Length</strong> : <code>1 - 140</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -1939,446 +2060,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>href</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>method</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (GET)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>rel</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (self)</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_consumes_2">2.3.5. Consumes</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_produces_4">2.3.6. Produces</h4>
-<div class="ulist">
-<ul>
-<li>
-<p><code>application/json</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_tags_4">2.3.7. Tags</h4>
-<div class="ulist">
-<ul>
-<li>
-<p>Payments</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_security_3">2.3.8. Security</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 15%;">
-<col style="width: 20%;">
-<col style="width: 65%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Scopes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>oauth2</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong><a href="#_tppoauth2security">TPPOAuth2Security</a></strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">tpp_client_credential</p></td>
-</tr>
-</tbody>
-</table>
-<div style="page-break-after: always;"></div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_getsingleimmediatepayment">2.4. Get a single immediate payment</h3>
-<div class="literalblock">
-<div class="content">
-<pre>GET /payments/{PaymentId}</pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_description_4">2.4.1. Description</h4>
-<div class="paragraph">
-<p>Get a single immediate payment</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_parameters_3">2.4.2. Parameters</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 11.1111%;">
-<col style="width: 16.6666%;">
-<col style="width: 50%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Type</th>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Path</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_responses_4">2.4.3. Responses</h4>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 10%;">
-<col style="width: 70%;">
-<col style="width: 20%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">HTTP Code</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>200</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Payment resource successfully retrieved</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_get_response">Payment setup GET response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>400</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Bad Request</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>401</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unauthorized</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>403</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Forbidden</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>404</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Found</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>500</strong></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Internal Server Error</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payment_setup_get_response" class="paragraph">
-<p><strong>Payment setup GET response</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreatedAt</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_paymentid_get_creditoraccount">CreditorAccount</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_paymentid_get_creditoragent">CreditorAgent</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_paymentid_get_debtoraccount">DebtorAccount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the debtor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_paymentid_get_debtoragent">DebtorAgent</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>EndToEndIdentification</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructedAmount</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payments_paymentid_get_instructedamount">InstructedAmount</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructionIdentification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; <a href="#_payments_paymentid_get_links">Links</a> &gt; array</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCategoryCode</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction.<br>
-<strong>Length</strong> : <code>3 - 4</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
-<strong>Length</strong> : <code>1 - 35</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching/reconciliation of an entry with the items that the payment is intended to settle, such as commercial invoices in an accounts' receivable system, in an unstructured form.<br>
-<strong>Length</strong> : <code>1 - 140</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Status of the payment setup resource</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (Pending, AcceptedTechnicalValidation, AcceptedCustomerProfile, Rejected)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 </tbody>
 </table>
-<div id="_payments_paymentid_get_creditoraccount" class="paragraph">
-<p><strong>CreditorAccount</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_paymentid_get_creditoragent" class="paragraph">
-<p><strong>CreditorAgent</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_paymentid_get_debtoraccount" class="paragraph">
-<p><strong>DebtorAccount</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 34 text<br>
-<strong>Length</strong> : <code>1 - 34</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Name</strong><br>
-<em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">maxLength 70 text<br>
-<strong>Length</strong> : <code>1 - 70</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_paymentid_get_debtoragent" class="paragraph">
-<p><strong>DebtorAgent</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Identification</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">United Kingdom (UK) Sort Code - identifies British financial institutions on the British national clearing systems. The sort code is assigned by the Association for Payments and Clearing Services (APACS).<br>
-<strong>Pattern</strong> : <code>"^SC[0-9]{6,6}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the external financial institution identification scheme name code in the format of character string.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (UKSortCode)</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_paymentid_get_instructedamount" class="paragraph">
-<p><strong>InstructedAmount</strong></p>
-</div>
-<table class="tableblock frame-all grid-all spread">
-<colgroup>
-<col style="width: 16.6666%;">
-<col style="width: 61.1111%;">
-<col style="width: 22.2223%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-middle">Name</th>
-<th class="tableblock halign-left valign-middle">Description</th>
-<th class="tableblock halign-left valign-middle">Schema</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
-<em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 'Codes for the representation of currencies and funds'<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
-</tr>
-</tbody>
-</table>
-<div id="_payments_paymentid_get_links" class="paragraph">
-<p><strong>Links</strong></p>
+<div id="_payments_post_meta" class="paragraph">
+<p><strong>Meta</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2393,35 +2102,146 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>href</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>total-pages</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_risk" class="paragraph">
+<p><strong>Risk</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DeliveryAddress</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information that locates and identifies a specific address, as defined by postal services or in free format text.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_risk_deliveryaddress">DeliveryAddress</a></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>method</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCategoryCode</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (GET)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction<br>
+<strong>Length</strong> : <code>3 - 4</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>rel</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>MerchantCustomerIdentification</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (self)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">The unique customer identifier of the PSU with the merchant.<br>
+<strong>Length</strong> : <code>1 - 70</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentContextCode</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the payment context</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)</p></td>
+</tr>
+</tbody>
+</table>
+<div id="_risk_deliveryaddress" class="paragraph">
+<p><strong>DeliveryAddress</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>AddressLine</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>BuildingNumber</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Number that identifies the position of a building on a street.<br>
+<strong>Length</strong> : <code>1 - 16</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Country</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Nation with its own government, occupying a particular territory.<br>
+<strong>Pattern</strong> : <code>"[A-Z]{2}"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CountrySubDivision</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identifies a subdivision of a country, for instance state, region, county.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">&lt; string &gt; array</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PostCode</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail<br>
+<strong>Length</strong> : <code>1 - 16</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>StreetName</strong><br>
+<em>optional</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of a street or thoroughfare<br>
+<strong>Length</strong> : <code>1 - 70</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TownName</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Name of a built-up area, with defined boundaries, and a local government.<br>
+<strong>Length</strong> : <code>1 - 35</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect3">
-<h4 id="_produces_5">2.4.4. Produces</h4>
+<h4 id="_consumes_2">2.2.5. Consumes</h4>
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/vnd.api+json</code></p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_tags_5">2.4.5. Tags</h4>
+<h4 id="_produces_3">2.2.6. Produces</h4>
+<div class="ulist">
+<ul>
+<li>
+<p><code>application/vnd.api+json</code></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tags_3">2.2.7. Tags</h4>
 <div class="ulist">
 <ul>
 <li>
@@ -2431,7 +2251,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect3">
-<h4 id="_security_4">2.4.6. Security</h4>
+<h4 id="_security_2">2.2.8. Security</h4>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
 <col style="width: 15%;">
@@ -2524,7 +2344,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2017-03-24 12:30:06 GMT
+Last updated 2017-05-03 13:45:46 BST
 </div>
 </div>
 </body>

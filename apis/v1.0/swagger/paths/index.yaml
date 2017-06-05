@@ -1,0 +1,5 @@
+#no recursive paths in openapi yet :( https://github.com/OAI/OpenAPI-Specification/issues/647
+/payments:
+  $ref: ./payments/payment_setup.yaml
+/payment-submissions:
+   $ref: ./payments/payment_submit.yaml
