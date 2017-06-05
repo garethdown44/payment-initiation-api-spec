@@ -293,11 +293,15 @@
                       "properties": {
                         "AddressLine": {
                           "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                          "type": "array",
+                          "items": {
+                            "description": "maxLength 70 text",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 70
+                          },
                           "minItems": 0,
-                          "maxItems": 2,
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 70
+                          "maxItems": 2
                         },
                         "StreetName": {
                           "description": "Name of a street or thoroughfare",
@@ -325,11 +329,15 @@
                         },
                         "CountrySubDivision": {
                           "description": "Identifies a subdivision of a country, for instance state, region, county.",
+                          "type": "array",
+                          "items": {
+                            "description": "maxLength 35 text",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 35
+                          },
                           "minItems": 0,
-                          "maxItems": 2,
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 35
+                          "maxItems": 2
                         },
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
@@ -624,11 +632,15 @@
                       "properties": {
                         "AddressLine": {
                           "description": "Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.",
+                          "type": "array",
+                          "items": {
+                            "description": "maxLength 70 text",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 70
+                          },
                           "minItems": 0,
-                          "maxItems": 2,
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 70
+                          "maxItems": 2
                         },
                         "StreetName": {
                           "description": "Name of a street or thoroughfare",
@@ -656,11 +668,15 @@
                         },
                         "CountrySubDivision": {
                           "description": "Identifies a subdivision of a country, for instance state, region, county.",
+                          "type": "array",
+                          "items": {
+                            "description": "maxLength 35 text",
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 35
+                          },
                           "minItems": 0,
-                          "maxItems": 2,
-                          "type": "string",
-                          "minLength": 1,
-                          "maxLength": 35
+                          "maxItems": 2
                         },
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",

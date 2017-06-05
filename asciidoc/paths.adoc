@@ -438,8 +438,7 @@ __optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, Ec
 |===
 |Name|Description|Schema
 |**AddressLine** +
-__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
-**Length** : `1 - 70`|string
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array
 |**BuildingNumber** +
 __optional__|Number that identifies the position of a building on a street. +
 **Length** : `1 - 16`|string
@@ -447,8 +446,7 @@ __optional__|Number that identifies the position of a building on a street. +
 __required__|Nation with its own government, occupying a particular territory. +
 **Pattern** : `"[A-Z]{2}"`|string
 |**CountrySubDivision** +
-__optional__|Identifies a subdivision of a country, for instance state, region, county. +
-**Length** : `1 - 35`|string
+__optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
 |**PostCode** +
 __optional__|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail +
 **Length** : `1 - 16`|string
@@ -674,8 +672,7 @@ __optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, Ec
 |===
 |Name|Description|Schema
 |**AddressLine** +
-__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text. +
-**Length** : `1 - 70`|string
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array
 |**BuildingNumber** +
 __optional__|Number that identifies the position of a building on a street. +
 **Length** : `1 - 16`|string
@@ -683,8 +680,7 @@ __optional__|Number that identifies the position of a building on a street. +
 __required__|Nation with its own government, occupying a particular territory. +
 **Pattern** : `"[A-Z]{2}"`|string
 |**CountrySubDivision** +
-__optional__|Identifies a subdivision of a country, for instance state, region, county. +
-**Length** : `1 - 35`|string
+__optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
 |**PostCode** +
 __optional__|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail +
 **Length** : `1 - 16`|string

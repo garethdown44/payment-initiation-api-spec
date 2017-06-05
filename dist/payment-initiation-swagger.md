@@ -323,10 +323,10 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
+|**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
 |**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
-|**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.  <br>**Length** : `1 - 35`|string|
+|**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
 |**TownName**  <br>*optional*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
@@ -461,10 +461,10 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.  <br>**Length** : `1 - 70`|string|
+|**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
 |**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
-|**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.  <br>**Length** : `1 - 35`|string|
+|**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
 |**TownName**  <br>*optional*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
