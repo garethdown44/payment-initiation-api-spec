@@ -794,9 +794,6 @@
           "403": {
             "description": "Forbidden"
           },
-          "409": {
-            "description": "Conflict"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -1163,9 +1160,6 @@
           "403": {
             "description": "Forbidden"
           },
-          "409": {
-            "description": "Conflict"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -1219,9 +1213,6 @@
     },
     "404NotFound": {
       "description": "Not Found"
-    },
-    "409ErrorResponse": {
-      "description": "Conflict"
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"
