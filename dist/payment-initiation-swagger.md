@@ -71,6 +71,7 @@ Setup a single immediate payment
 |Name|Schema|
 |---|---|
 |**Data**  <br>*required*|[Payment Submission](#payment-submission)|
+|**Risk**  <br>*required*|[Risk](#risk)|
 
 <a name="payment-submission"></a>
 **Payment Submission**
@@ -145,6 +146,29 @@ Setup a single immediate payment
 |---|---|---|
 |**Reference**  <br>*optional*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**Unstructured**  <br>*optional*|Name of the identification scheme, in a coded form as published in an external list.  <br>**Length** : `1 - 140`|string|
+
+<a name="risk"></a>
+**Risk**
+
+|Name|Description|Schema|
+|---|---|---|
+|**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#payment-submissions-post-deliveryaddress)|
+|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
+|**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
+
+<a name="payment-submissions-post-deliveryaddress"></a>
+**DeliveryAddress**
+
+|Name|Description|Schema|
+|---|---|---|
+|**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
+|**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
+|**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
+|**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
+|**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
+|**TownName**  <br>*required*|Name of a built-up area, with defined boundaries, and a local government.  <br>**Length** : `1 - 35`|string|
 
 
 #### Responses

@@ -38,6 +38,8 @@ __Flags__ : required
 |Name|Schema
 |**Data** +
 __required__|<<_payment_submission,Payment Submission>>
+|**Risk** +
+__required__|<<_risk,Risk>>
 |===
 
 [[_payment_submission]]
@@ -168,6 +170,51 @@ __optional__|Unique and unambiguous identification of a person. +
 |**Unstructured** +
 __optional__|Name of the identification scheme, in a coded form as published in an external list. +
 **Length** : `1 - 140`|string
+|===
+
+[[_risk]]
+**Risk**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**DeliveryAddress** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_payment-submissions_post_deliveryaddress,DeliveryAddress>>
+|**MerchantCategoryCode** +
+__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+**Length** : `3 - 4`|string
+|**MerchantCustomerIdentification** +
+__optional__|The unique customer identifier of the PSU with the merchant. +
+**Length** : `1 - 70`|string
+|**PaymentContextCode** +
+__optional__|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)
+|===
+
+[[_payment-submissions_post_deliveryaddress]]
+**DeliveryAddress**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**AddressLine** +
+__optional__|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array
+|**BuildingNumber** +
+__optional__|Number that identifies the position of a building on a street. +
+**Length** : `1 - 16`|string
+|**Country** +
+__required__|Nation with its own government, occupying a particular territory. +
+**Pattern** : `"[A-Z]{2}"`|string
+|**CountrySubDivision** +
+__optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
+|**PostCode** +
+__optional__|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail +
+**Length** : `1 - 16`|string
+|**StreetName** +
+__optional__|Name of a street or thoroughfare +
+**Length** : `1 - 70`|string
+|**TownName** +
+__required__|Name of a built-up area, with defined boundaries, and a local government. +
+**Length** : `1 - 35`|string
 |===
 
 

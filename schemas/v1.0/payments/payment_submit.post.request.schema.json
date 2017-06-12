@@ -6,10 +6,15 @@
     "Data": {
       "description": "",
       "$ref": "../definitions/data/payment_submission.json"
+    },
+    "Risk": {
+      "description": "",
+      "$ref": "../definitions/common/risk.json"
     }
   },
   "required": [
-    "Data"
+    "Data",
+    "Risk"
   ],
   "additionalProperties": false
 }
