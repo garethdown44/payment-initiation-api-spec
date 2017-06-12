@@ -3,7 +3,7 @@ const jsonPath = process.argv[2] || './schemas/v0';
 const distPath = process.argv[3] || './dist';
 const schemasRootPath = process.argv[4];
 const glob = require('glob');
-const YAML = require('json2yaml')
+const YAML = require('json2yaml');
 const utils = require('./utils');
 const Ajv = require('ajv');
 const fs = require('fs');
@@ -42,8 +42,11 @@ function processFile(filename) {
   return new Promise((resolve, reject) => {
     if (filename.slice(-12) === 'example.json') {
       fs.readFile(jsonPath + '/' + filename, 'utf8', function (err, data) {
+
         const schema = JSON.parse(data);
         const yamlSchema = YAML.stringify(schema);
+
+
         const destination = distPath + '/' + filename;
         const destinationYaml = distPath + '/' + filename.replace('.json','.yaml');
         return Promise.all([
