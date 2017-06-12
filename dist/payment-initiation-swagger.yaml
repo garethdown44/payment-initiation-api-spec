@@ -28,9 +28,10 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
-        - name: x-idempotency-key
+        - &ref_0
+          name: x-idempotency-key
           in: header
-          description: Every request will be processed only once per x-idempotency-key
+          description: Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.
           required: true
           type: string
         - name: body
@@ -627,15 +628,15 @@ paths:
               - Links
               - Meta
             additionalProperties: false
-        '400': &ref_0
+        '400': &ref_1
           description: Bad Request
-        '401': &ref_1
+        '401': &ref_2
           description: Unauthorized
-        '403': &ref_2
+        '403': &ref_3
           description: Forbidden
-        '409': &ref_3
+        '409': &ref_4
           description: Conflict
-        '500': &ref_4
+        '500': &ref_5
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
@@ -652,6 +653,7 @@ paths:
       produces:
         - application/vnd.api+json
       parameters:
+        - *ref_0
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -918,11 +920,11 @@ paths:
               - Links
               - Meta
             additionalProperties: false
-        '400': *ref_0
-        '401': *ref_1
-        '403': *ref_2
-        '409': *ref_3
-        '500': *ref_4
+        '400': *ref_1
+        '401': *ref_2
+        '403': *ref_3
+        '409': *ref_4
+        '500': *ref_5
       security:
         - PSUOAuth2Security:
             - payment
@@ -946,10 +948,10 @@ tags:
   - name: Payments
     description: Payments endpoints
 responses:
-  400ErrorResponse: *ref_0
-  401ErrorResponse: *ref_1
-  403ErrorResponse: *ref_2
+  400ErrorResponse: *ref_1
+  401ErrorResponse: *ref_2
+  403ErrorResponse: *ref_3
   404NotFound:
     description: Not Found
-  409ErrorResponse: *ref_3
-  500ErrorResponse: *ref_4
+  409ErrorResponse: *ref_4
+  500ErrorResponse: *ref_5

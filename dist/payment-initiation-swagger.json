@@ -40,7 +40,7 @@
           {
             "name": "x-idempotency-key",
             "in": "header",
-            "description": "Every request will be processed only once per x-idempotency-key",
+            "description": "Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.",
             "required": true,
             "type": "string"
           },
@@ -797,6 +797,13 @@
           "application/vnd.api+json"
         ],
         "parameters": [
+          {
+            "name": "x-idempotency-key",
+            "in": "header",
+            "description": "Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.",
+            "required": true,
+            "type": "string"
+          },
           {
             "name": "body",
             "in": "body",

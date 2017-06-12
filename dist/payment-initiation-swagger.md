@@ -54,6 +54,13 @@ POST /payment-submissions
 Submit a previously setup payment
 
 
+#### Parameters
+
+|Type|Name|Description|Schema|
+|---|---|---|---|
+|**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
+
+
 #### Body parameter
 Setup a single immediate payment
 
@@ -221,7 +228,7 @@ Create a single immediate payment
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
-|**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key|string|
+|**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
 
 
 #### Body parameter
