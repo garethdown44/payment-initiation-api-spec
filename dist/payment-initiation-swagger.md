@@ -180,7 +180,7 @@ Setup a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Payment submit resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.|[Payment Submit POST 201 Response](#payment-submit-post-201-response)|
+|**201**|Payment submit resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment Submit POST 201 Response](#payment-submit-post-201-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -459,7 +459,7 @@ Setup a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Payment setup resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.|[Payment setup POST response](#payment-setup-post-response)|
+|**201**|Payment setup resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment setup POST response](#payment-setup-post-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
