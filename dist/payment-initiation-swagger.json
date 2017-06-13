@@ -816,7 +816,7 @@
         "description": "Get a single immediate payment",
         "operationId": "GetSingleImmediatePayment",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {
@@ -1712,7 +1712,7 @@
         "description": "Get payment submission",
         "operationId": "GetPaymentSubmission",
         "produces": [
-          "application/vnd.api+json"
+          "application/json"
         ],
         "parameters": [
           {

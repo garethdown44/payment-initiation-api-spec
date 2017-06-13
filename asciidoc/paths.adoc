@@ -394,7 +394,7 @@ __optional__|integer (int32)
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Tags
@@ -1154,7 +1154,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Tags

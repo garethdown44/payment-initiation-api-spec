@@ -298,7 +298,7 @@ Get payment submission
 
 #### Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 #### Tags
@@ -767,7 +767,7 @@ Get a single immediate payment
 
 #### Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 #### Tags
