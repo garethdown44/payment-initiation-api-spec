@@ -73,6 +73,13 @@
             "description": "An RFC4122 UID used as a correlation id."
           },
           {
+            "in": "header",
+            "name": "x-jws-signature",
+            "type": "string",
+            "required": true,
+            "description": "Header containing a detached JWS signature of the body of the payload."
+          },
+          {
             "name": "body",
             "in": "body",
             "description": "Setup a single immediate payment",
@@ -237,7 +244,7 @@
                               "maxLength": 34
                             },
                             "Name": {
-                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
                               "type": "string",
                               "minLength": 1,
                               "maxLength": 70
@@ -310,7 +317,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -581,7 +588,7 @@
                               "maxLength": 34
                             },
                             "Name": {
-                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
                               "type": "string",
                               "minLength": 1,
                               "maxLength": 70
@@ -656,7 +663,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -783,6 +790,16 @@
                 "Meta"
               ],
               "additionalProperties": false
+            },
+            "headers": {
+              "x-jws-signature": {
+                "type": "string",
+                "description": "Header containing a detached JWS signature of the body of the payload."
+              },
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -825,6 +842,34 @@
             "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -1011,7 +1056,7 @@
                               "maxLength": 34
                             },
                             "Name": {
-                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
                               "type": "string",
                               "minLength": 1,
                               "maxLength": 70
@@ -1086,7 +1131,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -1224,9 +1269,6 @@
           "403": {
             "description": "Forbidden"
           },
-          "404": {
-            "description": "Not Found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -1261,6 +1303,41 @@
             "description": "Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
+          },
+          {
+            "in": "header",
+            "name": "x-jws-signature",
+            "type": "string",
+            "required": true,
+            "description": "Header containing a detached JWS signature of the body of the payload."
           },
           {
             "name": "body",
@@ -1433,7 +1510,7 @@
                               "maxLength": 34
                             },
                             "Name": {
-                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.",
+                              "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
                               "type": "string",
                               "minLength": 1,
                               "maxLength": 70
@@ -1507,7 +1584,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -1679,6 +1756,16 @@
                 "Meta"
               ],
               "additionalProperties": false
+            },
+            "headers": {
+              "x-jws-signature": {
+                "type": "string",
+                "description": "Header containing a detached JWS signature of the body of the payload."
+              },
+              "x-fapi-interaction-id": {
+                "type": "string",
+                "description": "An RFC4122 UID used as a correlation id."
+              }
             }
           },
           "400": {
@@ -1721,6 +1808,34 @@
             "description": "Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
             "required": true,
             "type": "string"
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-financial-id",
+            "type": "string",
+            "required": true,
+            "description": "The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-last-logged-time",
+            "type": "string",
+            "required": false,
+            "description": "The time when the PSU last logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-customer-ip-address",
+            "type": "string",
+            "required": false,
+            "description": "The PSU's IP address if the PSU is currently logged in with the TPP."
+          },
+          {
+            "in": "header",
+            "name": "x-fapi-interaction-id",
+            "type": "string",
+            "required": false,
+            "description": "An RFC4122 UID used as a correlation id."
           }
         ],
         "responses": {
@@ -1819,9 +1934,6 @@
           "403": {
             "description": "Forbidden"
           },
-          "404": {
-            "description": "Not Found"
-          },
           "500": {
             "description": "Internal Server Error"
           }
@@ -1872,9 +1984,6 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
-    },
-    "404NotFound": {
-      "description": "Not Found"
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"
