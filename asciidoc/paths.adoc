@@ -191,7 +191,7 @@ __optional__|Name of the identification scheme, in a coded form as published in 
 |**DeliveryAddress** +
 __optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_payment-submissions_post_deliveryaddress,DeliveryAddress>>
 |**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+__optional__|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
 **Length** : `3 - 4`|string
 |**MerchantCustomerIdentification** +
 __optional__|The unique customer identifier of the PSU with the merchant. +
@@ -357,7 +357,6 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
-|**404**|Not Found|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -617,7 +616,7 @@ __optional__|Name of the identification scheme, in a coded form as published in 
 |**DeliveryAddress** +
 __optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_payments_post_deliveryaddress,DeliveryAddress>>
 |**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+__optional__|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
 **Length** : `3 - 4`|string
 |**MerchantCustomerIdentification** +
 __optional__|The unique customer identifier of the PSU with the merchant. +
@@ -855,7 +854,7 @@ __optional__|integer (int32)
 |**DeliveryAddress** +
 __optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_risk_deliveryaddress,DeliveryAddress>>
 |**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+__optional__|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
 **Length** : `3 - 4`|string
 |**MerchantCustomerIdentification** +
 __optional__|The unique customer identifier of the PSU with the merchant. +
@@ -956,7 +955,6 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
-|**404**|Not Found|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1147,7 +1145,7 @@ __optional__|integer (int32)
 |**DeliveryAddress** +
 __optional__|Information that locates and identifies a specific address, as defined by postal services or in free format text.|<<_risk_deliveryaddress,DeliveryAddress>>
 |**MerchantCategoryCode** +
-__optional__|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
+__optional__|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction +
 **Length** : `3 - 4`|string
 |**MerchantCustomerIdentification** +
 __optional__|The unique customer identifier of the PSU with the merchant. +

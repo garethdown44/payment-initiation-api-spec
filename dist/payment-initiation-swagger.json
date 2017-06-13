@@ -317,7 +317,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -663,7 +663,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -1127,7 +1127,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -1264,9 +1264,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"
@@ -1583,7 +1580,7 @@
                       ]
                     },
                     "MerchantCategoryCode": {
-                      "description": "Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+                      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
                       "type": "string",
                       "minLength": 3,
                       "maxLength": 4
@@ -1928,9 +1925,6 @@
           },
           "403": {
             "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
           },
           "500": {
             "description": "Internal Server Error"

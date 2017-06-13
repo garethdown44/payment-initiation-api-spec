@@ -270,7 +270,7 @@ paths:
                       - Other
                       - PersonToPerson
                   MerchantCategoryCode:
-                    description: 'Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
+                    description: 'Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
                     type: string
                     minLength: 3
                     maxLength: 4
@@ -560,7 +560,7 @@ paths:
                       - Other
                       - PersonToPerson
                   MerchantCategoryCode:
-                    description: 'Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
+                    description: 'Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
                     type: string
                     minLength: 3
                     maxLength: 4
@@ -916,7 +916,7 @@ paths:
                       - Other
                       - PersonToPerson
                   MerchantCategoryCode:
-                    description: 'Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
+                    description: 'Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
                     type: string
                     minLength: 3
                     maxLength: 4
@@ -1017,8 +1017,6 @@ paths:
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': &ref_10
-          description: Not Found
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1253,7 +1251,7 @@ paths:
                       - Other
                       - PersonToPerson
                   MerchantCategoryCode:
-                    description: 'Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
+                    description: 'Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction'
                     type: string
                     minLength: 3
                     maxLength: 4
@@ -1486,7 +1484,6 @@ paths:
         '400': *ref_4
         '401': *ref_5
         '403': *ref_6
-        '404': *ref_10
         '500': *ref_7
       security:
         - PSUOAuth2Security:
@@ -1514,5 +1511,6 @@ responses:
   400ErrorResponse: *ref_4
   401ErrorResponse: *ref_5
   403ErrorResponse: *ref_6
-  404NotFound: *ref_10
+  404NotFound:
+    description: Not Found
   500ErrorResponse: *ref_7

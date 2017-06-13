@@ -158,7 +158,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#payment-submissions-post-deliveryaddress)|
-|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
 |**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
 |**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
@@ -271,7 +271,6 @@ Get payment submission
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-submit-get-response"></a>
@@ -438,7 +437,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#payments-post-deliveryaddress)|
-|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
 |**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
 |**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
@@ -576,7 +575,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#risk-deliveryaddress)|
-|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
 |**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
 |**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
@@ -648,7 +647,6 @@ Get a single immediate payment
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**404**|Not Found|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-setup-get-response"></a>
@@ -761,7 +759,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**DeliveryAddress**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services or in free format text.|[DeliveryAddress](#risk-deliveryaddress)|
-|**MerchantCategoryCode**  <br>*optional*|Category code conform to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
+|**MerchantCategoryCode**  <br>*optional*|Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction  <br>**Length** : `3 - 4`|string|
 |**MerchantCustomerIdentification**  <br>*optional*|The unique customer identifier of the PSU with the merchant.  <br>**Length** : `1 - 70`|string|
 |**PaymentContextCode**  <br>*optional*|Specifies the payment context|enum (BillPayment, EcommerceGoods, EcommerceServices, Other, PersonToPerson)|
 
