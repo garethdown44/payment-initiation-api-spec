@@ -14,20 +14,29 @@ function beautifySchema(schema) {
   });
   return beautifiedSchema;
 }
-function writeToFile(string, filePath) {
+function writeToFile(string, filePath, append) {
   return new Promise((resolve, reject) => {
-    var destDir = path.dirname(filePath);
+    let destDir = path.dirname(filePath);
     createMissingDirs(destDir);
-    fs.writeFile(filePath, string, (err) => {
-      if (err) {
-        reject(err);
-      }
-      resolve();
-    });
+    if (append) {
+      fs.appendFile(filePath, string, (err) => {
+        if (err) {
+          reject(err);
+        }
+        resolve();
+      });
+    } else {
+      fs.writeFile(filePath, string, (err) => {
+        if (err) {
+          reject(err);
+        }
+        resolve();
+      });
+    }
   });
 }
 
 module.exports = {
   writeToFile: writeToFile,
   beautifySchema: beautifySchema
-}
+};

@@ -237,12 +237,12 @@ __optional__|integer (int32)
 
 ==== Consumes
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Tags
@@ -277,6 +277,14 @@ Create a single immediate payment
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**x-fapi-customer-ip-address** +
+__optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
+|**Header**|**x-fapi-customer-last-logged-time** +
+__optional__|The time when the PSU last logged in with the TPP.|string
+|**Header**|**x-fapi-financial-id** +
+__required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
+|**Header**|**x-fapi-interaction-id** +
+__optional__|An RFC4122 UID used as a correlation id.|string
 |**Header**|**x-idempotency-key** +
 __required__|Every request will be processed only once per x-idempotency-key. The Idempotency Key will be valid for 24 hours.|string
 |===
@@ -711,12 +719,12 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 
 ==== Consumes
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 ==== Tags
