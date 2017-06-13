@@ -11,6 +11,7 @@ post:
   parameters:
    - $ref: "../../parameters/index.yaml#/x-idempotency-key"
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/jws.yaml
    - name: body
      in: body
      description: Setup a single immediate payment
@@ -22,6 +23,10 @@ post:
       description: Payment setup resource successfully created
       schema:
         $ref: ../../../../../compiled/schemas/v1.0/payments/payment_setup.post.201.response.schema.yaml
+      headers:
+        x-jws-signature:
+          type: string
+          description: Header containig a detached JWS signature of the body of the payload.
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:

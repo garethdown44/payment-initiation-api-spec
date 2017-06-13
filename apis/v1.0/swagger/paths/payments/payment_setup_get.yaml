@@ -8,6 +8,7 @@ get:
     - $ref: ../../definitions/mime_type.yaml
   parameters:
    - $ref: "./parameters.yaml#/PaymentId"
+   - $ref: ../../headers/fapi.yaml
   responses:
     200:
       description: Payment resource successfully retrieved
