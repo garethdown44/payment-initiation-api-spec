@@ -26,7 +26,7 @@ post:
       headers:
         x-jws-signature:
           type: string
-          description: Header containig a detached JWS signature of the body of the payload.
+          description: Header containing a detached JWS signature of the body of the payload.
     400:
       $ref: ../../index.yaml#/responses/400ErrorResponse
     401:
