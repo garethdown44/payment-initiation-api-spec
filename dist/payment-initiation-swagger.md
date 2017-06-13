@@ -58,7 +58,12 @@ Submit a previously setup payment
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
+|**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
+|**Header**|**x-jws-signature**  <br>*required*|Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -101,7 +106,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
-|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
@@ -175,7 +180,7 @@ Setup a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Payment submit resource successfully created|[Payment Submit POST 201 Response](#payment-submit-post-201-response)|
+|**201**|Payment submit resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.|[Payment Submit POST 201 Response](#payment-submit-post-201-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -251,6 +256,10 @@ Get payment submission
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
+|**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Path**|**PaymentSubmissionId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.|string|
 
 
@@ -335,6 +344,7 @@ Create a single immediate payment
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
+|**Header**|**x-jws-signature**  <br>*required*|Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -376,7 +386,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
-|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
@@ -450,7 +460,7 @@ Setup a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Payment setup resource successfully created|[Payment setup POST response](#payment-setup-post-response)|
+|**201**|Payment setup resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.|[Payment setup POST response](#payment-setup-post-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -496,7 +506,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
-|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
@@ -623,6 +633,10 @@ Get a single immediate payment
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
+|**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Path**|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.|string|
 
 
@@ -677,7 +691,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
-|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
+|**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 

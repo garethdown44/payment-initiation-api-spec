@@ -28,32 +28,42 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_4
+        - &ref_8
           name: x-idempotency-key
           in: header
           description: Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.
           required: true
           type: string
-        - in: header
+        - &ref_0
+          in: header
           name: x-fapi-financial-id
           type: string
           required: true
           description: The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.
-        - in: header
+        - &ref_1
+          in: header
           name: x-fapi-customer-last-logged-time
           type: string
           required: false
           description: The time when the PSU last logged in with the TPP.
-        - in: header
+        - &ref_2
+          in: header
           name: x-fapi-customer-ip-address
           type: string
           required: false
           description: The PSU's IP address if the PSU is currently logged in with the TPP.
-        - in: header
+        - &ref_3
+          in: header
           name: x-fapi-interaction-id
           type: string
           required: false
           description: An RFC4122 UID used as a correlation id.
+        - &ref_9
+          in: header
+          name: x-jws-signature
+          type: string
+          required: true
+          description: Header containing a detached JWS signature of the body of the payload.
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -204,7 +214,7 @@ paths:
                             description: >-
                               Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of
                               the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the
-                              account, in addition to the account owner's identity and the account number.
+                              account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.
                             type: string
                             minLength: 1
                             maxLength: 70
@@ -492,7 +502,7 @@ paths:
                             description: >-
                               Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of
                               the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the
-                              account, in addition to the account owner's identity and the account number.
+                              account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.
                             type: string
                             minLength: 1
                             maxLength: 70
@@ -648,13 +658,17 @@ paths:
               - Links
               - Meta
             additionalProperties: false
-        '400': &ref_0
+          headers:
+            x-jws-signature:
+              type: string
+              description: Header containing a detached JWS signature of the body of the payload.
+        '400': &ref_4
           description: Bad Request
-        '401': &ref_1
+        '401': &ref_5
           description: Unauthorized
-        '403': &ref_2
+        '403': &ref_6
           description: Forbidden
-        '500': &ref_3
+        '500': &ref_7
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
@@ -674,6 +688,10 @@ paths:
           description: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.
           required: true
           type: string
+        - *ref_0
+        - *ref_1
+        - *ref_2
+        - *ref_3
       responses:
         '200':
           description: Payment resource successfully retrieved
@@ -840,7 +858,7 @@ paths:
                             description: >-
                               Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of
                               the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the
-                              account, in addition to the account owner's identity and the account number.
+                              account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.
                             type: string
                             minLength: 1
                             maxLength: 70
@@ -996,12 +1014,12 @@ paths:
               - Links
               - Meta
             additionalProperties: false
-        '400': *ref_0
-        '401': *ref_1
-        '403': *ref_2
-        '404': &ref_5
+        '400': *ref_4
+        '401': *ref_5
+        '403': *ref_6
+        '404': &ref_10
           description: Not Found
-        '500': *ref_3
+        '500': *ref_7
       security:
         - PSUOAuth2Security:
             - payment
@@ -1017,7 +1035,12 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_4
+        - *ref_8
+        - *ref_0
+        - *ref_1
+        - *ref_2
+        - *ref_3
+        - *ref_9
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -1173,7 +1196,7 @@ paths:
                             description: >-
                               Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of
                               the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the
-                              account, in addition to the account owner's identity and the account number.
+                              account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.
                             type: string
                             minLength: 1
                             maxLength: 70
@@ -1363,10 +1386,14 @@ paths:
               - Links
               - Meta
             additionalProperties: false
-        '400': *ref_0
-        '401': *ref_1
-        '403': *ref_2
-        '500': *ref_3
+          headers:
+            x-jws-signature:
+              type: string
+              description: Header containing a detached JWS signature of the body of the payload.
+        '400': *ref_4
+        '401': *ref_5
+        '403': *ref_6
+        '500': *ref_7
       security:
         - PSUOAuth2Security:
             - payment
@@ -1385,6 +1412,10 @@ paths:
           description: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.
           required: true
           type: string
+        - *ref_0
+        - *ref_1
+        - *ref_2
+        - *ref_3
       responses:
         '200':
           description: Payment resource successfully retrieved
@@ -1452,11 +1483,11 @@ paths:
               - Links
               - Meta
             additionalProperties: false
-        '400': *ref_0
-        '401': *ref_1
-        '403': *ref_2
-        '404': *ref_5
-        '500': *ref_3
+        '400': *ref_4
+        '401': *ref_5
+        '403': *ref_6
+        '404': *ref_10
+        '500': *ref_7
       security:
         - PSUOAuth2Security:
             - payment
@@ -1480,8 +1511,8 @@ tags:
   - name: Payments
     description: Payments endpoints
 responses:
-  400ErrorResponse: *ref_0
-  401ErrorResponse: *ref_1
-  403ErrorResponse: *ref_2
-  404NotFound: *ref_5
-  500ErrorResponse: *ref_3
+  400ErrorResponse: *ref_4
+  401ErrorResponse: *ref_5
+  403ErrorResponse: *ref_6
+  404NotFound: *ref_10
+  500ErrorResponse: *ref_7
