@@ -9,12 +9,12 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.0-rc1
+  version: v1.0-rc2
 basePath: /open-banking
 schemes:
   - https
 produces:
-  - application/vnd.api+json
+  - application/json
 paths:
   /payments:
     post:
@@ -24,9 +24,9 @@ paths:
       description: Create a single immediate payment
       operationId: CreateSingleImmediatePayment
       consumes:
-        - application/vnd.api+json
+        - application/json
       produces:
-        - application/vnd.api+json
+        - application/json
       parameters:
         - &ref_0
           name: x-idempotency-key
@@ -34,6 +34,26 @@ paths:
           description: Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.
           required: true
           type: string
+        - in: header
+          name: x-fapi-financial-id
+          type: string
+          required: true
+          description: The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.
+        - in: header
+          name: x-fapi-customer-last-logged-time
+          type: string
+          required: false
+          description: The time when the PSU last logged in with the TPP.
+        - in: header
+          name: x-fapi-customer-ip-address
+          type: string
+          required: false
+          description: The PSU's IP address if the PSU is currently logged in with the TPP.
+        - in: header
+          name: x-fapi-interaction-id
+          type: string
+          required: false
+          description: An RFC4122 UID used as a correlation id.
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -649,9 +669,9 @@ paths:
       description: Submit a previously setup payment
       operationId: CreatePaymentSubmission
       consumes:
-        - application/vnd.api+json
+        - application/json
       produces:
-        - application/vnd.api+json
+        - application/json
       parameters:
         - *ref_0
         - name: body

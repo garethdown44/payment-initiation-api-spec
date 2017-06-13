@@ -7,7 +7,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### Version information
-*Version* : v1.0-rc1
+*Version* : v1.0-rc2
 
 
 ### Contact information
@@ -33,7 +33,7 @@ Draft Swagger specification for Payment Initiation
 
 ### Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 
@@ -191,12 +191,12 @@ Setup a single immediate payment
 
 #### Consumes
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 #### Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 #### Tags
@@ -228,6 +228,10 @@ Create a single immediate payment
 
 |Type|Name|Description|Schema|
 |---|---|---|---|
+|**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
+|**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
 
 
@@ -481,12 +485,12 @@ Setup a single immediate payment
 
 #### Consumes
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 #### Produces
 
-* `application/vnd.api+json`
+* `application/json`
 
 
 #### Tags
