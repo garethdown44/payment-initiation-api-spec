@@ -155,7 +155,6 @@ Setup a single immediate payment
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**409**|Conflict|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-submit-post-201-response"></a>
@@ -352,7 +351,6 @@ Setup a single immediate payment
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
-|**409**|Conflict|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-setup-post-response"></a>
