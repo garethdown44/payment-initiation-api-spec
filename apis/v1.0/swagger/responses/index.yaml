@@ -8,8 +8,6 @@
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-401.schema.yaml
 403ErrorResponse:
   description: Forbidden
-404NotFound:
-  description: Not Found
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-403.schema.yaml
 500ErrorResponse:
