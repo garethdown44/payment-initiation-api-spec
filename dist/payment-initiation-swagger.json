@@ -1985,9 +1985,6 @@
     "403ErrorResponse": {
       "description": "Forbidden"
     },
-    "404NotFound": {
-      "description": "Not Found"
-    },
     "500ErrorResponse": {
       "description": "Internal Server Error"
     }

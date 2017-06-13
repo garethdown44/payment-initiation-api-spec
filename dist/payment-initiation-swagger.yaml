@@ -1517,6 +1517,4 @@ responses:
   400ErrorResponse: *ref_4
   401ErrorResponse: *ref_5
   403ErrorResponse: *ref_6
-  404NotFound:
-    description: Not Found
   500ErrorResponse: *ref_7
