@@ -20,6 +20,8 @@ Submit a previously setup payment
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -336,6 +338,8 @@ Get payment submission
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -452,6 +456,8 @@ Create a single immediate payment
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
@@ -938,6 +944,8 @@ Get a single immediate payment
 [options="header", cols=".^2,.^3,.^9,.^4"]
 |===
 |Type|Name|Description|Schema
+|**Header**|**authorization** +
+__required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +

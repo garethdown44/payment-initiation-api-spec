@@ -74,6 +74,13 @@
           },
           {
             "in": "header",
+            "name": "authorization",
+            "type": "string",
+            "required": true,
+            "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
+          },
+          {
+            "in": "header",
             "name": "x-jws-signature",
             "type": "string",
             "required": true,
@@ -870,6 +877,13 @@
             "type": "string",
             "required": false,
             "description": "An RFC4122 UID used as a correlation id."
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "type": "string",
+            "required": true,
+            "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
           }
         ],
         "responses": {
@@ -1341,6 +1355,13 @@
             "type": "string",
             "required": false,
             "description": "An RFC4122 UID used as a correlation id."
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "type": "string",
+            "required": true,
+            "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
           },
           {
             "in": "header",
@@ -1846,6 +1867,13 @@
             "type": "string",
             "required": false,
             "description": "An RFC4122 UID used as a correlation id."
+          },
+          {
+            "in": "header",
+            "name": "authorization",
+            "type": "string",
+            "required": true,
+            "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
           }
         ],
         "responses": {
