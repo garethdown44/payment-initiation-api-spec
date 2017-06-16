@@ -267,7 +267,7 @@ Get payment submission
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment resource successfully retrieved|[Payment Submit GET Response](#payment-submit-get-response)|
+|**200**|Payment resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment Submit GET Response](#payment-submit-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -643,7 +643,7 @@ Get a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment resource successfully retrieved|[Payment setup GET response](#payment-setup-get-response)|
+|**200**|Payment resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment setup GET response](#payment-setup-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
