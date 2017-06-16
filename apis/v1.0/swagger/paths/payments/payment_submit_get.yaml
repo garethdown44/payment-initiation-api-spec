@@ -9,6 +9,7 @@ get:
   parameters:
    - $ref: "./parameters.yaml#/PaymentSubmissionId"
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/auth.yaml
   responses:
     200:
       description: Payment resource successfully retrieved
