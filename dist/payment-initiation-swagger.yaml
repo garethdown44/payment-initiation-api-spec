@@ -28,12 +28,13 @@ paths:
       produces:
         - application/json
       parameters:
-        - &ref_8
+        - &ref_10
           name: x-idempotency-key
           in: header
           description: Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.
           required: true
           type: string
+          maxLength: 40
         - &ref_0
           in: header
           name: x-fapi-financial-id
@@ -58,7 +59,13 @@ paths:
           type: string
           required: false
           description: An RFC4122 UID used as a correlation id.
-        - &ref_9
+        - &ref_4
+          in: header
+          name: authorization
+          type: string
+          required: true
+          description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
+        - &ref_11
           in: header
           name: x-jws-signature
           type: string
@@ -665,13 +672,15 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': &ref_4
+        '400': &ref_5
           description: Bad Request
-        '401': &ref_5
+        '401': &ref_6
           description: Unauthorized
-        '403': &ref_6
+        '403': &ref_7
           description: Forbidden
-        '500': &ref_7
+        '429': &ref_8
+          description: Too Many Requests
+        '500': &ref_9
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
@@ -695,6 +704,7 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Payment resource successfully retrieved
@@ -1024,10 +1034,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - payment
@@ -1043,12 +1054,13 @@ paths:
       produces:
         - application/json
       parameters:
-        - *ref_8
+        - *ref_10
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
-        - *ref_9
+        - *ref_4
+        - *ref_11
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -1401,10 +1413,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - payment
@@ -1427,6 +1440,7 @@ paths:
         - *ref_1
         - *ref_2
         - *ref_3
+        - *ref_4
       responses:
         '200':
           description: Payment resource successfully retrieved
@@ -1501,10 +1515,11 @@ paths:
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
-        '400': *ref_4
-        '401': *ref_5
-        '403': *ref_6
-        '500': *ref_7
+        '400': *ref_5
+        '401': *ref_6
+        '403': *ref_7
+        '429': *ref_8
+        '500': *ref_9
       security:
         - PSUOAuth2Security:
             - payment
@@ -1528,7 +1543,8 @@ tags:
   - name: Payments
     description: Payments endpoints
 responses:
-  400ErrorResponse: *ref_4
-  401ErrorResponse: *ref_5
-  403ErrorResponse: *ref_6
-  500ErrorResponse: *ref_7
+  400ErrorResponse: *ref_5
+  401ErrorResponse: *ref_6
+  403ErrorResponse: *ref_7
+  429ErrorResponse: *ref_8
+  500ErrorResponse: *ref_9

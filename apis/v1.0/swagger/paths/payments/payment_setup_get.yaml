@@ -9,6 +9,7 @@ get:
   parameters:
    - $ref: "./parameters.yaml#/PaymentId"
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/auth.yaml
   responses:
     200:
       description: Payment resource successfully retrieved
@@ -27,6 +28,8 @@ get:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
+    429:
+      $ref: ../../index.yaml#/responses/429ErrorResponse
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:

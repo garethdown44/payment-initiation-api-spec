@@ -11,6 +11,7 @@ post:
   parameters:
    - $ref: "../../parameters/index.yaml#/x-idempotency-key"
    - $ref: ../../headers/fapi.yaml
+   - $ref: ../../headers/auth.yaml
    - $ref: ../../headers/jws.yaml
    - name: body
      in: body
@@ -36,6 +37,8 @@ post:
       $ref: ../../index.yaml#/responses/401ErrorResponse
     403:
       $ref: ../../index.yaml#/responses/403ErrorResponse
+    429:
+      $ref: ../../index.yaml#/responses/429ErrorResponse
     500:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
