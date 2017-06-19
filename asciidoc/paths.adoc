@@ -242,6 +242,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -365,6 +366,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -675,6 +677,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -971,6 +974,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
 
