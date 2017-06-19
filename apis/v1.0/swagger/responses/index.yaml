@@ -10,6 +10,10 @@
   description: Forbidden
   # schema:
   #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-403.schema.yaml
+429ErrorResponse:
+  description: Too Many Requests
+  # schema:
+  #   $ref: ../../../../compiled/schemas/v1.0/shared/http-error-429.schema.yaml
 500ErrorResponse:
   description: Internal Server Error
   # schema:
