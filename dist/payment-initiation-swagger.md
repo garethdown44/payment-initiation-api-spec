@@ -7,7 +7,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### Version information
-*Version* : v1.0-rc3
+*Version* : v1.0-rc4
 
 
 ### Contact information
