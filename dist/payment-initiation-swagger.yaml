@@ -366,7 +366,7 @@ paths:
                     description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                     type: string
                     minLength: 1
-                    maxLength: 40
+                    maxLength: 128
                   Status:
                     description: Specifies the status of the payment resource.
                     title: Payment Status Code
@@ -735,7 +735,7 @@ paths:
                     description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                     type: string
                     minLength: 1
-                    maxLength: 40
+                    maxLength: 128
                   Status:
                     description: Specifies the status of the payment resource.
                     title: Payment Status Code
@@ -1100,7 +1100,7 @@ paths:
                     description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                     type: string
                     minLength: 1
-                    maxLength: 40
+                    maxLength: 128
                   Initiation:
                     description: The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.
                     type: object
@@ -1383,7 +1383,7 @@ paths:
                 description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                 type: string
                 minLength: 1
-                maxLength: 40
+                maxLength: 128
               Status:
                 description: Specifies the status of the payment submission resource.
                 title: Payment Submission Status Code
@@ -1485,7 +1485,7 @@ paths:
                 description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                 type: string
                 minLength: 1
-                maxLength: 40
+                maxLength: 128
               Status:
                 description: Specifies the status of the payment submission resource.
                 title: Payment Submission Status Code
