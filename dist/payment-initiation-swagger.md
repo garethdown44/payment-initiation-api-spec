@@ -7,7 +7,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### Version information
-*Version* : v1.0-rc3
+*Version* : v1.0-rc4
 
 
 ### Contact information
@@ -85,7 +85,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#payment-submissions-post-initiation)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 
 <a name="payment-submissions-post-initiation"></a>
 **Initiation**
@@ -196,7 +196,7 @@ Setup a single immediate payment
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payment-submissions-post-links)|
 |**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payment-submissions-post-meta)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
 
@@ -285,7 +285,7 @@ Get payment submission
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payment-submissions-paymentsubmissionid-get-links)|
 |**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payment-submissions-paymentsubmissionid-get-meta)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
 
@@ -488,7 +488,7 @@ Setup a single immediate payment
 |---|---|---|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#payment-setup-response-initiation)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)|
 
 <a name="payment-setup-response-initiation"></a>
@@ -674,7 +674,7 @@ Get a single immediate payment
 |---|---|---|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
 |**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#payment-setup-response-initiation)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)|
 
 <a name="payment-setup-response-initiation"></a>
