@@ -323,6 +323,7 @@ Get payment submission
 |Type|Name|Scopes|
 |---|---|---|
 |**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payment|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
 
 
 ***
@@ -800,6 +801,7 @@ Get a single immediate payment
 |Type|Name|Scopes|
 |---|---|---|
 |**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payment|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
 
 
 
