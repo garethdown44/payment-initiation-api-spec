@@ -35,3 +35,5 @@ get:
   security:
     - PSUOAuth2Security:
       - payment
+    - TPPOAuth2Security:
+      - tpp_client_credential

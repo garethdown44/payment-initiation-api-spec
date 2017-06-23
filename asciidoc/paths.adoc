@@ -437,6 +437,7 @@ __optional__|integer (int32)
 |===
 |Type|Name|Scopes
 |**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|payment
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
 |===
 
 
@@ -1218,6 +1219,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |===
 |Type|Name|Scopes
 |**oauth2**|**<<_psuoauth2security,PSUOAuth2Security>>**|payment
+|**oauth2**|**<<_tppoauth2security,TPPOAuth2Security>>**|tpp_client_credential
 |===
 
 

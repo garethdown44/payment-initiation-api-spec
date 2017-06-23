@@ -1063,6 +1063,8 @@ paths:
       security:
         - PSUOAuth2Security:
             - payment
+        - TPPOAuth2Security:
+            - tpp_client_credential
   /payment-submissions:
     post:
       tags:
@@ -1551,6 +1553,8 @@ paths:
       security:
         - PSUOAuth2Security:
             - payment
+        - TPPOAuth2Security:
+            - tpp_client_credential
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
