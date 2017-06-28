@@ -82,7 +82,7 @@ paths:
             properties:
               Data:
                 description: ''
-                title: Payment Setup
+                title: PaymentSetup
                 type: object
                 properties:
                   Initiation:
@@ -147,7 +147,7 @@ paths:
                         additionalProperties: false
                       DebtorAccount:
                         description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-                        title: Debtor Account
+                        title: DebtorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -181,7 +181,7 @@ paths:
                         additionalProperties: false
                       CreditorAgent:
                         description: Financial institution servicing an account for the creditor.
-                        title: Creditor Agent
+                        title: CreditorAgent
                         type: object
                         properties:
                           SchemeName:
@@ -202,7 +202,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Creditor Account
+                        title: CreditorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -237,7 +237,7 @@ paths:
                         additionalProperties: false
                       RemittanceInformation:
                         description: 'Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts'' receivable system.'
-                        title: Remittance Information
+                        title: RemittanceInformation
                         type: object
                         properties:
                           Unstructured:
@@ -275,7 +275,7 @@ paths:
                 properties:
                   PaymentContextCode:
                     description: Specifies the payment context
-                    title: Payment Context Code
+                    title: PaymentContextCode
                     type: string
                     enum:
                       - BillPayment
@@ -359,7 +359,7 @@ paths:
             properties:
               Data:
                 description: 'Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp'
-                title: Payment Setup Response
+                title: PaymentSetupResponse
                 type: object
                 properties:
                   PaymentId:
@@ -369,7 +369,7 @@ paths:
                     maxLength: 128
                   Status:
                     description: Specifies the status of the payment resource.
-                    title: Payment Status Code
+                    title: PaymentStatusCode
                     type: string
                     enum:
                       - AcceptedCustomerProfile
@@ -442,7 +442,7 @@ paths:
                         additionalProperties: false
                       DebtorAccount:
                         description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-                        title: Debtor Account
+                        title: DebtorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -476,7 +476,7 @@ paths:
                         additionalProperties: false
                       CreditorAgent:
                         description: Financial institution servicing an account for the creditor.
-                        title: Creditor Agent
+                        title: CreditorAgent
                         type: object
                         properties:
                           SchemeName:
@@ -497,7 +497,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Creditor Account
+                        title: CreditorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -532,7 +532,7 @@ paths:
                         additionalProperties: false
                       RemittanceInformation:
                         description: 'Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts'' receivable system.'
-                        title: Remittance Information
+                        title: RemittanceInformation
                         type: object
                         properties:
                           Unstructured:
@@ -572,7 +572,7 @@ paths:
                 properties:
                   PaymentContextCode:
                     description: Specifies the payment context
-                    title: Payment Context Code
+                    title: PaymentContextCode
                     type: string
                     enum:
                       - BillPayment
@@ -728,7 +728,7 @@ paths:
             properties:
               Data:
                 description: 'Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp'
-                title: Payment Setup Response
+                title: PaymentSetupResponse
                 type: object
                 properties:
                   PaymentId:
@@ -738,7 +738,7 @@ paths:
                     maxLength: 128
                   Status:
                     description: Specifies the status of the payment resource.
-                    title: Payment Status Code
+                    title: PaymentStatusCode
                     type: string
                     enum:
                       - AcceptedCustomerProfile
@@ -811,7 +811,7 @@ paths:
                         additionalProperties: false
                       DebtorAccount:
                         description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-                        title: Debtor Account
+                        title: DebtorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -845,7 +845,7 @@ paths:
                         additionalProperties: false
                       CreditorAgent:
                         description: Financial institution servicing an account for the creditor.
-                        title: Creditor Agent
+                        title: CreditorAgent
                         type: object
                         properties:
                           SchemeName:
@@ -866,7 +866,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Creditor Account
+                        title: CreditorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -901,7 +901,7 @@ paths:
                         additionalProperties: false
                       RemittanceInformation:
                         description: 'Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts'' receivable system.'
-                        title: Remittance Information
+                        title: RemittanceInformation
                         type: object
                         properties:
                           Unstructured:
@@ -941,7 +941,7 @@ paths:
                 properties:
                   PaymentContextCode:
                     description: Specifies the payment context
-                    title: Payment Context Code
+                    title: PaymentContextCode
                     type: string
                     enum:
                       - BillPayment
@@ -1095,7 +1095,7 @@ paths:
             properties:
               Data:
                 description: ''
-                title: Payment Submission
+                title: PaymentSubmission
                 type: object
                 properties:
                   PaymentId:
@@ -1165,7 +1165,7 @@ paths:
                         additionalProperties: false
                       DebtorAccount:
                         description: Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.
-                        title: Debtor Account
+                        title: DebtorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -1199,7 +1199,7 @@ paths:
                         additionalProperties: false
                       CreditorAgent:
                         description: Financial institution servicing an account for the creditor.
-                        title: Creditor Agent
+                        title: CreditorAgent
                         type: object
                         properties:
                           SchemeName:
@@ -1220,7 +1220,7 @@ paths:
                         additionalProperties: false
                       CreditorAccount:
                         description: Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.
-                        title: Creditor Account
+                        title: CreditorAccount
                         type: object
                         properties:
                           SchemeName:
@@ -1255,7 +1255,7 @@ paths:
                         additionalProperties: false
                       RemittanceInformation:
                         description: 'Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts'' receivable system.'
-                        title: Remittance Information
+                        title: RemittanceInformation
                         type: object
                         properties:
                           Unstructured:
@@ -1294,7 +1294,7 @@ paths:
                 properties:
                   PaymentContextCode:
                     description: Specifies the payment context
-                    title: Payment Context Code
+                    title: PaymentContextCode
                     type: string
                     enum:
                       - BillPayment
@@ -1388,7 +1388,7 @@ paths:
                 maxLength: 128
               Status:
                 description: Specifies the status of the payment submission resource.
-                title: Payment Submission Status Code
+                title: PaymentSubmissionStatusCode
                 type: string
                 enum:
                   - AcceptedSettlementCompleted
@@ -1490,7 +1490,7 @@ paths:
                 maxLength: 128
               Status:
                 description: Specifies the status of the payment submission resource.
-                title: Payment Submission Status Code
+                title: PaymentSubmissionStatusCode
                 type: string
                 enum:
                   - AcceptedSettlementCompleted

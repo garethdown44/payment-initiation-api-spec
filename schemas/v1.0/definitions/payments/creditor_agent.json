@@ -1,5 +1,5 @@
 {
-  "title": "Creditor Agent",
+  "title": "CreditorAgent",
   "description": "Financial institution servicing an account for the creditor.",
   "type": "object",
   "properties": {
