@@ -8,7 +8,7 @@ Draft Swagger specification for Payment Initiation
 
 === Version information
 [%hardbreaks]
-__Version__ : v1.0-rc4
+__Version__ : v1.0.0
 
 
 === Contact information
