@@ -12,14 +12,14 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0.0"
+    "version": "v1.0.1"
   },
   "basePath": "/open-banking",
   "schemes": [
     "https"
   ],
   "produces": [
-    "application/json"
+    "application/json; charset=utf-8"
   ],
   "paths": {
     "/payments": {
@@ -31,10 +31,10 @@
         "description": "Create a single immediate payment",
         "operationId": "CreateSingleImmediatePayment",
         "consumes": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -753,37 +753,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -819,6 +819,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -844,7 +850,7 @@
         "description": "Get a single immediate payment",
         "operationId": "GetSingleImmediatePayment",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1231,37 +1237,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1297,6 +1303,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1327,10 +1339,10 @@
         "description": "Submit a previously setup payment",
         "operationId": "CreatePaymentSubmission",
         "consumes": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1754,37 +1766,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1821,6 +1833,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1846,7 +1864,7 @@
         "description": "Get payment submission",
         "operationId": "GetPaymentSubmission",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1931,37 +1949,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1997,6 +2015,12 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
           },
           "429": {
             "description": "Too Many Requests"
@@ -2056,6 +2080,12 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
+    },
+    "405ErrorResponse": {
+      "description": "Method Not Allowed"
+    },
+    "406ErrorResponse": {
+      "description": "Not Acceptable"
     },
     "429ErrorResponse": {
       "description": "Too Many Requests"

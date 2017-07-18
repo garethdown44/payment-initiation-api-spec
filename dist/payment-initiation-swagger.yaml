@@ -9,12 +9,12 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.0.0
+  version: v1.0.1
 basePath: /open-banking
 schemes:
   - https
 produces:
-  - application/json
+  - application/json; charset=utf-8
 paths:
   /payments:
     post:
@@ -24,11 +24,11 @@ paths:
       description: Create a single immediate payment
       operationId: CreateSingleImmediatePayment
       consumes:
-        - application/json
+        - application/json; charset=utf-8
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - &ref_10
+        - &ref_12
           name: x-idempotency-key
           in: header
           description: Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.
@@ -65,7 +65,7 @@ paths:
           type: string
           required: true
           description: 'An Authorisation Token as per https://tools.ietf.org/html/rfc6750'
-        - &ref_11
+        - &ref_13
           in: header
           name: x-jws-signature
           type: string
@@ -647,29 +647,29 @@ paths:
                 type: object
                 description: Link URIs relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 type: object
                 description: Meta Data Relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -692,9 +692,13 @@ paths:
           description: Unauthorized
         '403': &ref_7
           description: Forbidden
-        '429': &ref_8
+        '405': &ref_8
+          description: Method Not Allowed
+        '406': &ref_9
+          description: Not Acceptable
+        '429': &ref_10
           description: Too Many Requests
-        '500': &ref_9
+        '500': &ref_11
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
@@ -707,7 +711,7 @@ paths:
       description: Get a single immediate payment
       operationId: GetSingleImmediatePayment
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - name: PaymentId
           in: path
@@ -1016,29 +1020,29 @@ paths:
                 type: object
                 description: Link URIs relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 type: object
                 description: Meta Data Relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1058,8 +1062,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - payment
@@ -1073,17 +1079,17 @@ paths:
       description: Submit a previously setup payment
       operationId: CreatePaymentSubmission
       consumes:
-        - application/json
+        - application/json; charset=utf-8
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
-        - *ref_10
+        - *ref_12
         - *ref_0
         - *ref_1
         - *ref_2
         - *ref_3
         - *ref_4
-        - *ref_11
+        - *ref_13
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -1403,29 +1409,29 @@ paths:
                 type: object
                 description: Link URIs relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 type: object
                 description: Meta Data Relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1446,8 +1452,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - payment
@@ -1459,7 +1467,7 @@ paths:
       description: Get payment submission
       operationId: GetPaymentSubmission
       produces:
-        - application/json
+        - application/json; charset=utf-8
       parameters:
         - name: PaymentSubmissionId
           in: path
@@ -1505,29 +1513,29 @@ paths:
                 type: object
                 description: Link URIs relevant to the payload
                 properties:
-                  self:
+                  Self:
                     type: string
                     format: uri
-                  first:
+                  First:
                     type: string
                     format: uri
-                  prev:
+                  Prev:
                     type: string
                     format: uri
-                  next:
+                  Next:
                     type: string
                     format: uri
-                  last:
+                  Last:
                     type: string
                     format: uri
                 additionalProperties: false
                 required:
-                  - self
+                  - Self
               Meta:
                 type: object
                 description: Meta Data Relevant to the payload
                 properties:
-                  total-pages:
+                  TotalPages:
                     type: integer
                     format: int32
                 additionalProperties: false
@@ -1548,8 +1556,10 @@ paths:
         '400': *ref_5
         '401': *ref_6
         '403': *ref_7
-        '429': *ref_8
-        '500': *ref_9
+        '405': *ref_8
+        '406': *ref_9
+        '429': *ref_10
+        '500': *ref_11
       security:
         - PSUOAuth2Security:
             - payment
@@ -1578,5 +1588,7 @@ responses:
   400ErrorResponse: *ref_5
   401ErrorResponse: *ref_6
   403ErrorResponse: *ref_7
-  429ErrorResponse: *ref_8
-  500ErrorResponse: *ref_9
+  405ErrorResponse: *ref_8
+  406ErrorResponse: *ref_9
+  429ErrorResponse: *ref_10
+  500ErrorResponse: *ref_11
