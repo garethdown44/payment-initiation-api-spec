@@ -143,7 +143,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -170,7 +170,7 @@ Setup a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
@@ -431,7 +431,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -458,7 +458,7 @@ Setup a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
@@ -554,7 +554,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -599,7 +599,7 @@ Setup a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
@@ -742,7 +742,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -787,7 +787,7 @@ Get a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"[A-Z]{2}"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
