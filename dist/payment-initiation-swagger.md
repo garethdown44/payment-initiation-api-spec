@@ -7,7 +7,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### Version information
-*Version* : v1.0.0
+*Version* : v1.0.1
 
 
 ### Contact information
@@ -33,7 +33,7 @@ Draft Swagger specification for Payment Initiation
 
 ### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 
@@ -76,11 +76,11 @@ Setup a single immediate payment
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|[Payment Submission](#payment-submission)|
+|**Data**  <br>*required*|[PaymentSubmission](#paymentsubmission)|
 |**Risk**  <br>*required*|[Risk](#risk)|
 
-<a name="payment-submission"></a>
-**Payment Submission**
+<a name="paymentsubmission"></a>
+**PaymentSubmission**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -92,17 +92,17 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
-|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
 |**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payment-submissions-post-initiation-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
-|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[RemittanceInformation](#remittanceinformation)|
 
-<a name="creditor-account"></a>
-**Creditor Account**
+<a name="creditoraccount"></a>
+**CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -111,16 +111,16 @@ Setup a single immediate payment
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
-<a name="creditor-agent"></a>
-**Creditor Agent**
+<a name="creditoragent"></a>
+**CreditorAgent**
 
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="debtoraccount"></a>
+**DebtorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -145,8 +145,8 @@ Setup a single immediate payment
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
 
-<a name="remittance-information"></a>
-**Remittance Information**
+<a name="remittanceinformation"></a>
+**RemittanceInformation**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -185,6 +185,8 @@ Setup a single immediate payment
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -205,28 +207,28 @@ Setup a single immediate payment
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="payment-submissions-post-meta"></a>
 **Meta**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Consumes
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Tags
@@ -274,6 +276,8 @@ Get payment submission
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -294,23 +298,23 @@ Get payment submission
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="payment-submissions-paymentsubmissionid-get-meta"></a>
 **Meta**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Tags
@@ -361,11 +365,11 @@ Setup a single immediate payment
 
 |Name|Schema|
 |---|---|
-|**Data**  <br>*required*|[Payment Setup](#payment-setup)|
+|**Data**  <br>*required*|[PaymentSetup](#paymentsetup)|
 |**Risk**  <br>*required*|[Risk](#risk)|
 
-<a name="payment-setup"></a>
-**Payment Setup**
+<a name="paymentsetup"></a>
+**PaymentSetup**
 
 |Name|Schema|
 |---|---|
@@ -376,17 +380,17 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
-|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
 |**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payments-post-initiation-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
-|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[RemittanceInformation](#remittanceinformation)|
 
-<a name="creditor-account"></a>
-**Creditor Account**
+<a name="creditoraccount"></a>
+**CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -395,16 +399,16 @@ Setup a single immediate payment
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
-<a name="creditor-agent"></a>
-**Creditor Agent**
+<a name="creditoragent"></a>
+**CreditorAgent**
 
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="debtoraccount"></a>
+**DebtorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -429,8 +433,8 @@ Setup a single immediate payment
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
 
-<a name="remittance-information"></a>
-**Remittance Information**
+<a name="remittanceinformation"></a>
+**RemittanceInformation**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -469,6 +473,8 @@ Setup a single immediate payment
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -477,37 +483,37 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[Payment Setup Response](#payment-setup-response)|
+|**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[PaymentSetupResponse](#paymentsetupresponse)|
 |**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payments-post-links)|
 |**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payments-post-meta)|
 |**Risk**  <br>*required*|Reflection of POSTed Risk profile|[Risk](#risk)|
 
-<a name="payment-setup-response"></a>
-**Payment Setup Response**
+<a name="paymentsetupresponse"></a>
+**PaymentSetupResponse**
 
 |Name|Description|Schema|
 |---|---|---|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
-|**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#payment-setup-response-initiation)|
+|**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#paymentsetupresponse-initiation)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)|
 
-<a name="payment-setup-response-initiation"></a>
+<a name="paymentsetupresponse-initiation"></a>
 **Initiation**
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
-|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
-|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payment-setup-response-initiation-instructedamount)|
+|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#paymentsetupresponse-initiation-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
-|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[RemittanceInformation](#remittanceinformation)|
 
-<a name="creditor-account"></a>
-**Creditor Account**
+<a name="creditoraccount"></a>
+**CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -516,16 +522,16 @@ Setup a single immediate payment
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
-<a name="creditor-agent"></a>
-**Creditor Agent**
+<a name="creditoragent"></a>
+**CreditorAgent**
 
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="debtoraccount"></a>
+**DebtorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -542,7 +548,7 @@ Setup a single immediate payment
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
-<a name="payment-setup-response-initiation-instructedamount"></a>
+<a name="paymentsetupresponse-initiation-instructedamount"></a>
 **InstructedAmount**
 
 |Name|Description|Schema|
@@ -550,8 +556,8 @@ Setup a single immediate payment
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
 
-<a name="remittance-information"></a>
-**Remittance Information**
+<a name="remittanceinformation"></a>
+**RemittanceInformation**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -563,18 +569,18 @@ Setup a single immediate payment
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="payments-post-meta"></a>
 **Meta**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 <a name="risk"></a>
 **Risk**
@@ -602,12 +608,12 @@ Setup a single immediate payment
 
 #### Consumes
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Tags
@@ -655,6 +661,8 @@ Get a single immediate payment
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
+|**405**|Method Not Allowed|No Content|
+|**406**|Not Acceptable|No Content|
 |**429**|Too Many Requests|No Content|
 |**500**|Internal Server Error|No Content|
 
@@ -663,37 +671,37 @@ Get a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[Payment Setup Response](#payment-setup-response)|
+|**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[PaymentSetupResponse](#paymentsetupresponse)|
 |**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payments-paymentid-get-links)|
 |**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payments-paymentid-get-meta)|
 |**Risk**  <br>*required*|Reflection of POSTed Risk profile|[Risk](#risk)|
 
-<a name="payment-setup-response"></a>
-**Payment Setup Response**
+<a name="paymentsetupresponse"></a>
+**PaymentSetupResponse**
 
 |Name|Description|Schema|
 |---|---|---|
 |**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
-|**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#payment-setup-response-initiation)|
+|**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#paymentsetupresponse-initiation)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)|
 
-<a name="payment-setup-response-initiation"></a>
+<a name="paymentsetupresponse-initiation"></a>
 **Initiation**
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[Creditor Account](#creditor-account)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[Creditor Agent](#creditor-agent)|
-|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[Debtor Account](#debtor-account)|
+|**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
+|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
-|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#payment-setup-response-initiation-instructedamount)|
+|**InstructedAmount**  <br>*required*|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|[InstructedAmount](#paymentsetupresponse-initiation-instructedamount)|
 |**InstructionIdentification**  <br>*required*|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.  <br>**Length** : `1 - 35`|string|
-|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[Remittance Information](#remittance-information)|
+|**RemittanceInformation**  <br>*optional*|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|[RemittanceInformation](#remittanceinformation)|
 
-<a name="creditor-account"></a>
-**Creditor Account**
+<a name="creditoraccount"></a>
+**CreditorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -702,16 +710,16 @@ Get a single immediate payment
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
-<a name="creditor-agent"></a>
-**Creditor Agent**
+<a name="creditoragent"></a>
+**CreditorAgent**
 
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
-<a name="debtor-account"></a>
-**Debtor Account**
+<a name="debtoraccount"></a>
+**DebtorAccount**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -728,7 +736,7 @@ Get a single immediate payment
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
 |**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
 
-<a name="payment-setup-response-initiation-instructedamount"></a>
+<a name="paymentsetupresponse-initiation-instructedamount"></a>
 **InstructedAmount**
 
 |Name|Description|Schema|
@@ -736,8 +744,8 @@ Get a single immediate payment
 |**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"[A-Z]{3}"`|string|
 
-<a name="remittance-information"></a>
-**Remittance Information**
+<a name="remittanceinformation"></a>
+**RemittanceInformation**
 
 |Name|Description|Schema|
 |---|---|---|
@@ -749,18 +757,18 @@ Get a single immediate payment
 
 |Name|Schema|
 |---|---|
-|**first**  <br>*optional*|string (uri)|
-|**last**  <br>*optional*|string (uri)|
-|**next**  <br>*optional*|string (uri)|
-|**prev**  <br>*optional*|string (uri)|
-|**self**  <br>*required*|string (uri)|
+|**First**  <br>*optional*|string (uri)|
+|**Last**  <br>*optional*|string (uri)|
+|**Next**  <br>*optional*|string (uri)|
+|**Prev**  <br>*optional*|string (uri)|
+|**Self**  <br>*required*|string (uri)|
 
 <a name="payments-paymentid-get-meta"></a>
 **Meta**
 
 |Name|Schema|
 |---|---|
-|**total-pages**  <br>*optional*|integer (int32)|
+|**TotalPages**  <br>*optional*|integer (int32)|
 
 <a name="risk"></a>
 **Risk**
@@ -788,7 +796,7 @@ Get a single immediate payment
 
 #### Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 #### Tags

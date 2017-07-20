@@ -1,5 +1,5 @@
 {
-  "title": "Payment Setup Response",
+  "title": "PaymentSetupResponse",
   "description": "Payment Setup Response",
   "type": "object",
   "properties": {

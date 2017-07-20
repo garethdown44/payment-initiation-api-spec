@@ -12,14 +12,14 @@
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0.0"
+    "version": "v1.0.1"
   },
   "basePath": "/open-banking",
   "schemes": [
     "https"
   ],
   "produces": [
-    "application/json"
+    "application/json; charset=utf-8"
   ],
   "paths": {
     "/payments": {
@@ -31,10 +31,10 @@
         "description": "Create a single immediate payment",
         "operationId": "CreateSingleImmediatePayment",
         "consumes": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -99,7 +99,7 @@
               "properties": {
                 "Data": {
                   "description": "",
-                  "title": "Payment Setup",
+                  "title": "PaymentSetup",
                   "type": "object",
                   "properties": {
                     "Initiation": {
@@ -167,7 +167,7 @@
                         },
                         "DebtorAccount": {
                           "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                          "title": "Debtor Account",
+                          "title": "DebtorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -206,7 +206,7 @@
                         },
                         "CreditorAgent": {
                           "description": "Financial institution servicing an account for the creditor.",
-                          "title": "Creditor Agent",
+                          "title": "CreditorAgent",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -233,7 +233,7 @@
                         },
                         "CreditorAccount": {
                           "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                          "title": "Creditor Account",
+                          "title": "CreditorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -273,7 +273,7 @@
                         },
                         "RemittanceInformation": {
                           "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
-                          "title": "Remittance Information",
+                          "title": "RemittanceInformation",
                           "type": "object",
                           "properties": {
                             "Unstructured": {
@@ -314,7 +314,7 @@
                   "properties": {
                     "PaymentContextCode": {
                       "description": "Specifies the payment context",
-                      "title": "Payment Context Code",
+                      "title": "PaymentContextCode",
                       "type": "string",
                       "enum": [
                         "BillPayment",
@@ -421,7 +421,7 @@
               "properties": {
                 "Data": {
                   "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
-                  "title": "Payment Setup Response",
+                  "title": "PaymentSetupResponse",
                   "type": "object",
                   "properties": {
                     "PaymentId": {
@@ -432,7 +432,7 @@
                     },
                     "Status": {
                       "description": "Specifies the status of the payment resource.",
-                      "title": "Payment Status Code",
+                      "title": "PaymentStatusCode",
                       "type": "string",
                       "enum": [
                         "AcceptedCustomerProfile",
@@ -511,7 +511,7 @@
                         },
                         "DebtorAccount": {
                           "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                          "title": "Debtor Account",
+                          "title": "DebtorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -550,7 +550,7 @@
                         },
                         "CreditorAgent": {
                           "description": "Financial institution servicing an account for the creditor.",
-                          "title": "Creditor Agent",
+                          "title": "CreditorAgent",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -577,7 +577,7 @@
                         },
                         "CreditorAccount": {
                           "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                          "title": "Creditor Account",
+                          "title": "CreditorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -617,7 +617,7 @@
                         },
                         "RemittanceInformation": {
                           "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
-                          "title": "Remittance Information",
+                          "title": "RemittanceInformation",
                           "type": "object",
                           "properties": {
                             "Unstructured": {
@@ -660,7 +660,7 @@
                   "properties": {
                     "PaymentContextCode": {
                       "description": "Specifies the payment context",
-                      "title": "Payment Context Code",
+                      "title": "PaymentContextCode",
                       "type": "string",
                       "enum": [
                         "BillPayment",
@@ -753,37 +753,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -819,6 +819,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -844,7 +850,7 @@
         "description": "Get a single immediate payment",
         "operationId": "GetSingleImmediatePayment",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -899,7 +905,7 @@
               "properties": {
                 "Data": {
                   "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
-                  "title": "Payment Setup Response",
+                  "title": "PaymentSetupResponse",
                   "type": "object",
                   "properties": {
                     "PaymentId": {
@@ -910,7 +916,7 @@
                     },
                     "Status": {
                       "description": "Specifies the status of the payment resource.",
-                      "title": "Payment Status Code",
+                      "title": "PaymentStatusCode",
                       "type": "string",
                       "enum": [
                         "AcceptedCustomerProfile",
@@ -989,7 +995,7 @@
                         },
                         "DebtorAccount": {
                           "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                          "title": "Debtor Account",
+                          "title": "DebtorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -1028,7 +1034,7 @@
                         },
                         "CreditorAgent": {
                           "description": "Financial institution servicing an account for the creditor.",
-                          "title": "Creditor Agent",
+                          "title": "CreditorAgent",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -1055,7 +1061,7 @@
                         },
                         "CreditorAccount": {
                           "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                          "title": "Creditor Account",
+                          "title": "CreditorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -1095,7 +1101,7 @@
                         },
                         "RemittanceInformation": {
                           "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
-                          "title": "Remittance Information",
+                          "title": "RemittanceInformation",
                           "type": "object",
                           "properties": {
                             "Unstructured": {
@@ -1138,7 +1144,7 @@
                   "properties": {
                     "PaymentContextCode": {
                       "description": "Specifies the payment context",
-                      "title": "Payment Context Code",
+                      "title": "PaymentContextCode",
                       "type": "string",
                       "enum": [
                         "BillPayment",
@@ -1231,37 +1237,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1297,6 +1303,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1327,10 +1339,10 @@
         "description": "Submit a previously setup payment",
         "operationId": "CreatePaymentSubmission",
         "consumes": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1395,7 +1407,7 @@
               "properties": {
                 "Data": {
                   "description": "",
-                  "title": "Payment Submission",
+                  "title": "PaymentSubmission",
                   "type": "object",
                   "properties": {
                     "PaymentId": {
@@ -1469,7 +1481,7 @@
                         },
                         "DebtorAccount": {
                           "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
-                          "title": "Debtor Account",
+                          "title": "DebtorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -1508,7 +1520,7 @@
                         },
                         "CreditorAgent": {
                           "description": "Financial institution servicing an account for the creditor.",
-                          "title": "Creditor Agent",
+                          "title": "CreditorAgent",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -1535,7 +1547,7 @@
                         },
                         "CreditorAccount": {
                           "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
-                          "title": "Creditor Account",
+                          "title": "CreditorAccount",
                           "type": "object",
                           "properties": {
                             "SchemeName": {
@@ -1575,7 +1587,7 @@
                         },
                         "RemittanceInformation": {
                           "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
-                          "title": "Remittance Information",
+                          "title": "RemittanceInformation",
                           "type": "object",
                           "properties": {
                             "Unstructured": {
@@ -1617,7 +1629,7 @@
                   "properties": {
                     "PaymentContextCode": {
                       "description": "Specifies the payment context",
-                      "title": "Payment Context Code",
+                      "title": "PaymentContextCode",
                       "type": "string",
                       "enum": [
                         "BillPayment",
@@ -1736,7 +1748,7 @@
                 },
                 "Status": {
                   "description": "Specifies the status of the payment submission resource.",
-                  "title": "Payment Submission Status Code",
+                  "title": "PaymentSubmissionStatusCode",
                   "type": "string",
                   "enum": [
                     "AcceptedSettlementCompleted",
@@ -1754,37 +1766,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1821,6 +1833,12 @@
           "403": {
             "description": "Forbidden"
           },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
+          },
           "429": {
             "description": "Too Many Requests"
           },
@@ -1846,7 +1864,7 @@
         "description": "Get payment submission",
         "operationId": "GetPaymentSubmission",
         "produces": [
-          "application/json"
+          "application/json; charset=utf-8"
         ],
         "parameters": [
           {
@@ -1913,7 +1931,7 @@
                 },
                 "Status": {
                   "description": "Specifies the status of the payment submission resource.",
-                  "title": "Payment Submission Status Code",
+                  "title": "PaymentSubmissionStatusCode",
                   "type": "string",
                   "enum": [
                     "AcceptedSettlementCompleted",
@@ -1931,37 +1949,37 @@
                   "type": "object",
                   "description": "Link URIs relevant to the payload",
                   "properties": {
-                    "self": {
+                    "Self": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "first": {
+                    "First": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "prev": {
+                    "Prev": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "next": {
+                    "Next": {
                       "type": "string",
                       "format": "uri"
                     },
-                    "last": {
+                    "Last": {
                       "type": "string",
                       "format": "uri"
                     }
                   },
                   "additionalProperties": false,
                   "required": [
-                    "self"
+                    "Self"
                   ]
                 },
                 "Meta": {
                   "type": "object",
                   "description": "Meta Data Relevant to the payload",
                   "properties": {
-                    "total-pages": {
+                    "TotalPages": {
                       "type": "integer",
                       "format": "int32"
                     }
@@ -1997,6 +2015,12 @@
           },
           "403": {
             "description": "Forbidden"
+          },
+          "405": {
+            "description": "Method Not Allowed"
+          },
+          "406": {
+            "description": "Not Acceptable"
           },
           "429": {
             "description": "Too Many Requests"
@@ -2056,6 +2080,12 @@
     },
     "403ErrorResponse": {
       "description": "Forbidden"
+    },
+    "405ErrorResponse": {
+      "description": "Method Not Allowed"
+    },
+    "406ErrorResponse": {
+      "description": "Not Acceptable"
     },
     "429ErrorResponse": {
       "description": "Too Many Requests"

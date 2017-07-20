@@ -49,13 +49,13 @@ __Flags__ : required
 |===
 |Name|Schema
 |**Data** +
-__required__|<<_payment_submission,Payment Submission>>
+__required__|<<_paymentsubmission,PaymentSubmission>>
 |**Risk** +
 __required__|<<_risk,Risk>>
 |===
 
-[[_payment_submission]]
-**Payment Submission**
+[[_paymentsubmission]]
+**PaymentSubmission**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -74,11 +74,11 @@ __required__|OB: Unique identification as assigned by the ASPSP to uniquely iden
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
 __optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
@@ -90,11 +90,11 @@ __required__|Amount of money to be moved between the debtor and creditor, before
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittanceinformation,RemittanceInformation>>
 |===
 
-[[_creditor_account]]
-**Creditor Account**
+[[_creditoraccount]]
+**CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -112,8 +112,8 @@ __optional__|Identification assigned by an institution to identify an account. T
 **Length** : `1 - 34`|string
 |===
 
-[[_creditor_agent]]
-**Creditor Agent**
+[[_creditoragent]]
+**CreditorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -125,8 +125,8 @@ __required__|Unique and unambiguous identification of a person. +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_debtoraccount]]
+**DebtorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -170,8 +170,8 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"[A-Z]{3}"`|string
 |===
 
-[[_remittance_information]]
-**Remittance Information**
+[[_remittanceinformation]]
+**RemittanceInformation**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -242,6 +242,8 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -274,15 +276,15 @@ __optional__|Specifies the status of the payment submission resource.|enum (Acce
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
@@ -292,19 +294,19 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Consumes
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Tags
@@ -366,6 +368,8 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -398,15 +402,15 @@ __optional__|Specifies the status of the payment submission resource.|enum (Acce
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
@@ -416,14 +420,14 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Tags
@@ -488,13 +492,13 @@ __Flags__ : required
 |===
 |Name|Schema
 |**Data** +
-__required__|<<_payment_setup,Payment Setup>>
+__required__|<<_paymentsetup,PaymentSetup>>
 |**Risk** +
 __required__|<<_risk,Risk>>
 |===
 
-[[_payment_setup]]
-**Payment Setup**
+[[_paymentsetup]]
+**PaymentSetup**
 
 [options="header", cols=".^3,.^4"]
 |===
@@ -510,11 +514,11 @@ __required__|<<_payments_post_initiation,Initiation>>
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
 __optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
@@ -526,11 +530,11 @@ __required__|Amount of money to be moved between the debtor and creditor, before
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittanceinformation,RemittanceInformation>>
 |===
 
-[[_creditor_account]]
-**Creditor Account**
+[[_creditoraccount]]
+**CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -548,8 +552,8 @@ __optional__|Identification assigned by an institution to identify an account. T
 **Length** : `1 - 34`|string
 |===
 
-[[_creditor_agent]]
-**Creditor Agent**
+[[_creditoragent]]
+**CreditorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -561,8 +565,8 @@ __required__|Unique and unambiguous identification of a person. +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_debtoraccount]]
+**DebtorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -606,8 +610,8 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"[A-Z]{3}"`|string
 |===
 
-[[_remittance_information]]
-**Remittance Information**
+[[_remittanceinformation]]
+**RemittanceInformation**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -678,6 +682,8 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -689,7 +695,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |===
 |Name|Description|Schema
 |**Data** +
-__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_payment_setup_response,Payment Setup Response>>
+__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_paymentsetupresponse,PaymentSetupResponse>>
 |**Links** +
 __required__|Link URIs relevant to the payload|<<_payments_post_links,Links>>
 |**Meta** +
@@ -698,8 +704,8 @@ __required__|Meta Data Relevant to the payload|<<_payments_post_meta,Meta>>
 __required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
 |===
 
-[[_payment_setup_response]]
-**Payment Setup Response**
+[[_paymentsetupresponse]]
+**PaymentSetupResponse**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -707,7 +713,7 @@ __required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
 |**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**Initiation** +
-__required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_payment_setup_response_initiation,Initiation>>
+__required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_paymentsetupresponse_initiation,Initiation>>
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 128`|string
@@ -715,34 +721,34 @@ __required__|OB: Unique identification as assigned by the ASPSP to uniquely iden
 __optional__|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)
 |===
 
-[[_payment_setup_response_initiation]]
+[[_paymentsetupresponse_initiation]]
 **Initiation**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
 __optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
 __required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field. +
 **Length** : `1 - 35`|string
 |**InstructedAmount** +
-__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payment_setup_response_initiation_instructedamount,InstructedAmount>>
+__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_paymentsetupresponse_initiation_instructedamount,InstructedAmount>>
 |**InstructionIdentification** +
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittanceinformation,RemittanceInformation>>
 |===
 
-[[_creditor_account]]
-**Creditor Account**
+[[_creditoraccount]]
+**CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -760,8 +766,8 @@ __optional__|Identification assigned by an institution to identify an account. T
 **Length** : `1 - 34`|string
 |===
 
-[[_creditor_agent]]
-**Creditor Agent**
+[[_creditoragent]]
+**CreditorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -773,8 +779,8 @@ __required__|Unique and unambiguous identification of a person. +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_debtoraccount]]
+**DebtorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -805,7 +811,7 @@ __required__|Unique and unambiguous identification of a person. +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_payment_setup_response_initiation_instructedamount]]
+[[_paymentsetupresponse_initiation_instructedamount]]
 **InstructedAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -818,8 +824,8 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"[A-Z]{3}"`|string
 |===
 
-[[_remittance_information]]
-**Remittance Information**
+[[_remittanceinformation]]
+**RemittanceInformation**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -838,15 +844,15 @@ __optional__|Information supplied to enable the matching/reconciliation of an en
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
@@ -856,7 +862,7 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
@@ -908,12 +914,12 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 
 ==== Consumes
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Tags
@@ -975,6 +981,8 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
 |**403**|Forbidden|No Content
+|**405**|Method Not Allowed|No Content
+|**406**|Not Acceptable|No Content
 |**429**|Too Many Requests|No Content
 |**500**|Internal Server Error|No Content
 |===
@@ -986,7 +994,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |===
 |Name|Description|Schema
 |**Data** +
-__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_payment_setup_response,Payment Setup Response>>
+__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_paymentsetupresponse,PaymentSetupResponse>>
 |**Links** +
 __required__|Link URIs relevant to the payload|<<_payments_paymentid_get_links,Links>>
 |**Meta** +
@@ -995,8 +1003,8 @@ __required__|Meta Data Relevant to the payload|<<_payments_paymentid_get_meta,Me
 __required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
 |===
 
-[[_payment_setup_response]]
-**Payment Setup Response**
+[[_paymentsetupresponse]]
+**PaymentSetupResponse**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1004,7 +1012,7 @@ __required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
 |**CreationDateTime** +
 __required__|Date and time at which the resource was created.|string (date-time)
 |**Initiation** +
-__required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_payment_setup_response_initiation,Initiation>>
+__required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_paymentsetupresponse_initiation,Initiation>>
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 128`|string
@@ -1012,34 +1020,34 @@ __required__|OB: Unique identification as assigned by the ASPSP to uniquely iden
 __optional__|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)
 |===
 
-[[_payment_setup_response_initiation]]
+[[_paymentsetupresponse_initiation]]
 **Initiation**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
 |**CreditorAccount** +
-__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditor_account,Creditor Account>>
+__required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditor_agent,Creditor Agent>>
+__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
-__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtor_account,Debtor Account>>
+__optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
 __optional__|Financial institution servicing an account for the debtor.|<<_debtoragent,DebtorAgent>>
 |**EndToEndIdentification** +
 __required__|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field. +
 **Length** : `1 - 35`|string
 |**InstructedAmount** +
-__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_payment_setup_response_initiation_instructedamount,InstructedAmount>>
+__required__|Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.|<<_paymentsetupresponse_initiation_instructedamount,InstructedAmount>>
 |**InstructionIdentification** +
 __required__|Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction. +
 **Length** : `1 - 35`|string
 |**RemittanceInformation** +
-__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittance_information,Remittance Information>>
+__optional__|Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.|<<_remittanceinformation,RemittanceInformation>>
 |===
 
-[[_creditor_account]]
-**Creditor Account**
+[[_creditoraccount]]
+**CreditorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1057,8 +1065,8 @@ __optional__|Identification assigned by an institution to identify an account. T
 **Length** : `1 - 34`|string
 |===
 
-[[_creditor_agent]]
-**Creditor Agent**
+[[_creditoragent]]
+**CreditorAgent**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1070,8 +1078,8 @@ __required__|Unique and unambiguous identification of a person. +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_debtor_account]]
-**Debtor Account**
+[[_debtoraccount]]
+**DebtorAccount**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1102,7 +1110,7 @@ __required__|Unique and unambiguous identification of a person. +
 __required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
 |===
 
-[[_payment_setup_response_initiation_instructedamount]]
+[[_paymentsetupresponse_initiation_instructedamount]]
 **InstructedAmount**
 
 [options="header", cols=".^3,.^11,.^4"]
@@ -1115,8 +1123,8 @@ __required__|A code allocated to a currency by a Maintenance Agency under an int
 **Pattern** : `"[A-Z]{3}"`|string
 |===
 
-[[_remittance_information]]
-**Remittance Information**
+[[_remittanceinformation]]
+**RemittanceInformation**
 
 [options="header", cols=".^3,.^11,.^4"]
 |===
@@ -1135,15 +1143,15 @@ __optional__|Information supplied to enable the matching/reconciliation of an en
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**first** +
+|**First** +
 __optional__|string (uri)
-|**last** +
+|**Last** +
 __optional__|string (uri)
-|**next** +
+|**Next** +
 __optional__|string (uri)
-|**prev** +
+|**Prev** +
 __optional__|string (uri)
-|**self** +
+|**Self** +
 __required__|string (uri)
 |===
 
@@ -1153,7 +1161,7 @@ __required__|string (uri)
 [options="header", cols=".^3,.^4"]
 |===
 |Name|Schema
-|**total-pages** +
+|**TotalPages** +
 __optional__|integer (int32)
 |===
 
@@ -1205,7 +1213,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 
 ==== Produces
 
-* `application/json`
+* `application/json; charset=utf-8`
 
 
 ==== Tags

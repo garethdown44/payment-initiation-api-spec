@@ -501,7 +501,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_version_information">1.1. Version information</h3>
 <div class="paragraph">
-<p><em>Version</em> : v1.0.0</p>
+<p><em>Version</em> : v1.0.1</p>
 </div>
 </div>
 <div class="sect2">
@@ -541,7 +541,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
@@ -659,7 +659,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_submission">Payment Submission</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsubmission">PaymentSubmission</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
@@ -668,8 +668,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_submission" class="paragraph">
-<p><strong>Payment Submission</strong></p>
+<div id="_paymentsubmission" class="paragraph">
+<p><strong>PaymentSubmission</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -721,19 +721,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoraccount">DebtorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
@@ -765,12 +765,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittanceinformation">RemittanceInformation</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_creditor_account" class="paragraph">
-<p><strong>Creditor Account</strong></p>
+<div id="_creditoraccount" class="paragraph">
+<p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -815,8 +815,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_creditor_agent" class="paragraph">
-<p><strong>Creditor Agent</strong></p>
+<div id="_creditoragent" class="paragraph">
+<p><strong>CreditorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -847,8 +847,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_debtor_account" class="paragraph">
-<p><strong>Debtor Account</strong></p>
+<div id="_debtoraccount" class="paragraph">
+<p><strong>DebtorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -957,8 +957,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_remittance_information" class="paragraph">
-<p><strong>Remittance Information</strong></p>
+<div id="_remittanceinformation" class="paragraph">
+<p><strong>RemittanceInformation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1142,6 +1142,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method Not Allowed</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>406</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Acceptable</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
@@ -1226,27 +1236,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>First</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Last</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Next</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Prev</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
@@ -1268,7 +1278,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>total-pages</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
@@ -1280,7 +1290,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
@@ -1290,7 +1300,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
@@ -1447,6 +1457,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method Not Allowed</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>406</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Acceptable</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
@@ -1531,27 +1551,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>First</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Last</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Next</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Prev</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
@@ -1573,7 +1593,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>total-pages</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
@@ -1585,7 +1605,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
@@ -1738,7 +1758,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup">Payment Setup</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetup">PaymentSetup</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Risk</strong><br>
@@ -1747,8 +1767,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup" class="paragraph">
-<p><strong>Payment Setup</strong></p>
+<div id="_paymentsetup" class="paragraph">
+<p><strong>PaymentSetup</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1790,19 +1810,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoraccount">DebtorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
@@ -1834,12 +1854,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittanceinformation">RemittanceInformation</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_creditor_account" class="paragraph">
-<p><strong>Creditor Account</strong></p>
+<div id="_creditoraccount" class="paragraph">
+<p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1884,8 +1904,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_creditor_agent" class="paragraph">
-<p><strong>Creditor Agent</strong></p>
+<div id="_creditoragent" class="paragraph">
+<p><strong>CreditorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -1916,8 +1936,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_debtor_account" class="paragraph">
-<p><strong>Debtor Account</strong></p>
+<div id="_debtoraccount" class="paragraph">
+<p><strong>DebtorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2026,8 +2046,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_remittance_information" class="paragraph">
-<p><strong>Remittance Information</strong></p>
+<div id="_remittanceinformation" class="paragraph">
+<p><strong>RemittanceInformation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2211,6 +2231,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method Not Allowed</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>406</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Acceptable</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
@@ -2243,7 +2273,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response">Payment Setup Response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse">PaymentSetupResponse</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -2265,8 +2295,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_response" class="paragraph">
-<p><strong>Payment Setup Response</strong></p>
+<div id="_paymentsetupresponse" class="paragraph">
+<p><strong>PaymentSetupResponse</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2292,7 +2322,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Initiation</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response_initiation">Initiation</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse_initiation">Initiation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
@@ -2309,7 +2339,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_response_initiation" class="paragraph">
+<div id="_paymentsetupresponse_initiation" class="paragraph">
 <p><strong>Initiation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2330,19 +2360,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoraccount">DebtorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
@@ -2361,7 +2391,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructedAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response_initiation_instructedamount">InstructedAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse_initiation_instructedamount">InstructedAmount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructionIdentification</strong><br>
@@ -2374,12 +2404,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittanceinformation">RemittanceInformation</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_creditor_account" class="paragraph">
-<p><strong>Creditor Account</strong></p>
+<div id="_creditoraccount" class="paragraph">
+<p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2424,8 +2454,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_creditor_agent" class="paragraph">
-<p><strong>Creditor Agent</strong></p>
+<div id="_creditoragent" class="paragraph">
+<p><strong>CreditorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2456,8 +2486,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_debtor_account" class="paragraph">
-<p><strong>Debtor Account</strong></p>
+<div id="_debtoraccount" class="paragraph">
+<p><strong>DebtorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2534,7 +2564,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_response_initiation_instructedamount" class="paragraph">
+<div id="_paymentsetupresponse_initiation_instructedamount" class="paragraph">
 <p><strong>InstructedAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -2566,8 +2596,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_remittance_information" class="paragraph">
-<p><strong>Remittance Information</strong></p>
+<div id="_remittanceinformation" class="paragraph">
+<p><strong>RemittanceInformation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -2615,27 +2645,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>First</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Last</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Next</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Prev</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
@@ -2657,7 +2687,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>total-pages</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
@@ -2780,7 +2810,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
@@ -2790,7 +2820,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
@@ -2947,6 +2977,16 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>405</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Method Not Allowed</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>406</strong></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Not Acceptable</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>429</strong></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Too Many Requests</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">No Content</p></td>
@@ -2979,7 +3019,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response">Payment Setup Response</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse">PaymentSetupResponse</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -3001,8 +3041,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_response" class="paragraph">
-<p><strong>Payment Setup Response</strong></p>
+<div id="_paymentsetupresponse" class="paragraph">
+<p><strong>PaymentSetupResponse</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3028,7 +3068,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Initiation</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response_initiation">Initiation</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse_initiation">Initiation</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
@@ -3045,7 +3085,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_response_initiation" class="paragraph">
+<div id="_paymentsetupresponse_initiation" class="paragraph">
 <p><strong>Initiation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3066,19 +3106,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAccount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_account">Creditor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoraccount">CreditorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditor_agent">Creditor Agent</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAccount</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtor_account">Debtor Account</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_debtoraccount">DebtorAccount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>DebtorAgent</strong><br>
@@ -3097,7 +3137,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructedAmount</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment_setup_response_initiation_instructedamount">InstructedAmount</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse_initiation_instructedamount">InstructedAmount</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>InstructionIdentification</strong><br>
@@ -3110,12 +3150,12 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>RemittanceInformation</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittance_information">Remittance Information</a></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_remittanceinformation">RemittanceInformation</a></p></td>
 </tr>
 </tbody>
 </table>
-<div id="_creditor_account" class="paragraph">
-<p><strong>Creditor Account</strong></p>
+<div id="_creditoraccount" class="paragraph">
+<p><strong>CreditorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3160,8 +3200,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_creditor_agent" class="paragraph">
-<p><strong>Creditor Agent</strong></p>
+<div id="_creditoragent" class="paragraph">
+<p><strong>CreditorAgent</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3192,8 +3232,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_debtor_account" class="paragraph">
-<p><strong>Debtor Account</strong></p>
+<div id="_debtoraccount" class="paragraph">
+<p><strong>DebtorAccount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3270,7 +3310,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_payment_setup_response_initiation_instructedamount" class="paragraph">
+<div id="_paymentsetupresponse_initiation_instructedamount" class="paragraph">
 <p><strong>InstructedAmount</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
@@ -3302,8 +3342,8 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 </tbody>
 </table>
-<div id="_remittance_information" class="paragraph">
-<p><strong>Remittance Information</strong></p>
+<div id="_remittanceinformation" class="paragraph">
+<p><strong>RemittanceInformation</strong></p>
 </div>
 <table class="tableblock frame-all grid-all spread">
 <colgroup>
@@ -3351,27 +3391,27 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>first</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>First</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>last</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Last</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>next</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Next</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>prev</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Prev</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>self</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Self</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string (uri)</p></td>
 </tr>
@@ -3393,7 +3433,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>total-pages</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>TotalPages</strong><br>
 <em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">integer (int32)</p></td>
 </tr>
@@ -3516,7 +3556,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="ulist">
 <ul>
 <li>
-<p><code>application/json</code></p>
+<p><code>application/json; charset=utf-8</code></p>
 </li>
 </ul>
 </div>
