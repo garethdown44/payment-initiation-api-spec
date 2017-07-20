@@ -129,7 +129,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "[A-Z]{3}"
+                              "pattern": "^[A-Z]{3}$"
                             }
                           },
                           "required": [
@@ -391,7 +391,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "[A-Z]{2}"
+                          "pattern": "^[A-Z]{2}$"
                         }
                       },
                       "required": [
@@ -473,7 +473,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "[A-Z]{3}"
+                              "pattern": "^[A-Z]{3}$"
                             }
                           },
                           "required": [
@@ -737,7 +737,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "[A-Z]{2}"
+                          "pattern": "^[A-Z]{2}$"
                         }
                       },
                       "required": [
@@ -957,7 +957,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "[A-Z]{3}"
+                              "pattern": "^[A-Z]{3}$"
                             }
                           },
                           "required": [
@@ -1221,7 +1221,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "[A-Z]{2}"
+                          "pattern": "^[A-Z]{2}$"
                         }
                       },
                       "required": [
@@ -1443,7 +1443,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "[A-Z]{3}"
+                              "pattern": "^[A-Z]{3}$"
                             }
                           },
                           "required": [
@@ -1706,7 +1706,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "[A-Z]{2}"
+                          "pattern": "^[A-Z]{2}$"
                         }
                       },
                       "required": [
