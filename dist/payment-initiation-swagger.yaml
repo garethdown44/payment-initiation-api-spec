@@ -1572,7 +1572,7 @@ securityDefinitions:
     tokenUrl: /token
     authorizationUrl: /authorization
     scopes:
-      payment: Generic payment scope
+      payments: Generic payment scope
     description: 'OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU'
   TPPOAuth2Security:
     type: oauth2
