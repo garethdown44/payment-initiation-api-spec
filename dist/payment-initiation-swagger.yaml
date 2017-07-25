@@ -1569,17 +1569,15 @@ securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
     flow: accessCode
-    host: 'https://authserver.example/'
-    tokenUrl: /token
-    authorizationUrl: /authorization
+    tokenUrl: 'https://authserver.example/token'
+    authorizationUrl: 'https://authserver.example/authorization'
     scopes:
       payments: Generic payment scope
     description: 'OAuth flow, it is required when the PSU needs to perform SCA with the ASPSP when a TPP wants to access an ASPSP resource owned by the PSU'
   TPPOAuth2Security:
     type: oauth2
     flow: application
-    host: 'https://authserver.example/'
-    tokenUrl: /token
+    tokenUrl: 'https://authserver.example/token'
     scopes:
       tpp_client_credential: TPP Client Credential Scope
     description: TPP client credential authorisation flow with the ASPSP
