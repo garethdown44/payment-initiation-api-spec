@@ -47,4 +47,4 @@ post:
       $ref: ../../index.yaml#/responses/500ErrorResponse
   security:
     - PSUOAuth2Security:
-      - payment
+      - payments
