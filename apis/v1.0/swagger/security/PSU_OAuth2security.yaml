@@ -1,5 +1,6 @@
 type: oauth2
 flow: accessCode
+host: 'https://authserver.example/'
 tokenUrl: '/token'
 authorizationUrl: '/authorization'
 scopes:

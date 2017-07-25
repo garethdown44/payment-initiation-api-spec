@@ -1068,7 +1068,7 @@ paths:
         '500': *ref_11
       security:
         - PSUOAuth2Security:
-            - payment
+            - payments
         - TPPOAuth2Security:
             - tpp_client_credential
   /payment-submissions:
@@ -1458,7 +1458,7 @@ paths:
         '500': *ref_11
       security:
         - PSUOAuth2Security:
-            - payment
+            - payments
   '/payment-submissions/{PaymentSubmissionId}':
     get:
       tags:
@@ -1562,13 +1562,14 @@ paths:
         '500': *ref_11
       security:
         - PSUOAuth2Security:
-            - payment
+            - payments
         - TPPOAuth2Security:
             - tpp_client_credential
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
     flow: accessCode
+    host: 'https://authserver.example/'
     tokenUrl: /token
     authorizationUrl: /authorization
     scopes:
@@ -1577,6 +1578,7 @@ securityDefinitions:
   TPPOAuth2Security:
     type: oauth2
     flow: application
+    host: 'https://authserver.example/'
     tokenUrl: /token
     scopes:
       tpp_client_credential: TPP Client Credential Scope
