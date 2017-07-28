@@ -22,7 +22,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### URI scheme
-*BasePath* : /open-banking  
+*BasePath* : /open-banking/v1.0  
 *Schemes* : HTTPS
 
 
