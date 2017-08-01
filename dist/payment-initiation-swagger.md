@@ -142,7 +142,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
@@ -195,12 +195,19 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[PaymentSetupResponse](#paymentsetupresponse)|
 |**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payment-submissions-post-links)|
 |**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payment-submissions-post-meta)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
+
+<a name="paymentsetupresponse"></a>
+**PaymentSetupResponse**
+
+|Name|Description|Schema|
+|---|---|---|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
-|**Status**  <br>*optional*|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
+|**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
 
 <a name="payment-submissions-post-links"></a>
 **Links**
@@ -286,12 +293,19 @@ Get payment submission
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**Data**  <br>*required*|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|[PaymentSetupResponse](#paymentsetupresponse)|
 |**Links**  <br>*required*|Link URIs relevant to the payload|[Links](#payment-submissions-paymentsubmissionid-get-links)|
 |**Meta**  <br>*required*|Meta Data Relevant to the payload|[Meta](#payment-submissions-paymentsubmissionid-get-meta)|
-|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
+
+<a name="paymentsetupresponse"></a>
+**PaymentSetupResponse**
+
+|Name|Description|Schema|
+|---|---|---|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
-|**Status**  <br>*optional*|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
+|**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
 
 <a name="payment-submissions-paymentsubmissionid-get-links"></a>
 **Links**
@@ -430,7 +444,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
@@ -553,7 +567,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
@@ -741,7 +755,7 @@ Get a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**Amount**  <br>*required*|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string|
+|**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
 |**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
 
 <a name="remittanceinformation"></a>
