@@ -2,22 +2,9 @@
   "title": "Payment Submit GET Response",
   "type": "object",
   "properties": {
-    "PaymentSubmissionId": {
-      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
-      "$ref": "../definitions/common/max_40_text.json"
-    },
-    "PaymentId": {
-      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-      "$ref": "../definitions/common/max_128_text.json"
-    },
-    "Status": {
-      "description": "Specifies the status of the payment submission resource.",
-      "$ref": "../definitions/payments/payment_submission_status.json"
-    },
-    "CreationDateTime": {
-      "description": "Date and time at which the resource was created.",
-      "type": "string",
-      "format": "date-time"
+    "Data": {
+      "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
+      "$ref": "../definitions/data/payment_submission_response.json"
     },
     "Links": {
       "$ref": "../definitions/common/links_self.json"
@@ -27,9 +14,7 @@
     }
   },
   "required": [
-    "PaymentSubmissionId",
-    "PaymentId",
-    "CreationDateTime",
+    "Data",
     "Links",
     "Meta"
   ],

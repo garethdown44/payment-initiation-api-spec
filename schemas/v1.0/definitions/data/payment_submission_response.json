@@ -1,0 +1,30 @@
+{
+  "title": "PaymentSetupResponse",
+  "description": "Payment Setup Response",
+  "type": "object",
+  "properties": {
+    "PaymentSubmissionId": {
+      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
+      "$ref": "../common/max_40_text.json"
+    },
+    "PaymentId": {
+      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
+      "$ref": "../common/max_40_text.json"
+    },
+    "Status": {
+      "description": "Specifies the status of the payment resource.",
+      "$ref": "../payments/payment_submission_status.json"
+    },
+    "CreationDateTime": {
+      "description": "Date and time at which the resource was created.",
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "PaymentSubmissionId",
+    "PaymentId",
+    "CreationDateTime"
+  ],
+  "additionalProperties": false
+}
