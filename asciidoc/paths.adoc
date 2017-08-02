@@ -164,7 +164,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -254,20 +254,30 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+|**Data** +
+__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_paymentsetupresponse,PaymentSetupResponse>>
 |**Links** +
 __required__|Link URIs relevant to the payload|<<_payment-submissions_post_links,Links>>
 |**Meta** +
 __required__|Meta Data Relevant to the payload|<<_payment-submissions_post_meta,Meta>>
+|===
+
+[[_paymentsetupresponse]]
+**PaymentSetupResponse**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**CreationDateTime** +
+__required__|Date and time at which the resource was created.|string (date-time)
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 128`|string
+**Length** : `1 - 40`|string
 |**PaymentSubmissionId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
 **Length** : `1 - 40`|string
 |**Status** +
-__optional__|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)
+__optional__|Specifies the status of the payment resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)
 |===
 
 [[_payment-submissions_post_links]]
@@ -380,20 +390,30 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 [options="header", cols=".^3,.^11,.^4"]
 |===
 |Name|Description|Schema
-|**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+|**Data** +
+__required__|Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp|<<_paymentsetupresponse,PaymentSetupResponse>>
 |**Links** +
 __required__|Link URIs relevant to the payload|<<_payment-submissions_paymentsubmissionid_get_links,Links>>
 |**Meta** +
 __required__|Meta Data Relevant to the payload|<<_payment-submissions_paymentsubmissionid_get_meta,Meta>>
+|===
+
+[[_paymentsetupresponse]]
+**PaymentSetupResponse**
+
+[options="header", cols=".^3,.^11,.^4"]
+|===
+|Name|Description|Schema
+|**CreationDateTime** +
+__required__|Date and time at which the resource was created.|string (date-time)
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 128`|string
+**Length** : `1 - 40`|string
 |**PaymentSubmissionId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
 **Length** : `1 - 40`|string
 |**Status** +
-__optional__|Specifies the status of the payment submission resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)
+__optional__|Specifies the status of the payment resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)
 |===
 
 [[_payment-submissions_paymentsubmissionid_get_links]]
@@ -604,7 +624,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -818,7 +838,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
 **Pattern** : `"^[A-Z]{3}$"`|string
@@ -1117,7 +1137,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 |===
 |Name|Description|Schema
 |**Amount** +
-__required__|**Pattern** : `"^-?\\d{1,13}\\.\\d{1,5}$"`|string
+__required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
 **Pattern** : `"^[A-Z]{3}$"`|string

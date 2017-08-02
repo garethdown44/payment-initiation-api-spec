@@ -124,7 +124,7 @@
                           "properties": {
                             "Amount": {
                               "type": "string",
-                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                             },
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
@@ -468,7 +468,7 @@
                           "properties": {
                             "Amount": {
                               "type": "string",
-                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                             },
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
@@ -952,7 +952,7 @@
                           "properties": {
                             "Amount": {
                               "type": "string",
-                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                             },
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
@@ -1438,7 +1438,7 @@
                           "properties": {
                             "Amount": {
                               "type": "string",
-                              "pattern": "^-?\\d{1,13}\\.\\d{1,5}$"
+                              "pattern": "^\\d{1,13}\\.\\d{1,5}$"
                             },
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
@@ -1734,33 +1734,46 @@
               "title": "Payment Submit POST 201 Response",
               "type": "object",
               "properties": {
-                "PaymentSubmissionId": {
-                  "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 40
-                },
-                "PaymentId": {
-                  "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                "Status": {
-                  "description": "Specifies the status of the payment submission resource.",
-                  "title": "PaymentSubmissionStatusCode",
-                  "type": "string",
-                  "enum": [
-                    "AcceptedSettlementCompleted",
-                    "AcceptedSettlementInProcess",
-                    "Pending",
-                    "Rejected"
-                  ]
-                },
-                "CreationDateTime": {
-                  "description": "Date and time at which the resource was created.",
-                  "type": "string",
-                  "format": "date-time"
+                "Data": {
+                  "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
+                  "title": "PaymentSetupResponse",
+                  "type": "object",
+                  "properties": {
+                    "PaymentSubmissionId": {
+                      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "PaymentId": {
+                      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "Status": {
+                      "description": "Specifies the status of the payment resource.",
+                      "title": "PaymentSubmissionStatusCode",
+                      "type": "string",
+                      "enum": [
+                        "AcceptedSettlementCompleted",
+                        "AcceptedSettlementInProcess",
+                        "Pending",
+                        "Rejected"
+                      ]
+                    },
+                    "CreationDateTime": {
+                      "description": "Date and time at which the resource was created.",
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "PaymentSubmissionId",
+                    "PaymentId",
+                    "CreationDateTime"
+                  ],
+                  "additionalProperties": false
                 },
                 "Links": {
                   "type": "object",
@@ -1805,9 +1818,7 @@
                 }
               },
               "required": [
-                "PaymentSubmissionId",
-                "PaymentId",
-                "CreationDateTime",
+                "Data",
                 "Links",
                 "Meta"
               ],
@@ -1917,33 +1928,46 @@
               "title": "Payment Submit GET Response",
               "type": "object",
               "properties": {
-                "PaymentSubmissionId": {
-                  "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 40
-                },
-                "PaymentId": {
-                  "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-                  "type": "string",
-                  "minLength": 1,
-                  "maxLength": 128
-                },
-                "Status": {
-                  "description": "Specifies the status of the payment submission resource.",
-                  "title": "PaymentSubmissionStatusCode",
-                  "type": "string",
-                  "enum": [
-                    "AcceptedSettlementCompleted",
-                    "AcceptedSettlementInProcess",
-                    "Pending",
-                    "Rejected"
-                  ]
-                },
-                "CreationDateTime": {
-                  "description": "Date and time at which the resource was created.",
-                  "type": "string",
-                  "format": "date-time"
+                "Data": {
+                  "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
+                  "title": "PaymentSetupResponse",
+                  "type": "object",
+                  "properties": {
+                    "PaymentSubmissionId": {
+                      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "PaymentId": {
+                      "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
+                      "type": "string",
+                      "minLength": 1,
+                      "maxLength": 40
+                    },
+                    "Status": {
+                      "description": "Specifies the status of the payment resource.",
+                      "title": "PaymentSubmissionStatusCode",
+                      "type": "string",
+                      "enum": [
+                        "AcceptedSettlementCompleted",
+                        "AcceptedSettlementInProcess",
+                        "Pending",
+                        "Rejected"
+                      ]
+                    },
+                    "CreationDateTime": {
+                      "description": "Date and time at which the resource was created.",
+                      "type": "string",
+                      "format": "date-time"
+                    }
+                  },
+                  "required": [
+                    "PaymentSubmissionId",
+                    "PaymentId",
+                    "CreationDateTime"
+                  ],
+                  "additionalProperties": false
                 },
                 "Links": {
                   "type": "object",
@@ -1988,9 +2012,7 @@
                 }
               },
               "required": [
-                "PaymentSubmissionId",
-                "PaymentId",
-                "CreationDateTime",
+                "Data",
                 "Links",
                 "Meta"
               ],

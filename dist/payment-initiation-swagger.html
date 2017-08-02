@@ -945,7 +945,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1181,10 +1181,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse">PaymentSetupResponse</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -1198,11 +1198,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data Relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment-submissions_post_meta">Meta</a></p></td>
 </tr>
+</tbody>
+</table>
+<div id="_paymentsetupresponse" class="paragraph">
+<p><strong>PaymentSetupResponse</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
-<strong>Length</strong> : <code>1 - 128</code></p></td>
+<strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1215,7 +1240,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the payment submission resource.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the payment resource.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)</p></td>
 </tr>
 </tbody>
@@ -1496,10 +1521,10 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Data</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_paymentsetupresponse">PaymentSetupResponse</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Links</strong><br>
@@ -1513,11 +1538,36 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Meta Data Relevant to the payload</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_payment-submissions_paymentsubmissionid_get_meta">Meta</a></p></td>
 </tr>
+</tbody>
+</table>
+<div id="_paymentsetupresponse" class="paragraph">
+<p><strong>PaymentSetupResponse</strong></p>
+</div>
+<table class="tableblock frame-all grid-all spread">
+<colgroup>
+<col style="width: 16.6666%;">
+<col style="width: 61.1111%;">
+<col style="width: 22.2223%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-middle">Name</th>
+<th class="tableblock halign-left valign-middle">Description</th>
+<th class="tableblock halign-left valign-middle">Schema</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreationDateTime</strong><br>
+<em>required</em></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Date and time at which the resource was created.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">string (date-time)</p></td>
+</tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>PaymentId</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.<br>
-<strong>Length</strong> : <code>1 - 128</code></p></td>
+<strong>Length</strong> : <code>1 - 40</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1530,7 +1580,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Status</strong><br>
 <em>optional</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the payment submission resource.</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">Specifies the status of the payment resource.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)</p></td>
 </tr>
 </tbody>
@@ -2034,7 +2084,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2584,7 +2634,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -3330,7 +3380,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Amount</strong><br>
 <em>required</em></p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^-?\\d{1,13}\\.\\d{1,5}$"</code></p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Pattern</strong> : <code>"^\\d{1,13}\\.\\d{1,5}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
