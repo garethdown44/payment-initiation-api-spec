@@ -1,0 +1,11 @@
+{
+  "title": "PaymentSubmissionStatusCode",
+  "description": "Specifies the status of the payment submission resource.",
+  "type": "string",
+  "enum": [
+    "AcceptedSettlementCompleted",
+    "AcceptedSettlementInProcess",
+    "Pending",
+    "Rejected"
+  ]
+}

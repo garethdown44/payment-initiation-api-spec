@@ -1,0 +1,50 @@
+post:
+  tags:
+   - Payments
+  summary: Create a payment submission
+  description: Submit a previously setup payment
+  operationId: CreatePaymentSubmission
+  consumes:
+    - $ref: ../../definitions/mime_type.yaml
+  produces:
+    - $ref: ../../definitions/mime_type.yaml
+  parameters:
+    - $ref: "../../parameters/index.yaml#/x-idempotency-key"
+    - $ref: ../../headers/fapi.yaml
+    - $ref: ../../headers/auth.yaml
+    - $ref: ../../headers/jws.yaml
+    - name: body
+      in: body
+      description: Setup a single immediate payment
+      required: true
+      schema:
+        $ref: ../../../../../compiled/schemas/v1.0/payments/payment_submit.post.request.schema.yaml
+  responses:
+    201:
+      description: Payment submit resource successfully created
+      schema:
+        $ref: ../../../../../compiled/schemas/v1.0/payments/payment_submit.post.201.response.schema.yaml
+      headers:
+        x-jws-signature:
+          type: string
+          description: Header containing a detached JWS signature of the body of the payload.
+        x-fapi-interaction-id:
+          type: string
+          description: An RFC4122 UID used as a correlation id.
+    400:
+      $ref: ../../index.yaml#/responses/400ErrorResponse
+    401:
+      $ref: ../../index.yaml#/responses/401ErrorResponse
+    403:
+      $ref: ../../index.yaml#/responses/403ErrorResponse
+    405:
+      $ref: ../../index.yaml#/responses/405ErrorResponse
+    406:
+      $ref: ../../index.yaml#/responses/406ErrorResponse
+    429:
+      $ref: ../../index.yaml#/responses/429ErrorResponse
+    500:
+      $ref: ../../index.yaml#/responses/500ErrorResponse
+  security:
+    - PSUOAuth2Security:
+      - payments

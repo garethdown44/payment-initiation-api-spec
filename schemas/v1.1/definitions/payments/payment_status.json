@@ -1,0 +1,11 @@
+{
+  "title": "PaymentStatusCode",
+  "description": "Specifies the status of the payment resource.",
+  "type": "string",
+  "enum": [
+    "AcceptedCustomerProfile",
+    "AcceptedTechnicalValidation",
+    "Pending",
+    "Rejected"
+  ]
+}

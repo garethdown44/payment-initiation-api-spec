@@ -1,0 +1,6 @@
+{
+  "description": "Min3Max4 text",
+  "type": "string",
+  "minLength": 3,
+  "maxLength": 4
+}

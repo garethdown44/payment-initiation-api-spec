@@ -1,0 +1,29 @@
+{
+  "title": "CreditorAccount",
+  "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+  "type": "object",
+  "properties": {
+    "SchemeName": {
+      "description": "Name of the identification scheme, in a coded form as published in an external list.",
+      "$ref": "../common/external_account_identification_code.json"
+    },
+    "Identification": {
+      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+      "$ref": "../common/max_34_text.json"
+    },
+    "Name": {
+      "description": "Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.",
+      "$ref": "../common/max_70_text.json"
+    },
+    "SecondaryIdentification": {
+      "description": "Identification assigned by an institution to identify an account. This identification is known by the account owner.",
+      "$ref": "../common/max_34_text.json"
+    }
+  },
+  "required": [
+    "SchemeName",
+    "Identification",
+    "Name"
+  ],
+  "additionalProperties": false
+}

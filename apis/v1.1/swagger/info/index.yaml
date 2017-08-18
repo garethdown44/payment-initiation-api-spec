@@ -1,0 +1,11 @@
+title: Payment Initiation APIs
+description: Draft Swagger specification for Payment Initiation
+termsOfService: https://www.openbanking.org.uk/terms
+contact:
+  #we need team email
+  name: Craig Greenhouse
+  email: craig.greenhouse@openbanking.org.uk
+license:
+  name: open-licence
+  url: https://www.openbanking.org.uk/open-licence
+version: v1.0.1
