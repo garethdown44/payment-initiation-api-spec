@@ -1,0 +1,11 @@
+{
+  "type": "object",
+  "description": "Meta Data Relevant to the payload",
+  "properties": {
+    "TotalPages": {
+      "type": "integer",
+      "format": "int32"
+    }
+  },
+  "additionalProperties": false
+}

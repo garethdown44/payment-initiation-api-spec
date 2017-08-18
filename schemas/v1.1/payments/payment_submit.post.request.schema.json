@@ -1,0 +1,20 @@
+{
+  "title": "Payment Submission POST request",
+  "description": "Allows Submission of a payment",
+  "type": "object",
+  "properties": {
+    "Data": {
+      "description": "",
+      "$ref": "../definitions/data/payment_submission.json"
+    },
+    "Risk": {
+      "description": "",
+      "$ref": "../definitions/common/risk.json"
+    }
+  },
+  "required": [
+    "Data",
+    "Risk"
+  ],
+  "additionalProperties": false
+}

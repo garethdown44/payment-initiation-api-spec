@@ -10,8 +10,8 @@ const fs = require('fs');
 
 var ajv = new Ajv();
 //Example usage:
-// node flatten-json.js ../opendata-api-spec/schemas/v1.0/ ./dist ../opendata-api-spec/
-// jsonPath: ../opendata-api-spec/schemas/v1.0/  location where all jsonSchemas are, which require flattening
+// node flatten-json.js ../opendata-api-spec/schemas/v1.1/ ./dist ../opendata-api-spec/
+// jsonPath: ../opendata-api-spec/schemas/v1.1/  location where all jsonSchemas are, which require flattening
 // distPath: location/path to write the flattened schemas to
 // schemasRootPath: root path where all schemas are present
 

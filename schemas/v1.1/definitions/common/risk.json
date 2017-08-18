@@ -1,0 +1,24 @@
+{
+  "title": "Risk",
+  "description": "The Risk payload is sent by the initiating party to the ASPSP. It is used to specify additional details for risk scoring.",
+  "type": "object",
+  "properties": {
+    "PaymentContextCode": {
+      "description": "Specifies the payment context",
+      "$ref": "../payments/payment_context_code.json"
+    },
+    "MerchantCategoryCode": {
+      "description": "Category code conforms to ISO 18245, related to the type of services or goods the merchant provides for the transaction",
+      "$ref": "min_3_max_4_text.json"
+    },
+    "MerchantCustomerIdentification": {
+      "description": "The unique customer identifier of the PSU with the merchant.",
+      "$ref": "max_70_text.json"
+    },
+    "DeliveryAddress": {
+      "description": "Information that locates and identifies a specific address, as defined by postal services or in free format text.",
+      "$ref": "postal_address.json"
+    }
+  },
+  "additionalProperties": false
+}
