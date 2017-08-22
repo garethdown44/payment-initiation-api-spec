@@ -4,3 +4,4 @@ x-idempotency-key:
   description: Every request will be processed only once per x-idempotency-key
   required: true
   type: string
+  pattern: ^(?!\s)(.*)(\S)$
