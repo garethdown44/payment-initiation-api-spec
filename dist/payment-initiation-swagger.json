@@ -5,16 +5,16 @@
     "description": "Draft Swagger specification for Payment Initiation",
     "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
-      "name": "Craig Greenhouse",
-      "email": "craig.greenhouse@openbanking.org.uk"
+      "name": "Service Desk",
+      "email": "ServiceDesk@openbanking.org.uk"
     },
     "license": {
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0.1"
+    "version": "v1.1.0"
   },
-  "basePath": "/open-banking/v1.0",
+  "basePath": "/open-banking/v1.1",
   "schemes": [
     "https"
   ],
@@ -57,7 +57,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP.",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(, )(\\d{2})( )(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( )(\\d{4})( )(\\d{2})(:)(\\d{2})(:)(\\d{2})( )([A-Z]{3})$"
           },
           {
             "in": "header",
@@ -129,7 +130,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -148,8 +149,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -175,8 +175,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -214,8 +214,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -241,8 +240,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -296,7 +295,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -391,7 +389,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -473,7 +471,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -492,8 +490,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -519,8 +516,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -558,8 +555,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -585,8 +581,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -640,7 +636,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -737,7 +732,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -872,7 +867,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP.",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(, )(\\d{2})( )(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( )(\\d{4})( )(\\d{2})(:)(\\d{2})(:)(\\d{2})( )([A-Z]{3})$"
           },
           {
             "in": "header",
@@ -957,7 +953,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -976,8 +972,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1003,8 +998,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1042,8 +1037,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1069,8 +1063,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1124,7 +1118,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -1221,7 +1214,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -1365,7 +1358,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP.",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(, )(\\d{2})( )(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( )(\\d{4})( )(\\d{2})(:)(\\d{2})(:)(\\d{2})( )([A-Z]{3})$"
           },
           {
             "in": "header",
@@ -1443,7 +1437,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -1462,8 +1456,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1489,8 +1482,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1528,8 +1521,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1555,8 +1547,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1610,7 +1602,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -1706,7 +1697,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -1897,7 +1888,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP.",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(, )(\\d{2})( )(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( )(\\d{4})( )(\\d{2})(:)(\\d{2})(:)(\\d{2})( )([A-Z]{3})$"
           },
           {
             "in": "header",

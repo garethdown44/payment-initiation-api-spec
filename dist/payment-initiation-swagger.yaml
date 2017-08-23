@@ -4,13 +4,13 @@ info:
   description: Draft Swagger specification for Payment Initiation
   termsOfService: 'https://www.openbanking.org.uk/terms'
   contact:
-    name: Craig Greenhouse
-    email: craig.greenhouse@openbanking.org.uk
+    name: Service Desk
+    email: ServiceDesk@openbanking.org.uk
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.0.1
-basePath: /open-banking/v1.0
+  version: v1.1.0
+basePath: /open-banking/v1.1
 schemes:
   - https
 produces:
@@ -47,6 +47,7 @@ paths:
           type: string
           required: false
           description: The time when the PSU last logged in with the TPP.
+          pattern: '^(Mon|Tue|Wed|Thu|Fri|Sat|Sun)(, )(\d{2})( )(Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)( )(\d{4})( )(\d{2})(:)(\d{2})(:)(\d{2})( )([A-Z]{3})$'
         - &ref_2
           in: header
           name: x-fapi-customer-ip-address
@@ -119,7 +120,7 @@ paths:
                               A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO
                               4217 - Codes for the representation of currencies and funds.
                             type: string
-                            pattern: '^[A-Z]{3}$'
+                            pattern: '^[A-Z]{3,3}$'
                         required:
                           - Amount
                           - Currency
@@ -135,7 +136,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -155,8 +155,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -190,7 +190,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -210,8 +209,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -262,7 +261,6 @@ paths:
                       - InstructionIdentification
                       - EndToEndIdentification
                       - InstructedAmount
-                      - CreditorAgent
                       - CreditorAccount
                     additionalProperties: false
                 required:
@@ -340,7 +338,7 @@ paths:
                       Country:
                         description: 'Nation with its own government, occupying a particular territory.'
                         type: string
-                        pattern: '^[A-Z]{2}$'
+                        pattern: '^[A-Z]{2,2}$'
                     required:
                       - TownName
                       - Country
@@ -414,7 +412,7 @@ paths:
                               A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO
                               4217 - Codes for the representation of currencies and funds.
                             type: string
-                            pattern: '^[A-Z]{3}$'
+                            pattern: '^[A-Z]{3,3}$'
                         required:
                           - Amount
                           - Currency
@@ -430,7 +428,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -450,8 +447,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -485,7 +482,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -505,8 +501,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -557,7 +553,6 @@ paths:
                       - InstructionIdentification
                       - EndToEndIdentification
                       - InstructedAmount
-                      - CreditorAgent
                       - CreditorAccount
                     additionalProperties: false
                 required:
@@ -637,7 +632,7 @@ paths:
                       Country:
                         description: 'Nation with its own government, occupying a particular territory.'
                         type: string
-                        pattern: '^[A-Z]{2}$'
+                        pattern: '^[A-Z]{2,2}$'
                     required:
                       - TownName
                       - Country
@@ -787,7 +782,7 @@ paths:
                               A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO
                               4217 - Codes for the representation of currencies and funds.
                             type: string
-                            pattern: '^[A-Z]{3}$'
+                            pattern: '^[A-Z]{3,3}$'
                         required:
                           - Amount
                           - Currency
@@ -803,7 +798,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -823,8 +817,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -858,7 +852,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -878,8 +871,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -930,7 +923,6 @@ paths:
                       - InstructionIdentification
                       - EndToEndIdentification
                       - InstructedAmount
-                      - CreditorAgent
                       - CreditorAccount
                     additionalProperties: false
                 required:
@@ -1010,7 +1002,7 @@ paths:
                       Country:
                         description: 'Nation with its own government, occupying a particular territory.'
                         type: string
-                        pattern: '^[A-Z]{2}$'
+                        pattern: '^[A-Z]{2,2}$'
                     required:
                       - TownName
                       - Country
@@ -1143,7 +1135,7 @@ paths:
                               A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO
                               4217 - Codes for the representation of currencies and funds.
                             type: string
-                            pattern: '^[A-Z]{3}$'
+                            pattern: '^[A-Z]{3,3}$'
                         required:
                           - Amount
                           - Currency
@@ -1159,7 +1151,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -1179,8 +1170,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -1214,7 +1205,6 @@ paths:
                             type: string
                             enum:
                               - BICFI
-                              - UKSortCode
                           Identification:
                             description: Unique and unambiguous identification of a person.
                             type: string
@@ -1234,8 +1224,8 @@ paths:
                             title: SchemeName
                             type: string
                             enum:
-                              - BBAN
                               - IBAN
+                              - SortCodeAccountNumber
                           Identification:
                             description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
                             type: string
@@ -1286,7 +1276,6 @@ paths:
                       - InstructionIdentification
                       - EndToEndIdentification
                       - InstructedAmount
-                      - CreditorAgent
                       - CreditorAccount
                     additionalProperties: false
                 required:
@@ -1365,7 +1354,7 @@ paths:
                       Country:
                         description: 'Nation with its own government, occupying a particular territory.'
                         type: string
-                        pattern: '^[A-Z]{2}$'
+                        pattern: '^[A-Z]{2,2}$'
                     required:
                       - TownName
                       - Country
