@@ -501,14 +501,14 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_version_information">1.1. Version information</h3>
 <div class="paragraph">
-<p><em>Version</em> : v1.0.1</p>
+<p><em>Version</em> : v1.1.0</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_contact_information">1.2. Contact information</h3>
 <div class="paragraph">
-<p><em>Contact</em> : Craig Greenhouse<br>
-<em>Contact Email</em> : <a href="mailto:craig.greenhouse@openbanking.org.uk">craig.greenhouse@openbanking.org.uk</a></p>
+<p><em>Contact</em> : Service Desk<br>
+<em>Contact Email</em> : <a href="mailto:ServiceDesk@openbanking.org.uk">ServiceDesk@openbanking.org.uk</a></p>
 </div>
 </div>
 <div class="sect2">
@@ -522,7 +522,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect2">
 <h3 id="_uri_scheme">1.4. URI scheme</h3>
 <div class="paragraph">
-<p><em>BasePath</em> : /open-banking/v1.0<br>
+<p><em>BasePath</em> : /open-banking/v1.1<br>
 <em>Schemes</em> : HTTPS</p>
 </div>
 </div>
@@ -725,7 +725,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
@@ -804,7 +804,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -843,7 +843,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -882,7 +882,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -921,7 +921,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -952,7 +952,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -1069,7 +1069,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Country</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Nation with its own government, occupying a particular territory.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{2}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{2,2}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -1864,7 +1864,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
@@ -1943,7 +1943,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -1982,7 +1982,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2021,7 +2021,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -2060,7 +2060,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2091,7 +2091,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -2208,7 +2208,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Country</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Nation with its own government, occupying a particular territory.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{2}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{2,2}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -2414,7 +2414,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
@@ -2493,7 +2493,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -2532,7 +2532,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2571,7 +2571,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -2610,7 +2610,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -2641,7 +2641,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -2822,7 +2822,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Country</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Nation with its own government, occupying a particular territory.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{2}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{2,2}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>
@@ -3160,7 +3160,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>CreditorAgent</strong><br>
-<em>required</em></p></td>
+<em>optional</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Financial institution servicing an account for the creditor.</p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><a href="#_creditoragent">CreditorAgent</a></p></td>
 </tr>
@@ -3239,7 +3239,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -3278,7 +3278,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -3317,7 +3317,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BBAN, IBAN)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (IBAN, SortCodeAccountNumber)</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SecondaryIdentification</strong><br>
@@ -3356,7 +3356,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>SchemeName</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Name of the identification scheme, in a coded form as published in an external list.</p></td>
-<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI, UKSortCode)</p></td>
+<td class="tableblock halign-left valign-middle"><p class="tableblock">enum (BICFI)</p></td>
 </tr>
 </tbody>
 </table>
@@ -3387,7 +3387,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Currency</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{3}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{3,3}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 </tbody>
@@ -3568,7 +3568,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <td class="tableblock halign-left valign-middle"><p class="tableblock"><strong>Country</strong><br>
 <em>required</em></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">Nation with its own government, occupying a particular territory.<br>
-<strong>Pattern</strong> : <code>"^[A-Z]{2}$"</code></p></td>
+<strong>Pattern</strong> : <code>"^[A-Z]{2,2}$"</code></p></td>
 <td class="tableblock halign-left valign-middle"><p class="tableblock">string</p></td>
 </tr>
 <tr>

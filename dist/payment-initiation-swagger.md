@@ -7,12 +7,12 @@ Draft Swagger specification for Payment Initiation
 
 
 ### Version information
-*Version* : v1.0.1
+*Version* : v1.1.0
 
 
 ### Contact information
-*Contact* : Craig Greenhouse  
-*Contact Email* : craig.greenhouse@openbanking.org.uk
+*Contact* : Service Desk  
+*Contact Email* : ServiceDesk@openbanking.org.uk
 
 
 ### License information
@@ -22,7 +22,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### URI scheme
-*BasePath* : /open-banking/v1.0  
+*BasePath* : /open-banking/v1.1  
 *Schemes* : HTTPS
 
 
@@ -93,7 +93,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**CreditorAgent**  <br>*optional*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
@@ -108,7 +108,7 @@ Setup a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="creditoragent"></a>
@@ -117,7 +117,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="debtoraccount"></a>
 **DebtorAccount**
@@ -126,7 +126,7 @@ Setup a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="debtoragent"></a>
@@ -135,7 +135,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="payment-submissions-post-initiation-instructedamount"></a>
 **InstructedAmount**
@@ -143,7 +143,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -170,7 +170,7 @@ Setup a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2,2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
@@ -395,7 +395,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**CreditorAgent**  <br>*optional*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
@@ -410,7 +410,7 @@ Setup a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="creditoragent"></a>
@@ -419,7 +419,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="debtoraccount"></a>
 **DebtorAccount**
@@ -428,7 +428,7 @@ Setup a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="debtoragent"></a>
@@ -437,7 +437,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="payments-post-initiation-instructedamount"></a>
 **InstructedAmount**
@@ -445,7 +445,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -472,7 +472,7 @@ Setup a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2,2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
@@ -518,7 +518,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**CreditorAgent**  <br>*optional*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
@@ -533,7 +533,7 @@ Setup a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="creditoragent"></a>
@@ -542,7 +542,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="debtoraccount"></a>
 **DebtorAccount**
@@ -551,7 +551,7 @@ Setup a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="debtoragent"></a>
@@ -560,7 +560,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="paymentsetupresponse-initiation-instructedamount"></a>
 **InstructedAmount**
@@ -568,7 +568,7 @@ Setup a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -613,7 +613,7 @@ Setup a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2,2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|
@@ -706,7 +706,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**CreditorAccount**  <br>*required*|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|[CreditorAccount](#creditoraccount)|
-|**CreditorAgent**  <br>*required*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
+|**CreditorAgent**  <br>*optional*|Financial institution servicing an account for the creditor.|[CreditorAgent](#creditoragent)|
 |**DebtorAccount**  <br>*optional*|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|[DebtorAccount](#debtoraccount)|
 |**DebtorAgent**  <br>*optional*|Financial institution servicing an account for the debtor.|[DebtorAgent](#debtoragent)|
 |**EndToEndIdentification**  <br>*required*|Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.  <br>**Length** : `1 - 35`|string|
@@ -721,7 +721,7 @@ Get a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*required*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="creditoragent"></a>
@@ -730,7 +730,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="debtoraccount"></a>
 **DebtorAccount**
@@ -739,7 +739,7 @@ Get a single immediate payment
 |---|---|---|
 |**Identification**  <br>*required*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 |**Name**  <br>*optional*|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number.  <br>**Length** : `1 - 70`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)|
 |**SecondaryIdentification**  <br>*optional*|Identification assigned by an institution to identify an account. This identification is known by the account owner.  <br>**Length** : `1 - 34`|string|
 
 <a name="debtoragent"></a>
@@ -748,7 +748,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Identification**  <br>*required*|Unique and unambiguous identification of a person.  <br>**Length** : `1 - 35`|string|
-|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)|
+|**SchemeName**  <br>*required*|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)|
 
 <a name="paymentsetupresponse-initiation-instructedamount"></a>
 **InstructedAmount**
@@ -756,7 +756,7 @@ Get a single immediate payment
 |Name|Description|Schema|
 |---|---|---|
 |**Amount**  <br>*required*|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string|
-|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3}$"`|string|
+|**Currency**  <br>*required*|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.  <br>**Pattern** : `"^[A-Z]{3,3}$"`|string|
 
 <a name="remittanceinformation"></a>
 **RemittanceInformation**
@@ -801,7 +801,7 @@ Get a single immediate payment
 |---|---|---|
 |**AddressLine**  <br>*optional*|Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.|< string > array|
 |**BuildingNumber**  <br>*optional*|Number that identifies the position of a building on a street.  <br>**Length** : `1 - 16`|string|
-|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2}$"`|string|
+|**Country**  <br>*required*|Nation with its own government, occupying a particular territory.  <br>**Pattern** : `"^[A-Z]{2,2}$"`|string|
 |**CountrySubDivision**  <br>*optional*|Identifies a subdivision of a country, for instance state, region, county.|< string > array|
 |**PostCode**  <br>*optional*|Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail  <br>**Length** : `1 - 16`|string|
 |**StreetName**  <br>*optional*|Name of a street or thoroughfare  <br>**Length** : `1 - 70`|string|

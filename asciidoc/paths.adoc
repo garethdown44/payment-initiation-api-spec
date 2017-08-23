@@ -76,7 +76,7 @@ __required__|OB: Unique identification as assigned by the ASPSP to uniquely iden
 |**CreditorAccount** +
 __required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
+__optional__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
 __optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
@@ -106,7 +106,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -122,7 +122,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_debtoraccount]]
@@ -138,7 +138,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -154,7 +154,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_payment-submissions_post_initiation_instructedamount]]
@@ -167,7 +167,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_remittanceinformation]]
@@ -215,7 +215,7 @@ __optional__|Number that identifies the position of a building on a street. +
 **Length** : `1 - 16`|string
 |**Country** +
 __required__|Nation with its own government, occupying a particular territory. +
-**Pattern** : `"^[A-Z]{2}$"`|string
+**Pattern** : `"^[A-Z]{2,2}$"`|string
 |**CountrySubDivision** +
 __optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
 |**PostCode** +
@@ -536,7 +536,7 @@ __required__|<<_payments_post_initiation,Initiation>>
 |**CreditorAccount** +
 __required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
+__optional__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
 __optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
@@ -566,7 +566,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -582,7 +582,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_debtoraccount]]
@@ -598,7 +598,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -614,7 +614,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_payments_post_initiation_instructedamount]]
@@ -627,7 +627,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_remittanceinformation]]
@@ -675,7 +675,7 @@ __optional__|Number that identifies the position of a building on a street. +
 **Length** : `1 - 16`|string
 |**Country** +
 __required__|Nation with its own government, occupying a particular territory. +
-**Pattern** : `"^[A-Z]{2}$"`|string
+**Pattern** : `"^[A-Z]{2,2}$"`|string
 |**CountrySubDivision** +
 __optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
 |**PostCode** +
@@ -750,7 +750,7 @@ __optional__|Specifies the status of the payment resource.|enum (AcceptedCustome
 |**CreditorAccount** +
 __required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
+__optional__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
 __optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
@@ -780,7 +780,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -796,7 +796,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_debtoraccount]]
@@ -812,7 +812,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -828,7 +828,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_paymentsetupresponse_initiation_instructedamount]]
@@ -841,7 +841,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_remittanceinformation]]
@@ -917,7 +917,7 @@ __optional__|Number that identifies the position of a building on a street. +
 **Length** : `1 - 16`|string
 |**Country** +
 __required__|Nation with its own government, occupying a particular territory. +
-**Pattern** : `"^[A-Z]{2}$"`|string
+**Pattern** : `"^[A-Z]{2,2}$"`|string
 |**CountrySubDivision** +
 __optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
 |**PostCode** +
@@ -1049,7 +1049,7 @@ __optional__|Specifies the status of the payment resource.|enum (AcceptedCustome
 |**CreditorAccount** +
 __required__|Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.|<<_creditoraccount,CreditorAccount>>
 |**CreditorAgent** +
-__required__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
+__optional__|Financial institution servicing an account for the creditor.|<<_creditoragent,CreditorAgent>>
 |**DebtorAccount** +
 __optional__|Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.|<<_debtoraccount,DebtorAccount>>
 |**DebtorAgent** +
@@ -1079,7 +1079,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __required__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. ASPSPs may carry out name validation for Confirmation of Payee, but it is not mandatory. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -1095,7 +1095,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_debtoraccount]]
@@ -1111,7 +1111,7 @@ __required__|Identification assigned by an institution to identify an account. T
 __optional__|Name of the account, as assigned by the account servicing institution, in agreement with the account owner in order to provide an additional means of identification of the account. Usage: The account name is different from the account owner name. The account name is used in certain user communities to provide a means of identifying the account, in addition to the account owner's identity and the account number. +
 **Length** : `1 - 70`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BBAN, IBAN)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (IBAN, SortCodeAccountNumber)
 |**SecondaryIdentification** +
 __optional__|Identification assigned by an institution to identify an account. This identification is known by the account owner. +
 **Length** : `1 - 34`|string
@@ -1127,7 +1127,7 @@ __optional__|Identification assigned by an institution to identify an account. T
 __required__|Unique and unambiguous identification of a person. +
 **Length** : `1 - 35`|string
 |**SchemeName** +
-__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI, UKSortCode)
+__required__|Name of the identification scheme, in a coded form as published in an external list.|enum (BICFI)
 |===
 
 [[_paymentsetupresponse_initiation_instructedamount]]
@@ -1140,7 +1140,7 @@ __required__|Name of the identification scheme, in a coded form as published in 
 __required__|**Pattern** : `"^\\d{1,13}\\.\\d{1,5}$"`|string
 |**Currency** +
 __required__|A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds. +
-**Pattern** : `"^[A-Z]{3}$"`|string
+**Pattern** : `"^[A-Z]{3,3}$"`|string
 |===
 
 [[_remittanceinformation]]
@@ -1216,7 +1216,7 @@ __optional__|Number that identifies the position of a building on a street. +
 **Length** : `1 - 16`|string
 |**Country** +
 __required__|Nation with its own government, occupying a particular territory. +
-**Pattern** : `"^[A-Z]{2}$"`|string
+**Pattern** : `"^[A-Z]{2,2}$"`|string
 |**CountrySubDivision** +
 __optional__|Identifies a subdivision of a country, for instance state, region, county.|< string > array
 |**PostCode** +
