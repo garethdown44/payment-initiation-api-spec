@@ -25,7 +25,9 @@ __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|s
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -244,7 +246,9 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -269,7 +273,10 @@ __required__|Meta Data Relevant to the payload|<<_payment-submissions_post_meta,
 |===
 |Name|Description|Schema
 |**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+__required__|Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 40`|string
@@ -356,7 +363,9 @@ __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|s
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -380,7 +389,9 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -405,7 +416,10 @@ __required__|Meta Data Relevant to the payload|<<_payment-submissions_paymentsub
 |===
 |Name|Description|Schema
 |**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+__required__|Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
 **Length** : `1 - 40`|string
@@ -488,7 +502,9 @@ __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|s
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -704,7 +720,9 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -731,7 +749,10 @@ __required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
 |===
 |Name|Description|Schema
 |**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+__required__|Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Initiation** +
 __required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_paymentsetupresponse_initiation,Initiation>>
 |**PaymentId** +
@@ -979,7 +1000,9 @@ __required__|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|s
 |**Header**|**x-fapi-customer-ip-address** +
 __optional__|The PSU's IP address if the PSU is currently logged in with the TPP.|string
 |**Header**|**x-fapi-customer-last-logged-time** +
-__optional__|The time when the PSU last logged in with the TPP.|string
+__optional__|The time when the PSU last logged in with the TPP.
+All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below:
+Sun, 10 Sep 2017 19:43:31 UTC|string
 |**Header**|**x-fapi-financial-id** +
 __required__|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string
 |**Header**|**x-fapi-interaction-id** +
@@ -1003,7 +1026,9 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |**403**|Forbidden|No Content
 |**405**|Method Not Allowed|No Content
 |**406**|Not Acceptable|No Content
-|**429**|Too Many Requests|No Content
+|**429**|Too Many Requests +
+**Headers** :  +
+`Retry-After` (integer) : Number in seconds to wait.|No Content
 |**500**|Internal Server Error|No Content
 |===
 
@@ -1030,7 +1055,10 @@ __required__|Reflection of POSTed Risk profile|<<_risk,Risk>>
 |===
 |Name|Description|Schema
 |**CreationDateTime** +
-__required__|Date and time at which the resource was created.|string (date-time)
+__required__|Date and time at which the resource was created.
+All dates in the JSON payloads are represented in ISO 8601 date-time format.
+All date-time fields in responses must include the timezone. An example is below:
+2017-04-05T10:43:07+00:00|string (date-time)
 |**Initiation** +
 __required__|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|<<_paymentsetupresponse_initiation,Initiation>>
 |**PaymentId** +

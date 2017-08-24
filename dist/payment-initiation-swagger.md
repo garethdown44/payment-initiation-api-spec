@@ -7,7 +7,7 @@ Draft Swagger specification for Payment Initiation
 
 
 ### Version information
-*Version* : v1.1.0
+*Version* : v1.1-rc1
 
 
 ### Contact information
@@ -60,7 +60,7 @@ Submit a previously setup payment
 |---|---|---|---|
 |**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
-|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP. <br>All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: <br>Sun, 10 Sep 2017 19:43:31 UTC|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
@@ -187,7 +187,7 @@ Setup a single immediate payment
 |**403**|Forbidden|No Content|
 |**405**|Method Not Allowed|No Content|
 |**406**|Not Acceptable|No Content|
-|**429**|Too Many Requests|No Content|
+|**429**|Too Many Requests  <br>**Headers** :   <br>`Retry-After` (integer) : Number in seconds to wait.|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-submit-post-201-response"></a>
@@ -204,7 +204,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
@@ -269,7 +269,7 @@ Get payment submission
 |---|---|---|---|
 |**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
-|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP. <br>All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: <br>Sun, 10 Sep 2017 19:43:31 UTC|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Path**|**PaymentSubmissionId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.|string|
@@ -285,7 +285,7 @@ Get payment submission
 |**403**|Forbidden|No Content|
 |**405**|Method Not Allowed|No Content|
 |**406**|Not Acceptable|No Content|
-|**429**|Too Many Requests|No Content|
+|**429**|Too Many Requests  <br>**Headers** :   <br>`Retry-After` (integer) : Number in seconds to wait.|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-submit-get-response"></a>
@@ -302,7 +302,7 @@ Get payment submission
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 40`|string|
 |**PaymentSubmissionId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource.  <br>**Length** : `1 - 40`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedSettlementCompleted, AcceptedSettlementInProcess, Pending, Rejected)|
@@ -363,7 +363,7 @@ Create a single immediate payment
 |---|---|---|---|
 |**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
-|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP. <br>All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: <br>Sun, 10 Sep 2017 19:43:31 UTC|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
@@ -489,7 +489,7 @@ Setup a single immediate payment
 |**403**|Forbidden|No Content|
 |**405**|Method Not Allowed|No Content|
 |**406**|Not Acceptable|No Content|
-|**429**|Too Many Requests|No Content|
+|**429**|Too Many Requests  <br>**Headers** :   <br>`Retry-After` (integer) : Number in seconds to wait.|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-setup-post-response"></a>
@@ -507,7 +507,7 @@ Setup a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#paymentsetupresponse-initiation)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)|
@@ -661,7 +661,7 @@ Get a single immediate payment
 |---|---|---|---|
 |**Header**|**authorization**  <br>*required*|An Authorisation Token as per https://tools.ietf.org/html/rfc6750|string|
 |**Header**|**x-fapi-customer-ip-address**  <br>*optional*|The PSU's IP address if the PSU is currently logged in with the TPP.|string|
-|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP.|string|
+|**Header**|**x-fapi-customer-last-logged-time**  <br>*optional*|The time when the PSU last logged in with the TPP. <br>All dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: <br>Sun, 10 Sep 2017 19:43:31 UTC|string|
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Path**|**PaymentId**  <br>*required*|Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.|string|
@@ -677,7 +677,7 @@ Get a single immediate payment
 |**403**|Forbidden|No Content|
 |**405**|Method Not Allowed|No Content|
 |**406**|Not Acceptable|No Content|
-|**429**|Too Many Requests|No Content|
+|**429**|Too Many Requests  <br>**Headers** :   <br>`Retry-After` (integer) : Number in seconds to wait.|No Content|
 |**500**|Internal Server Error|No Content|
 
 <a name="payment-setup-get-response"></a>
@@ -695,7 +695,7 @@ Get a single immediate payment
 
 |Name|Description|Schema|
 |---|---|---|
-|**CreationDateTime**  <br>*required*|Date and time at which the resource was created.|string (date-time)|
+|**CreationDateTime**  <br>*required*|Date and time at which the resource was created. <br>All dates in the JSON payloads are represented in ISO 8601 date-time format. <br>All date-time fields in responses must include the timezone. An example is below:<br>2017-04-05T10:43:07+00:00|string (date-time)|
 |**Initiation**  <br>*required*|The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.|[Initiation](#paymentsetupresponse-initiation)|
 |**PaymentId**  <br>*required*|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.  <br>**Length** : `1 - 128`|string|
 |**Status**  <br>*optional*|Specifies the status of the payment resource.|enum (AcceptedCustomerProfile, AcceptedTechnicalValidation, Pending, Rejected)|
