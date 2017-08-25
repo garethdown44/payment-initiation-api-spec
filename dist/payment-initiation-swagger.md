@@ -3,7 +3,7 @@
 
 <a name="overview"></a>
 ## Overview
-Draft Swagger specification for Payment Initiation
+Swagger specification for Payment Initiation
 
 
 ### Version information

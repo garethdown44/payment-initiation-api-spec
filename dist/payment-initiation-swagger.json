@@ -2,7 +2,7 @@
   "swagger": "2.0",
   "info": {
     "title": "Payment Initiation APIs",
-    "description": "Draft Swagger specification for Payment Initiation",
+    "description": "Swagger specification for Payment Initiation",
     "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
       "name": "Service Desk",
