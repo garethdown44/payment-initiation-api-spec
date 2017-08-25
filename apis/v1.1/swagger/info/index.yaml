@@ -1,5 +1,5 @@
 title: Payment Initiation APIs
-description: Draft Swagger specification for Payment Initiation
+description: Swagger specification for Payment Initiation
 termsOfService: https://www.openbanking.org.uk/terms
 contact:
   name: Service Desk
@@ -7,4 +7,4 @@ contact:
 license:
   name: open-licence
   url: https://www.openbanking.org.uk/open-licence
-version: v1.1.0
+version: v1.1-rc1

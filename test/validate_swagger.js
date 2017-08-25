@@ -4,7 +4,7 @@ var SwaggerParser = require('swagger-parser');
 var YAML = require('js-yaml');
 var fs = require('fs');
 var path = require('path');
-var swaggerFilePath = path.resolve('./compiled/swagger/payment-initiation-swagger.yaml');
+var swaggerFilePath = path.resolve('./dist/payment-initiation-swagger.yaml');
 
 const spec = YAML.load(fs.readFileSync(swaggerFilePath).toString());
 

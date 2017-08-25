@@ -39,7 +39,6 @@
     "InstructionIdentification",
     "EndToEndIdentification",
     "InstructedAmount",
-    "CreditorAgent",
     "CreditorAccount"
   ],
   "additionalProperties": false
