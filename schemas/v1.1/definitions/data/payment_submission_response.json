@@ -9,7 +9,7 @@
     },
     "PaymentId": {
       "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
-      "$ref": "../common/max_40_text.json"
+      "$ref": "../common/max_128_text.json"
     },
     "Status": {
       "description": "Specifies the status of the payment resource.",

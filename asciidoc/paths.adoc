@@ -279,7 +279,7 @@ All date-time fields in responses must include the timezone. An example is below
 2017-04-05T10:43:07+00:00|string (date-time)
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 40`|string
+**Length** : `1 - 128`|string
 |**PaymentSubmissionId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
 **Length** : `1 - 40`|string
@@ -422,7 +422,7 @@ All date-time fields in responses must include the timezone. An example is below
 2017-04-05T10:43:07+00:00|string (date-time)
 |**PaymentId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource. +
-**Length** : `1 - 40`|string
+**Length** : `1 - 128`|string
 |**PaymentSubmissionId** +
 __required__|OB: Unique identification as assigned by the ASPSP to uniquely identify the payment submission resource. +
 **Length** : `1 - 40`|string

@@ -1401,7 +1401,7 @@ paths:
                     description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                     type: string
                     minLength: 1
-                    maxLength: 40
+                    maxLength: 128
                   Status:
                     description: Specifies the status of the payment resource.
                     title: PaymentSubmissionStatusCode
@@ -1517,7 +1517,7 @@ paths:
                     description: 'OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.'
                     type: string
                     minLength: 1
-                    maxLength: 40
+                    maxLength: 128
                   Status:
                     description: Specifies the status of the payment resource.
                     title: PaymentSubmissionStatusCode
