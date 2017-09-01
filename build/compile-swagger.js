@@ -3,14 +3,13 @@ const SwaggerParser = require('swagger-parser');
 const utils = require('./utils');
 const path = require('path');
 const compiled = path.resolve('../compiled');
+const version = process.env.VERSION;
 const dist = path.resolve('../dist');
-const swaggerIndex = path.resolve('../apis/v1.1/swagger/index.yaml');
+const distV = path.resolve('../dist/' + version);
+const swaggerIndex = path.resolve('../apis/' + version + '/swagger/index.yaml');
+const fWrite = utils.writeToFile;  // Convenient method name shortening
 
-// Convenient method name shortenings
-const fWrite = utils.writeToFile;
-const beaut = utils.beautifySchema;
-//https://github.com/BigstickCarpet/swagger-parser/blob/releases/4.0.0/docs/options.md
-
+// https://github.com/BigstickCarpet/swagger-parser/blob/releases/4.0.0/docs/options.md
 const SwaggerParserOptions = {
   validate: {
     spec: true,
@@ -63,9 +62,11 @@ SwaggerParser.dereference(swaggerIndex, SwaggerParserOptions,
 
     let apiFixed = flatten_parameters(api);  // Mitigate the Array of Arrays Problem
 
-    utils.writeToFile(YAML.safeDump(api, {lineWidth: 200}), compiled + '/swagger/payment-initiation-swagger.yaml');
-    utils.writeToFile(JSON.stringify(api, null, 2), compiled + '/swagger/payment-initiation-swagger.json');
+    fWrite(YAML.safeDump(api, {lineWidth: 200}), compiled + '/swagger/payment-initiation-swagger.yaml');
+    fWrite(JSON.stringify(api, null, 2), compiled + '/swagger/payment-initiation-swagger.json');
     // temporary....
-    utils.writeToFile(YAML.safeDump(api, {lineWidth: 200}), dist + '/payment-initiation-swagger.yaml');
-    utils.writeToFile(JSON.stringify(api, null, 2), dist + '/payment-initiation-swagger.json');
+    fWrite(YAML.safeDump(api, {lineWidth: 200}), dist + '/payment-initiation-swagger.yaml');
+    fWrite(JSON.stringify(api, null, 2), dist + '/payment-initiation-swagger.json');
+
+    fWrite(YAML.safeDump(api, {lineWidth: 200}), distV + '/payment-initiation-swagger.yaml');
   });
