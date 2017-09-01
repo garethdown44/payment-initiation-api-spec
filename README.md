@@ -1,5 +1,9 @@
 # payment-initiation-api-spec
 
+# Version
+This is version v1.1  
+A Minor Release
+
 # Usage
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format
 

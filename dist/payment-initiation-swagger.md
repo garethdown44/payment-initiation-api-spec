@@ -1,13 +1,13 @@
-# Payment Initiation APIs
+# Payment Initiation API Specification
 
 
 <a name="overview"></a>
 ## Overview
-Swagger specification for Payment Initiation
+Swagger for Payment Initiation API Specification
 
 
 ### Version information
-*Version* : v1.1-rc1
+*Version* : v1.1
 
 
 ### Contact information

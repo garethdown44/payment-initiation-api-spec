@@ -1,14 +1,14 @@
-= Payment Initiation APIs
+= Payment Initiation API Specification
 
 
 [[_overview]]
 == Overview
-Swagger specification for Payment Initiation
+Swagger for Payment Initiation API Specification
 
 
 === Version information
 [%hardbreaks]
-__Version__ : v1.1-rc1
+__Version__ : v1.1
 
 
 === Contact information
