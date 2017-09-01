@@ -1,6 +1,6 @@
 const beautify = require('js-beautify').js_beautify;
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 const mkdirp = require('mkdirp');
 
 function createMissingDirs(dir) {
