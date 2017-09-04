@@ -1,0 +1,20 @@
+{
+  "title": "Payment setup POST request",
+  "description": "Allows setup of a payment",
+  "type": "object",
+  "properties": {
+    "Data": {
+      "description": "",
+      "$ref": "../definitions/data/payment_setup.json"
+    },
+    "Risk": {
+      "description": "",
+      "$ref": "../definitions/common/risk.json"
+    }
+  },
+  "required": [
+    "Data",
+    "Risk"
+  ],
+  "additionalProperties": false
+}

@@ -1,20 +1,20 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "Payment Initiation APIs",
-    "description": "Draft Swagger specification for Payment Initiation",
+    "title": "Payment Initiation API Specification",
+    "description": "Swagger for Payment Initiation API Specification",
     "termsOfService": "https://www.openbanking.org.uk/terms",
     "contact": {
-      "name": "Craig Greenhouse",
-      "email": "craig.greenhouse@openbanking.org.uk"
+      "name": "Service Desk",
+      "email": "ServiceDesk@openbanking.org.uk"
     },
     "license": {
       "name": "open-licence",
       "url": "https://www.openbanking.org.uk/open-licence"
     },
-    "version": "v1.0.1"
+    "version": "v1.1.0"
   },
-  "basePath": "/open-banking/v1.0",
+  "basePath": "/open-banking/v1.1",
   "schemes": [
     "https"
   ],
@@ -43,6 +43,7 @@
             "description": "Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.",
             "required": true,
             "type": "string",
+            "pattern": "^(?!\\s)(.*)(\\S)$",
             "maxLength": 40
           },
           {
@@ -57,7 +58,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -75,7 +77,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -129,7 +131,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -148,8 +150,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -175,8 +176,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -214,8 +215,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -241,8 +241,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -296,7 +296,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -391,7 +390,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -442,7 +441,7 @@
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -473,7 +472,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -492,8 +491,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -519,8 +517,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -558,8 +556,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -585,8 +582,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -640,7 +637,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -737,7 +733,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -826,7 +822,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -872,7 +874,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -890,7 +893,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -926,7 +929,7 @@
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     },
@@ -957,7 +960,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -976,8 +979,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1003,8 +1005,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1042,8 +1044,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1069,8 +1070,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1124,7 +1125,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -1221,7 +1221,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -1310,7 +1310,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1351,6 +1357,7 @@
             "description": "Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.",
             "required": true,
             "type": "string",
+            "pattern": "^(?!\\s)(.*)(\\S)$",
             "maxLength": 40
           },
           {
@@ -1365,7 +1372,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -1383,7 +1391,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -1443,7 +1451,7 @@
                             "Currency": {
                               "description": "A code allocated to a currency by a Maintenance Agency under an international identification scheme, as described in the latest edition of the international standard ISO 4217 - Codes for the representation of currencies and funds.",
                               "type": "string",
-                              "pattern": "^[A-Z]{3}$"
+                              "pattern": "^[A-Z]{3,3}$"
                             }
                           },
                           "required": [
@@ -1462,8 +1470,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1489,8 +1496,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1528,8 +1535,7 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BICFI",
-                                "UKSortCode"
+                                "BICFI"
                               ]
                             },
                             "Identification": {
@@ -1555,8 +1561,8 @@
                               "title": "SchemeName",
                               "type": "string",
                               "enum": [
-                                "BBAN",
-                                "IBAN"
+                                "IBAN",
+                                "SortCodeAccountNumber"
                               ]
                             },
                             "Identification": {
@@ -1610,7 +1616,6 @@
                         "InstructionIdentification",
                         "EndToEndIdentification",
                         "InstructedAmount",
-                        "CreditorAgent",
                         "CreditorAccount"
                       ],
                       "additionalProperties": false
@@ -1706,7 +1711,7 @@
                         "Country": {
                           "description": "Nation with its own government, occupying a particular territory.",
                           "type": "string",
-                          "pattern": "^[A-Z]{2}$"
+                          "pattern": "^[A-Z]{2,2}$"
                         }
                       },
                       "required": [
@@ -1749,7 +1754,7 @@
                       "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 40
+                      "maxLength": 128
                     },
                     "Status": {
                       "description": "Specifies the status of the payment resource.",
@@ -1763,7 +1768,7 @@
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -1851,7 +1856,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -1897,7 +1908,8 @@
             "name": "x-fapi-customer-last-logged-time",
             "type": "string",
             "required": false,
-            "description": "The time when the PSU last logged in with the TPP."
+            "description": "The time when the PSU last logged in with the TPP. \nAll dates in the HTTP headers are represented as RFC 7231 Full Dates. An example is below: \nSun, 10 Sep 2017 19:43:31 UTC",
+            "pattern": "^(Mon|Tue|Wed|Thu|Fri|Sat|Sun), \\d{2} (Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec) \\d{4} \\d{2}:\\d{2}:\\d{2} (GMT|UTC)$"
           },
           {
             "in": "header",
@@ -1915,7 +1927,7 @@
           },
           {
             "in": "header",
-            "name": "authorization",
+            "name": "Authorization",
             "type": "string",
             "required": true,
             "description": "An Authorisation Token as per https://tools.ietf.org/html/rfc6750"
@@ -1943,7 +1955,7 @@
                       "description": "OB: Unique identification as assigned by the ASPSP to uniquely identify the payment setup resource.",
                       "type": "string",
                       "minLength": 1,
-                      "maxLength": 40
+                      "maxLength": 128
                     },
                     "Status": {
                       "description": "Specifies the status of the payment resource.",
@@ -1957,7 +1969,7 @@
                       ]
                     },
                     "CreationDateTime": {
-                      "description": "Date and time at which the resource was created.",
+                      "description": "Date and time at which the resource was created. \nAll dates in the JSON payloads are represented in ISO 8601 date-time format. \nAll date-time fields in responses must include the timezone. An example is below:\n2017-04-05T10:43:07+00:00",
                       "type": "string",
                       "format": "date-time"
                     }
@@ -2045,7 +2057,13 @@
             "description": "Not Acceptable"
           },
           "429": {
-            "description": "Too Many Requests"
+            "description": "Too Many Requests",
+            "headers": {
+              "Retry-After": {
+                "description": "Number in seconds to wait",
+                "type": "integer"
+              }
+            }
           },
           "500": {
             "description": "Internal Server Error"
@@ -2110,7 +2128,13 @@
       "description": "Not Acceptable"
     },
     "429ErrorResponse": {
-      "description": "Too Many Requests"
+      "description": "Too Many Requests",
+      "headers": {
+        "Retry-After": {
+          "description": "Number in seconds to wait",
+          "type": "integer"
+        }
+      }
     },
     "500ErrorResponse": {
       "description": "Internal Server Error"

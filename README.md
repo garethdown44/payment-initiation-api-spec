@@ -1,5 +1,9 @@
 # payment-initiation-api-spec
 
+# Version
+This is version v1.1.0
+A Minor Release
+
 # Usage
 ```npm run start```  builds the project and runs a local webserver on http://localhost:8080/ serving the swagger spec using the spectacles-docs format
 
@@ -8,6 +12,12 @@
 
 ```npm run flatten-schemas``` flattens the schemas in the schema folder<br>
 ```npm run compile-swagger``` dereference the swagger spec split from  several yaml files to one fully dereferenced yaml file , dereferencing the schemas compiled using npm run flatten-schemas
+
+# Versions
+The buid scripts depend on a version being set in an environment variable 
+e.g. export `VERSION=v1.0`  
+The Master list of allowable versions is stored in the /build/versions.js file 
+and must be maintained there as new versions are created.
 
 
 ****WIP Documentation****

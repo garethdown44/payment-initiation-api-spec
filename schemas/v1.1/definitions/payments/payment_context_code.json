@@ -1,0 +1,12 @@
+{
+  "title": "PaymentContextCode",
+  "description": "Specifies the payment context",
+  "type": "string",
+  "enum": [
+    "BillPayment",
+    "EcommerceGoods",
+    "EcommerceServices",
+    "Other",
+    "PersonToPerson"
+  ]
+}
