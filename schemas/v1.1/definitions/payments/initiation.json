@@ -1,0 +1,45 @@
+{
+  "description": "The Initiation payload is sent by the initiating party to the ASPSP. It is used to request movement of funds from the debtor account to a creditor.",
+  "type": "object",
+  "properties": {
+    "InstructionIdentification": {
+      "description": "Unique identification as assigned by an instructing party for an instructed party to unambiguously identify the instruction. Usage: the  instruction identification is a point to point reference that can be used between the instructing party and the instructed party to refer to the individual instruction. It can be included in several messages related to the instruction.",
+      "$ref": "../common/max_35_text.json"
+    },
+    "EndToEndIdentification": {
+      "description": "Unique identification assigned by the initiating party to unambiguously identify the transaction. This identification is passed on, unchanged, throughout the entire end-to-end chain. Usage: The end-to-end identification can be used for reconciliation or to link tasks relating to the transaction. It can be included in several messages related to the transaction. OB: The Faster Payments Scheme can only access 31 characters for the EndToEndIdentification field.",
+      "$ref": "../common/max_35_text.json"
+    },
+    "InstructedAmount": {
+      "description": "Amount of money to be moved between the debtor and creditor, before deduction of charges, expressed in the currency as ordered by the initiating party. Usage: This amount has to be transported unchanged through the transaction chain.",
+      "$ref": "../payments/active_or_historic_currency_and_amount.json"
+    },
+    "DebtorAgent": {
+      "description": "Financial institution servicing an account for the debtor.",
+      "$ref": "../payments/debtor_agent.json"
+    },
+    "DebtorAccount": {
+      "description": "Unambiguous identification of the account of the debtor to which a debit entry will be made as a result of the transaction.",
+      "$ref": "../payments/debtor_account.json"
+    },
+    "CreditorAgent": {
+      "description": "Financial institution servicing an account for the creditor.",
+      "$ref": "../payments/creditor_agent.json"
+    },
+    "CreditorAccount": {
+      "description": "Unambiguous identification of the account of the creditor to which a credit entry will be posted as a result of the payment transaction.",
+      "$ref": "../payments/creditor_account.json"
+    },
+    "RemittanceInformation": {
+      "description": "Information supplied to enable the matching of an entry with the items that the transfer is intended to settle, such as commercial invoices in an accounts' receivable system.",
+      "$ref": "../payments/remittance_information.json"
+    }
+  },
+  "required": [
+    "InstructionIdentification",
+    "EndToEndIdentification",
+    "InstructedAmount",
+    "CreditorAccount"
+  ],
+  "additionalProperties": false
+}

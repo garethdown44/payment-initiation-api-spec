@@ -1,0 +1,22 @@
+{
+  "title": "Payment Submit GET Response",
+  "type": "object",
+  "properties": {
+    "Data": {
+      "description": "Reflection of The Main Data Payload, with Created Resource ID, Status and Timestamp",
+      "$ref": "../definitions/data/payment_submission_response.json"
+    },
+    "Links": {
+      "$ref": "../definitions/common/links_self.json"
+    },
+    "Meta": {
+      "$ref": "../definitions/common/meta.json"
+    }
+  },
+  "required": [
+    "Data",
+    "Links",
+    "Meta"
+  ],
+  "additionalProperties": false
+}

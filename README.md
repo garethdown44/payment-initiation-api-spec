@@ -9,6 +9,12 @@
 ```npm run flatten-schemas``` flattens the schemas in the schema folder<br>
 ```npm run compile-swagger``` dereference the swagger spec split from  several yaml files to one fully dereferenced yaml file , dereferencing the schemas compiled using npm run flatten-schemas
 
+# Versions
+The buid scripts depend on a version being set in an environment variable 
+e.g. export `VERSION=v1.0`  
+The Master list of allowable versions is stored in the /build/versions.js file 
+and must be maintained there as new versions are created.
+
 
 ****WIP Documentation****
 To convert SwaggerSpec to MARKDOWN

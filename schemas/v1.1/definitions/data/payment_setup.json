@@ -1,0 +1,15 @@
+{
+  "title": "PaymentSetup",
+  "description": "Payment Setup",
+  "type": "object",
+  "properties": {
+    "Initiation": {
+      "description": "",
+      "$ref": "../payments/initiation.json"
+    }
+  },
+  "required": [
+    "Initiation"
+  ],
+  "additionalProperties": false
+}
