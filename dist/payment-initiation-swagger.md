@@ -7,7 +7,7 @@ Swagger for Payment Initiation API Specification
 
 
 ### Version information
-*Version* : v1.1.0
+*Version* : v1.1.1
 
 
 ### Contact information
@@ -341,7 +341,7 @@ Get payment submission
 |Type|Name|Scopes|
 |---|---|---|
 |**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payments|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|payments|
 
 
 ***
@@ -639,7 +639,7 @@ Setup a single immediate payment
 
 |Type|Name|Scopes|
 |---|---|---|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|payments|
 
 
 ***
@@ -823,7 +823,7 @@ Get a single immediate payment
 |Type|Name|Scopes|
 |---|---|---|
 |**oauth2**|**[PSUOAuth2Security](#psuoauth2security)**|payments|
-|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|tpp_client_credential|
+|**oauth2**|**[TPPOAuth2Security](#tppoauth2security)**|payments|
 
 
 
@@ -844,7 +844,7 @@ TPP client credential authorisation flow with the ASPSP
 
 |Name|Description|
 |---|---|
-|tpp_client_credential|TPP Client Credential Scope|
+|payments|Generic payment scope|
 
 
 <a name="psuoauth2security"></a>
