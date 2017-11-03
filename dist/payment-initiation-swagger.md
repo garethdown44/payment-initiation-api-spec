@@ -64,7 +64,7 @@ Submit a previously setup payment
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
-|**Header**|**x-jws-signature**  <br>*required*|Header containing a detached JWS signature of the body of the payload.|string|
+|**Header**|**x-jws-signature**  <br>*optional*|Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -367,7 +367,7 @@ Create a single immediate payment
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
-|**Header**|**x-jws-signature**  <br>*required*|Header containing a detached JWS signature of the body of the payload.|string|
+|**Header**|**x-jws-signature**  <br>*optional*|Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter

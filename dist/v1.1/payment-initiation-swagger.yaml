@@ -74,7 +74,7 @@ paths:
           in: header
           name: x-jws-signature
           type: string
-          required: true
+          required: false
           description: Header containing a detached JWS signature of the body of the payload.
         - name: body
           in: body
