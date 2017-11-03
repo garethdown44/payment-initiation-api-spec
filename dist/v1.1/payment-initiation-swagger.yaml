@@ -175,7 +175,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -229,7 +231,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -471,7 +475,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -525,7 +531,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -849,7 +857,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -903,7 +913,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -1202,7 +1214,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -1256,7 +1270,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
