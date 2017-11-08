@@ -35,7 +35,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**Header**|**x-idempotency-key** +
 __required__|Every request will be processed only once per x-idempotency-key. The Idempotency Key will be valid for 24 hours.|string
 |**Header**|**x-jws-signature** +
-__optional__|Header containing a detached JWS signature of the body of the payload.|string
+__optional__|DO NOT USE. Header containing a detached JWS signature of the body of the payload.|string
 |===
 
 
@@ -239,7 +239,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |HTTP Code|Description|Schema
 |**201**|Payment submit resource successfully created +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_payment_submit_post_201_response,Payment Submit POST 201 Response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -382,7 +382,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |HTTP Code|Description|Schema
 |**200**|Payment resource successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_payment_submit_get_response,Payment Submit GET Response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -512,7 +512,7 @@ __optional__|An RFC4122 UID used as a correlation id.|string
 |**Header**|**x-idempotency-key** +
 __required__|Every request will be processed only once per x-idempotency-key. The Idempotency Key will be valid for 24 hours.|string
 |**Header**|**x-jws-signature** +
-__optional__|Header containing a detached JWS signature of the body of the payload.|string
+__optional__|DO NOT USE. Header containing a detached JWS signature of the body of the payload.|string
 |===
 
 
@@ -713,7 +713,7 @@ __required__|Name of a built-up area, with defined boundaries, and a local gover
 |HTTP Code|Description|Schema
 |**201**|Payment setup resource successfully created +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_payment_setup_post_response,Payment setup POST response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content
@@ -1019,7 +1019,7 @@ __required__|Unique identification as assigned by the ASPSP to uniquely identify
 |HTTP Code|Description|Schema
 |**200**|Payment resource successfully retrieved +
 **Headers** :  +
-`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload. +
+`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload. +
 `x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|<<_payment_setup_get_response,Payment setup GET response>>
 |**400**|Bad Request|No Content
 |**401**|Unauthorized|No Content

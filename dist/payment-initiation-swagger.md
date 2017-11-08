@@ -64,7 +64,7 @@ Submit a previously setup payment
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
-|**Header**|**x-jws-signature**  <br>*optional*|Header containing a detached JWS signature of the body of the payload.|string|
+|**Header**|**x-jws-signature**  <br>*optional*|DO NOT USE. Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -181,7 +181,7 @@ Setup a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Payment submit resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment Submit POST 201 Response](#payment-submit-post-201-response)|
+|**201**|Payment submit resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment Submit POST 201 Response](#payment-submit-post-201-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -279,7 +279,7 @@ Get payment submission
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment Submit GET Response](#payment-submit-get-response)|
+|**200**|Payment resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment Submit GET Response](#payment-submit-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -367,7 +367,7 @@ Create a single immediate payment
 |**Header**|**x-fapi-financial-id**  <br>*required*|The unique id of the ASPSP to which the request is issued. The unique id will be issued by OB.|string|
 |**Header**|**x-fapi-interaction-id**  <br>*optional*|An RFC4122 UID used as a correlation id.|string|
 |**Header**|**x-idempotency-key**  <br>*required*|Every request will be processed only once per x-idempotency-key.  The Idempotency Key will be valid for 24 hours.|string|
-|**Header**|**x-jws-signature**  <br>*optional*|Header containing a detached JWS signature of the body of the payload.|string|
+|**Header**|**x-jws-signature**  <br>*optional*|DO NOT USE. Header containing a detached JWS signature of the body of the payload.|string|
 
 
 #### Body parameter
@@ -483,7 +483,7 @@ Setup a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**201**|Payment setup resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment setup POST response](#payment-setup-post-response)|
+|**201**|Payment setup resource successfully created  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment setup POST response](#payment-setup-post-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|
@@ -671,7 +671,7 @@ Get a single immediate payment
 
 |HTTP Code|Description|Schema|
 |---|---|---|
-|**200**|Payment resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment setup GET response](#payment-setup-get-response)|
+|**200**|Payment resource successfully retrieved  <br>**Headers** :   <br>`x-jws-signature` (string) : DO NOT USE. Header containing a detached JWS signature of the body of the payload.  <br>`x-fapi-interaction-id` (string) : An RFC4122 UID used as a correlation id.|[Payment setup GET response](#payment-setup-get-response)|
 |**400**|Bad Request|No Content|
 |**401**|Unauthorized|No Content|
 |**403**|Forbidden|No Content|

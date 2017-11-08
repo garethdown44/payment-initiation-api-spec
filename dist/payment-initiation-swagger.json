@@ -87,7 +87,7 @@
             "name": "x-jws-signature",
             "type": "string",
             "required": false,
-            "description": "Header containing a detached JWS signature of the body of the payload."
+            "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
           },
           {
             "name": "body",
@@ -798,7 +798,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -1286,7 +1286,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -1401,7 +1401,7 @@
             "name": "x-jws-signature",
             "type": "string",
             "required": false,
-            "description": "Header containing a detached JWS signature of the body of the payload."
+            "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
           },
           {
             "name": "body",
@@ -1832,7 +1832,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
@@ -2033,7 +2033,7 @@
             "headers": {
               "x-jws-signature": {
                 "type": "string",
-                "description": "Header containing a detached JWS signature of the body of the payload."
+                "description": "DO NOT USE. Header containing a detached JWS signature of the body of the payload."
               },
               "x-fapi-interaction-id": {
                 "type": "string",
