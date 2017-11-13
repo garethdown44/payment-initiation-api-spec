@@ -8,7 +8,7 @@ participant ASPSP Authentication Server
 
 opt Setup Recurring Payment Intent
     PSU -> TPP: Setup Intent
-    note over PSU, ASPSP Resource Server: OAuth Scope payments:recurring_cancelled must be requested at the time of initial setup
+    note over PSU, ASPSP Resource Server: OAuth Scope payments must be requested at the time of initial setup
     TPP -> ASPSP Resource Server: /payments/simple
     ASPSP Resource Server --> TPP: IntentID, EndToEndIdentification (200,4xx, 5xx)
     TPP --> PSU: Redirect PSU to ASPSP for Auth

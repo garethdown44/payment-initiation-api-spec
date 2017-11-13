@@ -9,7 +9,7 @@ info:
   license:
     name: open-licence
     url: 'https://www.openbanking.org.uk/open-licence'
-  version: v1.1.0
+  version: v1.1.1
 basePath: /open-banking/v1.1
 schemes:
   - https
@@ -74,8 +74,8 @@ paths:
           in: header
           name: x-jws-signature
           type: string
-          required: true
-          description: Header containing a detached JWS signature of the body of the payload.
+          required: false
+          description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
         - name: body
           in: body
           description: Setup a single immediate payment
@@ -175,7 +175,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -229,7 +231,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -471,7 +475,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -525,7 +531,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -685,7 +693,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -709,7 +717,7 @@ paths:
           description: Internal Server Error
       security:
         - TPPOAuth2Security:
-            - tpp_client_credential
+            - payments
   '/payments/{PaymentId}':
     get:
       tags:
@@ -849,7 +857,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -903,7 +913,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -1063,7 +1075,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1078,7 +1090,7 @@ paths:
         - PSUOAuth2Security:
             - payments
         - TPPOAuth2Security:
-            - tpp_client_credential
+            - payments
   /payment-submissions:
     post:
       tags:
@@ -1202,7 +1214,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -1256,7 +1270,9 @@ paths:
                             minLength: 1
                             maxLength: 70
                           SecondaryIdentification:
-                            description: Identification assigned by an institution to identify an account. This identification is known by the account owner.
+                            description: >-
+                              This is secondary identification of the account, as assigned by the account servicing institution. This can be used by building societies to additionally identify
+                              accounts with a roll number (in addition to a sort code and account number combination).
                             type: string
                             minLength: 1
                             maxLength: 34
@@ -1462,7 +1478,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1578,7 +1594,7 @@ paths:
           headers:
             x-jws-signature:
               type: string
-              description: Header containing a detached JWS signature of the body of the payload.
+              description: DO NOT USE. Header containing a detached JWS signature of the body of the payload.
             x-fapi-interaction-id:
               type: string
               description: An RFC4122 UID used as a correlation id.
@@ -1593,7 +1609,7 @@ paths:
         - PSUOAuth2Security:
             - payments
         - TPPOAuth2Security:
-            - tpp_client_credential
+            - payments
 securityDefinitions:
   PSUOAuth2Security:
     type: oauth2
@@ -1608,7 +1624,7 @@ securityDefinitions:
     flow: application
     tokenUrl: 'https://authserver.example/token'
     scopes:
-      tpp_client_credential: TPP Client Credential Scope
+      payments: Generic payment scope
     description: TPP client credential authorisation flow with the ASPSP
 tags:
   - name: Payments
