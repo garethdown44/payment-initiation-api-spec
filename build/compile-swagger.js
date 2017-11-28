@@ -68,5 +68,6 @@ SwaggerParser.dereference(swaggerIndex, SwaggerParserOptions,
     fWrite(YAML.safeDump(api, {lineWidth: 200}), dist + '/payment-initiation-swagger.yaml');
     fWrite(JSON.stringify(api, null, 2), dist + '/payment-initiation-swagger.json');
 
+    fWrite(JSON.stringify(api, null, 2), distV + '/payment-initiation-swagger.json');
     fWrite(YAML.safeDump(api, {lineWidth: 200}), distV + '/payment-initiation-swagger.yaml');
   });
